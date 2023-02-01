@@ -27,9 +27,13 @@ Agile methodology using scrum framework with jira.
 
 ## 🚫 User permissions
 
-- Guest: View tops.
-- User: Create tops, manage profile, follow users.
-- Admin: Manage tops, files & users.
+- **Guest:** View tops.
+- **User:** Create tops, manage profile, follow users.
+- **Admin:** Manage tops, files & users.
+
+## 🌄 Images
+
+Here will be some images of the website.
 
 ## 📊 Graphs
 

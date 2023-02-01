@@ -1,5 +1,7 @@
 # 🎩 Alist
 
+[![license](https://img.shields.io/github/license/CodeURJC-DAW-2022-23/webapp1.svg)](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/LICENSE)
+
 Universal top list website.
 
 ## 👤 Collaborators

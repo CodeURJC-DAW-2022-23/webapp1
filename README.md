@@ -39,10 +39,10 @@ Here will be some images of the website.
 
 This app is going to have trends (pie chart), registered users (line chart) graphs.
 
-## ⚙️ Complementary tecnology
+## ⚙️ Complementary technology
 
 We are going to use an api to detect explicit contents.
 
 ## 🤔 Algorithm
 
-Website is going to have a recommendation algorithm for main website.
+Website is going to have a recommendation algorithm for welcome page.

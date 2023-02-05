@@ -5,3 +5,12 @@
 .fa-regular {
   color: white;
 }
+
+nav {
+  border-bottom: 1px solid white;
+}
+
+.feed {
+  height: 100vh;
+  background: black;
+}

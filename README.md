@@ -7,7 +7,7 @@ Universal top list website.
 ## 👤 Collaborators
 
 | Name                        | Email                             | Github username                                     |
-|-----------------------------|-----------------------------------|-----------------------------------------------------|
+| --------------------------- | --------------------------------- | --------------------------------------------------- |
 | Alejandro Porras Torrecilla | a.porras.2019@alumnos.urjc.es     | [skuzow](https://github.com/skuzow)                 |
 | Gledrian Gutierrez Regala   | g.gutierrezr.2020@alumnos.urjc.es | [gutche](https://github.com/gutche)                 |
 | Alberto Dekenó Maho         | a.dekeno.2020@alumnos.urjc.es     | [kr4ll](https://github.com//kr4ll)                  |
@@ -22,8 +22,8 @@ Agile methodology using scrum framework with jira.
 
 - User.
 - List.
-- Top item.
 - Topic.
+- Comments.
 
 ## 🚫 User permissions
 

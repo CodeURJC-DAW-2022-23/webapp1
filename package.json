@@ -1,0 +1,29 @@
+{
+  "name": "alist",
+  "version": "1.0.0",
+  "description": "Top list generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeURJC-DAW-2022-23/webapp1.git"
+  },
+  "keywords": [
+    "Toplist",
+    "Ranking"
+  ],
+  "authors": [
+    {
+      "name": "Gledrian Gutierrez",
+      "email": "gledrianregalagutierrez@gmail.com",
+      "url": "gledrian.dev"
+    }
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/CodeURJC-DAW-2022-23/webapp1/issues"
+  },
+  "homepage": "https://github.com/CodeURJC-DAW-2022-23/webapp1#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "bootstrap": "^5.2.3"
+  }
+}

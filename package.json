@@ -11,11 +11,7 @@
     "Ranking"
   ],
   "contributors": [
-    {
-      "name": "Gledrian Gutierrez",
-      "email": "gledrianregalagutierrez@gmail.com",
-      "url": "gledrian.dev"
-    }
+    "Gledrian Gutierrez <gledrianregalagutierrez@gmail.com> (https://gledrian.dev/)"
   ],
   "license": "Apache-2.0",
   "bugs": {

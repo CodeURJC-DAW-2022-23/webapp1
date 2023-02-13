@@ -1,3 +1,21 @@
-.btn-setting button{
-  border: none; background-color: black;
+.btn-setting .btn-primary{
+  border: none; 
+  background-color:black;
+}
+.btn-setting .btn-primary:hover{
+  background-color:black ;
+}
+
+
+.row  {
+  height: inherit;
+}
+
+.container-fluid {
+  height: 100vh;
+
+}
+
+.prof-name{
+  margin-left: 15%;
 }

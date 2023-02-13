@@ -6,18 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
     <title>Profile</title>
 </head>
 
 <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark " style="width: 280px; height: 1000px;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white " style=" background-color: black; width: 280px; height: 1000px;">
         
         <div class="d-flex flex-column">
            
             <img src="images/profile_picture.jpg" alt="profilePic" id="profilePic" class="rounded-circle .img-fluid">  
         </div>
-        <button><i class="fa-thin fa-gear"></i></button>
+        <div>
+            <p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-thin fa-gear"> settings</i></button></p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <p>hola</p>
+                </div>
+            </div>
+        </div>
         <div  class = "text-white" style=" padding-left: 80px" >   
             <p class="fs-4" style="width: 280px;">Gledrian </p>
         </div>

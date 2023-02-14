@@ -1,0 +1,28 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  object-fit: cover;
+}
+
+.accordion-item {
+  min-width: 398.5px;
+}
+
+.btn-primary {
+  background-color: #2d474f;
+  border: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:active:focus {
+  background-color: #63b1b1;
+}

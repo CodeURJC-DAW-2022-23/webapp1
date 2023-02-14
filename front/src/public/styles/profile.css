@@ -1,0 +1,30 @@
+.btn-setting .btn-primary {
+  border: none;
+  background-color: black;
+}
+.btn-setting .btn-primary:hover {
+  background-color: black;
+}
+
+.row {
+  height: inherit;
+  width: 100%;
+}
+
+.container-fluid {
+  height: 100vh;
+}
+
+.prof-name {
+  margin-left: 15%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.bio {
+  height: 100%;
+}

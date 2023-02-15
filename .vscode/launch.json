@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AlistApplication<main>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "net.daw.alist.AlistApplication",
+      "projectName": "main",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

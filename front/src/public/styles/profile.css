@@ -28,3 +28,8 @@ img {
 .bio {
   height: 100%;
 }
+
+.btn-follow .btn-primary {
+  border:none;
+  background-color:darkgrey;
+}

@@ -12,6 +12,7 @@
 }
 
 .container-fluid {
+  background-color: black;
   height: 100vh;
 }
 
@@ -33,3 +34,4 @@ img {
   border:none;
   background-color:darkgrey;
 }
+

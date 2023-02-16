@@ -1,21 +1,10 @@
 body {
-  display: flex;
   align-items: center;
-  padding-top: 40px;
   background-color: black;
-  color: white;
 }
 
 p {
   color: black;
-}
-
-.userName {
-  font-weight: 600;
-}
-
-h6 {
-  color: grey;
 }
 
 .row {
@@ -24,15 +13,6 @@ h6 {
 
 .fa-regular {
   color: white;
-}
-
-.comment-image{
-  margin: auto;
-}
-
-.form-control{
-  margin: auto;
-  width: 90%;
 }
 
 nav {
@@ -46,6 +26,41 @@ i {
 .feed-container {
   height: 100vh;
   margin: 0 25rem;
+}
+
+.form-control{
+  margin: auto;
+  width: 90%;
+}
+
+.own-comment-image{
+  margin: auto;
+  margin-right: 0.25em;
+}
+
+.comment-image{
+  margin-top: 0.1em;
+}
+
+
+.commentBox{
+  margin: auto;
+}
+
+
+.btn{
+  width: auto;
+}
+
+
+.username{
+  color: black;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+h6 {
+  color: grey;
 }
 
 input[type='text'] {
@@ -78,9 +93,16 @@ ol {
   list-style-position: inside;
 }
 
+.text-left{
+  margin: 0;
+}
+
+.profileImg{
+  margin-left: 1em;
+}
+
+
 .itemImage {
-  text-align: center;
-  vertical-align: middle;
   float: right;
 }
 

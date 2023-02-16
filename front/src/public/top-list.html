@@ -71,7 +71,16 @@
       <img class="shareIcon m-auto" src="images/shareIcon.svg" alt="" width="35" height="35">
     </div>
     <div class="commentSection w-100 bg-light">
-      <input class="w-75 m-3" type="text" id="newComment" name="newComment" required minlength="1" maxlength="140">
+      <div class="bg-light p-2">
+        <div class="d-flex flex-row">
+          <img src="https://github.com/twbs.png" alt="Profile Photo" width="40" height="40"
+            class="comment-image rounded-circle flex-shrink-0">
+          <textarea class="commentBox form-control ml-1 shadow-none textarea"></textarea>
+        </div>
+        <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post
+            comment</button>
+        </div>
+      </div>
       <div class="comment w-100">
         <div class="border list-group-item list-group-item-action d-flex gap-3 py-3 h-25" aria-current="true">
           <img src="https://github.com/twbs.png" alt="twbs" width="25 " height="25"

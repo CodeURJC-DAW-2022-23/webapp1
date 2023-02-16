@@ -26,6 +26,15 @@ h6 {
   color: white;
 }
 
+.comment-image{
+  margin: auto;
+}
+
+.form-control{
+  margin: auto;
+  width: 90%;
+}
+
 nav {
   border-bottom: 1px solid gray;
 }

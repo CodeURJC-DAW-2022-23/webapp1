@@ -42,14 +42,19 @@ i {
   margin-top: 0.1em;
 }
 
-
 .commentBox{
   margin: auto;
 }
 
 
-.btn{
-  width: auto;
+.btn-primary {
+  background-color: #2d474f;
+  border: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:active:focus {
+  background-color: #63b1b1;
 }
 
 
@@ -104,6 +109,9 @@ ol {
 
 .itemImage {
   float: right;
+  margin-top: -8px;
+  
+
 }
 
 /* ol::before {

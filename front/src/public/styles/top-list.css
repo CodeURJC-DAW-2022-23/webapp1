@@ -18,6 +18,27 @@ h6 {
   color: grey;
 }
 
+.row {
+  width: 100vw;
+}
+
+.fa-regular {
+  color: white;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+}
+
+i {
+  cursor: pointer;
+}
+
+.feed-container {
+  height: 100vh;
+  margin: 0 25rem;
+}
+
 input[type='text'] {
   min-height: 7em;
   word-wrap: break-word;
@@ -49,7 +70,6 @@ ol {
 }
 
 .itemImage {
-  display: ;
   text-align: center;
   vertical-align: middle;
   float: right;

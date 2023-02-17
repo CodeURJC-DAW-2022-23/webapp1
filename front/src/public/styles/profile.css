@@ -33,6 +33,7 @@ img {
 .btn-follow .btn-primary {
   border:none;
   background-color: #2d474f;
+  margin-top: 20px;;
 }
 
 .btn-follow .btn-primary:hover ,

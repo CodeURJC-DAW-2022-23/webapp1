@@ -1,3 +1,19 @@
+.accordion-button:not(.collapsed)::after {
+  background: var(--bs-accordion-btn-icon);
+  filter: brightness(1000%);
+  -webkit-filter: brightness(1000%);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #2d474f;
+  color: white;
+}
+
+.accordion-button:focus {
+  border-color: #2d474f;
+  box-shadow: none;
+}
+
 .accordion-body img[src='#'] {
   display: none;
 }

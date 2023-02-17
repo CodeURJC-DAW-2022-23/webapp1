@@ -5,6 +5,9 @@ body {
 
 p {
   color: black;
+  margin: auto;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .row {
@@ -23,29 +26,49 @@ i {
   cursor: pointer;
 }
 
-.feed-container {
-  height: 100vh;
-  margin: 0 25rem;
+.commentBox {
+  background-color: white;
+  border-bottom-left-radius: var(--bs-border-radius);
+  border-bottom-right-radius: var(--bs-border-radius);
 }
 
-.form-control{
+.post,
+.commentSection,
+.comment {
+  width: 100%;
+}
+
+.postInfo,
+.writeComment {
+  border-top-left-radius: var(--bs-border-radius);
+  border-top-right-radius: var(--bs-border-radius);
+}
+
+.writeComment,
+.comment {
+  background-color: white;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224);
+}
+
+.form-control {
   margin: auto;
   width: 90%;
 }
 
-.own-comment-image{
+.own-comment-image {
   margin: auto;
   margin-right: 0.25em;
 }
 
-.comment-image{
+.comment-image {
   margin-top: 0.1em;
 }
 
-.commentBox{
+.commentBox {
   margin: auto;
 }
-
 
 .btn-primary {
   background-color: #2d474f;
@@ -57,11 +80,16 @@ i {
   background-color: #63b1b1;
 }
 
-
-.username{
+.OP {
   color: black;
   font-weight: 600;
   font-size: 25px;
+}
+
+.username {
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 h6 {
@@ -85,7 +113,6 @@ li + li {
 }
 
 ol li {
-  
   padding: 1em;
   font-size: 20px;
   font-weight: 600;
@@ -93,35 +120,29 @@ ol li {
 }
 
 ol {
-  max-width: 75%;
-  min-width: 75%;
+  width: 75%;
   list-style-position: inside;
 }
 
-.text-left{
+.text-left {
   margin: 0;
 }
 
-.profileImg{
+.profileImg {
   margin-left: 1em;
 }
-
 
 .itemImage {
   float: right;
   margin-top: -8px;
-  
-
 }
-
-/* ol::before {
-  content: counters(list-item, '') '. ';
-  font-weight: 700;
-  font-size: 1.5em;
-  float: left;
-  margin: auto;
-} */
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  .post,
+  .commentSection,
+  .comment {
+    width: 60%;
+    margin: auto;
+  }
 }

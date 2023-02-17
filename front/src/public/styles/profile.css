@@ -13,6 +13,7 @@
 
 .container-fluid {
   height: 100vh;
+  background-color: black;
 }
 
 .prof-name {

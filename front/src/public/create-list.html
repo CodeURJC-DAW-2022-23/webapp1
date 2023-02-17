@@ -46,8 +46,10 @@
 
   <div class="accordion mt-3 mb-3" id="accordion">
 
-    <input class="form-control mb-2" list="datalistOptions" id="exampleDataList" placeholder="Type to add topic...">
-    <datalist id="datalistOptions">
+    <input class="form-control mb-2" id="topTitle" placeholder="Write a title...">
+
+    <input class="form-control mb-2" list="topicOptions" id="topicList" placeholder="Type to add topic...">
+    <datalist id="topicOptions">
       <option value="Sports">
       <option value="Anime">
       <option value="Characters">
@@ -66,7 +68,8 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgOne" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionOne" placeholder="description...">
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionOne"
+            placeholder="Write a description...">
           <input class="form-control" type="file" accept="image/*" id="formFileOne"
             onchange="loadFile(event, 'imgOne')">
         </div>
@@ -84,7 +87,8 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgTwo" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionTwo" placeholder="description...">
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionTwo"
+            placeholder="Write a description...">
           <input class="form-control" type="file" accept="image/*" id="formFileTwo"
             onchange="loadFile(event, 'imgTwo')">
         </div>
@@ -102,7 +106,8 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgThree" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionThree" placeholder="description...">
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionThree"
+            placeholder="Write a description...">
           <input class="form-control" type="file" accept="image/*" id="formFileThree"
             onchange="loadFile(event, 'imgThree')">
         </div>
@@ -120,7 +125,8 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgFour" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFour" placeholder="description...">
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFour"
+            placeholder="Write a description...">
           <input class="form-control" type="file" accept="image/*" id="formFileFour"
             onchange="loadFile(event, 'imgFour')">
         </div>
@@ -138,7 +144,8 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgFive" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFive" placeholder="description...">
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFive"
+            placeholder="Write a description...">
           <input class="form-control" type="file" accept="image/*" id="formFileFive"
             onchange="loadFile(event, 'imgFive')">
         </div>

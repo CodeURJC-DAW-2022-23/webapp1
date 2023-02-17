@@ -1,28 +1,19 @@
-html,
-body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 img {
   object-fit: cover;
 }
 
-.accordion-item {
-  min-width: 398.5px;
+.accordion {
+  width: 100%;
 }
 
-.btn-primary {
-  background-color: #2d474f;
-  border: 0;
+.accordion-button {
+  font-size: 20px;
 }
 
-.btn-primary:hover,
-.btn-primary:active:focus {
-  background-color: #63b1b1;
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .accordion {
+    width: 60%;
+    margin: auto;
+  }
 }

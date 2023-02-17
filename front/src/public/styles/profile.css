@@ -1,42 +1,55 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color:black !important;
+  color: white;
+}
+
 .btn-setting .btn-primary {
   border: none;
   background-color: black;
 }
+
 .btn-setting .btn-primary:hover {
   background-color: black;
 }
 
 .row {
   height: inherit;
-  width: 100%;
-}
-
-.container-fluid {
-  background-color: black;
-  height: 100vh;
+  
 }
 
 .prof-name {
-  margin-left: 15%;
+  margin-top: 20px;
+ 
 }
+
 
 img {
-  display: block;
   max-width: 100%;
   height: auto;
+  margin-bottom: 20px;
 }
 
-.bio {
-  height: 100%;
-}
 
 .btn-follow .btn-primary {
   border:none;
   background-color: #2d474f;
-  margin-top: 20px;;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .btn-follow .btn-primary:hover ,
 .btn-follow:active .btn-primary:focus {
   background-color: #63b1b1;
+}
+@media only screen and (min-width:768px){
+  
 }

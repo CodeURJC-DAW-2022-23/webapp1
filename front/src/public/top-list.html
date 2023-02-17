@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg bg-black">
     <div class="container-fluid">
       <div class="row align-items-center">
@@ -40,13 +41,18 @@
     </div>
     </div>
   </nav>
+
   <div class="post mt-3 mb-3">
     <div class="postInfo border bg-white d-flex gap-3 py-3">
       <img src="https://github.com/twbs.png" alt="twbs" width="75" height="75"
         class="profileImg rounded-circle flex-shrink-0">
       <div class="d-flex gap-2 w-100 justify-content-between">
         <div>
-          <h6 class="topics">@Basketball @NBA @Sports</h6>
+          <h6 class="topics">
+            <a class="topic" href="#">@Basketball</a>
+            <a class="topic" href="#">@NBA</a>
+            <a class="topic" href="#">@Sports</a>
+          </h6>
           <a class="OP text-black text-decoration-none" href="#">
             UserName
           </a>
@@ -76,8 +82,8 @@
       </div>
       <div class="list-group-item d-flex">
         <div class="w-auto m-auto">
-          <img class="downvoteIcon" src="images/downvoteIcon.svg" alt="" width="35" height="35">
           <img class="upvoteIcon" src="images/upvoteIcon.svg" alt="" width="35" height="35">
+          <img class="downvoteIcon" src="images/downvoteIcon.svg" alt="" width="35" height="35">
         </div>
         <img class="shareIcon m-auto" src="images/shareIcon.svg" alt="" width="35" height="35">
       </div>
@@ -99,7 +105,6 @@
         <div class="userInfo w-100 d-flex align-items-center gap-2">
           <img src="https://github.com/twbs.png" alt="twbs" width="33" height="33"
             class=" comment-image rounded-circle flex-shrink-0">
-
           <a class="username text-black text-decoration-none w-auto" href="#">
             UserName
           </a>
@@ -117,7 +122,6 @@
       </div>
     </div>
   </div>
-
 
 </body>
 

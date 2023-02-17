@@ -32,6 +32,10 @@ img {
 
 .btn-follow .btn-primary {
   border:none;
-  background-color:darkgrey;
+  background-color: #2d474f;
 }
 
+.btn-follow .btn-primary:hover ,
+.btn-follow:active .btn-primary:focus {
+  background-color: #63b1b1;
+}

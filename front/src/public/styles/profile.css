@@ -14,11 +14,11 @@ body {
 
 .btn-setting .btn-primary {
   border: none;
-  background-color: black;
+  background-color: #2d474f;
 }
 
 .btn-setting .btn-primary:hover {
-  background-color: black;
+  background-color: #63b1b1;
 }
 
 .row {

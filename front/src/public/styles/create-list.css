@@ -1,3 +1,9 @@
+#topTitle,
+#topicList {
+  width: 90%;
+  margin: auto;
+}
+
 .accordion-button:not(.collapsed)::after {
   background: var(--bs-accordion-btn-icon);
   filter: brightness(1000%);
@@ -38,6 +44,10 @@
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  #topTitle,
+  #topicList {
+    width: 100%;
+  }
   .accordion {
     width: 60%;
     margin: auto;

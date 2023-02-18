@@ -4,9 +4,7 @@ body {
 }
 
 body {
-  display: flex;
   align-items: center;
-  padding-top: 40px;
   padding-bottom: 40px;
   background-color:black !important;
   color: white;
@@ -21,22 +19,18 @@ body {
   background-color: #63b1b1;
 }
 
-.row {
-  height: inherit;
-  
-}
-
 .prof-name {
   margin-top: 20px;
  
 }
 
 
-img {
+ .prof-pic {
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
 }
+
 
 
 .btn-follow .btn-primary {
@@ -52,4 +46,23 @@ img {
 }
 @media only screen and (min-width:768px){
   
+  
+  
+}
+/*Nav bar*/
+.fa-regular {
+  color: white;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+}
+
+i {
+  cursor: pointer;
+}
+
+.feed-container {
+  height: 100vh;
+  margin: 0 25rem;
 }

@@ -46,7 +46,9 @@ body {
 }
 @media only screen and (min-width:768px){
   
-  
+  main .row{
+    height: auto;
+  }
   
 }
 /*Nav bar*/
@@ -54,6 +56,10 @@ body {
   color: white;
 }
 
+.navbar .row{
+  width: 100vw;
+  
+}
 nav {
   border-bottom: 1px solid gray;
 }

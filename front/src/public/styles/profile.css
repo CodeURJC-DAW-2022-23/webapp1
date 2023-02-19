@@ -1,64 +1,43 @@
-html,
-body {
-  height: 100%;
-}
-
-body {
-  align-items: center;
-  padding-bottom: 40px;
-  background-color:black !important;
+.btn-setting .btn-primary {
+  border: 1px solid white;
+  background-color: inherit;
   color: white;
 }
 
-.btn-setting .btn-primary {
-  border: none;
-  background-color: #2d474f;
-}
-
 .btn-setting .btn-primary:hover {
-  background-color: #63b1b1;
+  background-color: black;
 }
 
-.prof-name {
-  margin-top: 20px;
- 
-}
-
-
- .prof-pic {
+.prof-pic {
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
 }
 
-
-
 .btn-follow .btn-primary {
-  border:none;
+  border: none;
   background-color: #2d474f;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.btn-follow .btn-primary:hover ,
+.btn-follow .btn-primary:hover,
 .btn-follow:active .btn-primary:focus {
   background-color: #63b1b1;
 }
-@media only screen and (min-width:768px){
-  
-  main .row{
+
+@media only screen and (max-width: 320px) {
+  main .row {
     height: auto;
   }
-  
 }
 /*Nav bar*/
 .fa-regular {
   color: white;
 }
 
-.navbar .row{
+.navbar .row {
   width: 100vw;
-  
 }
 nav {
   border-bottom: 1px solid gray;
@@ -68,7 +47,13 @@ i {
   cursor: pointer;
 }
 
-.feed-container {
+.vl {
+  border-left: 1px solid gray;
+  height: 100%;
+  width: 1px;
+}
+
+main {
   height: 100vh;
-  margin: 0 25rem;
+  padding: 0 1rem;
 }

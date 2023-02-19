@@ -1,4 +1,9 @@
 body {
-  background-color: black;
+  background-color: black !important;
   overflow: hidden;
+}
+
+hr {
+  color: gray !important;
+  opacity: 1 !important;
 }

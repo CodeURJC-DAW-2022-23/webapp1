@@ -1,0 +1,32 @@
+body {
+  align-items: center;
+  background-color: black;
+}
+
+/* nav */
+.navbar .row {
+  width: 100vw;
+}
+
+.fa-regular {
+  color: white;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+}
+
+i {
+  cursor: pointer;
+}
+
+/* button */
+.btn-primary {
+  background-color: #2d474f;
+  border: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:active:focus {
+  background-color: #63b1b1;
+}

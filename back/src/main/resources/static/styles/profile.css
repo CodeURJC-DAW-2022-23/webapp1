@@ -1,0 +1,43 @@
+main {
+  height: 100vh;
+  padding: 0 1rem;
+}
+
+.btn-setting .btn-primary {
+  border: 1px solid white;
+  background-color: inherit;
+  color: white;
+}
+
+.btn-setting .btn-primary:hover {
+  background-color: black;
+}
+
+.prof-pic {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.btn-follow .btn-primary {
+  border: none;
+  background-color: #2d474f;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-follow {
+  background-color: #63b1b1;
+}
+
+.vl {
+  border-left: 1px solid gray;
+  height: 100%;
+  width: 1px;
+}
+
+@media only screen and (max-width: 320px) {
+  main .row {
+    height: auto;
+  }
+}

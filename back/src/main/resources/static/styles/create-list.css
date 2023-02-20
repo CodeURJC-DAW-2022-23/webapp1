@@ -1,0 +1,59 @@
+#topTitle,
+#topicList {
+  width: 90%;
+  margin: auto;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background: var(--bs-accordion-btn-icon);
+  filter: brightness(1000%);
+  -webkit-filter: brightness(1000%);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #2d474f;
+  color: white;
+}
+
+.accordion-button:focus {
+  border-color: #2d474f;
+  box-shadow: none;
+}
+
+.accordion-body img[src='#'] {
+  display: none;
+}
+
+.accordion-body img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordion-body {
+  padding-top: 0px;
+}
+
+.accordion-button {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  #topTitle,
+  #topicList {
+    width: 100%;
+  }
+  .accordion {
+    width: 60%;
+    margin: auto;
+  }
+  .accordion-body img {
+    width: 300px;
+    height: 300px;
+  }
+}

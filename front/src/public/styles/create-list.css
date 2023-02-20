@@ -1,28 +1,59 @@
-html,
-body {
-  height: 100%;
+#topTitle,
+#topicList {
+  width: 90%;
+  margin: auto;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.accordion-button:not(.collapsed)::after {
+  background: var(--bs-accordion-btn-icon);
+  filter: brightness(1000%);
+  -webkit-filter: brightness(1000%);
 }
 
-img {
+.accordion-button:not(.collapsed) {
+  background-color: #2d474f;
+  color: white;
+}
+
+.accordion-button:focus {
+  border-color: #2d474f;
+  box-shadow: none;
+}
+
+.accordion-body img[src='#'] {
+  display: none;
+}
+
+.accordion-body img {
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 }
 
-.accordion-item {
-  min-width: 398.5px;
+.accordion {
+  width: 100%;
 }
 
-.btn-primary {
-  background-color: #2d474f;
-  border: 0;
+.accordion-body {
+  padding-top: 0px;
 }
 
-.btn-primary:hover,
-.btn-primary:active:focus {
-  background-color: #63b1b1;
+.accordion-button {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  #topTitle,
+  #topicList {
+    width: 100%;
+  }
+  .accordion {
+    width: 60%;
+    margin: auto;
+  }
+  .accordion-body img {
+    width: 300px;
+    height: 300px;
+  }
 }

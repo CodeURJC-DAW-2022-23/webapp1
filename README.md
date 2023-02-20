@@ -6,7 +6,7 @@ Universal top list website.
 
 ## 👤 Collaborators
 
-| Name                        | Email                             | Github username                                     |
+| Name                        | Email                             | Github Username                                     |
 | --------------------------- | --------------------------------- | --------------------------------------------------- |
 | Alejandro Porras Torrecilla | a.porras.2019@alumnos.urjc.es     | [skuzow](https://github.com/skuzow)                 |
 | Gledrian Gutierrez Regala   | g.gutierrezr.2020@alumnos.urjc.es | [gutche](https://github.com/gutche)                 |

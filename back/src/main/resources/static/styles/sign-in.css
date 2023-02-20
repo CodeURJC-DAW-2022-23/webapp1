@@ -5,10 +5,8 @@ body {
 
 body {
   display: flex;
-  align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: black;
   color: white;
 }
 
@@ -34,16 +32,6 @@ body {
 .form-signin input[type='password'] {
   margin-bottom: 10px;
   color: black;
-}
-
-.btn-primary {
-  background-color: #2d474f;
-  border: 0;
-}
-
-.btn-primary:hover,
-.btn-primary:active:focus {
-  background-color: #63b1b1;
 }
 
 .link {

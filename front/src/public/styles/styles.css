@@ -30,3 +30,8 @@ i {
 .btn-primary:active:focus {
   background-color: #63b1b1;
 }
+
+hr {
+  color: gray !important;
+  opacity: 1 !important;
+}

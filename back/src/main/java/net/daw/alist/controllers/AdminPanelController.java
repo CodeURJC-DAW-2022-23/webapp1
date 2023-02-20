@@ -10,4 +10,5 @@ public class AdminPanelController {
   public String adminPanel() {
     return "admin-panel";
   }
+
 }

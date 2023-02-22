@@ -1,0 +1,16 @@
+.hamburger-container {
+  width: 100%;
+}
+
+.collapse {
+  width: 100%;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+}
+
+i {
+  color: white;
+  cursor: pointer;
+}

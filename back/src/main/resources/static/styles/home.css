@@ -2,3 +2,11 @@
   height: 100vh;
   margin: 0 25rem;
 }
+
+.hamburger-container {
+  width: 100%;
+}
+
+.collapse {
+  width: 100%;
+}

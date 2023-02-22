@@ -2,12 +2,14 @@
   <div class="d-none d-md-block container-fluid">
     <div class="row align-items-center">
       <div class="col-1">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="/">
           <img src="images/alistLogo.svg" alt="" width="80" height="30">
         </a>
       </div>
       <div class="col-3 d-flex justify-content-around ps-5 pe-2">
-        <i class="fa-regular fa-compass fa-xl"></i>
+        <a>
+          <i class="fa-regular fa-compass fa-xl"></i>
+        </a>
       </div>
       <div class="col-4 ps-0">
         <form class="d-flex" role="search">
@@ -15,23 +17,39 @@
         </form>
       </div>
       <div class="col-4 d-flex justify-content-around">
-        <i class="fa-regular fa-heart fa-xl"></i>
-        <i class="fa-regular fa-user fa-xl"></i>
+        <a>
+          <i class="fa-regular fa-heart fa-xl"></i>
+        </a>
+        <a href="/profile">
+          <i class="fa-regular fa-user fa-xl"></i>
+        </a>
       </div>
     </div>
   </div>
-  <div class="d-sm-block d-md-none ps-3">
-    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-      aria-controls="collapseExample">
-      <i class="fa-solid fa-bars"></i>
-    </a>
-  </div>
-
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
-      activates the relevant trigger.
+  <div class="hamburger-container d-sm-block d-md-none">
+    <div class="d-flex justify-content-end">
+      <div class="collapse" id="collapseExample">
+        <div class="icon-container d-flex justify-content-around align-items-center pe-2 pt-2">
+          <a>
+            <i class="fa-regular fa-heart fa-xl"></i>
+          </a>
+          <a href="/profile">
+            <i class="fa-regular fa-user fa-xl"></i>
+          </a>
+          <a>
+            <i class="fa-regular fa-compass fa-xl"></i>
+          </a>
+          <a>
+            <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="pe-2">
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+          aria-controls="collapseExample">
+          <i class="fa-solid fa-bars"></i>
+        </a>
+      </div>
     </div>
-  </div>
   </div>
 </nav>

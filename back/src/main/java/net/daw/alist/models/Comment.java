@@ -3,11 +3,7 @@ package net.daw.alist.models;
 import java.sql.Blob;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,8 +15,10 @@ public class Comment {
   private Long id;
 
   private Date date;
-  private User author;
   private String content;
+
+  @OneToOne
+  private User author;
   
   @Lob
   @JsonIgnore

@@ -1,0 +1,45 @@
+.hamburger-container {
+  width: 100%;
+}
+
+.collapse {
+  width: 100%;
+}
+
+.no-transition {
+  -webkit-transition: height 0.001s;
+  -moz-transition: height 0.001s;
+  -ms-transition: height 0.001s;
+  -o-transition: height 0.001s;
+  transition: height 0.001s;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+}
+
+i {
+  color: white;
+  cursor: pointer;
+}
+
+input {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+form {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.searchBtn {
+  color: black;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  form {
+    border: none;
+  }
+}

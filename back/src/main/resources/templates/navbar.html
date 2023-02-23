@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/navbar.css">
+  <script src="scripts/bootstrap/bootstrap.bundle.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-black">
+    <div class="d-none d-md-block container-fluid">
+      <div class="d-flex justify-content-evenly align-items-center m-auto">
+        <a class="navbar-brand" href="/">
+          <img src="images/alistLogo.svg" alt="" width="80" height="30">
+        </a>
+        <a>
+          <i class="fa-regular fa-compass fa-xl"></i>
+        </a>
+        <form class="d-flex w-25" role="search">
+          <input class="form-control me-2 border-0 shadow-none" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn border-0" type="submit">
+            <i class="searchBtn fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <a>
+          <i class="fa-regular fa-heart fa-xl"></i>
+        </a>
+        <a href="/profile">
+          <i class="fa-regular fa-user fa-xl"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="hamburger-container d-sm-block d-md-none">
+      <div class="d-flex justify-content-end align-items-center">
+        <a class="navbar-brand ps-2 m-auto flex-grow-1" href="/">
+          <img class="" src="images/alistLogo.svg" alt="Alist logo" width="101.33 " height="38">
+        </a>
+        <div class="collapse no-transition" id="collapseNav">
+          <div class="icon-container d-flex justify-content-evenly align-items-center ps-2 pe-2 gap-3">
+            <a>
+              <i class="fa-regular fa-compass fa-xl"></i>
+            </a>
+            <a>
+              <i class="fa-regular fa-heart fa-xl"></i>
+            </a>
+            <a href="/profile">
+              <i class="fa-regular fa-user fa-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div class="pe-2">
+          <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseNav" role="button" aria-expanded="false"
+            aria-controls="collapseNav">
+            <i class="fa-solid fa-bars fa-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="collapse border-top mt-2" id="collapseNav">
+        <form class="search d-flex ms-2 me-2 mt-2" role="search">
+          <input class="form-control me-2 w-100 border-0 shadow-none" type="search" placeholder="Search"
+            aria-label="Search">
+          <button class="btn border-0" type="submit">
+            <i class="searchBtn fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</body>

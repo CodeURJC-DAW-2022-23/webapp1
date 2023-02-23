@@ -32,8 +32,11 @@ public class User {
   @JsonIgnore
   private Blob picture;
 
-  @ManyToMany(mappedBy="user")
+  @OneToMany
   private List<User> follows = new ArrayList<>();
+
+  @OneToMany
+  private List<User> followers = new ArrayList<>();
 
   @OneToMany
   private List<Post> posts = new ArrayList<>();
@@ -79,6 +82,10 @@ public class User {
     this.follows = follows;
   }
 
+  public void setFollowers(List<User> followers) {
+    this.followers = followers;
+  }
+
   public void setPosts(List<Post> posts) {
     this.posts = posts;
   }
@@ -109,6 +116,10 @@ public class User {
 
   public List<User> getFollows() {
     return follows;
+  }
+
+  public List<User> getFollowers() {
+    return followers;
   }
 
   public List<Post> getPosts() {

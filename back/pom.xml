@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>net.daw</groupId>
 	<artifactId>alist</artifactId>
+	<version>0.0.1</version>
 	<name>alist</name>
 	<description>Alist backend</description>
 	<properties>

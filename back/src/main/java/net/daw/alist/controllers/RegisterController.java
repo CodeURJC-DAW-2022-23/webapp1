@@ -1,12 +1,13 @@
 package net.daw.alist.controllers;
 
 import lombok.AllArgsConstructor;
+import net.daw.alist.security.RegistrationRequest;
 import net.daw.alist.services.RegistrationService;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(path = "api/registration")
+@RequestMapping(path = "api/register")
 @AllArgsConstructor
 public class RegisterController {
 

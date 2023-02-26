@@ -5,12 +5,14 @@ import net.daw.alist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @Configuration
@@ -34,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/register").permitAll()
                     .antMatchers("/top-list").permitAll()
                     .antMatchers("/extern-profile").permitAll()
+                    //.antMatchers(HttpMethod.GET, "/csrf").permitAll()
                 .and()
                 .formLogin()
                     .loginPage("/sign-in").permitAll()
@@ -47,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutUrl("/sign-out")
                     .logoutSuccessUrl("/");
 
-        // Disable CSRF protection (it is difficult to implement in REST APIs)
-        http.csrf().disable();
     }
 
     @Override

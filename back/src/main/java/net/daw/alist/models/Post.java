@@ -6,11 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Post {
@@ -28,13 +24,13 @@ public class Post {
   @OneToMany
   private Set<User> downVotes = new HashSet<>();
   
-  @OneToMany
+  @ManyToMany
   private List<Topic> topics = new ArrayList<>();
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<PostItem> items = new ArrayList<>();
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
 
   public Post() { }

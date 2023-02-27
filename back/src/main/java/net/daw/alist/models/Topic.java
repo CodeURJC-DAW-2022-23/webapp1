@@ -1,9 +1,8 @@
 package net.daw.alist.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Topic {
@@ -14,6 +13,9 @@ public class Topic {
 
   private String name;
   private String description;
+
+  @ManyToMany(mappedBy="topics")
+  private List<Post> posts = new ArrayList<>();
 
   public Topic() { }
   
@@ -33,6 +35,10 @@ public class Topic {
     this.description = description;
   }
 
+  public void setPosts(List<Post> posts) {
+    this.posts = posts;
+  }
+
   public String getName() {
     return name;
   }
@@ -40,5 +46,9 @@ public class Topic {
   public String getDescription() {
     return description;
   }
-  
+
+  public List<Post> getPosts() {
+    return posts;
+  }
+
 }

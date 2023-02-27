@@ -5,13 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,7 +24,8 @@ public class User {
 
   @Lob
   @JsonIgnore
-  private Blob picture;
+  private Blob imageFile;
+  private String image;
 
   @OneToMany
   private List<User> follows = new ArrayList<>();
@@ -38,8 +33,11 @@ public class User {
   @OneToMany
   private List<User> followers = new ArrayList<>();
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Post> posts = new ArrayList<>();
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy="author")
+  private List<Comment> comments = new ArrayList<>();
 
   public User() { }
   
@@ -47,15 +45,13 @@ public class User {
     String username,
     String password,
     String email,
-    Boolean admin,
-    Blob picture
+    Boolean admin
   ) {
     this.date = new Date();
     this.username = username;
     this.password = password;
     this.email = email;
     this.admin = admin;
-    this.picture = picture;
   }
 
   public void setUsername(String username) {
@@ -74,8 +70,9 @@ public class User {
     this.admin = admin;
   }
 
-  public void setPicture(Blob picture) {
-    this.picture = picture;
+  public void setImage(Blob imageFile, String image) {
+    this.imageFile = imageFile;
+    this.image = image;
   }
 
   public void setFollows(List<User> follows) {
@@ -88,6 +85,10 @@ public class User {
 
   public void setPosts(List<Post> posts) {
     this.posts = posts;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 
   public Date getDate() {
@@ -110,8 +111,12 @@ public class User {
     return admin;
   }
 
-  public Blob getPicture() {
-    return picture;
+  public Blob getImageFile() {
+    return imageFile;
+  }
+
+  public String getImage() {
+    return image;
   }
 
   public List<User> getFollows() {
@@ -124,6 +129,10 @@ public class User {
 
   public List<Post> getPosts() {
     return posts;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
   }
 
 }

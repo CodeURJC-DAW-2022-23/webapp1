@@ -2,7 +2,6 @@ package net.daw.alist.services;
 
 import lombok.AllArgsConstructor;
 import net.daw.alist.models.UserRole;
-import net.daw.alist.repositories.UserRepository;
 import net.daw.alist.security.ConfirmationToken;
 import net.daw.alist.security.RegistrationRequest;
 import net.daw.alist.models.User;
@@ -21,9 +20,6 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailService emailSender;
 
-    @Autowired
-    private UserRepository userRepository;
-
     public String register(RegistrationRequest request) {
 
         String token = userService.register(
@@ -31,8 +27,7 @@ public class RegistrationService {
                         request.getUsername(),
                         request.getPassword(),
                         request.getEmail(),
-                        UserRole.USER,
-                        null
+                        UserRole.USER
                 )
         );
 

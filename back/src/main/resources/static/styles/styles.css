@@ -13,3 +13,8 @@ body {
 .btn-primary:active:focus {
   background-color: #63b1b1;
 }
+
+.btn-primary:disabled,
+.btn-primary[disabled]{
+    background-color: #1e2f34;
+}

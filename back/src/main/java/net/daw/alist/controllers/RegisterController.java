@@ -5,7 +5,10 @@ import net.daw.alist.security.RegistrationRequest;
 import net.daw.alist.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @Controller
@@ -19,10 +22,15 @@ public class RegisterController {
   }
 
   @PostMapping("/register")
-  public String register(RegistrationRequest request) {
-    System.out.println(request.getUsername() + request.getPassword() + request.getUsername());
-    registrationService.register(request);
-    return "/sign-in";
+  public String register(Model model, RegistrationRequest request) {
+    String result = registrationService.register(request);
+    if (result.equals("Success")){
+      return "/sign-in";
+    } else{
+      model.addAttribute("error", true);
+      model.addAttribute("errorMSG", result);
+      return "/register";
+    }
   }
 
 }

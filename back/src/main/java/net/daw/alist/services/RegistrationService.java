@@ -16,28 +16,24 @@ public class RegistrationService {
 
     @Autowired
     private UserRepository userRepository;
-    public String register(RegistrationRequest request) {
-        /*boolean isValidEmail = emailValidator.
-                test(request.getEmail());
-        if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
-        }*/
 
+    public String register(RegistrationRequest request) {
 
         String token = userService.register(
                 new User(
                         request.getUsername(),
-                        request.getEmail(),
                         request.getPassword(),
+                        request.getEmail(),
                         UserRole.USER,
                         null
 
                 )
         );
-        /*String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        /*String link = "http://localhost:8443/register/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));*/
+
 
         return token;
     }

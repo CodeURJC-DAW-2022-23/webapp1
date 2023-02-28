@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <script src="../scripts/passwordTOSValidator.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <link rel="stylesheet" type="text/css" href="styles/form.css">
@@ -15,7 +16,14 @@
 <body class="text-center">
   <main class="form-signin w-100 m-auto">
     <form action="/register" method="post" id="registerForm">
+
       <img class="mb-4" src="images/alistLogo.svg" alt="" width="250" height="150">
+
+      {{#error}}
+      <div class="alert alert-danger" role="alert">
+        {{errorMSG}}
+      </div>
+      {{/error}}
 
       <div class="form-floating mb-2">
         <input type="text" class="form-control" id="usernameInput" placeholder="user" name="username">
@@ -26,21 +34,21 @@
         <label for="emailInput" class="text-muted">Email address</label>
       </div>
       <div class="form-floating mb-2">
-        <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-        <label for="passwordInput" class="text-muted">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name ="password" onchange='validatePasswordTOS()'>
+        <label for="password" class="text-muted">Password</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Password" name="password">
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Password" name="confirmPassword" onchange='validatePasswordTOS()'>
         <label for="confirmPassword" class="text-muted">Repeat password</label>
       </div>
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> I agree to the
-          <a class="text-white" href="#">Terms of service</a>
+          <input type="checkbox" id="checkBox" value="TOSagreement" onchange='validatePasswordTOS();'> I agree to the
+          <a class="text-white" href="https://www.termsfeed.com/public/uploads/2021/12/sample-terms-of-service-template.pdf">Terms of service</a>
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+      <button class="w-100 btn btn-lg btn-primary" id="submit" type="submit" disabled>Submit</button>
       <div class="linkBox mt-4">
         <a class="link text-white" href="/sign-in">Sign in instead</a>
         <p class="mb-0">or</p>

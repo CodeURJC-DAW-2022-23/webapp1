@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
@@ -23,16 +25,50 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public String register(User user) {
-        boolean userExists = userRepository
-                .findByUsername(user.getEmail()) //findByEmail
+    private boolean emailValid(String emailAddress){
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        return Pattern.compile(regexPattern).matcher(emailAddress).matches();
+    }
+    private String errorChecks(User user){
+
+        //User not formatted correctly
+        if(user.getUsername().length() < 4)
+            return "Username must have at least 4 characters";
+        if(user.getPassword().length() < 4)
+            return "Password must have at least 4 characters";
+        if(!emailValid(user.getEmail()))
+            return "Invalid email address";
+
+        //User formatted correctly
+        boolean usernameTaken = userRepository
+                .findByUsername(user.getUsername())
                 .isPresent();
 
-        if (userExists) {
-            // TODO check of attributes are the same and
-            // TODO if email not confirmed send confirmation email.
+        boolean emailTaken = userRepository
+                .findByEmail(user.getEmail())
+                .isPresent();
 
-            throw new IllegalStateException("email already taken");
+        if (usernameTaken && emailTaken) {
+            return "User already registered";
+        } else if (usernameTaken){
+            return "Username already taken";
+        } else if(emailTaken) {
+            return "Email address already taken";
+        }
+
+        //All checks passed
+        return "Success";
+    }
+
+    public String register(User user) {
+    // TODO if email not confirmed send confirmation email.
+
+        String errorMessage = errorChecks(user);
+
+        if (!errorMessage.equals("Success")){
+            return errorMessage;
         }
 
         String encodedPassword = bCryptPasswordEncoder
@@ -42,7 +78,7 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
 
-        String token = "testing";
+        String token = "Success";
 
         /*String token = UUID.randomUUID().toString();
 
@@ -56,7 +92,7 @@ public class UserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(
                 confirmationToken);*/
 
-//        TODO: SEND EMAIL
+    //  TODO: SEND EMAIL
 
         return token;
     }

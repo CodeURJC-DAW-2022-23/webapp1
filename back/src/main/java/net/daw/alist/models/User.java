@@ -2,6 +2,7 @@ package net.daw.alist.models;
 
 import java.sql.Blob;
 
+import javax.persistence.*;
 import java.util.*;
 
 import javax.persistence.*;
@@ -45,7 +46,8 @@ public class User implements UserDetails {
 
   @Lob
   @JsonIgnore
-  private Blob picture;
+  private Blob imageFile;
+  private String image;
 
   @OneToMany
   private List<User> follows = new ArrayList<>();
@@ -53,8 +55,11 @@ public class User implements UserDetails {
   @OneToMany
   private List<User> followers = new ArrayList<>();
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Post> posts = new ArrayList<>();
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy="author")
+  private List<Comment> comments = new ArrayList<>();
 
   public User() { }
   
@@ -62,8 +67,7 @@ public class User implements UserDetails {
     String username,
     String password,
     String email,
-    UserRole role,
-    Blob picture
+    UserRole role
   ) {
     this.date = new Date();
     this.username = username;
@@ -72,7 +76,7 @@ public class User implements UserDetails {
     this.role = role;
     enabled = false; //Change this if you want to turn off email verification
     locked = false;
-    this.picture = picture;
+    this.image = image;
 
     if(role.equals(UserRole.ADMIN)){
       enabled = true;
@@ -95,8 +99,9 @@ public class User implements UserDetails {
     this.role = role;
   }
 
-  public void setPicture(Blob picture) {
-    this.picture = picture;
+  public void setImage(Blob imageFile, String image) {
+    this.imageFile = imageFile;
+    this.image = image;
   }
 
   public void setFollows(List<User> follows) {
@@ -109,6 +114,10 @@ public class User implements UserDetails {
 
   public void setPosts(List<Post> posts) {
     this.posts = posts;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 
   public Date getDate() {
@@ -134,8 +143,12 @@ public class User implements UserDetails {
     return role;
   }
 
-  public Blob getPicture() {
-    return picture;
+  public Blob getImageFile() {
+    return imageFile;
+  }
+
+  public String getImage() {
+    return image;
   }
 
   public List<User> getFollows() {
@@ -148,6 +161,10 @@ public class User implements UserDetails {
 
   public List<Post> getPosts() {
     return posts;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
   }
 
   @Override

@@ -17,23 +17,26 @@ public class Comment {
   private Date date;
   private String content;
 
-  @OneToOne
+  @ManyToOne
   private User author;
   
   @Lob
   @JsonIgnore
-  private Blob image;
+  private Blob imageFile;
+  private String image;
 
   public Comment() { }
   
   public Comment(
     User author,
     String content,
-    Blob image
+    Blob imageFile,
+    String image
   ) {
     this.date = new Date();
     this.author = author;
     this.content = content;
+    this.imageFile = imageFile;
     this.image = image;
   }
 
@@ -45,7 +48,8 @@ public class Comment {
     this.content = content;
   }
 
-  public void setImage(Blob image) {
+  public void setImage(Blob imageFile, String image) {
+    this.imageFile = imageFile;
     this.image = image;
   }
 
@@ -61,7 +65,11 @@ public class Comment {
     return content;
   }
 
-  public Blob getImage() {
+  public Blob getImageFile() {
+    return imageFile;
+  }
+
+  public String getImage() {
     return image;
   }
 

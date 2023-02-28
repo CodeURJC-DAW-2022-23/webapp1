@@ -70,9 +70,13 @@ public class User implements UserDetails {
     this.password = password;
     this.email = email;
     this.role = role;
-    enabled = true; //Change this if you want to add email verification
+    enabled = false; //Change this if you want to turn off email verification
     locked = false;
     this.picture = picture;
+
+    if(role.equals(UserRole.ADMIN)){
+      enabled = true;
+    }
   }
 
   public void setUsername(String username) {

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -22,15 +25,24 @@ public class RegisterController {
   }
 
   @PostMapping("/register")
-  public String register(Model model, RegistrationRequest request) {
+  public String registerPost(Model model, RegistrationRequest request) {
     String result = registrationService.register(request);
     if (result.equals("Success")){
-      return "/sign-in";
+      model.addAttribute("notVerified", true);
+      model.addAttribute("verifyMSG", "Please check your inbox to verify your email address");
+      return "/register";
     } else{
       model.addAttribute("error", true);
       model.addAttribute("errorMSG", result);
       return "/register";
     }
+  }
+
+  @GetMapping("/registration/confirm")
+  public String confirm(@RequestParam("token") String token, HttpServletResponse httpResponse) throws IOException {
+    registrationService.confirmToken(token);
+    httpResponse.sendRedirect("/sign-in");
+    return "/sign-in";
   }
 
 }

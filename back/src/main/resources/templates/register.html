@@ -25,6 +25,12 @@
       </div>
       {{/error}}
 
+      {{#notVerified}}
+      <div class="alert alert-info" role="alert">
+        {{verifyMSG}}
+      </div>
+      {{/notVerified}}
+
       <div class="form-floating mb-2">
         <input type="text" class="form-control" id="usernameInput" placeholder="user" name="username">
         <label for="usernameInput" class="text-muted">Username</label>

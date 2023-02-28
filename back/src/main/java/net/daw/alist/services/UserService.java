@@ -3,6 +3,7 @@ package net.daw.alist.services;
 import lombok.AllArgsConstructor;
 import net.daw.alist.models.User;
 import net.daw.alist.repositories.UserRepository;
+import net.daw.alist.security.ConfirmationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Service
@@ -18,6 +22,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException{
@@ -63,7 +68,6 @@ public class UserService implements UserDetailsService {
     }
 
     public String register(User user) {
-    // TODO if email not confirmed send confirmation email.
 
         String errorMessage = errorChecks(user);
 
@@ -78,22 +82,22 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
 
-        String token = "Success";
-
-        /*String token = UUID.randomUUID().toString();
+        String token = UUID.randomUUID().toString();
 
         ConfirmationToken confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
-                appUser
+                user
         );
 
         confirmationTokenService.saveConfirmationToken(
-                confirmationToken);*/
+                confirmationToken);
 
-    //  TODO: SEND EMAIL
+        return "token=" + token;
+    }
 
-        return token;
+    public int enableUser(String email) {
+        return userRepository.enableUser(email);
     }
 }

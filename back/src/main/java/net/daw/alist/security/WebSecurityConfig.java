@@ -36,7 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/register").permitAll()
                     .antMatchers("/top-list").permitAll()
                     .antMatchers("/extern-profile").permitAll()
-                    //.antMatchers(HttpMethod.GET, "/csrf").permitAll()
                 .and()
                 .formLogin()
                     .loginPage("/sign-in").permitAll()
@@ -49,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutUrl("/sign-out")
                     .logoutSuccessUrl("/");
-
     }
 
     @Override

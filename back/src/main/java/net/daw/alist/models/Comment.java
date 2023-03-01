@@ -28,13 +28,11 @@ public class Comment {
   public Comment() { }
   
   public Comment(
-    User author,
     String content,
     Blob imageFile,
     String image
   ) {
     this.date = new Date();
-    this.author = author;
     this.content = content;
     this.imageFile = imageFile;
     this.image = image;

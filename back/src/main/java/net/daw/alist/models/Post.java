@@ -15,6 +15,7 @@ public class Post {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  private User author;
   private Date date;
   private String title;
 
@@ -23,7 +24,7 @@ public class Post {
 
   @OneToMany
   private Set<User> downVotes = new HashSet<>();
-  
+
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
 
@@ -44,6 +45,11 @@ public class Post {
     this.title = title;
     this.topics = topics;
     this.items = items;
+  }
+
+  public void setAuthor(User author){
+    this.author = author;
+    author.addPost(this);
   }
 
   public void setTitle(String title) {
@@ -93,9 +99,12 @@ public class Post {
   public List<PostItem> getItems() {
     return items;
   }
-  
+
   public List<Comment> getComments() {
     return comments;
   }
 
+  public void addComment(Comment comment){
+
+  }
 }

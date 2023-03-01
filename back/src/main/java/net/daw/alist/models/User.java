@@ -194,5 +194,13 @@ public class User implements UserDetails {
     return Collections.singletonList(authority);
   }
 
+  public void addComment(Comment comment){
+    comments.add(comment);
+    comment.setAuthor(this);
+  }
+
+  public void addPost(Post post){
+    posts.add(post);
+  }
 
 }

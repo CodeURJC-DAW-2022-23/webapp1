@@ -1,10 +1,14 @@
 package net.daw.alist.models;
 
+import java.io.IOException;
 import java.sql.Blob;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 @Entity
 public class PostItem {
@@ -24,8 +28,8 @@ public class PostItem {
   
   public PostItem(
     String description,
-    Blob imageFile,
-    String image
+    String image,
+    Blob imageFile
   ) {
     this.description = description;
     this.imageFile = imageFile;
@@ -51,6 +55,9 @@ public class PostItem {
 
   public String getImage() {
     return image;
+  }
+
+  public void setImageFile(Blob generateProxy) {
   }
 
 }

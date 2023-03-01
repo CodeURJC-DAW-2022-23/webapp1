@@ -20,10 +20,12 @@
 
 <body class="text-center">
   {{>navbar}}
+
+  <form action="/create" method="post" enctype="multipart/form-data" >
   <div class="accordion mt-3 mb-3" id="accordion">
 
-    <input class="form-control mb-2" id="topTitle" placeholder="Write a title...">
-    <input class="form-control mb-2" list="topicOptions" id="topicList" placeholder="Type to add topic...">
+    <input class="form-control mb-2" id="topTitle" name="topTitle" placeholder="Write a title...">
+    <input class="form-control mb-2" list="topicOptions" id="topicList" name="topicList" placeholder="Type to add topic...">
     <datalist id="topicOptions">
       <option value="Sports"> </option>
       <option value="Anime"> </option>
@@ -43,9 +45,9 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgOne" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionOne"
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionOne" name="formDescriptionOne"
             placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileOne"
+          <input class="form-control" type="file" accept="image/*" id="formFileOne" name="formFileOne"
             onchange="loadFile(event, 'imgOne')">
         </div>
       </div>
@@ -62,9 +64,9 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgTwo" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionTwo"
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionTwo" name="formDescriptionTwo"
             placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileTwo"
+          <input class="form-control" type="file" accept="image/*" id="formFileTwo" name="formFileTwo"
             onchange="loadFile(event, 'imgTwo')">
         </div>
       </div>
@@ -81,9 +83,9 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgThree" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionThree"
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionThree" name="formDescriptionThree"
             placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileThree"
+          <input class="form-control" type="file" accept="image/*" id="formFileThree" name="formFileThree"
             onchange="loadFile(event, 'imgThree')">
         </div>
       </div>
@@ -100,9 +102,9 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgFour" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFour"
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFour" name="formDescriptionFour"
             placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileFour"
+          <input class="form-control" type="file" accept="image/*" id="formFileFour" name="formFileFour"
             onchange="loadFile(event, 'imgFour')">
         </div>
       </div>
@@ -119,17 +121,19 @@
         data-bs-parent="#accordion">
         <div class="accordion-body">
           <img class="img-fluid rounded mt-3" id="imgFive" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFive"
+          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFive" name="formDescriptionFive"
             placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileFive"
+          <input class="form-control" type="file" accept="image/*" id="formFileFive" name="formFileFive"
             onchange="loadFile(event, 'imgFive')">
         </div>
       </div>
     </div>
 
     <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Create</button>
+    
 
   </div>
+</form>
 
 </body>
 

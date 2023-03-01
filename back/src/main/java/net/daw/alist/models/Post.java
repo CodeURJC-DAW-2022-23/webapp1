@@ -1,9 +1,9 @@
 package net.daw.alist.models;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -22,12 +22,13 @@ public class Post {
   private Set<User> upVotes = new HashSet<>();
 
   @OneToMany
-  private Set<User> downVotes = new HashSet<>();
+  private Set<User> downVotes = new HashSet<>(); 
   
-  @ManyToMany
+  @ManyToMany (mappedBy="posts")
   private List<Topic> topics = new ArrayList<>();
+  
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<PostItem> items = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
@@ -37,13 +38,14 @@ public class Post {
 
   public Post(
     String title,
-    List<Topic> topics,
-    List<PostItem> items
+    List<PostItem> items,
+    Topic top
   ) {
+    topics.add(top);
     this.date = new Date();
     this.title = title;
-    this.topics = topics;
     this.items = items;
+
   }
 
   public void setTitle(String title) {
@@ -57,12 +59,13 @@ public class Post {
   public void setDownVotes(Set<User> downVotes) {
     this.downVotes = downVotes;
   }
+  
 
-  public void setTopics(List<Topic> topics) {
+  public void setTopics(ArrayList<Topic> topics) {
     this.topics = topics;
   }
 
-  public void setItems(List<PostItem> items) {
+  public void setItems(ArrayList<PostItem> items) {
     this.items = items;
   }
 
@@ -78,6 +81,7 @@ public class Post {
     return title;
   }
 
+  
   public Set<User> getUpVotes() {
     return upVotes;
   }
@@ -85,6 +89,7 @@ public class Post {
   public Set<User> getDownVotes() {
     return downVotes;
   }
+  
 
   public List<Topic> getTopics() {
     return topics;

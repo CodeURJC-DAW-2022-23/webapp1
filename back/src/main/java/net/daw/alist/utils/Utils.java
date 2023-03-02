@@ -4,14 +4,17 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 
 public class Utils {
 
-    public static Blob pathToImage(String path) throws IOException {
+    public static Blob pathToImage(String path) throws IOException, SQLException {
         Resource image = new ClassPathResource(path);
-        return BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
+        Blob blob = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
+        return new SerialBlob(blob);
     }
 
 }

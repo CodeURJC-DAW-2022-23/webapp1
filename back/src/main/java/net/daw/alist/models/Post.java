@@ -28,10 +28,10 @@ public class Post {
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
   private List<PostItem> items = new ArrayList<>();
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
   private List<Comment> comments = new ArrayList<>();
 
   public Post() { }
@@ -49,7 +49,7 @@ public class Post {
 
   public void setAuthor(User author){
     this.author = author;
-    author.addPost(this);
+    author.getPosts().add(this);
   }
 
   public void setTitle(String title) {

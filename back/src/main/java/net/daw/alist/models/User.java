@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @EqualsAndHashCode
 @Entity
 public class User implements UserDetails {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
@@ -55,19 +55,20 @@ public class User implements UserDetails {
   @OneToMany
   private List<User> followers = new ArrayList<>();
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Post> posts = new ArrayList<>();
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy="author")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
   private List<Comment> comments = new ArrayList<>();
 
-  public User() { }
-  
+  public User() {
+  }
+
   public User(
-    String username,
-    String password,
-    String email,
-    UserRole role
+          String username,
+          String password,
+          String email,
+          UserRole role
   ) {
     this.date = new Date();
     this.username = username;
@@ -78,7 +79,7 @@ public class User implements UserDetails {
     locked = false;
     this.image = image;
 
-    if(role.equals(UserRole.ADMIN)){
+    if (role.equals(UserRole.ADMIN)) {
       enabled = true;
     }
   }
@@ -194,13 +195,9 @@ public class User implements UserDetails {
     return Collections.singletonList(authority);
   }
 
-  public void addComment(Comment comment){
-    comments.add(comment);
+  public void addComment(Comment comment) {
     comment.setAuthor(this);
-  }
-
-  public void addPost(Post post){
-    posts.add(post);
+    comments.add(comment);
   }
 
 }

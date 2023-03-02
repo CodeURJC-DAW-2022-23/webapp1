@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static java.util.Arrays.asList;
 import static net.daw.alist.models.UserRole.ADMIN;
@@ -17,7 +18,7 @@ import static net.daw.alist.utils.Utils.pathToImage;
 @Service
 public class DatabaseInitializer {
 
-
+    @Autowired
     private CommentRepository commentRepository;
 
     @Autowired
@@ -36,7 +37,7 @@ public class DatabaseInitializer {
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
-    public void init() throws IOException {
+    public void init() throws IOException, SQLException {
         if (postRepository.count() == 0) {
 
             User cr7Lover = new User("CR7Lover", passwordEncoder.encode("1234"), "cr7@alist.com", USER);
@@ -104,12 +105,6 @@ public class DatabaseInitializer {
             comment1.setAuthor(peepo);
             post4.addComment(comment1);
 
-            userRepository.save(peepo);
-            userRepository.save(shanks);
-            userRepository.save(manolo);
-            userRepository.save(cr7Lover);
-            userRepository.save(admin);
-
             postItemRepository.save(attack_on_titan);
             postItemRepository.save(one_piece);
             postItemRepository.save(my_little_pony);
@@ -142,14 +137,18 @@ public class DatabaseInitializer {
             topicRepository.save(programming);
             topicRepository.save(f1);
 
-            commentRepository.save(comment1);
-            commentRepository.save(comment2);
-            commentRepository.save(comment3);
+            userRepository.save(peepo);
+            userRepository.save(shanks);
+            userRepository.save(manolo);
+            userRepository.save(cr7Lover);
+            userRepository.save(admin);
+
 
             postRepository.save(post1);
             postRepository.save(post2);
             postRepository.save(post3);
             postRepository.save(post4);
+
 
         }
     }

@@ -71,6 +71,22 @@ a:hover {
   color: #63b1b1;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem, form{
+  width: 100%;
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  .listItem, form{
+    width: 75%;
+  }
+
+
+
 }

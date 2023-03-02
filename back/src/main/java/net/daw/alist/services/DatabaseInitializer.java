@@ -3,24 +3,19 @@ package net.daw.alist.services;
 import net.daw.alist.models.*;
 import net.daw.alist.repositories.*;
 import net.daw.alist.security.PasswordEncoder;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.sql.Blob;
-import java.text.ParseException;
 
 import static java.util.Arrays.asList;
 import static net.daw.alist.models.UserRole.ADMIN;
 import static net.daw.alist.models.UserRole.USER;
+import static net.daw.alist.utils.Utils.pathToImage;
 
 @Service
-public class databaseInitilizer {
+public class DatabaseInitializer {
 
 
     @Autowired
@@ -42,8 +37,9 @@ public class databaseInitilizer {
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
-    public void init() throws IOException, URISyntaxException, ParseException {
+    public void init() throws IOException {
         if (postRepository.count() == 0) {
+
             User cr7Lover = new User("CR7Lover", passwordEncoder.encode("1234"), "cr7@alist.com", USER);
             User manolo = new User("Manolo", passwordEncoder.encode("1234"), "manolo@alist.com", USER);
             User peepo = new User("Peepo", passwordEncoder.encode("1234"), "peepo@alist.com", USER);
@@ -55,7 +51,6 @@ public class databaseInitilizer {
             cr7Lover.setImage(pathToImage("static/example/cr7_2.jpg"), "static/example/cr7_2.jpg");
             manolo.setImage(pathToImage("static/example/manolo.jpg"), "static/example/manolo.jpg");
             admin.setImage(pathToImage("static/example/admin.jpg"), "static/example/admin.jpg");
-
 
             Topic sports = new Topic("Sports", "General topic about sports");
             Topic football = new Topic("Football", "Topic about football teams, players, etc");
@@ -71,7 +66,6 @@ public class databaseInitilizer {
             Topic anime = new Topic("Anime", "General topic about web pages");
             Topic programming = new Topic("Programming", "General topic about programming");
             Topic f1 = new Topic("F1", "General topic about F1");
-
 
             PostItem attack_on_titan = new PostItem("Attack on Titan", "static/example/cr7.jpg", pathToImage("static/example/cr7.jpg"));
             PostItem fullmetal_alchemist = new PostItem("Fullmetal Alchemist", "static/example/fullmetalAlchemist.jpg", pathToImage("static/example/fullmetalAlchemist.jpg.jpg"));
@@ -155,14 +149,8 @@ public class databaseInitilizer {
             postRepository.save(post2);
             postRepository.save(post3);
             postRepository.save(post4);
+
         }
     }
-
-    private Blob pathToImage(String path) throws IOException {
-        Resource image = new ClassPathResource(path);
-        return BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
-    }
-
-
 
 }

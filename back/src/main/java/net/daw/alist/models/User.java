@@ -1,16 +1,21 @@
 package net.daw.alist.models;
 
 import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+import javax.persistence.*;
+import java.util.*;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+@EqualsAndHashCode
 @Entity
-public class User {
+public class User implements UserDetails {
   
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +25,24 @@ public class User {
   private String username;
   private String password;
   private String email;
-  private Boolean admin;
+  @Enumerated(EnumType.STRING)
+  private UserRole role;
+
+  private boolean enabled; //For email verification
+
+  private boolean locked; //For banning
+
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  public boolean isLocked() {
+    return locked;
+  }
+
+  public void setLocked(boolean locked) {
+    this.locked = locked;
+  }
 
   @Lob
   @JsonIgnore
@@ -45,13 +67,20 @@ public class User {
     String username,
     String password,
     String email,
-    Boolean admin
+    UserRole role
   ) {
     this.date = new Date();
     this.username = username;
     this.password = password;
     this.email = email;
-    this.admin = admin;
+    this.role = role;
+    enabled = false; //Change this if you want to turn off email verification
+    locked = false;
+    this.image = image;
+
+    if(role.equals(UserRole.ADMIN)){
+      enabled = true;
+    }
   }
 
   public void setUsername(String username) {
@@ -66,8 +95,8 @@ public class User {
     this.email = email;
   }
 
-  public void setAdmin(Boolean admin) {
-    this.admin = admin;
+  public void setRole(UserRole role) {
+    this.role = role;
   }
 
   public void setImage(Blob imageFile, String image) {
@@ -95,10 +124,13 @@ public class User {
     return date;
   }
 
+  @Override
   public String getUsername() {
     return username;
   }
 
+
+  @Override
   public String getPassword() {
     return password;
   }
@@ -107,8 +139,8 @@ public class User {
     return email;
   }
 
-  public Boolean getAdmin() {
-    return admin;
+  public UserRole getRole() {
+    return role;
   }
 
   public Blob getImageFile() {
@@ -134,5 +166,33 @@ public class User {
   public List<Comment> getComments() {
     return comments;
   }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return !locked;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return enabled;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    SimpleGrantedAuthority authority =
+            new SimpleGrantedAuthority("ROLE_" + role.name());
+    return Collections.singletonList(authority);
+  }
+
 
 }

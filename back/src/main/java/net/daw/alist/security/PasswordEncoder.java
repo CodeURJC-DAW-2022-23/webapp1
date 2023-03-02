@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 public class PasswordEncoder {
     private BCryptPasswordEncoder encoder;
 
-    public void PasswordEncoder(){
+    public PasswordEncoder(){
         this.encoder = new BCryptPasswordEncoder(10);
     }
 

@@ -18,7 +18,6 @@ import static net.daw.alist.utils.Utils.pathToImage;
 public class DatabaseInitializer {
 
 
-    @Autowired
     private CommentRepository commentRepository;
 
     @Autowired
@@ -47,10 +46,11 @@ public class DatabaseInitializer {
             User admin = new User("admin", passwordEncoder.encode("1234"), "admin@alist.com", ADMIN);
 
             shanks.setImage(pathToImage("static/example/shanks.jpg"), "static/example/shanks.jpg");
-            peepo.setImage(pathToImage("static/example/shanks.jpg"), "static/example/shanks.jpg");
+            peepo.setImage(pathToImage("static/example/peepo.jpg"), "static/example/peepo.jpg");
             cr7Lover.setImage(pathToImage("static/example/cr7_2.jpg"), "static/example/cr7_2.jpg");
             manolo.setImage(pathToImage("static/example/manolo.jpg"), "static/example/manolo.jpg");
             admin.setImage(pathToImage("static/example/admin.jpg"), "static/example/admin.jpg");
+
 
             Topic sports = new Topic("Sports", "General topic about sports");
             Topic football = new Topic("Football", "Topic about football teams, players, etc");
@@ -67,16 +67,17 @@ public class DatabaseInitializer {
             Topic programming = new Topic("Programming", "General topic about programming");
             Topic f1 = new Topic("F1", "General topic about F1");
 
+
             PostItem attack_on_titan = new PostItem("Attack on Titan", "static/example/cr7.jpg", pathToImage("static/example/cr7.jpg"));
-            PostItem fullmetal_alchemist = new PostItem("Fullmetal Alchemist", "static/example/fullmetalAlchemist.jpg", pathToImage("static/example/fullmetalAlchemist.jpg.jpg"));
+            PostItem fullmetal_alchemist = new PostItem("Fullmetal Alchemist", "static/example/fullmetalAlchemist.jpg", pathToImage("static/example/fullmetalAlchemist.jpg"));
             PostItem inazuma_eleven = new PostItem("Inazuma Eleven", "static/example/inazumaEleven.jpg", pathToImage("static/example/inazumaEleven.jpg"));
             PostItem my_little_pony = new PostItem("My Little Pony", "static/example/myLittlePony.jpg", pathToImage("static/example/myLittlePony.jpg"));
             PostItem one_piece = new PostItem("One Piece", "static/example/onePiece.jpg", pathToImage("static/example/onePiece.jpg"));
             PostItem giannis_antetokounmpo = new PostItem("Giannis Antetokounmpo", "static/example/gianis.jpg", pathToImage("static/example/gianis.jpg"));
             PostItem lebron_james = new PostItem("Lebron James", "static/example/lebron.jpg", pathToImage("static/example/lebron.jpg"));
-            PostItem stephen_curry = new PostItem("Stephen Curry", "static/example/stephen.jpg", pathToImage("static/example/stephen.jpg"));
+            PostItem stephen_curry = new PostItem("Stephen Curry", "static/example/steph.jpg", pathToImage("static/example/steph.jpg"));
             PostItem kevin_durant = new PostItem("Kevin Durant", "static/example/kevinDurant.jpg", pathToImage("static/example/kevinDurant.jpg"));
-            PostItem antony_davis = new PostItem("Antony Davis", "static/example/antonyDavis.jpg", pathToImage("static/example/antonyDavis.jpg"));
+            PostItem antony_davis = new PostItem("Antony Davis", "static/example/anthonyDavis.jpg", pathToImage("static/example/anthonyDavis.jpg"));
             PostItem getafe = new PostItem("Getafe", "static/example/getafe.jpg", pathToImage("static/example/getafe.jpg"));
             PostItem rayo_vayecano = new PostItem("Rayo Vayecano", "static/example/rayoVayecano.jpg", pathToImage("static/example/rayoVayecano.jpg"));
             PostItem betis = new PostItem("Betis", "static/example/betis.jpg", pathToImage("static/example/betis.jpg"));

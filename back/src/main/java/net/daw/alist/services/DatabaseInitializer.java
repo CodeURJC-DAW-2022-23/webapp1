@@ -35,6 +35,7 @@ public class DatabaseInitializer {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @PostConstruct
     public void init() throws IOException, SQLException {
         if (postRepository.count() == 0) {
@@ -71,6 +72,21 @@ public class DatabaseInitializer {
             Topic programming = new Topic("Programming", "General topic about programming");
             Topic f1 = new Topic("F1", "General topic about F1");
 
+            topicRepository.save(sports);
+            topicRepository.save(football);
+            topicRepository.save(basketball);
+            topicRepository.save(cinema);
+            topicRepository.save(films);
+            topicRepository.save(series);
+            topicRepository.save(tennis);
+            topicRepository.save(tech);
+            topicRepository.save(webPages);
+            topicRepository.save(nba);
+            topicRepository.save(laLiga);
+            topicRepository.save(anime);
+            topicRepository.save(programming);
+            topicRepository.save(f1);
+
             PostItem attackOnTitan = new PostItem("Attack on Titan", "static/images/example/cr7.jpg");
             PostItem fullMetalAlchemist = new PostItem("Fullmetal Alchemist", "static/images/example/fullmetalAlchemist.jpg");
             PostItem inazumaEleven = new PostItem("Inazuma Eleven", "static/images/example/inazumaEleven.jpg");
@@ -88,31 +104,6 @@ public class DatabaseInitializer {
             PostItem barcelona = new PostItem("Barcelona", "static/images/example/barsa.jpg");
             PostItem cr7 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
 
-            Post firstPost = new Post(cr7Lover, "CR7 is the best", asList(sports, football), asList(cr7, cr7, cr7, cr7, cr7));
-            Post secondPost = new Post(shanks, "Best animes", asList(anime, series), asList(myLittlePony, inazumaEleven, onePiece, fullMetalAlchemist, attackOnTitan));
-            Post thirdPost = new Post(peepo, "Best LaLiga teams", asList(sports, football, laLiga), asList(getafe, rayoVayecano, betis, realMadrid, barcelona));
-            Post fourthPost = new Post(manolo, "Best NBA players", asList(sports, basketball, nba), asList(lebronJames, kevinDurant, giannisAntetokounmpo, stephenCurry, antonyDavis));
-
-            postRepository.save(firstPost);
-            postRepository.save(secondPost);
-            postRepository.save(thirdPost);
-            postRepository.save(fourthPost);
-
-            topicRepository.save(sports);
-            topicRepository.save(football);
-            topicRepository.save(basketball);
-            topicRepository.save(cinema);
-            topicRepository.save(films);
-            topicRepository.save(series);
-            topicRepository.save(tennis);
-            topicRepository.save(tech);
-            topicRepository.save(webPages);
-            topicRepository.save(nba);
-            topicRepository.save(laLiga);
-            topicRepository.save(anime);
-            topicRepository.save(programming);
-            topicRepository.save(f1);
-
             postItemRepository.save(attackOnTitan);
             postItemRepository.save(onePiece);
             postItemRepository.save(myLittlePony);
@@ -129,6 +120,16 @@ public class DatabaseInitializer {
             postItemRepository.save(realMadrid);
             postItemRepository.save(rayoVayecano);
             postItemRepository.save(cr7);
+
+            Post firstPost = new Post(cr7Lover, "CR7 is the best", asList(sports, football), asList(cr7));
+            Post secondPost = new Post(shanks, "Best animes", asList(anime, series), asList(myLittlePony, inazumaEleven, onePiece, fullMetalAlchemist, attackOnTitan));
+            Post thirdPost = new Post(peepo, "Best LaLiga teams", asList(sports, football, laLiga), asList(getafe, rayoVayecano, betis, realMadrid, barcelona));
+            Post fourthPost = new Post(manolo, "Best NBA players", asList(sports, basketball, nba), asList(lebronJames, kevinDurant, giannisAntetokounmpo, stephenCurry, antonyDavis));
+
+            postRepository.save(firstPost);
+            postRepository.save(secondPost);
+            postRepository.save(thirdPost);
+            postRepository.save(fourthPost);
 
             Comment firstComment = new Comment(manolo, "Messi is better than Cristiano", null);
             firstPost.addComment(firstComment);

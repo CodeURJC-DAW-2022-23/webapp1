@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.hibernate.engine.jdbc.BlobProxy;
 
-import net.daw.alist.services.TopicHandler;
+import net.daw.alist.services.TopicService;
 import net.daw.alist.models.PostItem;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.Topic;
@@ -33,8 +33,8 @@ public class CreateListController {
   PostRepository post;
   @Autowired
   TopicRepository topic;
-
-  TopicHandler handler;
+  @Autowired
+  TopicService handler;
 
   @GetMapping("/create-list")
   public String createList() {
@@ -47,12 +47,12 @@ public class CreateListController {
       @RequestParam String topTitle, @RequestParam String topicList,
       @RequestParam String formDescriptionOne, @RequestParam MultipartFile formFileOne,
       @RequestParam String formDescriptionTwo, @RequestParam MultipartFile formFileTwo,
-      @RequestParam(required = false) String formDescriptionThree,
-      @RequestParam(required = false) MultipartFile formFileThree,
-      @RequestParam(required = false) String formDescriptionFour,
-      @RequestParam(required = false) MultipartFile formFileFour,
-      @RequestParam(required = false) String formDescriptionFive,
-      @RequestParam(required = false) MultipartFile formFileFive) throws IOException {
+      @RequestParam String formDescriptionThree,
+      @RequestParam MultipartFile formFileThree,
+      @RequestParam String formDescriptionFour,
+      @RequestParam MultipartFile formFileFour,
+      @RequestParam String formDescriptionFive,
+      @RequestParam MultipartFile formFileFive) throws IOException {
 
     List<PostItem> postList = new ArrayList<>();
 
@@ -69,21 +69,21 @@ public class CreateListController {
         (String) location.toString() + "2");
     postList.add(item2);
 
-    if (formDescriptionThree.equals(null)) {
+    if (!formDescriptionThree.equals("")) {
       PostItem item3 = new PostItem((String) formDescriptionThree,
           (BlobProxy.generateProxy(formFileThree.getInputStream(), formFileThree.getSize())),
           (String) location.toString() + "3");
       postList.add(item3);
     }
 
-    if (formDescriptionFour.equals(null)) {
+    if (!formDescriptionFour.equals("")) {
       PostItem item4 = new PostItem((String) formDescriptionFour,
           (BlobProxy.generateProxy(formFileFour.getInputStream(), formFileFour.getSize())),
           (String) location.toString() + "4");
       postList.add(item4);
     }
 
-    if (formDescriptionFive.equals(null)) {
+    if (!formDescriptionFive.equals("")) {
       PostItem item5 = new PostItem((String) formDescriptionFive,
           (BlobProxy.generateProxy(formFileFive.getInputStream(), formFileFive.getSize())),
           (String) location.toString() + "5");
@@ -98,7 +98,7 @@ public class CreateListController {
       top.setName("Random");
     }
 
-    post.save(new Post(topTitle, postList, top));
+    post.save(new Post( (String) topTitle, postList, top));
 
     return "home";
   }

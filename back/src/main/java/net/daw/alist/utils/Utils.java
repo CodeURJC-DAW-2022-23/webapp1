@@ -12,6 +12,7 @@ import java.sql.SQLException;
 public class Utils {
 
     public static Blob pathToImage(String path) throws IOException, SQLException {
+        if (path == null) return null;
         Resource image = new ClassPathResource(path);
         Blob blob = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
         return new SerialBlob(blob);

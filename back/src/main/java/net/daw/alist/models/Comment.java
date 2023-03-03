@@ -1,11 +1,15 @@
 package net.daw.alist.models;
 
+import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import static net.daw.alist.utils.Utils.pathToImage;
 
 @Entity
 public class Comment {
@@ -14,28 +18,28 @@ public class Comment {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private Date date;
-  private String content;
-
   @ManyToOne
   private User author;
+  private Date date;
+  private String content;
   
   @Lob
   @JsonIgnore
-  private Blob imageFile;
-  private String image;
+  private Blob image;
+  private String imagePath;
 
   public Comment() { }
   
   public Comment(
+    User author,
     String content,
-    Blob imageFile,
-    String image
-  ) {
+    String imagePath
+  ) throws IOException, SQLException {
     this.date = new Date();
+    this.author = author;
     this.content = content;
-    this.imageFile = imageFile;
-    this.image = image;
+    setImage(imagePath);
+    author.addComment(this);
   }
 
   public void setAuthor(User author) {
@@ -46,9 +50,9 @@ public class Comment {
     this.content = content;
   }
 
-  public void setImage(Blob imageFile, String image) {
-    this.imageFile = imageFile;
-    this.image = image;
+  public void setImage(String imagePath) throws IOException, SQLException {
+    this.image = pathToImage(imagePath);
+    this.imagePath = imagePath;
   }
 
   public Date getDate() {
@@ -63,12 +67,12 @@ public class Comment {
     return content;
   }
 
-  public Blob getImageFile() {
-    return imageFile;
+  public Blob getImage() {
+    return image;
   }
 
-  public String getImage() {
-    return image;
+  public String getImagePath() {
+    return imagePath;
   }
 
 }

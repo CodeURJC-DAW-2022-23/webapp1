@@ -1,17 +1,19 @@
 package net.daw.alist.models;
 
+import java.io.IOException;
 import java.sql.Blob;
 
 import javax.persistence.*;
+import java.sql.SQLException;
 import java.util.*;
-
-import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import static net.daw.alist.utils.Utils.pathToImage;
 
 @EqualsAndHashCode
 @Entity
@@ -46,8 +48,8 @@ public class User implements UserDetails {
 
   @Lob
   @JsonIgnore
-  private Blob imageFile;
-  private String image;
+  private Blob image;
+  private String imagePath;
 
   @OneToMany
   private List<User> follows = new ArrayList<>();
@@ -61,14 +63,13 @@ public class User implements UserDetails {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
   private List<Comment> comments = new ArrayList<>();
 
-  public User() {
-  }
+  public User() { }
 
   public User(
-          String username,
-          String password,
-          String email,
-          UserRole role
+    String username,
+    String password,
+    String email,
+    UserRole role
   ) {
     this.date = new Date();
     this.username = username;
@@ -77,8 +78,7 @@ public class User implements UserDetails {
     this.role = role;
     enabled = false; //Change this if you want to turn off email verification
     locked = false;
-    this.image = image;
-
+    // TODO: default image
     if (role.equals(UserRole.ADMIN)) {
       enabled = true;
     }
@@ -100,9 +100,9 @@ public class User implements UserDetails {
     this.role = role;
   }
 
-  public void setImage(Blob imageFile, String image) {
-    this.imageFile = imageFile;
-    this.image = image;
+  public void setImage(String imagePath) throws IOException, SQLException {
+    this.image = pathToImage(imagePath);
+    this.imagePath = imagePath;
   }
 
   public void setFollows(List<User> follows) {
@@ -130,7 +130,6 @@ public class User implements UserDetails {
     return username;
   }
 
-
   @Override
   public String getPassword() {
     return password;
@@ -144,12 +143,12 @@ public class User implements UserDetails {
     return role;
   }
 
-  public Blob getImageFile() {
-    return imageFile;
+  public Blob getImage() {
+    return image;
   }
 
-  public String getImage() {
-    return image;
+  public String getImagePath() {
+    return imagePath;
   }
 
   public List<User> getFollows() {
@@ -195,9 +194,12 @@ public class User implements UserDetails {
     return Collections.singletonList(authority);
   }
 
-  public void addComment(Comment comment) {
-    comment.setAuthor(this);
+  public void addComment(Comment comment){
     comments.add(comment);
+  }
+
+  public void addPost(Post post){
+    posts.add(post);
   }
 
 }

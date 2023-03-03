@@ -10,11 +10,12 @@ import javax.persistence.*;
 
 @Entity
 public class Post {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @ManyToOne
   private User author;
   private Date date;
   private String title;
@@ -28,28 +29,30 @@ public class Post {
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
 
-  @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
 
-  @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 
   public Post() { }
 
   public Post(
+    User author,
     String title,
     List<Topic> topics,
     List<PostItem> items
   ) {
     this.date = new Date();
+    this.author = author;
     this.title = title;
     this.topics = topics;
     this.items = items;
+    author.addPost(this);
   }
 
-  public void setAuthor(User author){
+  public void setAuthor(User author) {
     this.author = author;
-    author.getPosts().add(this);
   }
 
   public void setTitle(String title) {
@@ -74,6 +77,10 @@ public class Post {
 
   public void setComments(List<Comment> comments) {
     this.comments = comments;
+  }
+
+  public User getAuthor() {
+    return author;
   }
 
   public Date getDate() {
@@ -105,6 +112,7 @@ public class Post {
   }
 
   public void addComment(Comment comment){
-
+    this.comments.add(comment);
   }
+
 }

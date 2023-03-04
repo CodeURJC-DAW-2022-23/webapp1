@@ -53,7 +53,7 @@
         </p>
         <div class="collapse mt-4 w-100 d-flex flex-column justify-content-center align-items-center" id="collapseTopics">
 
-            <form>
+            <form action="">
               <div class="form-floating mb-2">
                 <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="newTopic">
                 <label for="newTopic" class="text-muted">Type new topic...</label>
@@ -63,7 +63,7 @@
 
           <ul class="w-100 mt-4">
             {{#topics}}
-            <button type="button" class="listItem btn btn-primary mt-2"><li>{{.}}</li></button>
+            <a href="/admin-panel/delete/{{id}}" class="listItem btn btn-primary mt-2"><li>{{name}}</li></a>
             {{/topics}}
           </ul>
         </div>

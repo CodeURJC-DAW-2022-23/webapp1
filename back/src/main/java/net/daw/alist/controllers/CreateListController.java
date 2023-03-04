@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.hibernate.engine.jdbc.BlobProxy;
 
-import net.daw.alist.services.TopicService;
+import net.daw.alist.services.TopicHandlerService;
 import net.daw.alist.models.PostItem;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.Topic;
@@ -34,7 +34,7 @@ public class CreateListController {
   @Autowired
   TopicRepository topic;
   @Autowired
-  TopicService handler;
+  TopicHandlerService handler;
 
   @GetMapping("/create-list")
   public String createList() {

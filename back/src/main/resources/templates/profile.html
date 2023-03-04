@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <link rel="stylesheet" type="text/css" href="/styles/profile.css">
-  <title>Alist | Profile</title>
+  <title>Alist | {{user.username}}</title>
 </head>
 
 <body class="text-center">
@@ -27,26 +27,32 @@
         <div class="col prof-name fs-2">
           {{user.username}}
         </div>
+        {{#ownProfile}}
         <div class="col btn-setting">
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-              <i class="fa-solid fa-gear"></i></button>
+              <i class="fa-solid fa-gear"></i>
+            </button>
           </div>
         </div>
+        {{/ownProfile}}
+        {{^ownProfile}}
+        <div class="col">
+          <button class="btn btn-primary btn-round" type="button">Follow</button>
+        </div>
+        {{/ownProfile}}
       </div>
       <div class="row fs-5">
         <div class="col">
           {{user.follows.size}} <br><small>Following</small>
         </div>
         <div class="col">
-          {{user.followers.size}} <br> <small>Followers</small>
+          {{user.followers.size}} <br><small>Followers</small>
         </div>
       </div>
       <hr>
       <div class="bio-container">
-        <p>
-          {{user.bio}}
-        </p>
+        <p>{{user.bio}}</p>
       </div>
     </div>
     <div class="post-container col-md-8 p-0">

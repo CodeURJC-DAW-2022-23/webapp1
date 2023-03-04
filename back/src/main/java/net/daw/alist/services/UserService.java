@@ -5,6 +5,7 @@ import net.daw.alist.models.User;
 import net.daw.alist.repositories.UserRepository;
 import net.daw.alist.security.ConfirmationToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +22,10 @@ import java.util.regex.Pattern;
 public class UserService implements UserDetailsService {
     @Autowired
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     private final ConfirmationTokenService confirmationTokenService;
 
     @Override
@@ -75,7 +79,7 @@ public class UserService implements UserDetailsService {
             return errorMessage;
         }
 
-        String encodedPassword = bCryptPasswordEncoder
+        String encodedPassword = bCryptPasswordEncoder()
                 .encode(user.getPassword());
 
         user.setPassword(encodedPassword);

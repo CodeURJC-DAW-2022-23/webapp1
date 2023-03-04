@@ -40,7 +40,7 @@ public class PostItem {
 
   public void setImage(String imagePath) throws IOException, SQLException {
     this.image = pathToImage(imagePath);
-    this.imagePath = imagePath;
+    this.imagePath = imagePath.replace("static", "");
   }
 
   public String getDescription() {

@@ -87,7 +87,7 @@ public class DatabaseInitializer {
             topicRepository.save(programming);
             topicRepository.save(f1);
 
-            PostItem attackOnTitan = new PostItem("Attack on Titan", "static/images/example/cr7.jpg");
+            PostItem attackOnTitan = new PostItem("Attack on Titan", "static/images/example/attackOnTitan.jpg");
             PostItem fullMetalAlchemist = new PostItem("Fullmetal Alchemist", "static/images/example/fullmetalAlchemist.jpg");
             PostItem inazumaEleven = new PostItem("Inazuma Eleven", "static/images/example/inazumaEleven.jpg");
             PostItem myLittlePony = new PostItem("My Little Pony", "static/images/example/myLittlePony.jpg");

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.http.HttpResponse;
+import java.sql.SQLException;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class RegisterController {
   }
 
   @PostMapping("/register")
-  public String registerPost(Model model, RegistrationRequest request) {
+  public String registerPost(Model model, RegistrationRequest request) throws SQLException, IOException {
     String result = registrationService.register(request);
     if (result.equals("Success")){
       model.addAttribute("notVerified", true);

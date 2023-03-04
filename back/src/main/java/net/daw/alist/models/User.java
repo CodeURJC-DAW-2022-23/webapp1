@@ -46,6 +46,8 @@ public class User implements UserDetails {
     this.locked = locked;
   }
 
+  private String bio = "";
+
   @Lob
   @JsonIgnore
   private Blob image;
@@ -70,7 +72,7 @@ public class User implements UserDetails {
     String password,
     String email,
     UserRole role
-  ) {
+  ) throws SQLException, IOException {
     this.date = new Date();
     this.username = username;
     this.password = password;
@@ -78,7 +80,7 @@ public class User implements UserDetails {
     this.role = role;
     enabled = false; //Change this if you want to turn off email verification
     locked = false;
-    // TODO: default image
+    setImage("static/images/defaultProfilePicture.jpg");
     if (role.equals(UserRole.ADMIN)) {
       enabled = true;
     }
@@ -100,9 +102,16 @@ public class User implements UserDetails {
     this.role = role;
   }
 
+  public void setBio(String bio) {
+    this.bio = bio;
+  }
+
   public void setImage(String imagePath) throws IOException, SQLException {
+    if (imagePath == null) {
+      imagePath = "static/images/notFound.jpg";
+    }
     this.image = pathToImage(imagePath);
-    this.imagePath = imagePath;
+    this.imagePath = imagePath.replace("static", "");
   }
 
   public void setFollows(List<User> follows) {
@@ -141,6 +150,10 @@ public class User implements UserDetails {
 
   public UserRole getRole() {
     return role;
+  }
+
+  public String getBio() {
+    return bio;
   }
 
   public Blob getImage() {

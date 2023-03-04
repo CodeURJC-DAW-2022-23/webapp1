@@ -1,6 +1,7 @@
 package net.daw.alist.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import net.daw.alist.models.Topic;
 import net.daw.alist.repositories.TopicRepository;
@@ -8,6 +9,7 @@ import net.daw.alist.repositories.TopicRepository;
 import java.util.List;
 
 
+@Service
 public class TopicHandlerService {
     @Autowired
     TopicRepository topic;

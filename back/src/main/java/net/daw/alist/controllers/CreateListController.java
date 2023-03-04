@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 
 import java.util.List;
-import static java.util.Arrays.asList;
 import java.util.ArrayList;
-import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 
 
@@ -48,9 +45,12 @@ public class CreateListController {
   @Autowired
   UserRepository user;
 
-  @GetMapping("/create-list")
-  public String createList() {
+  User author;
 
+  @GetMapping("/create-list")
+  public String createList(Authentication auth) {
+    this.author = (User) auth.getPrincipal();
+    
     return "create-list";
   }
 
@@ -67,28 +67,26 @@ public class CreateListController {
       @RequestParam MultipartFile formFileFive) throws IOException {
 
     List<PostItem> postList = new ArrayList<>();
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    Optional<User> authorOption;
-    authorOption = user.findByUsername(auth.getPrincipal().toString());
-    User author = authorOption.get();
-
     URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
     /* Optimize it with a loop when posbile */
     PostItem item1 = new PostItem((String) formDescriptionOne,
         (BlobProxy.generateProxy(formFileOne.getInputStream(), formFileOne.getSize())),
         (String) location.toString() + "1");
+    item.save(item1);
     postList.add(item1);
 
     PostItem item2 = new PostItem((String) formDescriptionTwo,
         (BlobProxy.generateProxy(formFileTwo.getInputStream(), formFileTwo.getSize())),
         (String) location.toString() + "2");
+    item.save(item2);
     postList.add(item2);
 
     if (!formDescriptionThree.equals("")) {
       PostItem item3 = new PostItem((String) formDescriptionThree,
           (BlobProxy.generateProxy(formFileThree.getInputStream(), formFileThree.getSize())),
           (String) location.toString() + "3");
+      item.save(item3);
       postList.add(item3);
     }
 
@@ -96,6 +94,7 @@ public class CreateListController {
       PostItem item4 = new PostItem((String) formDescriptionFour,
           (BlobProxy.generateProxy(formFileFour.getInputStream(), formFileFour.getSize())),
           (String) location.toString() + "4");
+      item.save(item4);
       postList.add(item4);
     }
 
@@ -103,6 +102,7 @@ public class CreateListController {
       PostItem item5 = new PostItem((String) formDescriptionFive,
           (BlobProxy.generateProxy(formFileFive.getInputStream(), formFileFive.getSize())),
           (String) location.toString() + "5");
+      item.save(item5);
       postList.add(item5);
     }
 

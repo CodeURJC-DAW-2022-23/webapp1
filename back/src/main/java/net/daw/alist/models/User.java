@@ -57,7 +57,7 @@ public class User implements UserDetails {
   @OneToMany
   private List<User> followers = new ArrayList<>();
 
-  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private List<Post> posts = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")

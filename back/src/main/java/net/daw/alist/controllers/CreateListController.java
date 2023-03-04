@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.URI;
 
 import java.util.List;
+import static java.util.Arrays.asList;
 import java.util.ArrayList;
+import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+
 
 import net.daw.alist.services.TopicHandlerService;
 import net.daw.alist.models.PostItem;
+import net.daw.alist.models.User;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.Topic;
+import net.daw.alist.repositories.UserRepository;
 import net.daw.alist.repositories.TopicRepository;
 import net.daw.alist.repositories.PostItemRepository;
 import net.daw.alist.repositories.PostRepository;
@@ -35,6 +44,9 @@ public class CreateListController {
   TopicRepository topic;
   @Autowired
   TopicHandlerService handler;
+
+  @Autowired
+  UserRepository user;
 
   @GetMapping("/create-list")
   public String createList() {
@@ -55,6 +67,10 @@ public class CreateListController {
       @RequestParam MultipartFile formFileFive) throws IOException {
 
     List<PostItem> postList = new ArrayList<>();
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Optional<User> authorOption;
+    authorOption = user.findByUsername(auth.getPrincipal().toString());
+    User author = authorOption.get();
 
     URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
@@ -91,14 +107,12 @@ public class CreateListController {
     }
 
     Topic top = new Topic();
-    if (handler.topicChecker(topicList)) {
-      top.setName(topicList);
-    } 
-    else {
-      top.setName("Random");
-    }
+    top = handler.topicChecker(topicList);
+    List<Topic> topicLists = new ArrayList<Topic>();
+    topicLists.add(top);
+    
 
-    post.save(new Post( (String) topTitle, postList, top));
+    post.save(new Post(author, (String) topTitle,topicLists,postList));
 
     return "home";
   }

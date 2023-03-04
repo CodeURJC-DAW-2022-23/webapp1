@@ -1,6 +1,7 @@
 package net.daw.alist.models;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,11 +11,13 @@ import javax.persistence.*;
 
 @Entity
 public class Post {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @ManyToOne
+  private User author;
   private Date date;
   private String title;
 
@@ -22,30 +25,38 @@ public class Post {
   private Set<User> upVotes = new HashSet<>();
 
   @OneToMany
-  private Set<User> downVotes = new HashSet<>(); 
-  
-  @ManyToMany (mappedBy="posts")
+
+  private Set<User> downVotes = new HashSet<>();
+
+  @ManyToMany
   private List<Topic> topics = new ArrayList<>();
   
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @OneToMany (orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 
   public Post() { }
 
   public Post(
+    User author,
     String title,
-    List<PostItem> items,
-    Topic top
+    List<Topic> topics,
+    List<PostItem> items
+    
   ) {
-    topics.add(top);
     this.date = new Date();
+    this.author = author;
     this.title = title;
     this.items = items;
+    this.topics = topics;
+    author.addPost(this);
+  }
 
+  public void setAuthor(User author) {
+    this.author = author;
   }
 
   public void setTitle(String title) {
@@ -73,6 +84,10 @@ public class Post {
     this.comments = comments;
   }
 
+  public User getAuthor() {
+    return author;
+  }
+
   public Date getDate() {
     return date;
   }
@@ -98,9 +113,13 @@ public class Post {
   public List<PostItem> getItems() {
     return items;
   }
-  
+
   public List<Comment> getComments() {
     return comments;
+  }
+
+  public void addComment(Comment comment){
+    this.comments.add(comment);
   }
 
 }

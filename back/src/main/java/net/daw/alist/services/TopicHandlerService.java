@@ -12,19 +12,25 @@ public class TopicHandlerService {
     @Autowired
     TopicRepository topic;
     
-    public boolean topicChecker(String topicName)
+    public Topic topicChecker(String topicName)
     {
+        Topic result=new Topic();
         boolean found=false;
         List <Topic> topics;
         topics=topic.findAll();
 
         for(Topic iterator:topics)
         {
-            if (iterator.getName().equals(topicName)){
-                found=true;
+            if (iterator.getName().equals(topicName)) {
+                found = true;
+                result = iterator;
             }
         }
+        if (!found) {
+
+            result.setName("random");
+        }
         
-        return found;
+        return result;
     }
 }

@@ -102,7 +102,11 @@ public class DatabaseInitializer {
             PostItem betis = new PostItem("Betis", "static/images/example/betis.jpg");
             PostItem realMadrid = new PostItem("Real Madrid", "static/images/example/realMadrid.jpg");
             PostItem barcelona = new PostItem("Barcelona", "static/images/example/barsa.jpg");
-            PostItem cr7 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
+            PostItem cr71 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
+            PostItem cr72 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
+            PostItem cr73 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
+            PostItem cr74 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
+            PostItem cr75 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
 
             postItemRepository.save(attackOnTitan);
             postItemRepository.save(onePiece);
@@ -119,9 +123,13 @@ public class DatabaseInitializer {
             postItemRepository.save(barcelona);
             postItemRepository.save(realMadrid);
             postItemRepository.save(rayoVayecano);
-            postItemRepository.save(cr7);
+            postItemRepository.save(cr71);
+            postItemRepository.save(cr72);
+            postItemRepository.save(cr73);
+            postItemRepository.save(cr74);
+            postItemRepository.save(cr75);
 
-            Post firstPost = new Post(cr7Lover, "CR7 is the best", asList(sports, football), asList(cr7));
+            Post firstPost = new Post(cr7Lover, "CR7 is the best", asList(sports, football), asList(cr71, cr72, cr73, cr74, cr75));
             Post secondPost = new Post(shanks, "Best animes", asList(anime, series), asList(myLittlePony, inazumaEleven, onePiece, fullMetalAlchemist, attackOnTitan));
             Post thirdPost = new Post(peepo, "Best LaLiga teams", asList(sports, football, laLiga), asList(getafe, rayoVayecano, betis, realMadrid, barcelona));
             Post fourthPost = new Post(manolo, "Best NBA players", asList(sports, basketball, nba), asList(lebronJames, kevinDurant, giannisAntetokounmpo, stephenCurry, antonyDavis));

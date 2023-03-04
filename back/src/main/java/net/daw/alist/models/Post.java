@@ -29,7 +29,7 @@ public class Post {
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
 
-  @OneToMany //problematic line (cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany (orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

@@ -62,6 +62,18 @@ public class DatabaseInitializer {
             userRepository.save(cr7Lover);
             userRepository.save(admin);
 
+            admin.follow(shanks);
+            admin.follow(peepo);
+            peepo.follow(shanks);
+            peepo.follow(admin);
+            shanks.follow(admin);
+            cr7Lover.follow(admin);
+
+            userRepository.save(peepo);
+            userRepository.save(shanks);
+            userRepository.save(cr7Lover);
+            userRepository.save(admin);
+
             Topic sports = new Topic("Sports", "General topic about sports");
             Topic football = new Topic("Football", "Topic about football teams, players, etc");
             Topic basketball = new Topic("Basketball", "Topic about basketball teams, players, etc");

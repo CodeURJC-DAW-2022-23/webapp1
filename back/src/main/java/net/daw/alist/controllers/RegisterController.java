@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.sql.SQLException;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Controller
@@ -28,15 +26,14 @@ public class RegisterController {
   @PostMapping("/register")
   public String registerPost(Model model, RegistrationRequest request) throws SQLException, IOException {
     String result = registrationService.register(request);
-    if (result.equals("Success")){
+    if (result.equals("Success")) {
       model.addAttribute("notVerified", true);
       model.addAttribute("verifyMSG", "Please check your inbox to verify your email address");
-      return "/register";
-    } else{
+    } else {
       model.addAttribute("error", true);
       model.addAttribute("errorMSG", result);
-      return "/register";
     }
+    return "/register";
   }
 
   @GetMapping("/registration/confirm")

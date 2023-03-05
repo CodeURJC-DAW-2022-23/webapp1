@@ -53,10 +53,12 @@ public class User implements UserDetails {
   private Blob image;
   private String imagePath;
 
-  @OneToMany
-  private List<User> follows = new ArrayList<>();
+  @ManyToMany(fetch=FetchType.EAGER)
+  @JsonIgnore
+  private List<User> following = new ArrayList<>();
 
-  @OneToMany
+  @ManyToMany(mappedBy="following")
+  @JsonIgnore
   private List<User> followers = new ArrayList<>();
 
   @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -114,8 +116,8 @@ public class User implements UserDetails {
     this.imagePath = imagePath.replace("static", "");
   }
 
-  public void setFollows(List<User> follows) {
-    this.follows = follows;
+  public void setFollowing(List<User> following) {
+    this.following = following;
   }
 
   public void setFollowers(List<User> followers) {
@@ -164,8 +166,8 @@ public class User implements UserDetails {
     return imagePath;
   }
 
-  public List<User> getFollows() {
-    return follows;
+  public List<User> getFollowing() {
+    return following;
   }
 
   public List<User> getFollowers() {
@@ -213,6 +215,20 @@ public class User implements UserDetails {
 
   public void addPost(Post post){
     posts.add(post);
+  }
+
+  public void follow(User user) {
+    if (user != this && !following.contains(user)) {
+      following.add(user);
+      user.getFollowers().add(this);
+    }
+  }
+
+  public void unFollow(User user) {
+    if (user != this && following.contains(user)) {
+      following.remove(user);
+      user.getFollowers().remove(this);
+    }
   }
 
 }

@@ -38,13 +38,18 @@
         {{/ownProfile}}
         {{^ownProfile}}
         <div class="col">
+          {{#followed}}
+          <button class="btn btn-primary btn-round" type="button">Following</button>
+          {{/followed}}
+          {{^followed}}
           <button class="btn btn-primary btn-round" type="button">Follow</button>
+          {{/followed}}
         </div>
         {{/ownProfile}}
       </div>
       <div class="row fs-5">
         <div class="col">
-          {{user.follows.size}} <br><small>Following</small>
+          {{user.following.size}} <br><small>Following</small>
         </div>
         <div class="col">
           {{user.followers.size}} <br><small>Followers</small>

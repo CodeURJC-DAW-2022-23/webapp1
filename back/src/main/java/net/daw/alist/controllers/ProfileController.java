@@ -21,6 +21,9 @@ public class ProfileController {
   @Autowired
   UserRepository userRepository;
 
+  private User user;
+  private User userSession;
+
   @GetMapping("/user/{username}")
   public String profile(
     Model model,
@@ -30,12 +33,20 @@ public class ProfileController {
   ) throws IOException {
     Optional<User> optionalUser = userRepository.findByUsername(username);
     if (optionalUser.isPresent()) {
+      user = optionalUser.get();
+      // TODO: guest
       if (isLoggedUser(username, authentication)) {
         model.addAttribute("ownProfile", true);
       } else {
+        /* bad bc userSession = null
+        if (isFollowed()) {
+          model.addAttribute("followed", true);
+        } else {
+          model.addAttribute("followed", false);
+        }
+        */
         model.addAttribute("ownProfile", false);
       }
-      User user = optionalUser.get();
       model.addAttribute("user", user);
       return "profile";
     }
@@ -45,8 +56,12 @@ public class ProfileController {
 
   private boolean isLoggedUser(String username, Authentication authentication) {
     if (authentication == null) return false;
-    User userSession = (User) authentication.getPrincipal();
+    userSession = (User) authentication.getPrincipal();
     return Objects.equals(username, userSession.getUsername());
+  }
+
+  private boolean isFollowed() {
+    return userSession.getFollowing().contains(user);
   }
 
 }

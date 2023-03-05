@@ -24,8 +24,17 @@ public class ProfileController {
   private User userProfile;
   private User userRepo;
 
+  @GetMapping("/profile")
+  public String profile(Authentication authentication) {
+    if (!isGuest(authentication)) {
+      User userSession = (User) authentication.getPrincipal();
+      return "redirect:/user/" + userSession.getUsername();
+    }
+    return "redirect:/";
+  }
+
   @GetMapping("/user/{username}")
-  public String profile(
+  public String user(
     Model model,
     Authentication authentication,
     @PathVariable String username

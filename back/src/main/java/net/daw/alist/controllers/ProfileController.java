@@ -10,10 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Objects;
-import java.util.Optional;
 
 @Controller
 public class ProfileController {
@@ -26,9 +23,9 @@ public class ProfileController {
 
   @GetMapping("/profile")
   public String profile(Authentication authentication) {
-    if (!isGuest(authentication)) {
-      User userSession = (User) authentication.getPrincipal();
-      return "redirect:/user/" + userSession.getUsername();
+    if (isNotGuest(authentication)) {
+      String userSessionUsername = getUserSessionUsername(authentication);
+      return "redirect:/user/" + userSessionUsername;
     }
     return "redirect:/";
   }
@@ -40,7 +37,7 @@ public class ProfileController {
     @PathVariable String username
   ) {
     userProfile = userRepository.findByUsername(username).orElseThrow();
-    if (!isGuest(authentication)) {
+    if (isNotGuest(authentication)) {
       model.addAttribute("notGuest", true);
       if (isLoggedUser(username, authentication)) {
         model.addAttribute("ownProfile", true);
@@ -71,14 +68,19 @@ public class ProfileController {
     return "redirect:/user/{username}";
   }
 
-  private boolean isGuest(Authentication authentication) {
-    return authentication == null;
+  private boolean isNotGuest(Authentication authentication) {
+    return authentication != null;
   }
 
   private boolean isLoggedUser(String username, Authentication authentication) {
+    String userSessionUsername = getUserSessionUsername(authentication);
+    userRepo = userRepository.findByUsername(userSessionUsername).orElseThrow();
+    return Objects.equals(username, userSessionUsername);
+  }
+
+  private String getUserSessionUsername(Authentication authentication) {
     User userSession = (User) authentication.getPrincipal();
-    userRepo = userRepository.findByUsername(userSession.getUsername()).orElseThrow();
-    return Objects.equals(username, userSession.getUsername());
+    return userSession.getUsername();
   }
 
   private boolean isFollowed() {

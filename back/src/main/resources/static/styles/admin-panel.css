@@ -81,9 +81,14 @@ ul {
   width: 100%;
 }
 
+.listItemLocked{
+  width: 100%;
+  background-color: rgb(126, 64, 64);
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  .listItem, form{
+  .listItem, .listItemLocked, form{
     width: 75%;
   }
 

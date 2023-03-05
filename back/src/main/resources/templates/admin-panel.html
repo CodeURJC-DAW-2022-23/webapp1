@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <link rel="stylesheet" type="text/css" href="styles/admin-panel.css">
-<!--  <script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>-->
+  <!--  <script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>-->
   <title>Alist | Admin Panel</title>
 </head>
 
@@ -23,7 +23,8 @@
     <h1 class="pb-2 border-bottom">Admin Panel</h1>
     <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
       <div class="feature col flex-grow-1">
-        <a href="#collapseUsers" data-bs-toggle="collapse" data-target="#collapseUsers" role="button" aria-expanded="false" aria-controls="collapseUsers">
+        <a href="#collapseUsers" data-bs-toggle="collapse" data-target="#collapseUsers" role="button"
+          aria-expanded="false" aria-controls="collapseUsers">
           <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
             <i class="fa-regular fa-solid fa-user fa-xl"></i>
           </div>
@@ -36,13 +37,23 @@
         <div class="collapse mt-4 d-flex flex-column justify-content-center align-items-center" id="collapseUsers">
           <ul class="w-100 mt-auto">
             {{#users}}
-            <button type="button" class="listItem btn btn-primary mt-2"><li>{{.}}</li></button>
+            {{^locked}}
+            <a href="/admin-panel/lock/{{id}}" class="listItem btn btn-primary mt-2">
+              <li>{{username}}</li>
+            </a>
+            {{/locked}}
+            {{#locked}}
+            <a href="/admin-panel/lock/{{id}}" class="listItemLocked btn btn-primary mt-2">
+              <li>{{username}}</li>
+            </a>
+            {{/locked}}
             {{/users}}
           </ul>
         </div>
       </div>
       <div class="feature col flex-grow-1">
-        <a href="#collapseTopics" data-bs-toggle="collapse" data-target="#collapseTopics" role="button" aria-expanded="false" aria-controls="collapseTopics">
+        <a href="#collapseTopics" data-bs-toggle="collapse" data-target="#collapseTopics" role="button"
+          aria-expanded="false" aria-controls="collapseTopics">
           <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
             <i class="fa-regular fa-solid fa-at fa-xl"></i>
           </div>
@@ -51,19 +62,22 @@
         <p>
           Type in a new topic to create it, or click on an already existing one to delete it.
         </p>
-        <div class="collapse mt-4 w-100 d-flex flex-column justify-content-center align-items-center" id="collapseTopics">
+        <div class="collapse mt-4 w-100 d-flex flex-column justify-content-center align-items-center"
+          id="collapseTopics">
 
-            <form action="">
-              <div class="form-floating mb-2">
-                <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="newTopic">
-                <label for="newTopic" class="text-muted">Type new topic...</label>
-              </div>
-              <button class="w-100 btn btn-lg btn-light" type="submit">Add topic</button>
-            </form>
+          <form action="/addTopic">
+            <div class="form-floating mb-2">
+              <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="topicName">
+              <label for="newTopic" class="text-muted">Type new topic...</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-light" type="submit">Add topic</button>
+          </form>
 
           <ul class="w-100 mt-4">
             {{#topics}}
-            <a href="/admin-panel/delete/{{id}}" class="listItem btn btn-primary mt-2"><li>{{name}}</li></a>
+            <a href="/admin-panel/delete/{{id}}" class="listItem btn btn-primary mt-2">
+              <li>{{name}}</li>
+            </a>
             {{/topics}}
           </ul>
         </div>

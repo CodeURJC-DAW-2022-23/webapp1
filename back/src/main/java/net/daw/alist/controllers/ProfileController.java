@@ -34,17 +34,18 @@ public class ProfileController {
     Optional<User> optionalUser = userRepository.findByUsername(username);
     if (optionalUser.isPresent()) {
       userProfile = optionalUser.get();
-      // TODO: guest
-      if (isLoggedUser(username, authentication)) {
-        model.addAttribute("ownProfile", true);
-      } else {
-        // bad bc userSession = null
-        if (isFollowed()) {
-          model.addAttribute("followed", true);
+      if (!isGuest(authentication)) {
+        model.addAttribute("notGuest", true);
+        if (isLoggedUser(username, authentication)) {
+          model.addAttribute("ownProfile", true);
         } else {
-          model.addAttribute("followed", false);
+          model.addAttribute("ownProfile", false);
+          if (isFollowed()) {
+            model.addAttribute("followed", true);
+          } else {
+            model.addAttribute("followed", false);
+          }
         }
-        model.addAttribute("ownProfile", false);
       }
       model.addAttribute("user", userProfile);
       return "profile";
@@ -67,8 +68,11 @@ public class ProfileController {
     return "redirect:/user/{username}";
   }
 
+  private boolean isGuest(Authentication authentication) {
+    return authentication == null;
+  }
+
   private boolean isLoggedUser(String username, Authentication authentication) {
-    if (authentication == null) return false;
     User userSession = (User) authentication.getPrincipal();
     userRepo = userRepository.findByUsername(userSession.getUsername()).orElseThrow();
     return Objects.equals(username, userSession.getUsername());

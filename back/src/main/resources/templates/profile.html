@@ -27,25 +27,27 @@
         <div class="col prof-name fs-2">
           {{user.username}}
         </div>
-        {{#ownProfile}}
-        <div class="col btn-setting">
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-              <i class="fa-solid fa-gear"></i>
-            </button>
+        {{#notGuest}}
+          {{#ownProfile}}
+          <div class="col btn-setting">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <i class="fa-solid fa-gear"></i>
+              </button>
+            </div>
           </div>
-        </div>
-        {{/ownProfile}}
-        {{^ownProfile}}
-        <div class="col">
-          {{#followed}}
-          <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/unfollow">Following</a>
-          {{/followed}}
-          {{^followed}}
-          <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a>
-          {{/followed}}
-        </div>
-        {{/ownProfile}}
+          {{/ownProfile}}
+          {{^ownProfile}}
+          <div class="col">
+            {{#followed}}
+            <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/unfollow">Following</a>
+            {{/followed}}
+            {{^followed}}
+            <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a>
+            {{/followed}}
+          </div>
+          {{/ownProfile}}
+        {{/notGuest}}
       </div>
       <div class="row fs-5">
         <div class="col">

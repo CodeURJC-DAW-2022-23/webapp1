@@ -27,31 +27,25 @@ public class ProfileController {
   @GetMapping("/user/{username}")
   public String profile(
     Model model,
-    HttpServletResponse httpResponse,
     Authentication authentication,
     @PathVariable String username
-  ) throws IOException {
-    Optional<User> optionalUser = userRepository.findByUsername(username);
-    if (optionalUser.isPresent()) {
-      userProfile = optionalUser.get();
-      if (!isGuest(authentication)) {
-        model.addAttribute("notGuest", true);
-        if (isLoggedUser(username, authentication)) {
-          model.addAttribute("ownProfile", true);
+  ) {
+    userProfile = userRepository.findByUsername(username).orElseThrow();
+    if (!isGuest(authentication)) {
+      model.addAttribute("notGuest", true);
+      if (isLoggedUser(username, authentication)) {
+        model.addAttribute("ownProfile", true);
+      } else {
+        model.addAttribute("ownProfile", false);
+        if (isFollowed()) {
+          model.addAttribute("followed", true);
         } else {
-          model.addAttribute("ownProfile", false);
-          if (isFollowed()) {
-            model.addAttribute("followed", true);
-          } else {
-            model.addAttribute("followed", false);
-          }
+          model.addAttribute("followed", false);
         }
       }
-      model.addAttribute("user", userProfile);
-      return "profile";
     }
-    httpResponse.sendRedirect("/error");
-    return "error";
+    model.addAttribute("user", userProfile);
+    return "profile";
   }
 
   @GetMapping("/user/{username}/follow")

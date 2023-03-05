@@ -37,6 +37,10 @@ public class ProfileController {
     @PathVariable String username
   ) {
     userProfile = userRepository.findByUsername(username).orElseThrow();
+    String userProfileUsername = userProfile.getUsername();
+    if (!Objects.equals(userProfileUsername, username)) {
+      return "redirect:/user/" + userProfileUsername;
+    }
     if (isNotGuest(authentication)) {
       model.addAttribute("notGuest", true);
       if (isLoggedUser(username, authentication)) {

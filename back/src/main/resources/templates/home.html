@@ -29,11 +29,13 @@
           class="profileImg rounded-circle flex-shrink-0">
         <div class="d-flex gap-2 w-100 justify-content-between">
           <div>
-            {{#topics}}
-            <h6 class="topics">
-              <a class="topic" href="#">{{name}}</a>
-            </h6>
-            {{/topics}}
+            <div class="d-flex">
+              {{#topics}}
+              <h6 class="topics pe-1">
+                <a class="topic" href="#">@{{name}}</a>
+              </h6>
+              {{/topics}}
+            </div>
             <a class="OP text-black text-decoration-none" href="#">
               {{author.username}}
             </a>

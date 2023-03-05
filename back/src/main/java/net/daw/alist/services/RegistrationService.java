@@ -34,7 +34,7 @@ public class RegistrationService {
         );
 
         if(token.startsWith("token=")){
-            String link = "http://localhost:8443/registration/confirm?" + token;
+            String link = "https://localhost:8443/registration/confirm?" + token;
             emailSender.send(
                     request.getEmail(),
                     buildEmail(request.getUsername(), link));

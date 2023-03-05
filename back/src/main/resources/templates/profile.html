@@ -21,7 +21,7 @@
   <main class="row">
     <div class="profile-container col-md-4 text-white">
       <div class="profile-pic text-center pt-3">
-        <img src={{user.imagePath}} alt="profilePic" class="prof-pic rounded-circle ">
+        <img src={{user.imagePath}} alt="profilePic" class="prof-pic rounded-circle">
       </div>
       <div class="row text-inherit m-0 d-flex align-items-center">
         <div class="col prof-name fs-2">
@@ -39,10 +39,10 @@
         {{^ownProfile}}
         <div class="col">
           {{#followed}}
-          <button class="btn btn-primary btn-round" type="button">Following</button>
+          <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/unfollow">Following</a>
           {{/followed}}
           {{^followed}}
-          <button class="btn btn-primary btn-round" type="button">Follow</button>
+          <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a>
           {{/followed}}
         </div>
         {{/ownProfile}}

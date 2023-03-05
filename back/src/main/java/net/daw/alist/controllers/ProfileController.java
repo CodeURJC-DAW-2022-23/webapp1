@@ -21,8 +21,8 @@ public class ProfileController {
   @Autowired
   UserRepository userRepository;
 
-  private User user;
-  private User userSession;
+  private User userProfile;
+  private User userRepo;
 
   @GetMapping("/user/{username}")
   public String profile(
@@ -33,35 +33,49 @@ public class ProfileController {
   ) throws IOException {
     Optional<User> optionalUser = userRepository.findByUsername(username);
     if (optionalUser.isPresent()) {
-      user = optionalUser.get();
+      userProfile = optionalUser.get();
       // TODO: guest
       if (isLoggedUser(username, authentication)) {
         model.addAttribute("ownProfile", true);
       } else {
-        /* bad bc userSession = null
+        // bad bc userSession = null
         if (isFollowed()) {
           model.addAttribute("followed", true);
         } else {
           model.addAttribute("followed", false);
         }
-        */
         model.addAttribute("ownProfile", false);
       }
-      model.addAttribute("user", user);
+      model.addAttribute("user", userProfile);
       return "profile";
     }
     httpResponse.sendRedirect("/error");
     return "error";
   }
 
+  @GetMapping("/user/{username}/follow")
+  public String follow(@PathVariable String username) {
+    userRepo.follow(userProfile);
+    userRepository.save(userRepo);
+    return "redirect:/user/{username}";
+  }
+
+  @GetMapping("/user/{username}/unfollow")
+  public String unfollow(@PathVariable String username) {
+    userRepo.unFollow(userProfile);
+    userRepository.save(userRepo);
+    return "redirect:/user/{username}";
+  }
+
   private boolean isLoggedUser(String username, Authentication authentication) {
     if (authentication == null) return false;
-    userSession = (User) authentication.getPrincipal();
+    User userSession = (User) authentication.getPrincipal();
+    userRepo = userRepository.findByUsername(userSession.getUsername()).orElseThrow();
     return Objects.equals(username, userSession.getUsername());
   }
 
   private boolean isFollowed() {
-    return userSession.getFollowing().contains(user);
+    return userRepo.getFollowing().contains(userProfile);
   }
 
 }

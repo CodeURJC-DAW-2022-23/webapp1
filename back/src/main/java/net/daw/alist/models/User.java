@@ -218,14 +218,14 @@ public class User implements UserDetails {
   }
 
   public void follow(User user) {
-    if (user != this && !following.contains(user)) {
+    if (user != this) {
       following.add(user);
       user.getFollowers().add(this);
     }
   }
 
   public void unFollow(User user) {
-    if (user != this && following.contains(user)) {
+    if (user != this) {
       following.remove(user);
       user.getFollowers().remove(this);
     }

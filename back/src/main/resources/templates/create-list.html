@@ -11,16 +11,15 @@
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="styles/create-list.css">
-  <script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="scripts/create-list.js"></script>
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+  <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="/styles/create-list.css">
+  <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  <script src="/scripts/create-list.js"></script>
   <title>Alist | Create List</title>
 </head>
 
@@ -29,16 +28,15 @@
 
   <form class="bg-black" action="/create" method="post" enctype="multipart/form-data">
 
-
-    <input class="form-control mb-2" id="topTitle" name="topTitle" placeholder="Write a title...">
-    <select class="selectpicker" id="topicList" name="topicList" multiple data-live-search="true"
+    <input class="title form-control mt-3 mb-2" id="topTitle" name="topTitle" placeholder="Write a title...">
+    <select class="topic selectpicker" id="topicList" name="topicList" multiple data-live-search="true"
       placeholder="Select your topics...">
       {{#topicOptions}}
       <option value={{.}}>{{.}} </option>
       {{/topicOptions}}
     </select>
 
-    <div class="accordion mt-3 mb-3" id="accordion">
+    <div class="accordion mt-2 mb-3" id="accordion">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -136,16 +134,15 @@
 
       <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Create</button>
 
-
       {{#correct}}
       <div class="alert alert-info" id="message" role="alert">
         {{messages}}
       </div>
       {{/correct}}
     </div>
-    <input type="hidden" name="_csrf" value="{{token}}" />
-  </form>
+    <input type="hidden" name="_csrf" value="{{token}}">
 
+  </form>
 
 </body>
 

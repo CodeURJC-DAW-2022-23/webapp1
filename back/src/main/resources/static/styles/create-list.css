@@ -1,24 +1,19 @@
-#topTitle,
-#topicList {
-  width: 75%;
-  margin: auto;
-}
-#topicList {
-  padding-bottom: 10%;
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+  color: black;
 }
 
-.alert {
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-}
-form{
-  width: 80%;
-  margin:auto;
+.topic {
+  width: 90% !important;
+  margin: auto !important;
 }
 
+.title,
 .accordion {
-  width: 100%;
+  width: 90%;
+  margin: auto;
 }
 
 .accordion-body img[src='#'] {
@@ -55,21 +50,18 @@ form{
   box-shadow: none;
 }
 
-@media only screen and (min-width: 768px) {
-  form{
-  width: 80%;
-  margin-left: 147px;
-  margin-right: 147px;
-
-
+.alert {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+@media only screen and (min-width: 768px) {
   /* For desktop: */
-  #topTitle,
-  #topicList {
-    width: 60%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  .topic {
+    width: 60% !important;
+    margin: auto !important;
   }
+  .title,
   .accordion {
     width: 60%;
     margin: auto;

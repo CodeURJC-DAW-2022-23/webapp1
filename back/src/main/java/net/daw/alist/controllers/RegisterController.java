@@ -22,7 +22,7 @@ public class RegisterController {
   public String register() {
     return "register";
   }
-
+  
   @PostMapping("/register")
   public String registerPost(Model model, RegistrationRequest request) {
     String result = registrationService.register(request);

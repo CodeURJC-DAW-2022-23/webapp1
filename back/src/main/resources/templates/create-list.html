@@ -29,6 +29,7 @@
 
   <form class="bg-black" action="/create" method="post" enctype="multipart/form-data">
 
+
     <input class="form-control mb-2" id="topTitle" name="topTitle" placeholder="Write a title...">
     <select class="selectpicker" id="topicList" name="topicList" multiple data-live-search="true"
       placeholder="Select your topics...">
@@ -136,6 +137,11 @@
       <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Create</button>
 
 
+      {{#correct}}
+      <div class="alert alert-info" id="message" role="alert">
+        {{messages}}
+      </div>
+      {{/correct}}
     </div>
     <input type="hidden" name="_csrf" value="{{token}}" />
   </form>

@@ -15,13 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 
 
 
 import net.daw.alist.services.TopicHandlerService;
+import net.daw.alist.services.PostItemService;
+
+import net.daw.alist.services.ItemField;
+
 import net.daw.alist.models.PostItem;
 import net.daw.alist.models.User;
 import net.daw.alist.models.Post;
@@ -42,6 +45,8 @@ public class CreateListController {
   TopicRepository topic;
   @Autowired
   TopicHandlerService handler;
+  @Autowired
+  PostItemService itemService;
 
   @Autowired
   UserRepository user;
@@ -67,53 +72,26 @@ public class CreateListController {
       @RequestParam String formDescriptionFour,
       @RequestParam MultipartFile formFileFour,
       @RequestParam String formDescriptionFive,
-      @RequestParam MultipartFile formFileFive) throws IOException {
+      @RequestParam MultipartFile formFileFive,
+      Model model) throws IOException {
 
     List<PostItem> postList = new ArrayList<>();
-    URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
     System.out.println(topicList);
-    /* Optimize it with a loop when posbile */
-    PostItem item1 = new PostItem((String) formDescriptionOne,
-        (BlobProxy.generateProxy(formFileOne.getInputStream(), formFileOne.getSize())),
-        (String) location.toString() + "1");
-    item.save(item1);
-    postList.add(item1);
+    ArrayList<ItemField> itemList = new ArrayList<>();
+    itemList.add(new ItemField(formDescriptionOne, formFileOne));
+    itemList.add(new ItemField(formDescriptionTwo, formFileTwo));
+    itemList.add(new ItemField(formDescriptionThree, formFileThree));
+    itemList.add(new ItemField(formDescriptionFour, formFileFour));
+    itemList.add(new ItemField(formDescriptionFive, formFileFive));
 
-    PostItem item2 = new PostItem((String) formDescriptionTwo,
-        (BlobProxy.generateProxy(formFileTwo.getInputStream(), formFileTwo.getSize())),
-        (String) location.toString() + "2");
-    item.save(item2);
-    postList.add(item2);
-
-    if (!formDescriptionThree.equals("")) {
-      PostItem item3 = new PostItem((String) formDescriptionThree,
-          (BlobProxy.generateProxy(formFileThree.getInputStream(), formFileThree.getSize())),
-          (String) location.toString() + "3");
-      item.save(item3);
-      postList.add(item3);
-    }
-
-    if (!formDescriptionFour.equals("")) {
-      PostItem item4 = new PostItem((String) formDescriptionFour,
-          (BlobProxy.generateProxy(formFileFour.getInputStream(), formFileFour.getSize())),
-          (String) location.toString() + "4");
-      item.save(item4);
-      postList.add(item4);
-    }
-
-    if (!formDescriptionFive.equals("")) {
-      PostItem item5 = new PostItem((String) formDescriptionFive,
-          (BlobProxy.generateProxy(formFileFive.getInputStream(), formFileFive.getSize())),
-          (String) location.toString() + "5");
-      item.save(item5);
-      postList.add(item5);
-    }
-
+    postList = itemService.itemList(itemList);
     List<Topic> topicLists = new ArrayList<Topic>();
     topicLists = handler.topicList(topicList);
     
 
-    post.save(new Post(author, (String) topTitle,topicLists,postList));
+    post.save(new Post(author, (String) topTitle, topicLists, postList));
+    model.addAttribute("correct", true);
+    model.addAttribute("messages", "The top is on the system" );
 
     return "create-list";
   }

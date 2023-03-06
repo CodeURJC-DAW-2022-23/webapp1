@@ -6,6 +6,12 @@
 #topicList {
   padding-bottom: 10%;
 }
+
+.alert {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
 form{
   width: 80%;
   margin:auto;
@@ -61,6 +67,8 @@ form{
   #topTitle,
   #topicList {
     width: 60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   .accordion {
     width: 60%;

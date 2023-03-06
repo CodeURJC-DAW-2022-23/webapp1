@@ -72,11 +72,11 @@ public class Post {
   }
   
 
-  public void setTopics(ArrayList<Topic> topics) {
+  public void setTopics(List<Topic> topics) {
     this.topics = topics;
   }
 
-  public void setItems(ArrayList<PostItem> items) {
+  public void setItems(List<PostItem> items) {
     this.items = items;
   }
 

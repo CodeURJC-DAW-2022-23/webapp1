@@ -2,8 +2,9 @@ package net.daw.alist.controllers;
 
 import net.daw.alist.models.Topic;
 import net.daw.alist.models.User;
-import net.daw.alist.repositories.TopicRepository;
-import net.daw.alist.repositories.UserRepository;
+import net.daw.alist.services.TopicService;
+import net.daw.alist.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -20,26 +21,26 @@ import java.util.List;
 public class AdminPanelController {
 
   @Autowired
-  private UserRepository userRepository;
+  private UserService userService;
   @Autowired
-  private TopicRepository topicRepository;
+  private TopicService topicService;
 
   @GetMapping("/admin-panel")
   public String adminPanel(Model model) {
-    List<User> userList = userRepository.findAll();
-    User admin = userRepository.findByUsername("admin").orElseThrow();
+    List<User> userList = userService.findAll();
+    User admin = userService.findByUsername("admin");
     userList.remove(admin);
     model.addAttribute("users", userList);
 
-    List<Topic> topicList = topicRepository.findAll();
+    List<Topic> topicList = topicService.findAll();
     model.addAttribute("topics", topicList);
     return "admin-panel";
   }
 
   @GetMapping("/admin-panel/delete/{id}")
   public String deleteFromTopic(Model model, @PathVariable long id) {
-    Topic topic = topicRepository.findById(id).orElseThrow();
-    topicRepository.delete(topic);
+    Topic topic = topicService.findById(id);
+    topicService.delete(topic);
     return "redirect:/admin-panel";
   }
 
@@ -47,17 +48,17 @@ public class AdminPanelController {
   @RequestMapping("/addTopic")
     public String greeting(Model model, @RequestParam String topicName) {
     Topic topic = new Topic(topicName, "");
-    topicRepository.save(topic);
+    topicService.save(topic);
     return "redirect:/admin-panel";
 }
 
   @GetMapping("/admin-panel/lock/{id}")
   public String changeLockUser(Model model, @PathVariable long id) {
-    User user = userRepository.findById(id).orElseThrow();
+    User user = userService.findById(id);
     if (user.isLocked()) {
-      userRepository.unbanUser(user.getUsername());
+      userService.unbanUser(user.getUsername());
     } else {
-      userRepository.banUser(user.getUsername());
+      userService.banUser(user.getUsername());
     }
     
     return "redirect:/admin-panel";

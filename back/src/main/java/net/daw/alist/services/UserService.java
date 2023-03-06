@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -103,5 +104,25 @@ public class UserService implements UserDetailsService {
 
     public void enableUser(String email) {
         userRepository.enableUser(email);
+    }
+
+    public void unbanUser(String username) {
+        userRepository.unbanUser(username);
+	}
+
+    public void banUser(String username) {
+        userRepository.banUser(username);
+    }
+
+    public User findByUsername(String string) {
+      return userRepository.findByUsername(string).orElseThrow();
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findById(long id) {
+        return userRepository.findById(id).orElseThrow();
     }
 }

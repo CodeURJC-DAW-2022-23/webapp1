@@ -16,12 +16,10 @@ public class HomeController {
   @Autowired
   private PostRepository postRepository;
 
-  @GetMapping("/{page}")
+  @GetMapping("/")
   public String home(Model model) {
-
     Page<Post> posts = postRepository.findAll(PageRequest.of(0, 10));
     model.addAttribute("posts", posts);
-
     return "home";
   }
 

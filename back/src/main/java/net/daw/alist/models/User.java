@@ -53,7 +53,7 @@ public class User implements UserDetails {
   private Blob image;
   private String imagePath;
 
-  @ManyToMany(fetch=FetchType.EAGER)
+  @ManyToMany
   @JsonIgnore
   private List<User> following = new ArrayList<>();
 

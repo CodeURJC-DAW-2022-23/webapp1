@@ -25,49 +25,7 @@
   {{>navbar}}
   <div class="feed-container pt-3">
     {{#posts}}
-    <div class="post mt-3 mb-3">
-      <div class="postInfo border bg-white d-flex gap-3 py-3">
-        <img src={{author.imagePath}} alt="Profile picture" width="75" height="75"
-          class="profileImg rounded-circle flex-shrink-0">
-        <div class="d-flex gap-2 w-100 justify-content-between">
-          <div>
-            <div class="d-flex">
-              {{#topics}}
-              <h6 class="topics pe-1">
-                <a class="topic" href="#">@{{name}}</a>
-              </h6>
-              {{/topics}}
-            </div>
-            <a class="OP text-black text-decoration-none" href="#">
-              {{author.username}}
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="list-group m-auto">
-        <div class="bg-white text-black d-flex gap-3 py-3 text-center justify-content-*-center align-items-center"
-          aria-current="true">
-          <div class="top w-75 m-auto">
-            <h2 class="topName">{{title}}</h2>
-            <ol class="m-auto p-0 w-100">
-              {{#items}}
-              <li>
-                {{description}}
-                <img src={{imagePath}} alt="image" width="45" height="45" class="itemImage rounded-circle">
-              </li>
-              {{/items}}
-            </ol>
-          </div>
-        </div>
-        <div class="list-group-item d-flex">
-          <div class="w-auto m-auto">
-            <img class="upvoteIcon" src="images/upvoteIcon.svg" alt="" width="35" height="35">
-            <img class="downvoteIcon" src="images/downvoteIcon.svg" alt="" width="35" height="35">
-          </div>
-          <img class="shareIcon m-auto" src="images/shareIcon.svg" alt="" width="35" height="35">
-        </div>
-      </div>
-    </div>
+      {{>post}}
     {{/posts}}
     <div class="text-center my-5">
       <div class="spinner-border text-white invisible" role="status">

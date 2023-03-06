@@ -19,7 +19,7 @@ public class ProfileController {
   UserService userService;
 
   private User userProfile;
-  private User userRepo;
+  private User userSessionRepo;
 
   @GetMapping("/profile")
   public String profile(Authentication authentication) {
@@ -60,15 +60,15 @@ public class ProfileController {
 
   @GetMapping("/user/{username}/follow")
   public String follow(@PathVariable String username) {
-    userRepo.follow(userProfile);
-    userService.saveUser(userRepo);
+    userSessionRepo.follow(userProfile);
+    userService.saveUser(userSessionRepo);
     return "redirect:/user/{username}";
   }
 
   @GetMapping("/user/{username}/unfollow")
   public String unfollow(@PathVariable String username) {
-    userRepo.unFollow(userProfile);
-    userService.saveUser(userRepo);
+    userSessionRepo.unFollow(userProfile);
+    userService.saveUser(userSessionRepo);
     return "redirect:/user/{username}";
   }
 
@@ -78,7 +78,7 @@ public class ProfileController {
 
   private boolean isLoggedUser(String username, Authentication authentication) {
     String userSessionUsername = getUserSessionUsername(authentication);
-    userRepo = (User) userService.loadUserByUsername(userSessionUsername);
+    userSessionRepo = (User) userService.loadUserByUsername(userSessionUsername);
     return Objects.equals(username, userSessionUsername);
   }
 
@@ -88,7 +88,7 @@ public class ProfileController {
   }
 
   private boolean isFollowed() {
-    return userRepo.getFollowing().contains(userProfile);
+    return userSessionRepo.getFollowing().contains(userProfile);
   }
 
 }

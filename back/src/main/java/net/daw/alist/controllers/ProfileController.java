@@ -1,8 +1,8 @@
 package net.daw.alist.controllers;
 
 import net.daw.alist.models.User;
-import net.daw.alist.repositories.UserRepository;
 
+import net.daw.alist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.Objects;
 public class ProfileController {
 
   @Autowired
-  UserRepository userRepository;
+  UserService userService;
 
   private User userProfile;
   private User userRepo;
@@ -36,7 +36,7 @@ public class ProfileController {
     Authentication authentication,
     @PathVariable String username
   ) {
-    userProfile = userRepository.findByUsername(username).orElseThrow();
+    userProfile = (User) userService.loadUserByUsername(username);
     String userProfileUsername = userProfile.getUsername();
     if (!Objects.equals(userProfileUsername, username)) {
       return "redirect:/user/" + userProfileUsername;
@@ -61,14 +61,14 @@ public class ProfileController {
   @GetMapping("/user/{username}/follow")
   public String follow(@PathVariable String username) {
     userRepo.follow(userProfile);
-    userRepository.save(userRepo);
+    userService.saveUser(userRepo);
     return "redirect:/user/{username}";
   }
 
   @GetMapping("/user/{username}/unfollow")
   public String unfollow(@PathVariable String username) {
     userRepo.unFollow(userProfile);
-    userRepository.save(userRepo);
+    userService.saveUser(userRepo);
     return "redirect:/user/{username}";
   }
 
@@ -78,7 +78,7 @@ public class ProfileController {
 
   private boolean isLoggedUser(String username, Authentication authentication) {
     String userSessionUsername = getUserSessionUsername(authentication);
-    userRepo = userRepository.findByUsername(userSessionUsername).orElseThrow();
+    userRepo = (User) userService.loadUserByUsername(userSessionUsername);
     return Objects.equals(username, userSessionUsername);
   }
 

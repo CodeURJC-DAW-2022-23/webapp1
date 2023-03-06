@@ -36,11 +36,9 @@ public class PostItem {
 
  public PostItem(
     String description,
-    Blob image,
-    String imagePath
+    Blob image
   ) {
     this.description = description;
-    this.imagePath = imagePath;
     this.image = image;
   }
 

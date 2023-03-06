@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 
 
 
@@ -48,15 +49,17 @@ public class CreateListController {
   User author;
 
   @GetMapping("/create-list")
-  public String createList(Authentication auth) {
+  public String createList(Model model, Authentication auth) {
     this.author = (User) auth.getPrincipal();
+    List<String> topicOptions = handler.topicGetter();
+    model.addAttribute("topicOptions", topicOptions);
     
     return "create-list";
   }
 
   @PostMapping("/create")
   public String saveData(
-      @RequestParam String topTitle, @RequestParam String topicList,
+      @RequestParam String topTitle, @RequestParam List<String> topicList,
       @RequestParam String formDescriptionOne, @RequestParam MultipartFile formFileOne,
       @RequestParam String formDescriptionTwo, @RequestParam MultipartFile formFileTwo,
       @RequestParam String formDescriptionThree,
@@ -68,7 +71,7 @@ public class CreateListController {
 
     List<PostItem> postList = new ArrayList<>();
     URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
-
+    System.out.println(topicList);
     /* Optimize it with a loop when posbile */
     PostItem item1 = new PostItem((String) formDescriptionOne,
         (BlobProxy.generateProxy(formFileOne.getInputStream(), formFileOne.getSize())),
@@ -106,15 +109,13 @@ public class CreateListController {
       postList.add(item5);
     }
 
-    Topic top = new Topic();
-    top = handler.topicChecker(topicList);
     List<Topic> topicLists = new ArrayList<Topic>();
-    topicLists.add(top);
+    topicLists = handler.topicList(topicList);
     
 
     post.save(new Post(author, (String) topTitle,topicLists,postList));
 
-    return "home";
+    return "create-list";
   }
 
 }

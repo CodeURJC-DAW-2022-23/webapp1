@@ -7,6 +7,10 @@ import net.daw.alist.models.Topic;
 import net.daw.alist.repositories.TopicRepository;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Optional;
+
+
 
 
 @Service
@@ -14,23 +18,29 @@ public class TopicHandlerService {
     @Autowired
     TopicRepository topic;
     
-    public Topic topicChecker(String topicName)
+    public List<String> topicGetter()
     {
-        Topic result=new Topic();
-        boolean found=false;
-        List <Topic> topics;
-        topics=topic.findAll();
+        List<Topic> topics;
+        List<String> result = new ArrayList<>();
+        topics = topic.findAll();
 
-        for(Topic iterator:topics)
-        {
-            if (iterator.getName().equals(topicName)) {
-                found = true;
-                result = iterator;
-            }
+        for (Topic iterator : topics) {
+            result.add(iterator.getName());
         }
-        if (!found) {
 
-            result.setName("random");
+        return result;
+    }
+    
+    public List<Topic> topicList(List<String> list)
+    {
+        List<Topic> result = new ArrayList<>();
+        Optional<Topic> topicOption;
+        Topic iterator;
+
+        for (String name : list) {
+            topicOption = topic.findByName(name);
+            iterator = topicOption.get();
+            result.add(iterator);
         }
         
         return result;

@@ -46,15 +46,19 @@ public class User implements UserDetails {
     this.locked = locked;
   }
 
+  private String bio = "";
+
   @Lob
   @JsonIgnore
   private Blob image;
   private String imagePath;
 
-  @OneToMany
-  private List<User> follows = new ArrayList<>();
+  @ManyToMany(fetch=FetchType.EAGER)
+  @JsonIgnore
+  private List<User> following = new ArrayList<>();
 
-  @OneToMany
+  @ManyToMany(mappedBy="following")
+  @JsonIgnore
   private List<User> followers = new ArrayList<>();
 
   @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -70,7 +74,7 @@ public class User implements UserDetails {
     String password,
     String email,
     UserRole role
-  ) {
+  ) throws SQLException, IOException {
     this.date = new Date();
     this.username = username;
     this.password = password;
@@ -78,7 +82,7 @@ public class User implements UserDetails {
     this.role = role;
     enabled = false; //Change this if you want to turn off email verification
     locked = false;
-    // TODO: default image
+    setImage("static/images/defaultProfilePicture.jpg");
     if (role.equals(UserRole.ADMIN)) {
       enabled = true;
     }
@@ -100,13 +104,20 @@ public class User implements UserDetails {
     this.role = role;
   }
 
+  public void setBio(String bio) {
+    this.bio = bio;
+  }
+
   public void setImage(String imagePath) throws IOException, SQLException {
+    if (imagePath == null) {
+      imagePath = "static/images/notFound.jpg";
+    }
     this.image = pathToImage(imagePath);
     this.imagePath = imagePath.replace("static","");
   }
 
-  public void setFollows(List<User> follows) {
-    this.follows = follows;
+  public void setFollowing(List<User> following) {
+    this.following = following;
   }
 
   public void setFollowers(List<User> followers) {
@@ -143,6 +154,10 @@ public class User implements UserDetails {
     return role;
   }
 
+  public String getBio() {
+    return bio;
+  }
+
   public Blob getImage() {
     return image;
   }
@@ -151,8 +166,8 @@ public class User implements UserDetails {
     return imagePath;
   }
 
-  public List<User> getFollows() {
-    return follows;
+  public List<User> getFollowing() {
+    return following;
   }
 
   public List<User> getFollowers() {
@@ -200,6 +215,20 @@ public class User implements UserDetails {
 
   public void addPost(Post post){
     posts.add(post);
+  }
+
+  public void follow(User user) {
+    if (user != this) {
+      following.add(user);
+      user.getFollowers().add(this);
+    }
+  }
+
+  public void unFollow(User user) {
+    if (user != this) {
+      following.remove(user);
+      user.getFollowers().remove(this);
+    }
   }
 
 }

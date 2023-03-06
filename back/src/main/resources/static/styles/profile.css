@@ -15,7 +15,8 @@ main {
 
 .prof-pic {
   max-width: 100%;
-  height: auto;
+  height: 400px;
+  width: 400px;
   margin-bottom: 20px;
 }
 

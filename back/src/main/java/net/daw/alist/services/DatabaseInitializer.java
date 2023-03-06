@@ -42,18 +42,39 @@ public class DatabaseInitializer {
 
             User cr7Lover = new User("CR7Lover", passwordEncoder.encode("1234"), "cr7@alist.com", USER);
             cr7Lover.setImage("static/images/example/cr7_2.jpg");
+            cr7Lover.setBio("CR7 BEST PLAYER IN THE WORLD CR7 BEST PLAYER IN THE WORLD CR7 BEST PLAYER IN THE WORLD");
+            cr7Lover.setEnabled(true);
             User manolo = new User("Manolo", passwordEncoder.encode("1234"), "manolo@alist.com", USER);
             manolo.setImage("static/images/example/manolo.jpg");
+            manolo.setBio("IM MANOLO AND I LIKE MACARONI");
+            manolo.setEnabled(true);
             User peepo = new User("Peepo", passwordEncoder.encode("1234"), "peepo@alist.com", USER);
             peepo.setImage("static/images/example/peepo.jpg");
+            peepo.setBio("Bedge");
+            peepo.setEnabled(true);
             User shanks = new User("Shanks", passwordEncoder.encode("1234"), "shanks@alist.com", USER);
             shanks.setImage("static/images/example/shanks.jpg");
+            shanks.setBio("PEAK PIECE");
+            shanks.setEnabled(true);
             User admin = new User("admin", passwordEncoder.encode("1234"), "admin@alist.com", ADMIN);
             admin.setImage("static/images/example/admin.jpg");
+            admin.setBio("banned :)");
 
             userRepository.save(peepo);
             userRepository.save(shanks);
             userRepository.save(manolo);
+            userRepository.save(cr7Lover);
+            userRepository.save(admin);
+
+            admin.follow(shanks);
+            admin.follow(peepo);
+            peepo.follow(shanks);
+            peepo.follow(admin);
+            shanks.follow(admin);
+            cr7Lover.follow(admin);
+
+            userRepository.save(peepo);
+            userRepository.save(shanks);
             userRepository.save(cr7Lover);
             userRepository.save(admin);
 

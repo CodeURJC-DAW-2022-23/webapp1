@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 @Service
@@ -20,19 +22,19 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailService emailSender;
 
-    public String register(RegistrationRequest request) {
+    public String register(RegistrationRequest request) throws SQLException, IOException {
 
         String token = userService.register(
-                new User(
-                        request.getUsername(),
-                        request.getPassword(),
-                        request.getEmail(),
-                        UserRole.USER
-                )
+            new User(
+                request.getUsername(),
+                request.getPassword(),
+                request.getEmail(),
+                UserRole.USER
+            )
         );
 
         if(token.startsWith("token=")){
-            String link = "http://localhost:8443/registration/confirm?" + token;
+            String link = "https://localhost:8443/registration/confirm?" + token;
             emailSender.send(
                     request.getEmail(),
                     buildEmail(request.getUsername(), link));

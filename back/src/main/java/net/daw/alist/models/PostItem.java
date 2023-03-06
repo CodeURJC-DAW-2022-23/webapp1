@@ -39,6 +39,9 @@ public class PostItem {
   }
 
   public void setImage(String imagePath) throws IOException, SQLException {
+    if (imagePath == null) {
+      imagePath = "static/images/notFound.jpg";
+    }
     this.image = pathToImage(imagePath);
     this.imagePath = imagePath.replace("static", "");
   }

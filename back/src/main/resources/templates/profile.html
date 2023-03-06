@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="styles/profile.css">
-  <title>Alist | Profile</title>
+  <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+  <title>Alist | {{user.username}}</title>
 </head>
 
 <body class="text-center">
@@ -21,39 +21,48 @@
   <main class="row">
     <div class="profile-container col-md-4 text-white">
       <div class="profile-pic text-center pt-3">
-        <img src="images/profile_picture.jpg" alt="profilePic" class="prof-pic rounded-circle ">
+        <img src={{user.imagePath}} alt="profilePic" class="prof-pic rounded-circle">
       </div>
       <div class="row text-inherit m-0 d-flex align-items-center">
         <div class="col prof-name fs-2">
-          Username
+          {{user.username}}
         </div>
-        <div class="col btn-setting">
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-              <i class="fa-solid fa-gear"></i></button>
+        {{#notGuest}}
+          {{#ownProfile}}
+          <div class="col btn-setting">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-gear"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="settingsButton">
+                <li><a class="dropdown-item" href="/sign-out">Log-out</a></li>
+              </ul>
+            </div>
           </div>
-        </div>
+          {{/ownProfile}}
+          {{^ownProfile}}
+          <div class="col">
+            {{#followed}}
+            <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/unfollow">Following</a>
+            {{/followed}}
+            {{^followed}}
+            <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a>
+            {{/followed}}
+          </div>
+          {{/ownProfile}}
+        {{/notGuest}}
       </div>
       <div class="row fs-5">
         <div class="col">
-          4k <br><small>Following</small>
+          {{user.following.size}} <br><small>Following</small>
         </div>
         <div class="col">
-          10k <br> <small>Followers</small>
+          {{user.followers.size}} <br><small>Followers</small>
         </div>
       </div>
       <hr>
       <div class="bio-container">
-        <p>
-          (づ｡◕‿‿◕｡)づ
-          <br>
-          -Spits facts daily
-          <br>
-          -Best opinions all around
-          <br>
-          -Don't hate pls
-          @gledrian.dev_
-        </p>
+        <p>{{user.bio}}</p>
       </div>
     </div>
     <div class="post-container col-md-8 p-0">

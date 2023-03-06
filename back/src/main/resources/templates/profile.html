@@ -31,9 +31,12 @@
           {{#ownProfile}}
           <div class="col btn-setting">
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-gear"></i>
               </button>
+              <ul class="dropdown-menu" aria-labelledby="settingsButton">
+                <li><a class="dropdown-item" href="/sign-out">Log-out</a></li>
+              </ul>
             </div>
           </div>
           {{/ownProfile}}

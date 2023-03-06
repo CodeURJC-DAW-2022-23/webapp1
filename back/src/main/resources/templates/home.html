@@ -13,11 +13,10 @@
   <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <link rel="stylesheet" type="text/css" href="/styles/home.css">
-  <script src="https://code.jquery.com/jquery-3.6.3.js"
-    integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
     crossorigin="anonymous"></script>
   <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="/scripts/loadOnScroll.js"></script>
+  <script src="/scripts/load-on-scroll.js"></script>
   <title>AList</title>
 </head>
 
@@ -25,7 +24,7 @@
   {{>navbar}}
   <div class="feed-container pt-3">
     {{#posts}}
-      {{>post}}
+    {{>post}}
     {{/posts}}
     <div class="text-center my-5">
       <div class="spinner-border text-white invisible" role="status">

@@ -15,8 +15,8 @@ public class PostService {
     @Autowired
     private final PostRepository postRepository;
 
-    public Page<Post> getPosts(int number) {
-        return postRepository.findAll(PageRequest.of(0, number));
+    public Page<Post> getPosts(int pageNumber,int pageSize) {
+        return postRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }
 
 }

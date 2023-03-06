@@ -17,7 +17,7 @@ public class HomeController {
 
   @GetMapping("/")
   public String home(Model model) {
-    Page<Post> posts = postService.getPosts(10);
+    Page<Post> posts = postService.getPosts(0,2);
     model.addAttribute("posts", posts);
     return "home";
   }

@@ -32,6 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/").permitAll()
                     .antMatchers("/admin-panel").hasAnyRole("ADMIN")
                     .antMatchers("/profile").hasAnyRole("USER", "ADMIN")
+                    .antMatchers("/create-list").hasAnyRole("USER", "ADMIN")
+                    .antMatchers("/create").hasAnyRole("USER", "ADMIN")
                     .antMatchers("/register").permitAll()
                     .antMatchers("/top-list").permitAll()
                     .antMatchers("/extern-profile").permitAll()

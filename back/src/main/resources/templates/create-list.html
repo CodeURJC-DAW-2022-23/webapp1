@@ -5,131 +5,144 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
   <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <link rel="stylesheet" type="text/css" href="/styles/create-list.css">
   <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
   <script src="/scripts/create-list.js"></script>
   <title>Alist | Create List</title>
 </head>
 
 <body class="text-center">
   {{>navbar}}
-  <div class="accordion mt-3 mb-3" id="accordion">
 
-    <input class="form-control mb-2" id="topTitle" placeholder="Write a title...">
-    <input class="form-control mb-2" list="topicOptions" id="topicList" placeholder="Type to add topic...">
-    <datalist id="topicOptions">
-      <option value="Sports"> </option>
-      <option value="Anime"> </option>
-      <option value="Characters"> </option>
-      <option value="Films"> </option>
-      <option value="Books"> </option>
-    </datalist>
+  <form class="bg-black" action="/create-list/save" method="post" enctype="multipart/form-data">
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-          aria-expanded="true" aria-controls="collapseOne">
-          #1
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-        data-bs-parent="#accordion">
-        <div class="accordion-body">
-          <img class="img-fluid rounded mt-3" id="imgOne" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionOne"
-            placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileOne"
-            onchange="loadFile(event, 'imgOne')">
+    <input class="title form-control mt-3 mb-2" id="topTitle" name="topTitle" placeholder="Write a title...">
+    <select class="topic selectpicker" id="topicList" name="topicList" multiple data-live-search="true"
+      placeholder="Select your topics...">
+      {{#topicOptions}}
+      <option value={{.}}>{{.}} </option>
+      {{/topicOptions}}
+    </select>
+
+    <div class="accordion mt-2 mb-3" id="accordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            #1
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordion">
+          <div class="accordion-body">
+            <img class="img-fluid rounded mt-3" id="imgOne" src="#" alt="">
+            <input class="form-control mt-3 mb-2" type="text" id="formDescriptionOne" name="formDescriptionOne"
+              placeholder="Write a description...">
+            <input class="form-control" type="file" accept="image/*" id="formFileOne" name="formFileOne"
+              onchange="loadFile(event, 'imgOne')">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-          aria-expanded="false" aria-controls="collapseTwo">
-          #2
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-        data-bs-parent="#accordion">
-        <div class="accordion-body">
-          <img class="img-fluid rounded mt-3" id="imgTwo" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionTwo"
-            placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileTwo"
-            onchange="loadFile(event, 'imgTwo')">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            #2
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+          data-bs-parent="#accordion">
+          <div class="accordion-body">
+            <img class="img-fluid rounded mt-3" id="imgTwo" src="#" alt="">
+            <input class="form-control mt-3 mb-2" type="text" id="formDescriptionTwo" name="formDescriptionTwo"
+              placeholder="Write a description...">
+            <input class="form-control" type="file" accept="image/*" id="formFileTwo" name="formFileTwo"
+              onchange="loadFile(event, 'imgTwo')">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          #3
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-        data-bs-parent="#accordion">
-        <div class="accordion-body">
-          <img class="img-fluid rounded mt-3" id="imgThree" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionThree"
-            placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileThree"
-            onchange="loadFile(event, 'imgThree')">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            #3
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+          data-bs-parent="#accordion">
+          <div class="accordion-body">
+            <img class="img-fluid rounded mt-3" id="imgThree" src="#" alt="">
+            <input class="form-control mt-3 mb-2" type="text" id="formDescriptionThree" name="formDescriptionThree"
+              placeholder="Write a description...">
+            <input class="form-control" type="file" accept="image/*" id="formFileThree" name="formFileThree"
+              onchange="loadFile(event, 'imgThree')">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingFour">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-          #4
-        </button>
-      </h2>
-      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-        data-bs-parent="#accordion">
-        <div class="accordion-body">
-          <img class="img-fluid rounded mt-3" id="imgFour" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFour"
-            placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileFour"
-            onchange="loadFile(event, 'imgFour')">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            #4
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+          data-bs-parent="#accordion">
+          <div class="accordion-body">
+            <img class="img-fluid rounded mt-3" id="imgFour" src="#" alt="">
+            <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFour" name="formDescriptionFour"
+              placeholder="Write a description...">
+            <input class="form-control" type="file" accept="image/*" id="formFileFour" name="formFileFour"
+              onchange="loadFile(event, 'imgFour')">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingFive">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-          #5
-        </button>
-      </h2>
-      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-        data-bs-parent="#accordion">
-        <div class="accordion-body">
-          <img class="img-fluid rounded mt-3" id="imgFive" src="#" alt="">
-          <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFive"
-            placeholder="Write a description...">
-          <input class="form-control" type="file" accept="image/*" id="formFileFive"
-            onchange="loadFile(event, 'imgFive')">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            #5
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+          data-bs-parent="#accordion">
+          <div class="accordion-body">
+            <img class="img-fluid rounded mt-3" id="imgFive" src="#" alt="">
+            <input class="form-control mt-3 mb-2" type="text" id="formDescriptionFive" name="formDescriptionFive"
+              placeholder="Write a description...">
+            <input class="form-control" type="file" accept="image/*" id="formFileFive" name="formFileFive"
+              onchange="loadFile(event, 'imgFive')">
+          </div>
         </div>
       </div>
+
+      <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Create</button>
+
+      {{#correct}}
+      <div class="alert alert-info" id="message" role="alert">
+        {{messages}}
+      </div>
+      {{/correct}}
     </div>
+    <input type="hidden" name="_csrf" value="{{token}}">
 
-    <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Create</button>
-
-  </div>
+  </form>
 
 </body>
 

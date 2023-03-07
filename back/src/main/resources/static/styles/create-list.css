@@ -1,11 +1,19 @@
-#topTitle,
-#topicList {
-  width: 90%;
-  margin: auto;
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+  color: black;
 }
 
+.topic {
+  width: 90% !important;
+  margin: auto !important;
+}
+
+.title,
 .accordion {
-  width: 100%;
+  width: 90%;
+  margin: auto;
 }
 
 .accordion-body img[src='#'] {
@@ -42,12 +50,18 @@
   box-shadow: none;
 }
 
+.alert {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  #topTitle,
-  #topicList {
-    width: 93%;
+  .topic {
+    width: 60% !important;
+    margin: auto !important;
   }
+  .title,
   .accordion {
     width: 60%;
     margin: auto;

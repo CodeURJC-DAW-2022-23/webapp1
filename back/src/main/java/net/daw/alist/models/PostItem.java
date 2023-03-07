@@ -34,6 +34,14 @@ public class PostItem {
     setImage(imagePath);
   }
 
+ public PostItem(
+    String description,
+    Blob image
+  ) {
+    this.description = description;
+    this.image = image;
+  }
+
   public void setDescription(String description) {
     this.description = description;
   }

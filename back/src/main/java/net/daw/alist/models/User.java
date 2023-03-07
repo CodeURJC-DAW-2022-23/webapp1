@@ -53,7 +53,7 @@ public class User implements UserDetails {
   private Blob image;
   private String imagePath;
 
-  @ManyToMany(fetch=FetchType.EAGER)
+  @ManyToMany
   @JsonIgnore
   private List<User> following = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class User implements UserDetails {
   @JsonIgnore
   private List<User> followers = new ArrayList<>();
 
-  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private List<Post> posts = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")

@@ -18,5 +18,9 @@ public class PostService {
     public Page<Post> getPosts(int pageNumber,int pageSize) {
         return postRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }
+    
+    public void save(Post post) {
+        postRepository.save(post);
+    }
 
 }

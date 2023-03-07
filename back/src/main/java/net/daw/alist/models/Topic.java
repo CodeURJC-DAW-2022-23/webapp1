@@ -14,7 +14,7 @@ public class Topic {
   private String name;
   private String description;
 
-  @ManyToMany(mappedBy="topics")
+  @ManyToMany
   private List<Post> posts = new ArrayList<>();
 
   public Topic() { }

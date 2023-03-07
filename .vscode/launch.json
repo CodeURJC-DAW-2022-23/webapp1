@@ -6,6 +6,16 @@
       "projectName": "main",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-AlistApplication<alist>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "net.daw.alist.AlistApplication",
+      "projectName": "alist",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

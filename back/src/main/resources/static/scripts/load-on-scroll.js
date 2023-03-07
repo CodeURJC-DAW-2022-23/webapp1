@@ -5,7 +5,11 @@ $(window).scroll(function () {
     page++;
     $('.spinner-border').removeClass('invisible').addClass('visible');
     $.get('https://localhost:8443/posts', { page }, data => {
+      if (data == '')
+        $('.no-posts').removeClass('invisible').addClass('visible');
+
       $('.post-container').append(data);
+      $('.spinner-border').removeClass('visible').addClass('invisible');
     });
   }
 });

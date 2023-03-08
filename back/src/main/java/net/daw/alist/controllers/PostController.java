@@ -1,7 +1,7 @@
 package net.daw.alist.controllers;
 
 import net.daw.alist.models.Post;
-
+import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 
 @Controller
 public class PostController {
@@ -32,9 +33,11 @@ public class PostController {
   }
   
   @GetMapping("/followed-users/posts")
-  public String getFollowedUsersPosts(Model model, @RequestParam int page) {
+  public String getFollowedUsersPosts(Model model, Authentication authentication, @RequestParam int page) {
 
-    Page<Post> starredPost = postService.getStarredPosts(page, 1);
+    User currentUser = (User) authentication.getPrincipal();
+
+    Page<Post> starredPost = postService.getStarredPosts(page,currentUser.getId().intValue());
     
     model.addAttribute("posts", starredPost);
 

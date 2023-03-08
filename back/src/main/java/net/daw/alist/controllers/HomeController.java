@@ -16,20 +16,32 @@ public class HomeController {
   @Autowired
   private PostService postService;
 
-  @GetMapping("/")
+  @GetMapping({"/","/followed-users/"})
   public String home(Model model) {
-    Page<Post> posts = postService.getPosts(0, 2);
-    model.addAttribute("posts", posts);
+    /* Page<Post> posts = postService.getPosts(0);
+
+    model.addAttribute("posts", posts); */
+
     return "home";
   }
   
   @GetMapping("/posts")
   public String getNewPosts(Model model, @RequestParam int page) {
 
-    Page<Post> newPage = postService.getPosts(page, 1);
+    Page<Post> newPage = postService.getPosts(page);
 
     model.addAttribute("posts", newPage);
+
+    return "post";
+  }
   
+  @GetMapping("/followed-users/posts")
+  public String getFollowedUsersPosts(Model model, @RequestParam int page) {
+
+    Page<Post> starredPost = postService.getStarredPosts(page, 1);
+    
+    model.addAttribute("posts", starredPost);
+
     return "post";
   }
 

@@ -21,11 +21,10 @@ public class Post {
   private Date date;
   private String title;
 
-  @OneToMany
+  @ManyToMany
   private Set<User> upVotes = new HashSet<>();
 
-  @OneToMany
-
+  @ManyToMany
   private Set<User> downVotes = new HashSet<>();
 
   @ManyToMany
@@ -37,6 +36,10 @@ public class Post {
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
+
+  private int numUpVotes = upVotes.size();
+
+  private int numDownVotes = downVotes.size();
 
   public Post() { }
 
@@ -122,4 +125,22 @@ public class Post {
     this.comments.add(comment);
   }
 
+  public void addUpVote(User user) { this.upVotes.add(user);}
+  public void removeUpVote(User user)
+  {
+    this.upVotes.remove(user);
+  }
+
+  public void addDownVote(User user){ this.downVotes.add(user); }
+
+  public void removeDownVote(User user) { this.downVotes.remove(user); }
+
+
+  public void updateVotes(){
+    this.numDownVotes=downVotes.size();
+    this.numUpVotes=upVotes.size();
+  }
+
+
 }
+

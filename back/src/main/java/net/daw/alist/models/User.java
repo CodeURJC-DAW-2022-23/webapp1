@@ -19,6 +19,8 @@ import static net.daw.alist.utils.Utils.pathToImage;
 @Entity
 public class User implements UserDetails {
 
+
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;

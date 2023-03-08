@@ -1,3 +1,4 @@
+
 {{#posts}}
 <div class="post mt-3 mb-3">
   <div class="postInfo border bg-white d-flex gap-3 py-3">
@@ -34,9 +35,19 @@
       </div>
     </div>
     <div class="list-group-item d-flex">
-      <div class="w-auto m-auto">
-        <img class="upvoteIcon" src="/images/upvoteIcon.svg" alt="" width="35" height="35">
-        <img class="downvoteIcon" src="/images/downvoteIcon.svg" alt="" width="35" height="35">
+      <div class="w-auto m-auto ">
+        <h6 class="pe-1 d-inline" >
+          {{numUpVotes}}
+        </h6>
+        <a class="btn btn-primary bg-transparent" type="button" href="/post/{{id}}/upvote-action">
+          <img class="upvoteIcon" src="/images/upvoteIcon.svg" alt="" width="35" height="35">
+        </a>
+        <h6 class="pe-1 d-inline">
+          {{numDownVotes}}
+        </h6>
+        <a class="btn btn-primary bg-transparent" type="button" href="/post/{{id}}/downvote-action">
+          <img class="downvoteIcon" src="/images/downvoteIcon.svg" alt="" width="35" height="35">
+        </a>
       </div>
       <img class="shareIcon m-auto" src="/images/shareIcon.svg" alt="" width="35" height="35">
     </div>

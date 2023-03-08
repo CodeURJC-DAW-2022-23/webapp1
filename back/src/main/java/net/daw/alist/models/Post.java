@@ -37,9 +37,6 @@ public class Post {
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 
-  private int numUpVotes = upVotes.size();
-
-  private int numDownVotes = downVotes.size();
 
   public Post() { }
 
@@ -134,13 +131,6 @@ public class Post {
   public void addDownVote(User user){ this.downVotes.add(user); }
 
   public void removeDownVote(User user) { this.downVotes.remove(user); }
-
-
-  public void updateVotes(){
-    this.numDownVotes=downVotes.size();
-    this.numUpVotes=upVotes.size();
-  }
-
 
 }
 

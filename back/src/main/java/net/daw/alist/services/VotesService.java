@@ -26,7 +26,6 @@ public class VotesService {
             if (post.getDownVotes().contains(user))
                 post.removeDownVote(user);
         }
-        post.updateVotes();
         postRepository.save(post);
     }
     @Transactional
@@ -39,7 +38,6 @@ public class VotesService {
             if (post.getUpVotes().contains(user))
                 post.removeUpVote(user);
         }
-        post.updateVotes();
         postRepository.save(post);
     }
 

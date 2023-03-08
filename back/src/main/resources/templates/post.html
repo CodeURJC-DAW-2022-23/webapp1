@@ -37,13 +37,13 @@
     <div class="list-group-item d-flex">
       <div class="w-auto m-auto ">
         <h6 class="pe-1 d-inline" >
-          {{numUpVotes}}
+          {{upVotes.size}}
         </h6>
         <a class="btn btn-primary bg-transparent" type="button" href="/post/{{id}}/upvote-action">
           <img class="upvoteIcon" src="/images/upvoteIcon.svg" alt="" width="35" height="35">
         </a>
         <h6 class="pe-1 d-inline">
-          {{numDownVotes}}
+          {{downVotes.size}}
         </h6>
         <a class="btn btn-primary bg-transparent" type="button" href="/post/{{id}}/downvote-action">
           <img class="downvoteIcon" src="/images/downvoteIcon.svg" alt="" width="35" height="35">

@@ -11,18 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
 
 @Controller
-public class HomeController {
+public class PostController {
 
   @Autowired
   private PostService postService;
 
   @GetMapping({"/","/followed-users/"})
   public String home(Model model) {
-    /* Page<Post> posts = postService.getPosts(0);
-
-    model.addAttribute("posts", posts); */
-
-    return "home";
+    return "feed";
   }
   
   @GetMapping("/posts")

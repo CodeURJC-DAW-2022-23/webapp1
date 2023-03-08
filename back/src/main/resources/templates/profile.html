@@ -19,57 +19,59 @@
 <body class="text-center">
   {{>navbar}}
   <main class="row">
-    <div class="profile-container col-md-4 text-white">
-      <div class="profile-pic text-center pt-3">
-        <img src={{user.imagePath}} alt="profilePic" class="prof-pic rounded-circle">
-      </div>
-      <div class="row text-inherit m-0 d-flex align-items-center">
-        <div class="col prof-name fs-2">
-          {{user.username}}
+    <form class="bg-black" action="/sign-out" method="post" id="logOut">
+      <div class="profile-container col-md-4 text-white">
+        <div class="profile-pic text-center pt-3">
+          <img src={{user.imagePath}} alt="profilePic" class="prof-pic">
         </div>
-        {{#notGuest}}
-          {{#ownProfile}}
-          <div class="col btn-setting">
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-gear"></i>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="settingsButton">
-                <li><a class="dropdown-item" href="/sign-out">Log-out</a></li>
-              </ul>
+        <div class="row text-inherit m-0 d-flex align-items-center">
+          <div class="col prof-name fs-2">
+            {{user.username}}
+          </div>
+          {{#notGuest}}
+            {{#ownProfile}}
+            <div class="col btn-setting">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-gear"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="settingsButton">
+                  <li><button class="dropdown-item" id="sign-out" type="submit">Log-out</button></li>
+                </ul>
+              </div>
             </div>
-          </div>
-          {{/ownProfile}}
-          {{^ownProfile}}
+            {{/ownProfile}}
+            {{^ownProfile}}
+            <div class="col">
+              {{#followed}}
+              <a class="btn btn-primary btn-round btn-following" type="button" href="/user/{{user.username}}/unfollow">Following</a>
+              {{/followed}}
+              {{^followed}}
+              <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a>
+              {{/followed}}
+            </div>
+            {{/ownProfile}}
+          {{/notGuest}}
+        </div>
+        <div class="row fs-5">
           <div class="col">
-            {{#followed}}
-            <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/unfollow">Following</a>
-            {{/followed}}
-            {{^followed}}
-            <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a>
-            {{/followed}}
+            {{user.following.size}} <br><small>Following</small>
           </div>
-          {{/ownProfile}}
-        {{/notGuest}}
-      </div>
-      <div class="row fs-5">
-        <div class="col">
-          {{user.following.size}} <br><small>Following</small>
+          <div class="col">
+            {{user.followers.size}} <br><small>Followers</small>
+          </div>
         </div>
-        <div class="col">
-          {{user.followers.size}} <br><small>Followers</small>
+        <hr>
+        <div class="bio-container">
+          <p>{{user.bio}}</p>
         </div>
       </div>
-      <hr>
-      <div class="bio-container">
-        <p>{{user.bio}}</p>
+      <div class="post-container col-md-8 p-0">
+        <div class="vl"></div>
       </div>
-    </div>
-    <div class="post-container col-md-8 p-0">
-      <div class="vl"></div>
-    </div>
+      <input type="hidden" name="_csrf" value="{{token}}"/>
+    </form>
   </main>
-
 </body>
 
 </html>

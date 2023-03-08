@@ -1,6 +1,27 @@
+body {
+  overflow-x: hidden;
+}
+
 main {
   height: 100vh;
   padding: 0 1rem;
+}
+
+.profile-container {
+  max-width: none;
+}
+
+.prof-pic {
+  height: 60vw;
+  width: 60vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.prof-pic:before {
+  /* Responsive trick */
+  padding-top: 100%;
 }
 
 .btn-setting .btn-primary {
@@ -13,22 +34,22 @@ main {
   background-color: black;
 }
 
-.prof-pic {
-  max-width: 100%;
-  height: 400px;
-  width: 400px;
-  margin-bottom: 20px;
+.btn-setting .dropdown-menu {
+  --bs-dropdown-link-active-bg: #63b1b1;
 }
 
-.btn-follow .btn-primary {
-  border: none;
-  background-color: #2d474f;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.btn-follow {
+.btn-following {
   background-color: #63b1b1;
+}
+
+.btn-following:hover,
+.btn-following:active:focus {
+  background-color: #2d474f;
+}
+
+.bio-container {
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .vl {
@@ -37,8 +58,13 @@ main {
   width: 1px;
 }
 
-@media only screen and (max-width: 320px) {
-  main .row {
-    height: auto;
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .profile-container {
+    max-width: 23vw;
+  }
+  .prof-pic {
+    height: 15vw;
+    width: 15vw;
   }
 }

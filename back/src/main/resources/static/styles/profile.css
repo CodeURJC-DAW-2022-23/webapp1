@@ -47,6 +47,16 @@ main {
   background-color: #2d474f;
 }
 
+.follow a {
+  color: gray;
+  font-size: medium;
+  text-decoration: none;
+}
+
+.follow a:hover {
+  text-decoration: underline;
+}
+
 .bio-container {
   margin-right: 20px;
   margin-left: 20px;

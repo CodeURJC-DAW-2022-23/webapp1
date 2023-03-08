@@ -58,6 +58,22 @@ public class ProfileController {
     return "profile";
   }
 
+  @GetMapping("/user/{username}/following")
+  public String following(Model model, @PathVariable String username) {
+    model.addAttribute("follow", "Following");
+    model.addAttribute("user", userProfile);
+    model.addAttribute("followList", userProfile.getFollowing());
+    return "follow";
+  }
+
+  @GetMapping("/user/{username}/followers")
+  public String followers(Model model, @PathVariable String username) {
+    model.addAttribute("follow", "Followers");
+    model.addAttribute("user", userProfile);
+    model.addAttribute("followList", userProfile.getFollowers());
+    return "follow";
+  }
+
   @GetMapping("/user/{username}/follow")
   public String follow(@PathVariable String username) {
     userSessionRepo.follow(userProfile);

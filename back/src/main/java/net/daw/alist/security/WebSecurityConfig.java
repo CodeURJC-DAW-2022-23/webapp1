@@ -28,28 +28,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                    .antMatchers("/").permitAll()
-                    .antMatchers("/admin-panel").hasAnyRole("ADMIN")
+            .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin-panel").hasAnyRole("ADMIN")
                 .antMatchers("/profile").hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/followed-users/").hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/create-list").hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/create").hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/register").permitAll()
-                    .antMatchers("/top-list").permitAll()
-                    .antMatchers("/extern-profile").permitAll()
-                .and()
-                .formLogin()
-                    .loginPage("/sign-in").permitAll()
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .successHandler(loginSuccessHandler)
-                    .failureUrl("/sign-in?error");
+                .antMatchers("/followed-users/").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/create-list").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/create").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/register").permitAll()
+                .antMatchers("/top-list").permitAll()
+                .antMatchers("/extern-profile").permitAll()
+            .and()
+            .formLogin()
+                .loginPage("/sign-in").permitAll()
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .successHandler(loginSuccessHandler)
+                .failureUrl("/sign-in?error");
 
         http
-                .logout()
-                    .logoutUrl("/sign-out")
-                    .logoutSuccessUrl("/");
+            .logout()
+                .logoutUrl("/sign-out")
+                .logoutSuccessUrl("/");
     }
 
     @Override

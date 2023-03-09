@@ -1,14 +1,18 @@
 package net.daw.alist.controllers;
 
+import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
 
+import net.daw.alist.services.PostService;
 import net.daw.alist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Objects;
 
@@ -17,6 +21,9 @@ public class ProfileController {
 
   @Autowired
   UserService userService;
+
+  @Autowired
+  PostService postService;
 
   private User userProfile;
   private User userSessionRepo;
@@ -56,6 +63,18 @@ public class ProfileController {
     }
     model.addAttribute("user", userProfile);
     return "profile";
+  }
+
+  @GetMapping("/user/{username}/posts")
+  public String getUserPosts(
+    Model model,
+    @RequestParam int page,
+    @PathVariable String username
+  ) {
+    int userProfileId = userProfile.getId().intValue();
+    Page<Post> userProfilePosts = postService.getUserPosts(page, userProfileId);
+    model.addAttribute("posts", userProfilePosts);
+    return "post";
   }
 
   @GetMapping("/user/{username}/following")

@@ -113,7 +113,7 @@ public class User implements UserDetails {
       imagePath = "static/images/notFound.jpg";
     }
     this.image = pathToImage(imagePath);
-    this.imagePath = imagePath.replace("static","");
+    this.imagePath = imagePath.replace("static", "");
   }
 
   public void setFollowing(List<User> following) {

@@ -21,28 +21,20 @@ public class PostController {
   public String home(Model model) {
     return "feed";
   }
-  
+
   @GetMapping("/posts")
   public String getNewPosts(Model model, @RequestParam int page) {
-
     Page<Post> newPage = postService.getPosts(page);
-
     model.addAttribute("posts", newPage);
-
     return "post";
   }
-  
+
   @GetMapping("/followed-users/posts")
   public String getFollowedUsersPosts(Model model, Authentication authentication, @RequestParam int page) {
-
     User currentUser = (User) authentication.getPrincipal();
-
-    Page<Post> starredPost = postService.getStarredPosts(page,currentUser.getId().intValue());
-    
+    Page<Post> starredPost = postService.getStarredPosts(page, currentUser.getId().intValue());
     model.addAttribute("posts", starredPost);
-
     return "post";
   }
-
 
 }

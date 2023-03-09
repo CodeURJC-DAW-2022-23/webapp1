@@ -7,6 +7,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
   <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/scripts/navbar.js" defer></script>
 </head>
 
 <body>
@@ -16,14 +17,14 @@
         <a class="navbar-brand" href="/">
           <img src="/images/alistLogo.svg" alt="" width="80" height="30">
         </a>
-        <a href="/">
+        <a id="compassNavIcon" href="/">
           <i class="fa-regular fa-compass fa-xl"></i>
         </a>
           {{>searchbar}}
-        <a href="/followed-users/">
+        <a id="heartNavIcon" href="/followed-users/">
           <i class="fa-regular fa-heart fa-xl"></i>
         </a>
-        <a href="/profile">
+        <a id="profileNavIcon" href="/profile">
           <i class="fa-regular fa-user fa-xl"></i>
         </a>
       </div>

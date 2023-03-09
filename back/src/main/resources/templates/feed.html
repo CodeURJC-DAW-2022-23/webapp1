@@ -13,12 +13,27 @@
   <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <link rel="stylesheet" type="text/css" href="/styles/home.css">
+  <link rel="stylesheet" type="text/css" href="/styles/top-list.css">
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+  <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/scripts/load-data.js"></script>
   <title>AList</title>
 </head>
 
 <body>
   {{>navbar}}
-  <div class="feed-container pt-5"></div>
+  <div class="feed-container pt-3">
+    <div class="post-container">
+      {{>post}}
+    </div>
+    <div class="text-center my-5">
+      <div class="spinner-border text-white invisible" role="status">
+      </div>
+      <div class="no-posts text-white invisible">No more posts :(
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="/styles/follow.css">
+  <title>AList | {{follow}} {{user.username}}</title>
+</head>
+
+<body>
+  {{>navbar}}
+  <div class="bg-black text-white">
+    <a class="profile-title h1 mt-3" type="button" href="/user/{{user.username}}">
+      <img class="profile-img" src="{{user.imagePath}}" alt="{{user.username}} picture"> {{follow}} {{user.username}}
+    </a>
+    <div class="list-group mt-3">
+    {{#followList}}
+      <a class="list-group-item list-group-item-action" type="button" href="/user/{{username}}">
+        <img class="profile-img" src="{{imagePath}}" alt="{{username}} picture"> {{username}}
+      </a>
+    {{/followList}}
+    </div>
+  </div>
+</body>
+
+</html>

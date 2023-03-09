@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 import net.daw.alist.services.PostService;
+import net.daw.alist.services.UserService;
+import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +38,15 @@ public class CreateListController {
   PostItemService postItemService;
 
   @Autowired
+  private UserService userService;
+
+  @Autowired
   PostService postService;
 
   @GetMapping("/create-list")
   public String createList(Model model) {
+    Utils utils  = new Utils(userService, postService);
+    utils.searchBarInitializer(model);
     List<String> topicOptions = topicService.getAllTopics();
     model.addAttribute("topicOptions", topicOptions);
     return "create-list";

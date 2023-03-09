@@ -16,7 +16,7 @@
         <a class="navbar-brand" href="/">
           <img src="/images/alistLogo.svg" alt="" width="80" height="30">
         </a>
-        <a>
+        <a href="/">
           <i class="fa-regular fa-compass fa-xl"></i>
         </a>
           {{>searchbar}}
@@ -54,7 +54,7 @@
           </a>
         </div>
       </div>
-      <div class="collapse border-top mt-2" id="collapseNav">
+      <div class="collapse border-top mt-2" id="collapseNav"> <!--Duplicate ID necessary for Bootstrap navbar to work properly-->
         {{>searchbar}}
       </div>
     </div>

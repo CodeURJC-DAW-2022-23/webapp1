@@ -1,0 +1,91 @@
+input {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.profile-pic-search {
+  width: 25px;
+  height: 25px;
+}
+
+.searchIcon {
+  color: gray;
+  margin: auto;
+  margin-right: 12px;
+  pointer-events: none;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  border-radius: .375rem;
+  position: relative;
+  margin-top: .5rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+
+input {
+  font-size: 1rem;
+}
+
+.autoCompleteBox {
+  visibility: hidden;
+  top: 36px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  max-height: 50vh;
+  overflow-y: scroll;
+  border-bottom: 1px solid white;
+}
+
+.separator {
+  color: white;
+  font-weight: 600;
+  background-color: #589a9a;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+}
+
+.card {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  background-color: white;
+  color: black;
+  padding: .5rem;
+}
+
+.card:hover {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  background-color: black;
+  color: white;
+}
+
+.card > .header {
+  margin-bottom: .25rem;
+}
+
+.card > .body {
+  font-size: .8rem;
+  color: #777;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .searchWrapper {
+    margin-top: 0rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+}

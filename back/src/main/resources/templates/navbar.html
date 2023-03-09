@@ -7,7 +7,6 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
   <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="/scripts/searchBar.js" defer></script>
 </head>
 
 <body>
@@ -20,44 +19,7 @@
         <a>
           <i class="fa-regular fa-compass fa-xl"></i>
         </a>
-        <!--<form class="d-flex w-25" role="search">
-          <input class="form-control me-2 border-0 shadow-none" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn border-0" type="submit">
-            <i class="searchBtn fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>-->
-        <div class="wrapper bg-white" id="searchWrapper" onmouseleave="hideContainer()">
-          <div class="d-flex w-100" role="search">
-            <input class="form-control border-0 shadow-none w-100" id="searchBar" type="search" placeholder="Search" aria-label="Search" id="search" onfocus="showContainer()" onmouseover="showContainer()" data-search>
-            <div class="d-flex justify-content-center">
-              <i class="searchIcon fa-solid fa-magnifying-glass"></i>
-            </div>
-          </div>
-          <div class="w-100" id="autoCompleteBox">
-            <div class="separator text-center">Users</div>
-            {{#searchSuggestedUsers}}
-              <div class="card w-100">
-                <a class="cardLink text-reset text-decoration-none text-left d-flex justify-content-center ms-0 me-auto" href="/user/{{username}}">
-                  <img src={{imagePath}} alt="profilePic" class="profile-pic-search rounded-circle me-2">
-                  <div class="usernameSug header">{{username}}</div>
-                  <div class="body"></div>
-                </a>
-              </div>
-            {{/searchSuggestedUsers}}
-            <div class="separator text-center">Posts</div>
-            {{#searchSuggestedPosts}}
-            <div class="card w-100">
-              <a class="cardLink text-reset text-decoration-none text-left d-flex flex-column justify-content-center ms-0 me-auto" href="/top/{{id}}">
-                <div class="d-flex flex-row">
-                  <img src={{author.imagePath}} alt="profilePic" class="profile-pic-search rounded-circle me-2">
-                  <div class="usernameSug header">{{author.username}}</div>
-                </div>
-                <div class="body">&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp &#9900 {{title}}</div>
-              </a>
-            </div>
-            {{/searchSuggestedPosts}}
-          </div>
-        </div>
+          {{>searchbar}}
         <a>
           <i class="fa-regular fa-heart fa-xl"></i>
         </a>
@@ -87,26 +49,14 @@
         </div>
         <div class="pe-2">
           <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseNav" role="button" aria-expanded="false"
-            aria-controls="collapseNav">
+            aria-controls="collapseNav" onclick="hideContainer()">
             <i class="fa-solid fa-bars fa-xl"></i>
           </a>
         </div>
       </div>
       <div class="collapse border-top mt-2" id="collapseNav">
-        <!--<form class="search d-flex ms-2 me-2 mt-2" role="search">
-          <input class="form-control me-2 w-100 border-0 shadow-none" type="search" id="search" placeholder="Search for users... posts..."
-            aria-label="Search">
-          <div class="user-cards" data-user-cards-container></div>
-          <template data-user-template>
-            <div class="card">
-              <div class="header" data-header></div>
-              <div class="body" data-body></div>
-            </div>
-          </template>
-          <button class="btn border-0" type="submit">
-            <i class="searchBtn fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>-->
+        {{>searchbar}}
+      </div>
     </div>
   </nav>
 </body>

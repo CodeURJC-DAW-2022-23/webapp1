@@ -27,6 +27,10 @@ i {
   cursor: pointer;
 }
 
+.collapsing {
+  transition: none !important;
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
 }

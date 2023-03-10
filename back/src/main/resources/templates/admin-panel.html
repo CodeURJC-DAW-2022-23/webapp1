@@ -13,6 +13,12 @@
   <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <link rel="stylesheet" type="text/css" href="styles/admin-panel.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="/scripts/create-chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Alist | Admin Panel</title>
 </head>
 
@@ -20,6 +26,10 @@
   {{>navbar}}
   <div class="container px-4 py-5 text-center" id="featured-3">
     <h1 class="pb-2 border-bottom">Admin Panel</h1>
+    <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
+      <h1>Popular topics</h1>
+      <div id="piechart"></div>
+    </div>
     <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
       <div class="feature col flex-grow-1">
         <a href="#collapseUsers" data-bs-toggle="collapse" data-bs-target="#collapseUsers" role="button"

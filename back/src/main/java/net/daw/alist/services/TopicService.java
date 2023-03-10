@@ -32,36 +32,19 @@ public class TopicService {
         return topics;
     }
 
-import java.util.List;
+    public List<Topic> findAll() {
+        return topicRepository.findAll();
+    }
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+    public Topic findById(long id) {
+        return topicRepository.findById(id).orElseThrow();
+    }
 
-import lombok.AllArgsConstructor;
-import net.daw.alist.models.Topic;
-import net.daw.alist.repositories.TopicRepository;
+    public void delete(Topic topic) {
+        topicRepository.delete(topic);
+    }
 
-@Service
-@AllArgsConstructor
-public class TopicService{
-
-  @Autowired
-  private final TopicRepository topicRepository;
-
-  public List<Topic> findAll() {
-    return topicRepository.findAll();
-  }
-
-  public Topic findById(long id) {
-    return topicRepository.findById(id).orElseThrow();
-  }
-
-  public void delete(Topic topic) {
-    topicRepository.delete(topic);
-  }
-
-  public void save(Topic topic) {
-    topicRepository.save(topic);
-  }
-
+    public void save(Topic topic) {
+        topicRepository.save(topic);
+    }
 }

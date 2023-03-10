@@ -154,6 +154,10 @@ public class User implements UserDetails {
     return role;
   }
 
+  public boolean isAdmin() {
+    return role.equals(UserRole.ADMIN);
+  }
+
   public String getBio() {
     return bio;
   }

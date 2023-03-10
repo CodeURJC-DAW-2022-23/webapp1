@@ -52,30 +52,27 @@ public class ProfileController {
       model.addAttribute("notGuest", true);
       if (isLoggedUser(username, authentication)) {
         model.addAttribute("ownProfile", true);
+        model.addAttribute("admin", isAdmin());
       } else {
         model.addAttribute("ownProfile", false);
-        if (isFollowed()) {
-          model.addAttribute("followed", true);
-        } else {
-          model.addAttribute("followed", false);
-        }
+        model.addAttribute("followed", isFollowed());
       }
     }
     model.addAttribute("user", userProfile);
     return "profile";
   }
 
-  @GetMapping("/user/{username}/posts")
-  public String getUserPosts(
-    Model model,
-    @RequestParam int page,
-    @PathVariable String username
-  ) {
-    int userProfileId = userProfile.getId().intValue();
-    Page<Post> userProfilePosts = postService.getUserPosts(page, userProfileId);
-    model.addAttribute("posts", userProfilePosts);
-    return "post";
-  }
+//  @GetMapping("/user/{username}/posts")
+//  public String getUserPosts(
+//    Model model,
+//    @RequestParam int page,
+//    @PathVariable String username
+//  ) {
+//    int userProfileId = userProfile.getId().intValue();
+//    Page<Post> userProfilePosts = postService.getUserPosts(page, userProfileId);
+//    model.addAttribute("posts", userProfilePosts);
+//    return "post";
+//  }
 
   @GetMapping("/user/{username}/following")
   public String following(Model model, @PathVariable String username) {
@@ -120,6 +117,10 @@ public class ProfileController {
   private String getUserSessionUsername(Authentication authentication) {
     User userSession = (User) authentication.getPrincipal();
     return userSession.getUsername();
+  }
+
+  private boolean isAdmin() {
+    return userSessionRepo.isAdmin();
   }
 
   private boolean isFollowed() {

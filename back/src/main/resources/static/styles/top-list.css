@@ -71,24 +71,24 @@ input[type='text'] {
   word-break: break-all;
 }
 
-li {
+.list-group li {
   border-radius: 10px;
   border: solid 3px;
   border-color: #69c0a1;
 }
 
-li + li {
+.list-group li + li {
   margin-top: 1rem;
 }
 
-ol li {
+.list-group ol li {
   padding: 1em;
   font-size: 20px;
   font-weight: 600;
   text-align: left;
 }
 
-ol {
+.list-group ol {
   width: 75%;
   list-style-position: inside;
 }

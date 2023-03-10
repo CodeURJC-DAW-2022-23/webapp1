@@ -46,3 +46,7 @@ We are going to use an api to detect explicit contents.
 ## 🤔 Algorithm
 
 Website is going to have a recommendation algorithm for welcome page.
+
+Login page, from this page we are going to be able to log into our personal account
+
+![image](https://user-images.githubusercontent.com/102819481/224439475-3ade71b3-aa19-481b-bffa-6495d4554f2f.png)

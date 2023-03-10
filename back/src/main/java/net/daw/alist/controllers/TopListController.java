@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class TopListController {
@@ -35,10 +34,10 @@ public class TopListController {
     Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
 
-    userProfile = (User) authentication.getPrincipal();
-    if(!authentication.isAuthenticated()){
+    if(authentication == null){
       model.addAttribute("isRegistered", false);
     } else{
+      userProfile = (User) authentication.getPrincipal();
       model.addAttribute("isRegistered", true);
       model.addAttribute("loggedUserImagePath", userProfile.getImagePath());
     }
@@ -56,7 +55,7 @@ public class TopListController {
   }
 
   @RequestMapping("/top-list/{id}/addComment")
-  public String addComment(Model model, @RequestParam String commentContent) throws SQLException, IOException {
+  public String addComment(@RequestParam String commentContent) throws SQLException, IOException {
     User author = userService.findByID(userProfile.getId()).orElseThrow();
     Comment comment = new Comment(author, commentContent, null);
     post.addComment(comment);

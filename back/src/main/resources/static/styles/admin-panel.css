@@ -71,6 +71,27 @@ a:hover {
   color: #63b1b1;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem, form{
+  width: 100%;
+}
+
+.listItemLocked{
+  width: 100%;
+  background-color: rgb(126, 64, 64);
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  .listItem, .listItemLocked, form{
+    width: 75%;
+  }
+
+
+
 }

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PostService {
@@ -26,5 +28,9 @@ public class PostService {
     
     public void save(Post post) {
         postRepository.save(post);
+    }
+
+    public List<Post> findAll() {
+        return postRepository.findAll();
     }
 }

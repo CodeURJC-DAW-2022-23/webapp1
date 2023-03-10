@@ -32,4 +32,19 @@ public class TopicService {
         return topics;
     }
 
+    public List<Topic> findAll() {
+        return topicRepository.findAll();
+    }
+
+    public Topic findById(long id) {
+        return topicRepository.findById(id).orElseThrow();
+    }
+
+    public void delete(Topic topic) {
+        topicRepository.delete(topic);
+    }
+
+    public void save(Topic topic) {
+        topicRepository.save(topic);
+    }
 }

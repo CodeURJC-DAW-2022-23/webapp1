@@ -7,8 +7,13 @@ p {
 
 .commentBox {
   background-color: white;
-  border-bottom-left-radius: var(--bs-border-radius);
-  border-bottom-right-radius: var(--bs-border-radius);
+}
+
+.commentSection{
+  background-color: white;
+  border-radius: var(--bs-border-radius);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .post,
@@ -17,8 +22,7 @@ p {
   width: 100%;
 }
 
-.postInfo,
-.writeComment {
+.postInfo {
   border-top-left-radius: var(--bs-border-radius);
   border-top-right-radius: var(--bs-border-radius);
 }

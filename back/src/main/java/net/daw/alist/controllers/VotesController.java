@@ -3,7 +3,6 @@ package net.daw.alist.controllers;
 import net.daw.alist.models.User;
 import net.daw.alist.services.UserService;
 import net.daw.alist.services.VotesService;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,11 +27,10 @@ public class VotesController {
         }
         else
             return "redirect:/sign-in";
-        return "redirect:/feed";
+        return "redirect:/top-list/{id}";
     }
 
     @GetMapping("/post/{id}/downvote-action")
-    @ResponseStatus(value = HttpStatus.OK)
     public String actionDownVote(Authentication authentication, @PathVariable Long id){
         Long postID = id;
         if(!(authentication == null)) {
@@ -43,7 +41,7 @@ public class VotesController {
         }
         else
             return "redirect:/sign-in";
-        return "redirect:/feed";
+        return "redirect:/top-list/{id}";
     }
 
 

@@ -4,13 +4,12 @@ import net.daw.alist.models.User;
 import net.daw.alist.services.UserService;
 import net.daw.alist.services.VotesService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class VotesController {
 
     @Autowired
@@ -19,7 +18,6 @@ public class VotesController {
     UserService userService;
 
     @GetMapping ("/post/{id}/upvote-action")
-    @ResponseStatus(value = HttpStatus.OK)
     public String actionUpVote(Authentication authentication, @PathVariable Long id){
         Long postID = id;
         if(!(authentication == null)) {
@@ -28,7 +26,9 @@ public class VotesController {
                     .getUsername());
             votesService.actionUpVote(postID, userSession);
         }
-        return "feed";
+        else
+            return "redirect:/sign-in";
+        return "redirect:/feed";
     }
 
     @GetMapping("/post/{id}/downvote-action")
@@ -41,7 +41,9 @@ public class VotesController {
                     .getUsername());
             votesService.actionDownVote(postID, userSession);
         }
-        return "feed";
+        else
+            return "redirect:/sign-in";
+        return "redirect:/feed";
     }
 
 

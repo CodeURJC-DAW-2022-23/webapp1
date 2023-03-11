@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" type="text/css" href="/styles/searchbar.css">
+  <script src="/scripts/searchbar.js" defer></script>
+</head>
+<body>
+  <div class="searchWrapper bg-white" onmouseleave="hideContainer()">
+    <div class="d-flex w-100" role="search">
+      <input class="searchBar form-control border-0 shadow-none w-100" id="searchBar" type="search" placeholder="Search" aria-label="Search" onfocus="showContainer()" onmouseover="showContainer()" data-search>
+      <div class="d-flex justify-content-center">
+        <i class="searchIcon fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <div class="autoCompleteBox w-100 z-1">
+      <div class="separator text-center">Users</div>
+      {{#searchSuggestedUsers}}
+      <a class="card w-100 text-decoration-none" href="/user/{{username}}">
+        <div class="cardLink text-left d-flex justify-content-center ms-0 me-auto">
+          <img src={{imagePath}} alt="profilePic" class="profile-pic-search rounded-circle me-2">
+          <div class="usernameSug header">{{username}}</div>
+          <div class="body"></div>
+        </div>
+      </a>
+      {{/searchSuggestedUsers}}
+      <div class="separator text-center">Posts</div>
+      {{#searchSuggestedPosts}}
+      <a class="card w-100 text-decoration-none" href="/top-list/{{id}}">
+        <div class="cardLink text-left d-flex flex-column justify-content-center ms-0 me-auto">
+          <div class="d-flex flex-row">
+            <img src={{author.imagePath}} alt="profilePic" class="profile-pic-search rounded-circle me-2">
+            <div class="usernameSug header">{{author.username}}</div>
+          </div>
+          <div class="body">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &#9900 {{title}}</div>
+        </div>
+      </a>
+      {{/searchSuggestedPosts}}
+    </div>
+  </div>
+</body>
+</html>

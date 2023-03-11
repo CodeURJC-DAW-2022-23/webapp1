@@ -5,6 +5,7 @@ import net.daw.alist.models.User;
 
 import net.daw.alist.services.PostService;
 import net.daw.alist.services.UserService;
+import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -13,13 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Objects;
 
 @Controller
 public class ProfileController {
 
   @Autowired
-  UserService userService;
+  private UserService userService;
+
+  @Autowired
+  private PostService postService;
+
 
   @Autowired
   PostService postService;
@@ -42,6 +48,7 @@ public class ProfileController {
     Authentication authentication,
     @PathVariable String username
   ) {
+    profileSearchBarInitializer(model);
     userProfile = (User) userService.loadUserByUsername(username);
     String userProfileUsername = userProfile.getUsername();
     if (!Objects.equals(userProfileUsername, username)) {
@@ -66,6 +73,7 @@ public class ProfileController {
 
   @GetMapping("/user/{username}/following")
   public String following(Model model, @PathVariable String username) {
+    profileSearchBarInitializer(model);
     model.addAttribute("follow", "Followed by");
     model.addAttribute("user", userProfile);
     model.addAttribute("followList", userProfile.getFollowing());
@@ -74,6 +82,7 @@ public class ProfileController {
 
   @GetMapping("/user/{username}/followers")
   public String followers(Model model, @PathVariable String username) {
+    profileSearchBarInitializer(model);
     model.addAttribute("follow", "Followers of");
     model.addAttribute("user", userProfile);
     model.addAttribute("followList", userProfile.getFollowers());
@@ -117,4 +126,10 @@ public class ProfileController {
     return userSessionRepo.getFollowing().contains(userProfile);
   }
 
+  public void profileSearchBarInitializer(Model model){
+    List<User> userList = userService.findAll();
+    model.addAttribute("searchSuggestedUsers", userList);
+    List<Post> postList = postService.findAll();
+    model.addAttribute("searchSuggestedPosts", postList);
+  }
 }

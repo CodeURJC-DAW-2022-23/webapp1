@@ -157,11 +157,10 @@ public class DatabaseInitializer {
             firstPost.getUpVotes().add(peepo);
             firstPost.getUpVotes().add(cr7Lover);
             firstPost.getUpVotes().add(manolo);
-            firstPost.updateVotes();
             thirdPost.getUpVotes().add(peepo);
             thirdPost.getUpVotes().add(cr7Lover);
             thirdPost.getUpVotes().add(manolo);
-            thirdPost.updateVotes();
+
 
 
 

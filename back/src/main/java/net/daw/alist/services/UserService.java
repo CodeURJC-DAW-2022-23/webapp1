@@ -109,10 +109,27 @@ public class UserService implements UserDetailsService {
         return "token=" + token;
     }
 
-    public int enableUser(String email) {
-        return userRepository.enableUser(email);
+    public void enableUser(String email) {
+        userRepository.enableUser(email);
     }
+
+    public void unbanUser(String username) {
+        userRepository.unbanUser(username);
+	}
+
+    public void banUser(String username) {
+        userRepository.banUser(username);
+    }
+
+    public User findByUsername(String string) {
+      return userRepository.findByUsername(string).orElseThrow();
+    }
+
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findById(long id) {
+        return userRepository.findById(id).orElseThrow();
     }
 }

@@ -2,7 +2,6 @@ package net.daw.alist.services;
 
 import lombok.AllArgsConstructor;
 import net.daw.alist.models.Post;
-import net.daw.alist.models.User;
 import net.daw.alist.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +22,7 @@ public class PostService {
     public Page<Post> getPosts(int pageNumber) {
         return postRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }
-
+    
     public Page<Post> getStarredPosts(int pageNumber, int user_id) {
         return postRepository.findPostsByFollows(user_id,PageRequest.of(pageNumber,pageSize));
     }

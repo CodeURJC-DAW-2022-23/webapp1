@@ -5,15 +5,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="/styles/admin-panel.css">
-  <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="styles/admin-panel.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="/scripts/create-chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Alist | Admin Panel</title>
 </head>
 
@@ -21,31 +26,73 @@
   {{>navbar}}
   <div class="container px-4 py-5 text-center" id="featured-3">
     <h1 class="pb-2 border-bottom">Admin Panel</h1>
-    <div class="row d-flex row-cols-1 row-cols-lg-3">
+    <h5 class="mt-4 font-weight-bold">Topic popularity</h5>
+    <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
+      <div id="piechart" class="m-auto"></div>
+    </div>
+    <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
       <div class="feature col flex-grow-1">
-        <a href="#">
+        <a href="#collapseUsers" data-bs-toggle="collapse" data-bs-target="#collapseUsers" role="button"
+          aria-expanded="true" aria-controls="collapseUsers">
           <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
             <i class="fa-regular fa-solid fa-user fa-xl"></i>
           </div>
           <h3 class="fs-2">Manage Users</h3>
         </a>
-        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
-          probably just keep going until we run out of words.</p>
+        <p>
+          Click on a user to ban their account. If a user is highlighted in red, that means their account is suspended.
+          Clicking on it again will unban the user.
+        </p>
+        <div class="collapse" id="collapseUsers">
+          <ul class="w-100 mt-auto">
+            {{#users}}
+            {{^locked}}
+            <a href="/admin-panel/lock/{{id}}" class="listItem btn btn-primary mt-2">
+              <li>{{username}}</li>
+            </a>
+            {{/locked}}
+            {{#locked}}
+            <a href="/admin-panel/lock/{{id}}" class="listItemLocked btn btn-primary mt-2">
+              <li>{{username}}</li>
+            </a>
+            {{/locked}}
+            {{/users}}
+          </ul>
+        </div>
       </div>
       <div class="feature col flex-grow-1">
-        <a href="#">
+        <a href="#collapseTopics" data-bs-toggle="collapse" data-bs-target="#collapseTopics" role="button"
+          aria-expanded="true" aria-controls="collapseTopics">
           <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
             <i class="fa-regular fa-solid fa-at fa-xl"></i>
           </div>
           <h3 class="fs-2">Manage Topics</h3>
         </a>
-        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
-          probably just keep going until we run out of words.</p>
+        <p>
+          Type in a new topic to create it, or click on an already existing one to delete it.
+        </p>
+        <div class="collapse"
+          id="collapseTopics">
+
+          <form class="m-auto" action="/addTopic">
+            <div class="form-floating mb-2">
+              <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="topicName">
+              <label for="newTopic" class="text-muted">Type new topic...</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-light" type="submit">Add topic</button>
+          </form>
+
+          <ul class="w-100 mt-4">
+            {{#topics}}
+            <a href="/admin-panel/delete/{{id}}" class="listItem btn btn-primary mt-2">
+              <li>{{name}}</li>
+            </a>
+            {{/topics}}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-
-  <div></div>
 
 </body>
 

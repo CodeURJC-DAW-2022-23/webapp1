@@ -1,10 +1,29 @@
 # 🎩 Alist
 
 [![license](https://img.shields.io/github/license/CodeURJC-DAW-2022-23/webapp1.svg)](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/LICENSE)
+## Table of contents
+
+  - [Phase 0-1](#phase-0-1)
+      - [Collaborators](#collaborators)
+      - [Methodology](#methodology)
+      - [Entities](#entities)
+      - [User permissions](#user-permissions)
+      - [Images](#images)
+      - [Graphs](#graphs)
+      - [Complementary Technology](#complementary-technology)
+      - [Algorithm](#algorithm)
+  - [Phase 2](#phase-2)
+      - [Guests](#guests)
+      - [Logged user](#logged-user)
+      - [Admin](#admin)
+      - [Execution intructions](#execution-intructions)
+      - [Group members participation](#group-members-participation)
+ 
 
 Universal top list website.
+## Phase 0-1
 
-## 👤 Collaborators
+### 👤 Collaborators
 
 | Name                        | Email                             | Github Username                                     |
 | --------------------------- | --------------------------------- | --------------------------------------------------- |
@@ -14,44 +33,46 @@ Universal top list website.
 | Frantzes Elzaurdia          | f.elzaurdia.2020@alumnos.urjc.es  | [franchescoURJC](https://github.com/franchescoURJC) |
 | Vicente González Pérez      | v.gonzalez.2020@alumnos.urjc.es   | [Vicente1215](https://github.com/Vicente1215)       |
 
-## 💪 Methodology
+### 💪 Methodology
 
 Agile methodology using scrum framework with jira.
+![image](https://user-images.githubusercontent.com/102819481/224474020-507a659a-4caa-48a4-a1c0-3499854ddec6.png)
 
-## 💾 Entities
+
+### 💾 Entities
 
 - User.
 - List.
 - Topic.
 - Comments.
 
-## 🚫 User permissions
+### 🚫 User permissions
 
-- **Guest:** View tops.
-- **User:** Create tops, manage profile, follow users.
-- **Admin:** Manage tops, files & users.
+- **Guest:** View posts and profiles.
+- **User:** Create posts, manage profile, follow users,  like posts.
+- **Admin:** Manage posts, files & users.
 
-## 🌄 Images
+### 🌄 Images
 
 Here will be some images of the website.
 
-## 📊 Graphs
+### 📊 Graphs
 
 This app is going to have trends (pie chart), registered users (line chart) graphs.
 
-## ⚙️ Complementary technology
+### ⚙️ Complementary technology
 
 We are going to use an api to detect explicit contents.
 
-## 🤔 Algorithm
+### 🤔 Algorithm
 
 Website is going to have a recommendation algorithm for welcome page.
 
 Login page, from this page we are going to be able to log into our personal account
 
-# PHASE 2
+## Phase 2
 
-## Everyone
+### Guests
 
 **Login page**, from this page we are going to be able to log into our personal account. Two more options are offered here, to enter the page as a guest
 or to create an account.
@@ -68,10 +89,12 @@ or to create an account.
 
 **Profile interactions** If u press the number of people who's following an account you'll be able to see the list of accounts
 ![image](https://user-images.githubusercontent.com/102819481/224473321-5ac96ca4-46a0-452b-93cc-8f4481bb3f10.png)
+
 Now selecting one of the user from the list we're going to be redirected to the profile we have just selected.
+
 ![image](https://user-images.githubusercontent.com/102819481/224473444-18febf14-81e2-447d-a55e-904c02bfe70b.png)
 
-## Logged user
+### Logged user
 **Profile page** When the user icon is pressed at the navbar, the profile page shows up. Here we can see information about users such as number of people that he follows or his description. 
 ![image](https://user-images.githubusercontent.com/102819481/224440979-24a15a4a-0291-4288-bf95-dacb9f15ce7b.png)
 
@@ -84,11 +107,11 @@ Now selecting one of the user from the list we're going to be redirected to the 
 **For me page** Once you have logged in you can decide to only see posts from people you are currently following, by pressing the heart button at the navbar
 ![image](https://user-images.githubusercontent.com/102819481/224473547-364b9566-7bca-4fc0-9928-216911a6deff.png)
 
-## Admin
+### Admin
 **Admin Panel page** From this page the admins are going to be able to manage user activities and study the topics graphics
 ![image](https://user-images.githubusercontent.com/102819481/224444464-11df3f0f-1800-4e89-ac6d-01faa513a275.png)
 
-## Executions intructions
+### Execution intructions
 We assume that the computer have Linux as operative system.
 * The first point, docker must be installed in order to be able to use the database.
   ![image](https://user-images.githubusercontent.com/102819481/224472613-0b120d6a-54cf-454f-b36b-d5d030d53dc9.png)
@@ -112,9 +135,120 @@ as well as an extension for java plus the jdk-17 and Maven 4.0.0
 
 
 
+## Group members participation
+### Frantzes
+#### Textual description: 
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	   |  | 
+| #2            |  | | 
+| #3            |  |  | 
+| #4            |   |  | 
+| #5            | 			   | | 
 
 
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |     | 
+| #2            |    | 
+| #3            |   | 
+| #4            |    | 
+| #5            |      | 
+
+### Vicente
+#### Textual description: 
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	   |  | 
+| #2            |  | | 
+| #3            |  |  | 
+| #4            |   |  | 
+| #5            | 			   | | 
 
 
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |     | 
+| #2            |    | 
+| #3            |   | 
+| #4            |    | 
+| #5            |      | 
+
+### Alberto
+#### Textual description: 
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	   |  | 
+| #2            |  | | 
+| #3            |  |  | 
+| #4            |   |  | 
+| #5            | 			   | | 
 
 
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |     | 
+| #2            |    | 
+| #3            |   | 
+| #4            |    | 
+| #5            |      | 
+
+
+### Alejandro
+#### Textual description: 
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	   |  | 
+| #2            |  | | 
+| #3            |  |  | 
+| #4            |   |  | 
+| #5            | 			   | | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |     | 
+| #2            |    | 
+| #3            |   | 
+| #4            |    | 
+| #5            |      | 
+
+
+### Gledrian
+#### Textual description: 
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	   |  | 
+| #2            |  | | 
+| #3            |  |  | 
+| #4            |   |  | 
+| #5            | 			   | | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |     | 
+| #2            |    | 
+| #3            |   | 
+| #4            |    | 
+| #5            |      | 

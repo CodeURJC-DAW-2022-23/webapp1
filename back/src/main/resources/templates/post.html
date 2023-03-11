@@ -23,14 +23,16 @@
       aria-current="true">
       <div class="top w-75 m-auto">
         <a class="text-black text-decoration-none" href="/top-list/{{id}}">
-          <h2 class="topName">{{title}}</h2>
+          <h1 class="topName">{{title}}</h1>
         </a>
-        <ol class="m-auto p-0 w-100">
+        <ol class="m-auto p-0 w-100 d-flex flex-column gap-3">
           {{#items}}
-          <li>
-            {{description}}
-            <img src={{imagePath}} alt="image" width="45" height="45" class="itemImage rounded-circle">
-          </li>
+          <div class="itemWrapper d-flex justify-content-center p-2">
+            <li class="ms-0 me-auto">
+              {{description}}
+            </li>
+            <img src={{imagePath}} alt="image" width="45" height="45" class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
+          </div>
           {{/items}}
         </ol>
       </div>

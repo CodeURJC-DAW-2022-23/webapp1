@@ -167,9 +167,10 @@ public class DatabaseInitializer {
             Comment thirdComment = new Comment(peepo, "Lebron is the GOAT", null);
             fourthPost.addComment(thirdComment);
 
-            commentRepository.save(firstComment);
-            commentRepository.save(secondComment);
-            commentRepository.save(thirdComment);
+            postRepository.save(firstPost);
+            postRepository.save(secondPost);
+            postRepository.save(thirdPost);
+            postRepository.save(fourthPost);
 
         }
     }

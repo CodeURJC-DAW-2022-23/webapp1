@@ -7,18 +7,23 @@ p {
 
 .commentBox {
   background-color: white;
-  border-bottom-left-radius: var(--bs-border-radius);
-  border-bottom-right-radius: var(--bs-border-radius);
+}
+
+.commentSection{
+  background-color: white;
+  border-radius: var(--bs-border-radius);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .post,
 .commentSection,
 .comment {
-  width: 100%;
+  width: 95%;
+  margin: auto;
 }
 
-.postInfo,
-.writeComment {
+.postInfo {
   border-top-left-radius: var(--bs-border-radius);
   border-top-right-radius: var(--bs-border-radius);
 }
@@ -39,6 +44,10 @@ p {
 .own-comment-image {
   margin: auto;
   margin-right: 0.25em;
+}
+
+.topName{
+  font-weight: 600;
 }
 
 .comment-image {
@@ -71,18 +80,13 @@ input[type='text'] {
   word-break: break-all;
 }
 
-li {
-  border-radius: 10px;
-  border: solid 3px;
-  border-color: #69c0a1;
-}
 
 li + li {
   margin-top: 1rem;
 }
 
 ol li {
-  padding: 1em;
+  padding: 0.5em;
   font-size: 20px;
   font-weight: 600;
   text-align: left;
@@ -101,9 +105,10 @@ ol {
   margin-left: 1em;
 }
 
-.itemImage {
-  float: right;
-  margin-top: -8px;
+.itemWrapper{
+  border-radius: 10px;
+  border: solid 3px;
+  border-color: #69c0a1;
 }
 
 .topic {
@@ -122,12 +127,18 @@ ol {
   cursor: pointer;
 }
 
+.commentTitle{
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224);
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .post,
   .commentSection,
   .comment {
-    width: 60%;
+    width: 40%;
     margin: auto;
   }
 }

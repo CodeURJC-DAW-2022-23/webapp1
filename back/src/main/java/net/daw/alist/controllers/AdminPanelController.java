@@ -46,7 +46,7 @@ public class AdminPanelController {
 
 
   @RequestMapping("/addTopic")
-    public String greeting(Model model, @RequestParam String topicName) {
+    public String addTopic(Model model, @RequestParam String topicName) {
     Topic topic = new Topic(topicName, "");
     topicService.save(topic);
     return "redirect:/admin-panel";

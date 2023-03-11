@@ -38,7 +38,6 @@ function drawChart() {
 
 	var options = {
 	    backgroundColor: 'red',
-	    title: 'Popular Topics',
 	    titleTextStyle: {color: 'white'},
 		backgroundColor: 'transparent',
 		chartArea: {width: '100%', height: '85%'},

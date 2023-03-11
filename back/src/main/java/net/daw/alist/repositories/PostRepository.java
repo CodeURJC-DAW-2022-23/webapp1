@@ -13,7 +13,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
   @Query(value="select * from post where post.author_id in (select following_id from user_following where user_following.followers_id=?1) order by post.date desc", nativeQuery=true)
   Page<Post> findPostsByFollows(int user_id, Pageable page);
 
-  @Query(value="select * from post where post.author_id=?1 order by post.date desc;", nativeQuery=true)
+  @Query(value="select * from post where post.author_id=?1 order by post.date desc", nativeQuery=true)
   Page<Post> findPostsByUser(int user_id, Pageable page);
 
 }

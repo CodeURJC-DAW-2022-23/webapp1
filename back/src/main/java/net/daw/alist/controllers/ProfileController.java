@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Objects;
 
@@ -59,20 +58,11 @@ public class ProfileController {
       }
     }
     model.addAttribute("user", userProfile);
+    int userProfileId = userProfile.getId().intValue();
+    Page<Post> userProfilePosts = postService.getUserPosts(0, userProfileId);
+    model.addAttribute("posts", userProfilePosts);
     return "profile";
   }
-
-//  @GetMapping("/user/{username}/posts")
-//  public String getUserPosts(
-//    Model model,
-//    @RequestParam int page,
-//    @PathVariable String username
-//  ) {
-//    int userProfileId = userProfile.getId().intValue();
-//    Page<Post> userProfilePosts = postService.getUserPosts(page, userProfileId);
-//    model.addAttribute("posts", userProfilePosts);
-//    return "post";
-//  }
 
   @GetMapping("/user/{username}/following")
   public String following(Model model, @PathVariable String username) {

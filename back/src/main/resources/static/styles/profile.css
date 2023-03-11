@@ -86,4 +86,8 @@ main {
     height: 15vw;
     width: 15vw;
   }
+  /* Posts */
+  .post {
+    height: 100%;
+  }
 }

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PostService {
@@ -19,11 +21,15 @@ public class PostService {
     public Page<Post> getPosts(int pageNumber) {
         return postRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }
-    
+
     public Page<Post> getStarredPosts(int pageNumber, int user_id) {
         return postRepository.findPostsByFollows(user_id,PageRequest.of(pageNumber,pageSize));
     }
-    
+
+    public List<Post> findAll() {
+        return postRepository.findAll();
+    }
+
     public void save(Post post) {
         postRepository.save(post);
     }

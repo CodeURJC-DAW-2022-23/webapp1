@@ -12,7 +12,7 @@
           </h6>
           {{/topics}}
         </div>
-        <a class="OP text-black text-decoration-none" href="#">
+        <a class="OP text-black text-decoration-none" href="/user/{{author.username}}">
           {{author.username}}
         </a>
       </div>
@@ -22,7 +22,9 @@
     <div class="bg-white text-black d-flex gap-3 py-3 text-center justify-content-*-center align-items-center"
       aria-current="true">
       <div class="top w-75 m-auto">
-        <h2 class="topName">{{title}}</h2>
+        <a class="text-black text-decoration-none" href="/top-list/{{id}}">
+          <h2 class="topName">{{title}}</h2>
+        </a>
         <ol class="m-auto p-0 w-100">
           {{#items}}
           <li>

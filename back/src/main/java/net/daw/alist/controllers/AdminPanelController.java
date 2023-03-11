@@ -7,6 +7,11 @@ import net.daw.alist.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import net.daw.alist.services.PostService;
+import net.daw.alist.services.UserService;
+import net.daw.alist.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +39,11 @@ public class AdminPanelController {
 
     List<Topic> topicList = topicService.findAll();
     model.addAttribute("topics", topicList);
-    return "admin-panel";
+    return "redirect:/admin-panel";
   }
+  private PostService postService;
+
+
 
   @GetMapping("/admin-panel/delete/{id}")
   public String deleteFromTopic(Model model, @PathVariable long id) {

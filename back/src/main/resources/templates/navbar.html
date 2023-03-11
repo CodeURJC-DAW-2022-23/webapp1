@@ -7,6 +7,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
   <script src="/scripts/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/scripts/navbar.js" defer></script>
 </head>
 
 <body>
@@ -16,19 +17,14 @@
         <a class="navbar-brand" href="/">
           <img src="/images/alistLogo.svg" alt="" width="80" height="30">
         </a>
-        <a>
+        <a class="compassNavIcon" href="/">
           <i class="fa-regular fa-compass fa-xl"></i>
         </a>
-        <form class="d-flex w-25" role="search">
-          <input class="form-control me-2 border-0 shadow-none" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn border-0" type="submit">
-            <i class="searchBtn fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
-        <a href="/followed-users/">
+          {{>searchbar}}
+        <a class="heartNavIcon" href="/followed-users/">
           <i class="fa-regular fa-heart fa-xl"></i>
         </a>
-        <a href="/profile">
+        <a class="profileNavIcon" href="/profile">
           <i class="fa-regular fa-user fa-xl"></i>
         </a>
       </div>
@@ -41,32 +37,26 @@
         </a>
         <div class="collapse no-transition" id="collapseNav">
           <div class="icon-container d-flex justify-content-evenly align-items-center ps-2 pe-2 gap-3">
-            <a>
+            <a class="compassNavIcon" href="/">
               <i class="fa-regular fa-compass fa-xl"></i>
             </a>
-            <a>
+            <a class="heartNavIcon" href="/followed-users/">
               <i class="fa-regular fa-heart fa-xl"></i>
             </a>
-            <a href="/profile">
+            <a class="profileNavIcon" href="/profile">
               <i class="fa-regular fa-user fa-xl"></i>
             </a>
           </div>
         </div>
         <div class="pe-2">
           <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseNav" role="button" aria-expanded="false"
-            aria-controls="collapseNav">
+            aria-controls="collapseNav" onclick="hideContainer()">
             <i class="fa-solid fa-bars fa-xl"></i>
           </a>
         </div>
       </div>
-      <div class="collapse border-top mt-2" id="collapseNav">
-        <form class="search d-flex ms-2 me-2 mt-2" role="search">
-          <input class="form-control me-2 w-100 border-0 shadow-none" type="search" placeholder="Search"
-            aria-label="Search">
-          <button class="btn border-0" type="submit">
-            <i class="searchBtn fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
+      <div class="collapse border-top mt-2" id="collapseNav"> <!--Duplicate ID necessary for Bootstrap navbar to work properly-->
+        {{>searchbar}}
       </div>
     </div>
   </nav>

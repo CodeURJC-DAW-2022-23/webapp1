@@ -40,7 +40,7 @@ public class AdminPanelController {
 
     List<Topic> topicList = topicService.findAll();
     model.addAttribute("topics", topicList);
-  public String adminPanel(Model model) {
+
     Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
     return "admin-panel";

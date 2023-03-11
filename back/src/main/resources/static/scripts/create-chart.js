@@ -20,8 +20,6 @@ function drawChart() {
      result = sortArray(result);
      result.reverse();
 
-     console.log(result);
-
      topic1 = result[0];
      topic2 = result[1];
      topic3 = result[2];
@@ -39,15 +37,22 @@ function drawChart() {
 	]);
 
 	var options = {
-		'width': 460,
-		'height': 305,
-		'backgroundColor': 'transparent',
-		'chartArea': { left: 20, top: 0, width: '100%', height: '100%' },
-		'legend': { position: 'right', alignment: 'center', textStyle: { color: 'white', fontSize: 16 } }
+	    backgroundColor: 'red',
+	    title: 'Popular Topics',
+	    titleTextStyle: {color: 'white'},
+		backgroundColor: 'transparent',
+		chartArea: {width: '100%', height: '85%'},
+		legend: { position: 'right', alignment: 'center', textStyle: { color: 'white', fontSize: 16 } },
+		colors: ['#69c0a1', '#6399A4', '#426f76', '#203E4F', '#356E57']
 	};
 
 	// Display the chart inside the <div> element with id="piechart"
 	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 	chart.draw(data, options);
+	window.onresize = RedibujarGrafica;
+
+    function RedibujarGrafica() {
+        google.charts.setOnLoadCallback(drawChart);
+    };
   });
 }

@@ -132,7 +132,4 @@ public class UserService implements UserDetailsService {
     public User findById(long id) {
         return userRepository.findById(id).orElseThrow();
     }
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
 }

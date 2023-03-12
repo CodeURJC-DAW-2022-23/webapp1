@@ -43,14 +43,25 @@
         <h6 class="pe-1 d-inline">
           {{upVotes.size}}
         </h6>
-        <a class="btn btn-primary bg-transparent" type="button" href="/post/{{id}}/upvote-action">
-          <img class="upvoteIcon" src="/images/upvoteIcon.svg" alt="" width="35" height="35">
+
+        <a class="btn btn-primary " type="button" href="/post/{{id}}/upvote-action">
+          {{^upVoted}}
+          <i class="fa-regular fa-circle-up fa-xl"></i>
+          {{/upVoted}}
+          {{#upVoted}}
+          <i class="fa-solid fa-circle-up fa-xl"></i>
+          {{/upVoted}}
         </a>
         <h6 class="pe-1 d-inline">
           {{downVotes.size}}
         </h6>
-        <a class="btn btn-primary bg-transparent" type="button" href="/post/{{id}}/downvote-action">
-          <img class="downvoteIcon" src="/images/downvoteIcon.svg" alt="" width="35" height="35">
+        <a class="btn btn-primary" type="button" href="/post/{{id}}/downvote-action">
+          {{^downVoted}}
+          <i class="fa-regular fa-circle-down fa-xl"></i>
+          {{/downVoted}}
+          {{#downVoted}}
+          <i class="fa-solid fa-circle-down fa-xl"></i>
+          {{/downVoted}}
         </a>
       </div>
       <img class="shareIcon m-auto" src="/images/shareIcon.svg" alt="" width="35" height="35">

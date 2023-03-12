@@ -155,6 +155,13 @@ public class DatabaseInitializer {
             Post thirdPost = new Post(peepo, "Best LaLiga teams", asList(sports, football, laLiga), asList(getafe, rayoVayecano, betis, realMadrid, barcelona));
             Post fourthPost = new Post(manolo, "Best NBA players", asList(sports, basketball, nba), asList(lebronJames, kevinDurant, giannisAntetokounmpo, stephenCurry, antonyDavis));
 
+            firstPost.getUpVotes().add(peepo);
+            firstPost.getUpVotes().add(cr7Lover);
+            firstPost.getUpVotes().add(manolo);
+            thirdPost.getUpVotes().add(peepo);
+            thirdPost.getUpVotes().add(cr7Lover);
+            thirdPost.getUpVotes().add(manolo);
+
             postRepository.save(firstPost);
             postRepository.save(secondPost);
             postRepository.save(thirdPost);

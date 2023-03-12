@@ -5,6 +5,7 @@ import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;
 import net.daw.alist.services.UserService;
+import net.daw.alist.services.VotesService;
 import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,9 @@ public class TopListController {
   @Autowired
   private PostService postService;
 
+  @Autowired
+  VotesService votesService;
+
   private User userProfile;
   private Post post;
 
@@ -43,11 +47,11 @@ public class TopListController {
     }
 
     post = postService.findByID(id).orElseThrow();
-
     model.addAttribute("id", id);
     model.addAttribute("posts", post);
     model.addAttribute("title", post.getTitle());
 
+    votesService.isVoted(model,post, authentication);
     List<Comment> comments = post.getComments();
     model.addAttribute("comments", comments);
 

@@ -28,6 +28,10 @@ public class Post {
 
   private Set<User> downVotes = new HashSet<>();
 
+  private int numUpvotes = upVotes.size();
+
+  private int numDownvotes = downVotes.size();
+
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
   
@@ -103,6 +107,10 @@ public class Post {
 
   public Set<User> getDownVotes() {
     return downVotes;
+  }
+  public void updateVotes(){
+    this.numDownvotes=downVotes.size();
+    this.numUpvotes=upVotes.size();
   }
 
   public List<Topic> getTopics() {

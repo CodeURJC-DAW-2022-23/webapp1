@@ -99,10 +99,14 @@ Now selecting one of the user from the list we're going to be redirected to the 
 ### Logged user
 
 **Profile page** When the user icon is pressed at the navbar, the profile page shows up. Here we can see information about users such as number of people that he follows or his description.
-![image](https://user-images.githubusercontent.com/102819481/224440979-24a15a4a-0291-4288-bf95-dacb9f15ce7b.png)
+![image](https://user-images.githubusercontent.com/102819481/224581996-b9642151-aab2-46cb-bb21-ee2df82b6793.png)
 
 **Profile page of other users** When we browse a profile page that isn't ours, if we are logged in we are going to be able to see a button to follow the account.
-![image](https://user-images.githubusercontent.com/102819481/224441137-96fff5a2-b656-422e-9b07-778039e4dd25.png)
+![image](https://user-images.githubusercontent.com/102819481/224582007-8546c0d5-c934-4ad5-a807-c5a771aef174.png)
+
+**Comments and comment section** When the user is logged he can use the comments section to place his thoughs about the post.
+![image](https://user-images.githubusercontent.com/102819481/224581954-d1d248e6-f7e5-493f-a37f-c1bdda867e7a.png)
+
 
 **CreateList page** This page allow the logged in users to create their own Top-List. By adding photos and descriptions to the list items.
 ![image](https://user-images.githubusercontent.com/102819481/224472181-5c102e4b-2da7-4889-a035-1131d46791a7.png)

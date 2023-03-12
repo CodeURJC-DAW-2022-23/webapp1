@@ -5,8 +5,8 @@ import net.daw.alist.models.User;
 
 import net.daw.alist.services.PostService;
 import net.daw.alist.services.UserService;
-import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,6 @@ public class ProfileController {
 
   @Autowired
   private PostService postService;
-
 
   private User userProfile;
   private User userSessionRepo;
@@ -54,16 +53,16 @@ public class ProfileController {
       model.addAttribute("notGuest", true);
       if (isLoggedUser(username, authentication)) {
         model.addAttribute("ownProfile", true);
+        model.addAttribute("admin", isAdmin());
       } else {
         model.addAttribute("ownProfile", false);
-        if (isFollowed()) {
-          model.addAttribute("followed", true);
-        } else {
-          model.addAttribute("followed", false);
-        }
+        model.addAttribute("followed", isFollowed());
       }
     }
     model.addAttribute("user", userProfile);
+    int userProfileId = userProfile.getId().intValue();
+    Page<Post> userProfilePosts = postService.getUserPosts(0, userProfileId);
+    model.addAttribute("posts", userProfilePosts);
     return "profile";
   }
 
@@ -114,6 +113,10 @@ public class ProfileController {
     return userSession.getUsername();
   }
 
+  private boolean isAdmin() {
+    return userSessionRepo.isAdmin();
+  }
+
   private boolean isFollowed() {
     return userSessionRepo.getFollowing().contains(userProfile);
   }
@@ -124,4 +127,5 @@ public class ProfileController {
     List<Post> postList = postService.findAll();
     model.addAttribute("searchSuggestedPosts", postList);
   }
+
 }

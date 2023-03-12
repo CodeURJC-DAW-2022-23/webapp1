@@ -2,6 +2,7 @@ package net.daw.alist.controllers;
 
 import java.io.IOException;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -59,27 +60,28 @@ public class CreateListController {
     @RequestParam String topTitle,
     @RequestParam List<String> topicList,
     @RequestParam String formDescriptionOne,
-    @RequestParam MultipartFile formFileOne,
+    @RequestParam MultipartFile formImageOne,
     @RequestParam String formDescriptionTwo,
-    @RequestParam MultipartFile formFileTwo,
+    @RequestParam MultipartFile formImageTwo,
     @RequestParam String formDescriptionThree,
-    @RequestParam MultipartFile formFileThree,
+    @RequestParam MultipartFile formImageThree,
     @RequestParam String formDescriptionFour,
-    @RequestParam MultipartFile formFileFour,
+    @RequestParam MultipartFile formImageFour,
     @RequestParam String formDescriptionFive,
-    @RequestParam MultipartFile formFileFive
-  ) throws IOException {
+    @RequestParam MultipartFile formImageFive
+  ) throws IOException, SQLException {
     List<ItemField> itemFields = new ArrayList<>();
-    itemFields.add(new ItemField(formDescriptionOne, formFileOne));
-    itemFields.add(new ItemField(formDescriptionTwo, formFileTwo));
-    itemFields.add(new ItemField(formDescriptionThree, formFileThree));
-    itemFields.add(new ItemField(formDescriptionFour, formFileFour));
-    itemFields.add(new ItemField(formDescriptionFive, formFileFive));
+    itemFields.add(new ItemField(formDescriptionOne, formImageOne));
+    itemFields.add(new ItemField(formDescriptionTwo, formImageTwo));
+    itemFields.add(new ItemField(formDescriptionThree, formImageThree));
+    itemFields.add(new ItemField(formDescriptionFour, formImageFour));
+    itemFields.add(new ItemField(formDescriptionFive, formImageFive));
 
     List<PostItem> postItems = postItemService.getPostItems(itemFields);
     List<Topic> selectedTopics = topicService.getTopics(topicList);
     User author = (User) authentication.getPrincipal();
-    postService.save(new Post(author, topTitle, selectedTopics, postItems));
+    Post post = new Post(author, topTitle, selectedTopics, postItems);
+    postService.save(post);
 
     model.addAttribute("correct", true);
     model.addAttribute("messages", "The top is on the system");

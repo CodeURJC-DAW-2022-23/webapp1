@@ -15,16 +15,21 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PostService {
 
-    private final int pageSize = 2;
     @Autowired
     private final PostRepository postRepository;
+
+    private final int pageSize = 2;
 
     public Page<Post> getPosts(int pageNumber) {
         return postRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }
-    
+
+    public Page<Post> getUserPosts(int pageNumber, int user_id) {
+        return postRepository.findPostsByUser(user_id, PageRequest.of(pageNumber, pageSize));
+    }
+
     public Page<Post> getStarredPosts(int pageNumber, int user_id) {
-        return postRepository.findPostsByFollows(user_id,PageRequest.of(pageNumber,pageSize));
+        return postRepository.findPostsByFollows(user_id, PageRequest.of(pageNumber, pageSize));
     }
 
     public List<Post> findAll() {
@@ -38,4 +43,5 @@ public class PostService {
     public void save(Post post) {
         postRepository.save(post);
     }
+
 }

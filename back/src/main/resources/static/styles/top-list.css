@@ -1,4 +1,8 @@
-p {
+img {
+  object-fit: cover;
+}
+
+.commentTitle {
   color: black;
   margin: auto;
   padding-left: 1em;
@@ -80,19 +84,18 @@ input[type='text'] {
   word-break: break-all;
 }
 
-
-li + li {
+.list-group li + li {
   margin-top: 1rem;
 }
 
-ol li {
+.list-group ol li {
   padding: 0.5em;
   font-size: 20px;
   font-weight: 600;
   text-align: left;
 }
 
-ol {
+.list-group ol {
   width: 75%;
   list-style-position: inside;
 }

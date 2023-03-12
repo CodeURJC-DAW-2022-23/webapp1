@@ -113,7 +113,7 @@ public class User implements UserDetails {
       imagePath = "static/images/notFound.jpg";
     }
     this.image = pathToImage(imagePath);
-    this.imagePath = imagePath.replace("static","");
+    this.imagePath = imagePath.replace("static", "");
   }
 
   public void setFollowing(List<User> following) {
@@ -152,6 +152,10 @@ public class User implements UserDetails {
 
   public UserRole getRole() {
     return role;
+  }
+
+  public boolean isAdmin() {
+    return role.equals(UserRole.ADMIN);
   }
 
   public String getBio() {

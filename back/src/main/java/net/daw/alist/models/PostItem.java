@@ -22,10 +22,9 @@ public class PostItem {
   @Lob
   @JsonIgnore
   private Blob image;
-  private String imagePath;
 
   public PostItem() { }
-  
+
   public PostItem(
     String description,
     String imagePath
@@ -51,7 +50,10 @@ public class PostItem {
       imagePath = "static/images/notFound.jpg";
     }
     this.image = pathToImage(imagePath);
-    this.imagePath = imagePath.replace("static", "");
+  }
+
+  public void setImage(Blob image) {
+    this.image = image;
   }
 
   public String getDescription() {
@@ -60,10 +62,6 @@ public class PostItem {
 
   public Blob getImage() {
     return image;
-  }
-
-  public String getImagePath() {
-    return imagePath;
   }
 
   public void setImageFile(Blob generateProxy) {

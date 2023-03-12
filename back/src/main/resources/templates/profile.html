@@ -13,15 +13,16 @@
   <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+  <link rel="stylesheet" type="text/css" href="/styles/top-list.css">
   <title>Alist | {{user.username}}</title>
 </head>
 
 <body>
   {{>navbar}}
-  <main class="row text-center">
-    <form class="bg-black" action="/sign-out" method="post" id="logOut">
-      <div class="profile-container col-md-4 text-white">
-        <div class="profile-pic text-center pt-3">
+  <main>
+    <form class="row bg-black pt-3" action="/sign-out" method="post" id="logOut">
+      <div class="profile-container col-md-4 text-white text-center">
+        <div class="profile-pic text-center pt-2">
           <img src="{{user.imagePath}}" alt="profilePic" class="prof-pic">
         </div>
         <div class="row text-inherit m-0 d-flex align-items-center">
@@ -36,6 +37,9 @@
                   <i class="fa-solid fa-gear"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="settingsButton">
+                  {{#admin}}
+                  <li><a class="dropdown-item" id="admin-panel" href="/admin-panel">Admin Panel</a></li>
+                  {{/admin}}
                   <li><button class="dropdown-item" id="sign-out" type="submit">Log-out</button></li>
                 </ul>
               </div>
@@ -70,8 +74,8 @@
           <p>{{user.bio}}</p>
         </div>
       </div>
-      <div class="post-container col-md-8 p-0">
-        <div class="vl"></div>
+      <div class="post-container col-md-9 p-0">
+        {{>post}}
       </div>
       <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>

@@ -58,17 +58,16 @@ Here will be some images of the website.
 
 ### 📊 Graphs
 
-This app is going to have trends (pie chart), registered users (line chart) graphs.
+This app has a pie chart that shows the popularity of topics based on the number of posts that use said topics.
 
 ### ⚙️ Complementary technology
 
-We are going to use an api to detect explicit contents.
+Email verification for user registration.
 
 ### 🤔 Algorithm
 
-Website is going to have a recommendation algorithm for welcome page.
+Website is going to have a recommendation algorithm for home page.
 
-Login page, from this page we are going to be able to log into our personal account
 
 ## Phase 2
 
@@ -112,7 +111,6 @@ Now selecting one of the user from the list we're going to be redirected to the 
 ![image](https://user-images.githubusercontent.com/102819481/224444464-11df3f0f-1800-4e89-ac6d-01faa513a275.png)
 
 ### Execution intructions
-We assume that the computer have Linux as operative system.
 * The first point, docker must be installed in order to be able to use the database.
   ![image](https://user-images.githubusercontent.com/102819481/224472613-0b120d6a-54cf-454f-b36b-d5d030d53dc9.png)
   
@@ -142,22 +140,22 @@ as well as an extension for java plus the jdk-17 and Maven 4.0.0
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 	   |  | 
-| #2            |  | | 
-| #3            |  |  | 
-| #4            |   |  | 
-| #5            | 			   | | 
+| #1            | Top-list page with comments  | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f7773edd1fde10655ee2dd4e0da0b8cfe10993df	   | 
+| #2            | Search bar with autocomplete  | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5a27166caea0cc168e0d74749bc7034d79dbbc55| 
+| #3            | Email verification for register  | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/153a71fd57b9e936e132f0b909823ae0109c8f5d  | 
+| #4            | Login and registration   | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/e5dc5dd816bb85e14ed3c7d55b111c2196b5363d  | 
+| #5            | Admin-panel layout with collapse and mustache 			   | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3c26cd8e522eb616057d4d7344d8ae6c7c6d1d46 | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            |     | 
-| #2            |    | 
-| #3            |   | 
-| #4            |    | 
-| #5            |      | 
+| #1            | RegistrationService.java    | 
+| #2            | AdminPanelController.java   | 
+| #3            | RegisterController.java  | 
+| #4            | WebSecurityConfig.java (and entire net.daw.alist.security package)   | 
+| #5            | searchbar.html     | 
 
 ### Vicente
 #### Textual description: 

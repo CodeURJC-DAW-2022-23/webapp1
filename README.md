@@ -192,23 +192,24 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 #### The five most important commits:
 
-| Commit number | Description | Link |
-| ------------- | ----------- | ---- |
-| #1            |             |      |
-| #2            |             |      |
-| #3            |             |      |
-| #4            |             |      |
-| #5            |             |      |
+| Commit number | Description | 
+| ------------- | ----------- | 
+| #1            |     [create list logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f85bd869c42bd6b8b59788eb23d028b3378cd1cc) 
+|     
+| #2            |           [creation of posts with several topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)  |      
+| #3            |            [models adjusment] (https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bc579220f25b05371d423355127e6a8c3fd19ac1) |      
+| #4            |    [topic selector](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)         |      
+| #5            |        [Votes logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/8e59563d0ec6c4d9e092a126151906e43bf4d65a)     |      
 
 #### The five most participated files:
 
 | File number | File |
 | ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| #1          |    [CreateListController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/3119115a4bf0e21882d8239a7568100ed351a56b/back/src/main/java/net/daw/alist/controllers/CreateListController.java)  |
+| #2          |     [topic handler](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/templates/create-list.html) |
+| #3          |    [PostItemService] (https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostItemService.java)  |
+| #4          |    [VotesService](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/upVote-downVote-new/back/src/main/java/net/daw/alist/services/VotesService.java)  |
+| #5          |   [VotesController](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/upVote-downVote-new/back/src/main/java/net/daw/alist/controllers/VotesController.java)   |
 
 ### Alejandro
 

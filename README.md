@@ -20,7 +20,7 @@
   - [Execution intructions](#execution-intructions)
   - [Group members participation](#group-members-participation)
 
-Universal top list website.
+A top list generator of any topic you want.
 
 ## Phase 0-1
 
@@ -34,7 +34,7 @@ Universal top list website.
 | Frantzes Elzaurdia          | f.elzaurdia.2020@alumnos.urjc.es  | [franchescoURJC](https://github.com/franchescoURJC) |
 | Vicente González Pérez      | v.gonzalez.2020@alumnos.urjc.es   | [Vicente1215](https://github.com/Vicente1215)       |
 
-### 💪 Methodology
+### 👷🛠️ Methodology
 
 Agile methodology using scrum framework with jira.
 ![image](https://user-images.githubusercontent.com/102819481/224474020-507a659a-4caa-48a4-a1c0-3499854ddec6.png)
@@ -49,7 +49,7 @@ Agile methodology using scrum framework with jira.
 ### 🚫 User permissions
 
 - **Guest:** View posts and profiles.
-- **User:** Create posts, manage profile, follow users, like posts.
+- **User:** Create posts, manage profile, follow users, like posts, comment on posts.
 - **Admin:** Manage posts, files & users.
 
 ### 🌄 Images
@@ -232,24 +232,23 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 ### Gledrian
 
-#### Textual description:
+#### Implemented Home page and For me page that required lazy loading and very specific SQL queries.
 
-#### The five most important commits:
+#### Five most important commits:
 
-| Commit number | Description | Link |
-| ------------- | ----------- | ---- |
-| #1            |             |      |
-| #2            |             |      |
-| #3            |             |      |
-| #4            |             |      |
-| #5            |             |      |
+| Commit number | Description         |
+| ------------- | ------------------- |
+| #1            | Lazy loading script |
+| #3            | Home page           |
+| #4            | For me page         |
+| #5            | SQL queries         |
 
-#### The five most participated files:
+#### Five most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| File number | File                |
+| ----------- | ------------------- |
+| #1          | load-data.js        |
+| #2          | PostController.java |
+| #3          | PostRepository.java |
+| #4          | navbar.html         |
+| #5          | /posts models       |

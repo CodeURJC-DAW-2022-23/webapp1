@@ -236,19 +236,20 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 #### Five most important commits:
 
-| Commit number | Description         |
-| ------------- | ------------------- |
-| #1            | Lazy loading script |
-| #3            | Home page           |
-| #4            | For me page         |
-| #5            | SQL queries         |
+| Commit number | Description                                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Lazy loading script](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/60a63aeee2ac8cc05a09ae54a45029c756e28b48) |
+| #2            | [Navbar](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bd42b06a3b773207c65358e2c0b55638ffcb831d)              |
+| #3            | [Home page](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3b4be6740a23335dc0d59fadd1e85f098cb75e8a)           |
+| #4            | [For me page](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/07ee91d001defaf92f7f9efaf5590410ec647452)         |
+| #5            | [SQL queries](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/8229bd4f697a697ff66a7326cbcca04a39487526)         |
 
 #### Five most participated files:
 
-| File number | File                |
-| ----------- | ------------------- |
-| #1          | load-data.js        |
-| #2          | PostController.java |
-| #3          | PostRepository.java |
-| #4          | navbar.html         |
-| #5          | /posts models       |
+| File number | File                                                                                                                                               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [load-data.js](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/resources/static/scripts/load-data.js)                      |
+| #2          | [PostController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/controllers/PostController.java)  |
+| #3          | [PostRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/repositories/PostRepository.java) |
+| #4          | [navbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/navbar.html)                          |
+| #5          | [/posts models](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/post.html)                          |

@@ -104,7 +104,6 @@ public class Post {
   public Set<User> getDownVotes() {
     return downVotes;
   }
-  
 
   public List<Topic> getTopics() {
     return topics;

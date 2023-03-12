@@ -1,6 +1,5 @@
 package net.daw.alist.controllers;
 
-import jdk.jshell.execution.Util;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;
@@ -14,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 
-import java.util.List;
-
 @Controller
 public class PostController {
+
   @Autowired
   private UserService userService;
+
   @Autowired
   private PostService postService;
 

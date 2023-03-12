@@ -1,4 +1,8 @@
-.commentBox p {
+img {
+  object-fit: cover;
+}
+
+.commentTitle {
   color: black;
   margin: auto;
   padding-left: 1em;
@@ -78,12 +82,6 @@ input[type='text'] {
   min-height: 7em;
   word-wrap: break-word;
   word-break: break-all;
-}
-
-.list-group li {
-  border-radius: 10px;
-  border: solid 3px;
-  border-color: #69c0a1;
 }
 
 .list-group li + li {

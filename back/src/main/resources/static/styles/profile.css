@@ -81,13 +81,10 @@ main {
   /* For desktop: */
   .profile-container {
     max-width: 23vw;
+    height: 100%;
   }
   .prof-pic {
     height: 15vw;
     width: 15vw;
-  }
-  /* Posts */
-  .post {
-    height: 100%;
   }
 }

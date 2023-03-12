@@ -1,3 +1,18 @@
 .feed-container {
   margin: 0 1rem;
 }
+.createPostButton{
+  position: -webkit-sticky; /* Safari */
+  z-index: 0;
+  position: sticky;
+  top: 90%;
+  left: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .createPostButton{
+    top: 50%;
+    left: 75%;
+  }
+}

@@ -195,7 +195,6 @@ Now selecting one of the user from the list we're going to be redirected to the 
 | Commit number | Description | 
 | ------------- | ----------- | 
 | #1            |     [create list logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f85bd869c42bd6b8b59788eb23d028b3378cd1cc) 
-|     
 | #2            |           [creation of posts with several topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)  |      
 | #3            |            [models adjusment] (https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bc579220f25b05371d423355127e6a8c3fd19ac1) |      
 | #4            |    [topic selector](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)         |      

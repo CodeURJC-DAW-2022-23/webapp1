@@ -5,7 +5,6 @@ import net.daw.alist.models.User;
 
 import net.daw.alist.services.PostService;
 import net.daw.alist.services.UserService;
-import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -25,10 +24,6 @@ public class ProfileController {
 
   @Autowired
   private PostService postService;
-
-
-  @Autowired
-  PostService postService;
 
   private User userProfile;
   private User userSessionRepo;
@@ -132,4 +127,5 @@ public class ProfileController {
     List<Post> postList = postService.findAll();
     model.addAttribute("searchSuggestedPosts", postList);
   }
+
 }

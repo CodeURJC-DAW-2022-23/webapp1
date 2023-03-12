@@ -5,10 +5,10 @@
       class="profileImg rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
-        <div class="d-flex">
+        <div class="d-flex flex-wrap">
           {{#topics}}
           <h6 class="topics pe-1">
-            <a class="topic" href="#">@{{name}}</a>
+            <a class="topic">@{{name}}</a>
           </h6>
           {{/topics}}
         </div>
@@ -37,7 +37,7 @@
         </ol>
       </div>
     </div>
-    <div class="list-group-item d-flex z-n1">
+    <div class="list-group-item d-flex z-0">
       <div class="w-auto m-auto">
         <img class="upvoteIcon" src="/images/upvoteIcon.svg" alt="" width="35" height="35">
         <img class="downvoteIcon" src="/images/downvoteIcon.svg" alt="" width="35" height="35">

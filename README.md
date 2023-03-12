@@ -71,7 +71,8 @@ Website is going to have a recommendation algorithm for home page.
 ## Phase 2
 
 ### Database Diagram
-![image](https://user-images.githubusercontent.com/103210832/224561668-98a5d967-b300-4314-adf7-4f82b8c00722.png)
+![image](https://user-images.githubusercontent.com/103210832/224561761-28d37e64-cb77-46b2-bd42-d765949c1570.png)
+
 
 ### Guests
 

@@ -34,7 +34,7 @@ public class PostItemService {
       if (!itemField.getDescription().equals("")) {
         MultipartFile itemImageFile = itemField.getImage();
         Blob itemImage;
-        if (itemImageFile == null) {
+        if (itemImageFile.isEmpty()) {
           itemImage = pathToImage("static/images/notFound.jpg");
         } else {
           itemImage = BlobProxy.generateProxy(

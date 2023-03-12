@@ -3,7 +3,7 @@
 }
 .createPostButton{
   position: -webkit-sticky; /* Safari */
-  z-index: 0;
+  z-index: 1;
   position: sticky;
   top: 90%;
   left: 100%;

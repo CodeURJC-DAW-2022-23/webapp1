@@ -70,6 +70,10 @@ Website is going to have a recommendation algorithm for home page.
 
 ## Phase 2
 
+### Database Diagram
+![image](https://user-images.githubusercontent.com/103210832/224561761-28d37e64-cb77-46b2-bd42-d765949c1570.png)
+
+
 ### Guests
 
 **Login page**, from this page we are going to be able to log into our personal account. Two more options are offered here, to enter the page as a guest
@@ -109,7 +113,7 @@ Now selecting one of the user from the list we're going to be redirected to the 
 ### Admin
 
 **Admin Panel page** From this page the admins are going to be able to manage user activities and study the topics graphics
-![image](https://user-images.githubusercontent.com/102819481/224444464-11df3f0f-1800-4e89-ac6d-01faa513a275.png)
+!![image](https://user-images.githubusercontent.com/103210832/224559779-4f022381-a0f0-484c-a4d0-fb1dc00e9540.png)
 
 ### Execution intructions
 
@@ -160,27 +164,27 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 ### Vicente
 
-#### Textual description:
+#### Textual description: Database models, database initialize, admin page
 
 #### The five most important commits:
 
-| Commit number | Description | Link |
-| ------------- | ----------- | ---- |
-| #1            |             |      |
-| #2            |             |      |
-| #3            |             |      |
-| #4            |             |      |
-| #5            |             |      |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |[Complete Admin Panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bdb2398049682f5ec57e4fd38606f801d3a042b5)   |
+| #2            |[Database Initialize](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/690f7af51d87efcb54350a67b1da9e769cf7905a)   |
+| #3            |[Pie chart](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/cfeb69884f41bd9c0749549f0d4c33b7f4adf5ef)   |
+| #4            |[Follow users](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/cd930a7eabbe41a1c5bc63fe0189b30c3c0f97a9)   |
+| #5            |[Add topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0dd06422df1453b52d9f9779499ce9855937670c)   |
 
 #### The five most participated files:
 
 | File number | File |
 | ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| #1          |  [create-chart.js](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/static/scripts/create-chart.js)   |
+| #2          |  [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Post.java)   |
+| #3          |  [AdminPanelController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/AdminPanelController.java)    |
+| #4          |  [DatabaseInitializer.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/DatabaseInitializer.java)  |
+| #5          |   [User.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/User.java)   |
 
 ### Alberto
 

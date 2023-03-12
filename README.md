@@ -136,27 +136,27 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 ### Frantzes
 
-#### Textual description:
+#### Textual description: Login, registration (email verification), security configuration (encryption, CSRF protection, HTTPS), search bar, navbar, admin-panel and general styling changes.
 
 #### The five most important commits:
 
-| Commit number | Description                                   | Link                                                                                            |
-| ------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| #1            | Top-list page with comments                   | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f7773edd1fde10655ee2dd4e0da0b8cfe10993df |
-| #2            | Search bar with autocomplete                  | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5a27166caea0cc168e0d74749bc7034d79dbbc55 |
-| #3            | Email verification for register               | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/153a71fd57b9e936e132f0b909823ae0109c8f5d |
-| #4            | Login and registration                        | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/e5dc5dd816bb85e14ed3c7d55b111c2196b5363d |
-| #5            | Admin-panel layout with collapse and mustache | https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3c26cd8e522eb616057d4d7344d8ae6c7c6d1d46 |
+| Commit number | Description                                                                                                                                      |     |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| #1            | [Top-list page with comments](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f7773edd1fde10655ee2dd4e0da0b8cfe10993df)                   |
+| #2            | [Search bar with autocomplete](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5a27166caea0cc168e0d74749bc7034d79dbbc55)                  |
+| #3            | [Email verification for register](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/153a71fd57b9e936e132f0b909823ae0109c8f5d)               |
+| #4            | [Login and registration](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/e5dc5dd816bb85e14ed3c7d55b111c2196b5363d)                        |
+| #5            | [Admin-panel layout with collapse and mustache](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3c26cd8e522eb616057d4d7344d8ae6c7c6d1d46) |
 
 #### The five most participated files:
 
-| File number | File                                                               |
-| ----------- | ------------------------------------------------------------------ |
-| #1          | RegistrationService.java                                           |
-| #2          | AdminPanelController.java                                          |
-| #3          | RegisterController.java                                            |
-| #4          | WebSecurityConfig.java (and entire net.daw.alist.security package) |
-| #5          | searchbar.html                                                     |
+| File number | File                                                                                                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [RegistrationService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/RegistrationService.java)                                         |
+| #2          | [AdminPanelController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/AdminPanelController.java)                                    |
+| #3          | [RegisterController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/RegisterController.java)                                        |
+| #4          | [WebSecurityConfig.java (and entire net.daw.alist.security package)](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/security/WebSecurityConfig.java) |
+| #5          | [searchbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/templates/searchbar.html)                                                                     |
 
 ### Vicente
 

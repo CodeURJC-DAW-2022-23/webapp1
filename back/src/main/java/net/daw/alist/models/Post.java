@@ -32,6 +32,8 @@ public class Post {
 
   private int numDownvotes = downVotes.size();
 
+  private int votes = numUpvotes-numDownvotes;
+
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
   
@@ -109,8 +111,9 @@ public class Post {
     return downVotes;
   }
   public void updateVotes(){
-    this.numDownvotes=downVotes.size();
-    this.numUpvotes=upVotes.size();
+    numDownvotes=downVotes.size();
+    numUpvotes=upVotes.size();
+    votes = numUpvotes-numDownvotes;
   }
 
   public List<Topic> getTopics() {

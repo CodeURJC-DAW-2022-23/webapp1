@@ -162,6 +162,8 @@ public class DatabaseInitializer {
             thirdPost.getUpVotes().add(cr7Lover);
             thirdPost.getUpVotes().add(manolo);
 
+            firstPost.updateVotes();
+            thirdPost.updateVotes();
             postRepository.save(firstPost);
             postRepository.save(secondPost);
             postRepository.save(thirdPost);

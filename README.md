@@ -18,6 +18,7 @@
   - [Logged user](#logged-user)
   - [Admin](#admin)
   - [Execution intructions](#execution-intructions)
+  - [Class Diagram](#class-diagram)
   - [Group members participation](#group-members-participation)
 
 A top list generator of any topic you want.
@@ -139,6 +140,9 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 - Once this is finished we can fully run the application
   ![image](https://user-images.githubusercontent.com/102819481/224473185-f9ddc4bf-8715-410d-94bd-93d66f8950f5.png)
+  
+## Class Diagram
+![Class-Diagram](https://user-images.githubusercontent.com/102819481/224586764-d21509c2-3bd5-4222-bb04-0b7bcb1ae23b.jpg)
 
 ## Group members participation
 

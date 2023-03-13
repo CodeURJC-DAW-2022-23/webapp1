@@ -58,7 +58,7 @@ public class Post {
     this.title = title;
     this.items = items;
     this.topics = topics;
-    votes=numUpvotes-numDownvotes;
+    updateVotes();
     author.addPost(this);
   }
 

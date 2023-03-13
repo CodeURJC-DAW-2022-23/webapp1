@@ -142,7 +142,8 @@ Now selecting one of the user from the list we're going to be redirected to the 
   ![image](https://user-images.githubusercontent.com/102819481/224473185-f9ddc4bf-8715-410d-94bd-93d66f8950f5.png)
   
 ## Class Diagram
-![Class-Diagram](https://user-images.githubusercontent.com/102819481/224586764-d21509c2-3bd5-4222-bb04-0b7bcb1ae23b.jpg)
+![CLass Diagram (1)](https://user-images.githubusercontent.com/102819481/224587199-f52cab48-9545-4c45-b1b7-a68cfda6cc60.jpg)
+
 
 ## Group members participation
 

@@ -32,7 +32,7 @@ public class Post {
 
   private int numDownvotes = downVotes.size();
 
-  private int votes = numUpvotes-numDownvotes;
+  private int votes;
 
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
@@ -58,6 +58,7 @@ public class Post {
     this.title = title;
     this.items = items;
     this.topics = topics;
+    votes=numUpvotes-numDownvotes;
     author.addPost(this);
   }
 

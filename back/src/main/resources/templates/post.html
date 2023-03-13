@@ -31,7 +31,8 @@
             <li class="ms-0 me-auto">
               {{description}}
             </li>
-            <img src="{{id}}/image" alt="image" width="45" height="45" class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
+            <img src="{{id}}/image" alt="image" width="45" height="45"
+              class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
           </div>
           {{/items}}
         </ol>
@@ -39,8 +40,29 @@
     </div>
     <div class="list-group-item d-flex z-0">
       <div class="w-auto m-auto">
-        <img class="upvoteIcon" src="/images/upvoteIcon.svg" alt="" width="35" height="35">
-        <img class="downvoteIcon" src="/images/downvoteIcon.svg" alt="" width="35" height="35">
+        <h6 class="pe-1 d-inline">
+          {{upVotes.size}}
+        </h6>
+
+        <a class="btn btn-primary " type="button" href="/post/{{id}}/upvote-action">
+          {{^upVoted}}
+          <i class="fa-regular fa-circle-up fa-xl"></i>
+          {{/upVoted}}
+          {{#upVoted}}
+          <i class="fa-solid fa-circle-up fa-xl"></i>
+          {{/upVoted}}
+        </a>
+        <h6 class="pe-1 d-inline">
+          {{downVotes.size}}
+        </h6>
+        <a class="btn btn-primary" type="button" href="/post/{{id}}/downvote-action">
+          {{^downVoted}}
+          <i class="fa-regular fa-circle-down fa-xl"></i>
+          {{/downVoted}}
+          {{#downVoted}}
+          <i class="fa-solid fa-circle-down fa-xl"></i>
+          {{/downVoted}}
+        </a>
       </div>
       <img class="shareIcon m-auto" src="/images/shareIcon.svg" alt="" width="35" height="35">
     </div>

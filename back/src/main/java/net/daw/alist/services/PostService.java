@@ -6,6 +6,7 @@ import net.daw.alist.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class PostService {
     private final int pageSize = 2;
 
     public Page<Post> getPosts(int pageNumber) {
-        return postRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        return postRepository.findAll(PageRequest.of(pageNumber, pageSize,Sort.by("numUpvotes").descending()));
     }
 
     public Page<Post> getUserPosts(int pageNumber, int user_id) {

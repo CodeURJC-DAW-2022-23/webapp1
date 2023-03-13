@@ -21,12 +21,18 @@ public class Post {
   private Date date;
   private String title;
 
-  @OneToMany
+  @ManyToMany
   private Set<User> upVotes = new HashSet<>();
 
-  @OneToMany
+  @ManyToMany
 
   private Set<User> downVotes = new HashSet<>();
+
+  private int numUpvotes = upVotes.size();
+
+  private int numDownvotes = downVotes.size();
+
+  private int votes;
 
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
@@ -52,6 +58,7 @@ public class Post {
     this.title = title;
     this.items = items;
     this.topics = topics;
+    updateVotes();
     author.addPost(this);
   }
 
@@ -104,6 +111,11 @@ public class Post {
   public Set<User> getDownVotes() {
     return downVotes;
   }
+  public void updateVotes(){
+    numDownvotes=downVotes.size();
+    numUpvotes=upVotes.size();
+    votes = numUpvotes-numDownvotes;
+  }
 
   public List<Topic> getTopics() {
     return topics;
@@ -120,5 +132,12 @@ public class Post {
   public void addComment(Comment comment){
     this.comments.add(comment);
   }
+  public void addUpVote(User user) { this.upVotes.add(user);}
+  public void removeUpVote(User user) {this.upVotes.remove(user);}
+
+  public void addDownVote(User user){ this.downVotes.add(user); }
+
+  public void removeDownVote(User user) { this.downVotes.remove(user); }
+
 
 }

@@ -73,8 +73,8 @@ Website is going to have a sort by votes algorithm. In order to show the posts s
 ## Phase 2
 
 ### Database Diagram
-![image](https://user-images.githubusercontent.com/103210832/224561761-28d37e64-cb77-46b2-bd42-d765949c1570.png)
 
+![image](https://user-images.githubusercontent.com/103210832/224561761-28d37e64-cb77-46b2-bd42-d765949c1570.png)
 
 ### Guests
 
@@ -109,7 +109,6 @@ Now selecting one of the user from the list we're going to be redirected to the 
 **Comments and comment section** When the user is logged he can use the comments section to place his thoughs about the post.
 ![image](https://user-images.githubusercontent.com/102819481/224581954-d1d248e6-f7e5-493f-a37f-c1bdda867e7a.png)
 
-
 **CreateList page** This page allow the logged in users to create their own Top-List. By adding photos and descriptions to the list items.
 ![image](https://user-images.githubusercontent.com/102819481/224472181-5c102e4b-2da7-4889-a035-1131d46791a7.png)
 
@@ -141,14 +140,14 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 - Once this is finished we can fully run the application
   ![image](https://user-images.githubusercontent.com/102819481/224473185-f9ddc4bf-8715-410d-94bd-93d66f8950f5.png)
-  
+
 ## Class Diagram
+
 ![CLass Diagram (1)](https://user-images.githubusercontent.com/102819481/224587199-f52cab48-9545-4c45-b1b7-a68cfda6cc60.jpg)
 
 ## Screen Navigation
 
 ![diagram](https://user-images.githubusercontent.com/102819481/224681797-89236f6b-f75e-47a1-b636-0fb4f5bf2ddb.jpg)
-
 
 ## Group members participation
 
@@ -158,8 +157,8 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 #### The five most important commits:
 
-| Commit number | Description                                                                                                                                      |     |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| Commit number | Description                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | #1            | [Top-list page with comments](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f7773edd1fde10655ee2dd4e0da0b8cfe10993df)                   |
 | #2            | [Search bar with autocomplete](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5a27166caea0cc168e0d74749bc7034d79dbbc55)                  |
 | #3            | [Email verification for register](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/153a71fd57b9e936e132f0b909823ae0109c8f5d)               |
@@ -182,23 +181,23 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 #### The five most important commits:
 
-| Commit number | Description |
-| ------------- | ----------- |
-| #1            |[Complete Admin Panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bdb2398049682f5ec57e4fd38606f801d3a042b5)   |
-| #2            |[Database Initialize](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/690f7af51d87efcb54350a67b1da9e769cf7905a)   |
-| #3            |[Pie chart](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/cfeb69884f41bd9c0749549f0d4c33b7f4adf5ef)   |
-| #4            |[Follow users](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/cd930a7eabbe41a1c5bc63fe0189b30c3c0f97a9)   |
-| #5            |[Add topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0dd06422df1453b52d9f9779499ce9855937670c)   |
+| Commit number | Description                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Complete Admin Panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bdb2398049682f5ec57e4fd38606f801d3a042b5) |
+| #2            | [Database Initialize](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/690f7af51d87efcb54350a67b1da9e769cf7905a)  |
+| #3            | [Pie chart](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/cfeb69884f41bd9c0749549f0d4c33b7f4adf5ef)            |
+| #4            | [Follow users](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/cd930a7eabbe41a1c5bc63fe0189b30c3c0f97a9)         |
+| #5            | [Add topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0dd06422df1453b52d9f9779499ce9855937670c)           |
 
 #### The five most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          |  [create-chart.js](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/static/scripts/create-chart.js)   |
-| #2          |  [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Post.java)   |
-| #3          |  [AdminPanelController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/AdminPanelController.java)    |
-| #4          |  [DatabaseInitializer.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/DatabaseInitializer.java)  |
-| #5          |   [User.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/User.java)   |
+| File number | File                                                                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [create-chart.js](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/static/scripts/create-chart.js)                           |
+| #2          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Post.java)                                      |
+| #3          | [AdminPanelController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/AdminPanelController.java) |
+| #4          | [DatabaseInitializer.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/DatabaseInitializer.java)      |
+| #5          | [User.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/User.java)                                      |
 
 ### Alberto
 
@@ -206,23 +205,23 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 #### The five most important commits:
 
-| Commit number | Description | 
-| ------------- | ----------- | 
-| #1            |     [create list logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f85bd869c42bd6b8b59788eb23d028b3378cd1cc) 
-| #2            |           [creation of posts with several topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)  |      
-| #3            |            [models adjusment](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bc579220f25b05371d423355127e6a8c3fd19ac1) |      
-| #4            |    [topic selector](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)         |      
-| #5            |        [Votes logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/8e59563d0ec6c4d9e092a126151906e43bf4d65a)     |      
+| Commit number | Description                                                                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [create list logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f85bd869c42bd6b8b59788eb23d028b3378cd1cc)                     |
+| #2            | [creation of posts with several topics](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524) |
+| #3            | [models adjusment](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/bc579220f25b05371d423355127e6a8c3fd19ac1)                      |
+| #4            | [topic selector](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/272d03f666d282239185deaae8e9a9dd9b474524)                        |
+| #5            | [Votes logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/8e59563d0ec6c4d9e092a126151906e43bf4d65a)                           |
 
 #### The five most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          |    [CreateListController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/3119115a4bf0e21882d8239a7568100ed351a56b/back/src/main/java/net/daw/alist/controllers/CreateListController.java)  |
-| #2          |     [topic handler](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/templates/create-list.html) |
-| #3          |    [PostItemService](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostItemService.java)  |
-| #4          |    [VotesService](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/upVote-downVote-new/back/src/main/java/net/daw/alist/services/VotesService.java)  |
-| #5          |   [VotesController](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/upVote-downVote-new/back/src/main/java/net/daw/alist/controllers/VotesController.java)   |
+| File number | File                                                                                                                                                                                               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [CreateListController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/3119115a4bf0e21882d8239a7568100ed351a56b/back/src/main/java/net/daw/alist/controllers/CreateListController.java) |
+| #2          | [topic handler](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/resources/templates/create-list.html)                                                                     |
+| #3          | [PostItemService](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostItemService.java)                                                       |
+| #4          | [VotesService](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/upVote-downVote-new/back/src/main/java/net/daw/alist/services/VotesService.java)                                         |
+| #5          | [VotesController](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/upVote-downVote-new/back/src/main/java/net/daw/alist/controllers/VotesController.java)                                |
 
 ### Alejandro
 

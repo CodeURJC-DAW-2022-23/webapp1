@@ -147,7 +147,7 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 ## Screen Navigation
 
-![screen-navigation](https://user-images.githubusercontent.com/102819481/224672424-ad82b91a-0536-4d07-9e70-7da4a4fd8643.png)
+![diagram](https://user-images.githubusercontent.com/102819481/224681797-89236f6b-f75e-47a1-b636-0fb4f5bf2ddb.jpg)
 
 
 ## Group members participation

@@ -145,6 +145,10 @@ Now selecting one of the user from the list we're going to be redirected to the 
 ## Class Diagram
 ![CLass Diagram (1)](https://user-images.githubusercontent.com/102819481/224587199-f52cab48-9545-4c45-b1b7-a68cfda6cc60.jpg)
 
+## Screen Navigation
+
+![screen-navigation](https://user-images.githubusercontent.com/102819481/224672424-ad82b91a-0536-4d07-9e70-7da4a4fd8643.png)
+
 
 ## Group members participation
 

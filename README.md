@@ -56,7 +56,6 @@ Agile methodology using scrum framework with jira.
 ### 🌄 Images
 
 ![image](https://user-images.githubusercontent.com/102819481/224660414-ccf96e10-784f-447a-bffd-4063fd53f981.png)
-First stare at the website login page
 
 ### 📊 Graphs
 

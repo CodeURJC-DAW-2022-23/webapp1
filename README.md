@@ -51,11 +51,12 @@ Agile methodology using scrum framework with jira.
 
 - **Guest:** View posts and profiles.
 - **User:** Create posts, manage profile, follow users, like posts, comment on posts.
-- **Admin:** Manage posts, files & users.
+- **Admin:** Manage posts, topics, files & user.
 
 ### 🌄 Images
 
-Here will be some images of the website.
+First stare at the website login page
+![image](https://user-images.githubusercontent.com/102819481/224660414-ccf96e10-784f-447a-bffd-4063fd53f981.png)
 
 ### 📊 Graphs
 
@@ -67,7 +68,7 @@ Email verification for user registration.
 
 ### 🤔 Algorithm
 
-Website is going to have a recommendation algorithm for home page.
+Website is going to have a sort by votes algorithm. In order to show the posts sorted by the difference between upvotes and downvotes.
 
 ## Phase 2
 

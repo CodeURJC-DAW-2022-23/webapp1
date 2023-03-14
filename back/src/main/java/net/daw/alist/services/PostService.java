@@ -22,7 +22,7 @@ public class PostService {
     private final int pageSize = 2;
 
     public Page<Post> getPosts(int pageNumber) {
-        return postRepository.findAll(PageRequest.of(pageNumber, pageSize,Sort.by("numUpvotes").descending()));
+        return postRepository.findAll(PageRequest.of(pageNumber, pageSize,Sort.by("votes").descending()));
     }
 
     public Page<Post> getUserPosts(int pageNumber, int user_id) {

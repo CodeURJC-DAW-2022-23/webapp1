@@ -48,7 +48,7 @@ public class AdminPanelController {
 
   @GetMapping("/admin-panel/delete/{id}")
   public String deleteFromTopic(Model model, @PathVariable long id) {
-    Topic topic = topicService.findById(id);
+    Topic topic = topicService.findById(id).orElseThrow();
     topicService.delete(topic);
     return "redirect:/admin-panel";
   }
@@ -69,7 +69,6 @@ public class AdminPanelController {
     } else {
       userService.banUser(user.getUsername());
     }
-    
     return "redirect:/admin-panel";
   }
   

@@ -36,8 +36,8 @@ public class TopicService {
         return topicRepository.findAll();
     }
 
-    public Topic findById(long id) {
-        return topicRepository.findById(id).orElseThrow();
+    public Optional<Topic> findById(long id) {
+        return topicRepository.findById(id);
     }
 
     public void delete(Topic topic) {

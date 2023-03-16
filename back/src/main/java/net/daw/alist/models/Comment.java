@@ -78,4 +78,5 @@ public class Comment {
     return imagePath;
   }
 
+  public Long getId() {return id;}
 }

@@ -1,11 +1,8 @@
 package net.daw.alist.models;
 
-import java.util.List;
+import net.bytebuddy.dynamic.DynamicType;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -140,4 +137,13 @@ public class Post {
   public void removeDownVote(User user) { this.downVotes.remove(user); }
 
 
+    public Optional<Comment> getCommentByID(long commentId) {
+      for (Comment comment:comments) {
+        if(comment.getId() == commentId){
+          Optional<Comment> optionalComment = Optional.of(comment);
+          return optionalComment;
+        }
+      }
+      return null;
+    }
 }

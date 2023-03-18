@@ -18,17 +18,12 @@ import org.springframework.security.core.Authentication;
 public class PostController {
 
   @Autowired
-  private UserService userService;
-
-  @Autowired
   private PostService postService;
-
   @Autowired
-  private VotesService votesService;
+  private Utils utils;
 
   @GetMapping({"/","/followed-users/"})
   public String home(Model model) {
-    Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
     return "feed";
   }

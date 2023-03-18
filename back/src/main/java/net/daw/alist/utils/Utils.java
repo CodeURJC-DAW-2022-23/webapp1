@@ -8,19 +8,20 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class Utils {
-    public Utils(UserService userService, PostService postService) {
-        this.userService = userService;
-        this.postService = postService;
-    }
 
     @Autowired
     private UserService userService;
@@ -38,6 +39,19 @@ public class Utils {
         model.addAttribute("searchSuggestedUsers", userList);
         List<Post> postList = postService.findAll();
         model.addAttribute("searchSuggestedPosts", postList);
+    }
+
+    public String getCurrentUserRole(Authentication authentication) {
+        if(authentication == null)
+            return "GUEST";
+        User loggedUser = (User) authentication.getPrincipal();
+        Optional<User> user = userService.findByID(loggedUser.getId());
+        if (user.isPresent()){
+            return user.get().getRole().toString();
+        }
+        else{
+            throw new RuntimeException();
+        }
     }
 
 }

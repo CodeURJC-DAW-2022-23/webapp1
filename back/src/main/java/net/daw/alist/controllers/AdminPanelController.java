@@ -30,6 +30,8 @@ public class AdminPanelController {
   private TopicService topicService;
   @Autowired
   private PostService postService;
+  @Autowired
+  private Utils utils;
 
   @GetMapping("/admin-panel")
   public String adminPanel(Model model) {
@@ -41,7 +43,6 @@ public class AdminPanelController {
     List<Topic> topicList = topicService.findAll();
     model.addAttribute("topics", topicList);
 
-    Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
     return "admin-panel";
   }

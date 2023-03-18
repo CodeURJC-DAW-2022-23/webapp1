@@ -1,5 +1,7 @@
 package net.daw.alist.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import net.bytebuddy.dynamic.DynamicType;
 
 import java.util.*;
@@ -7,6 +9,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@Id")
 public class Post {
 
   @Id

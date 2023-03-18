@@ -50,13 +50,13 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
     // URLs that need authentication to access to it
     http
         .authorizeRequests().antMatchers(HttpMethod.POST, "/api/ajax/**").hasRole("USER")
-          .antMatchers(HttpMethod.POST, "/api/comment/**").hasAnyRole("ADMIN", "USER")
-          .antMatchers(HttpMethod.DELETE, "/api/comment/**").hasAnyRole("ADMIN", "USER")
-          .antMatchers(HttpMethod.POST, "/api/post/**").hasAnyRole("ADMIN", "USER")
-          .antMatchers(HttpMethod.DELETE, "/api/post/**").hasAnyRole("ADMIN", "USER")
-          .antMatchers(HttpMethod.POST, "/api/topic/**").hasRole("ADMIN")
-          .antMatchers(HttpMethod.DELETE, "/api/topic/**").hasRole("ADMIN")
-          .antMatchers(HttpMethod.PUT, "/api/user/**").hasRole("ADMIN");
+          .antMatchers(HttpMethod.POST, "/api/comments/**").hasAnyRole("ADMIN", "USER")
+          .antMatchers(HttpMethod.DELETE, "/api/comments/**").hasAnyRole("ADMIN", "USER")
+          .antMatchers(HttpMethod.POST, "/api/posts/**").hasAnyRole("ADMIN", "USER")
+          .antMatchers(HttpMethod.DELETE, "/api/posts/**").hasAnyRole("ADMIN", "USER")
+          .antMatchers(HttpMethod.POST, "/api/topics/**").hasRole("ADMIN")
+          .antMatchers(HttpMethod.DELETE, "/api/topics/**").hasRole("ADMIN")
+          .antMatchers(HttpMethod.PUT, "/api/users/**").hasRole("ADMIN");
 
 
     // Other URLs can be accessed without authentication

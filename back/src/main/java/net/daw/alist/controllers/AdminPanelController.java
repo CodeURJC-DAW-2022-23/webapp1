@@ -34,7 +34,7 @@ public class AdminPanelController {
   @GetMapping("/admin-panel")
   public String adminPanel(Model model) {
     List<User> userList = userService.findAll();
-    User admin = userService.findByUsername("admin");
+    User admin = userService.findByUsername("admin").orElseThrow();
     userList.remove(admin);
     model.addAttribute("users", userList);
 

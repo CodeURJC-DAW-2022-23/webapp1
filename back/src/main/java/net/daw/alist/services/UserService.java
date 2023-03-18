@@ -121,8 +121,8 @@ public class UserService implements UserDetailsService {
         userRepository.banUser(username);
     }
 
-    public User findByUsername(String string) {
-      return userRepository.findByUsername(string).orElseThrow();
+    public Optional<User> findByUsername(String string) {
+      return userRepository.findByUsername(string);
     }
 
     public List<User> findAll() {

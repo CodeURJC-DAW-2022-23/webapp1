@@ -1,6 +1,7 @@
 package net.daw.alist.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import net.bytebuddy.dynamic.DynamicType;
 
@@ -21,9 +22,11 @@ public class Post {
   private Date date;
   private String title;
 
+  @JsonIgnore
   @ManyToMany
   private Set<User> upVotes = new HashSet<>();
 
+  @JsonIgnore
   @ManyToMany
 
   private Set<User> downVotes = new HashSet<>();
@@ -41,6 +44,7 @@ public class Post {
   @OneToMany (orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
 
+  @JsonIgnore
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 

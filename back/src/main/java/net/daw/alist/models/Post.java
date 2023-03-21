@@ -44,7 +44,7 @@ public class Post {
   @OneToMany (orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
 
-  @JsonIgnore
+
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 

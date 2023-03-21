@@ -51,5 +51,22 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  //TODO: upvotes, followers
+  //TODO: followers
+  @PutMapping("/{username}/follow")
+  public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
+    User userProfile = (User) userService.loadUserByUsername(username);
+    User userSession = (User) authentication;
+    userSession.follow(userProfile);
+    userService.saveUser(userSession);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PutMapping("/{username}/unfollow")
+  public ResponseEntity<User> unfollow(Authentication authentication, @PathVariable String username){
+    User userProfile = (User) userService.loadUserByUsername(username);
+    User userSession = (User) authentication;
+    userSession.unFollow(userProfile);
+    userService.saveUser(userSession);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 }

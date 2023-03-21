@@ -49,4 +49,8 @@ public class PostService {
         postRepository.delete(post);
     }
 
+    public long count() {
+        return postRepository.count();
+    }
+
 }

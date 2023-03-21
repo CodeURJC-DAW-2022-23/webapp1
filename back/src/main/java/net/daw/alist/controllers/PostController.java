@@ -3,8 +3,6 @@ package net.daw.alist.controllers;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;
-import net.daw.alist.services.UserService;
-import net.daw.alist.services.VotesService;
 import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +27,7 @@ public class PostController {
   }
 
   @GetMapping("/posts")
-  public String getNewPosts(Model model, @RequestParam int page, Authentication authentication) {
+  public String getNewPosts(Model model, @RequestParam int page) {
     Page<Post> newPage = postService.getPosts(page);
     model.addAttribute("posts", newPage);
     return "post";

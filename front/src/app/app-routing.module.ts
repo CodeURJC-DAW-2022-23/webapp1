@@ -9,6 +9,8 @@ import { TopComponent } from './post/pages/top/top.component';
 import { AdminPanelComponent } from './admin/pages/admin-panel/admin-panel.component';
 import { ErrorComponent } from './shared/pages/error/error.component';
 
+import { AuthGuard } from './auth/guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +20,8 @@ const routes: Routes = [
     path: 'followed',
     component: FeedComponent,
     title: 'Alist | Followed',
+    canActivate: [AuthGuard],
+    data: { role: 'user' },
   },
   {
     path: 'sign-in',
@@ -33,6 +37,8 @@ const routes: Routes = [
     path: 'create',
     component: CreatePostComponent,
     title: 'Alist | Create Post',
+    canActivate: [AuthGuard],
+    data: { role: 'user' },
   },
   {
     path: 'post/:id',
@@ -49,6 +55,8 @@ const routes: Routes = [
     path: 'admin',
     component: AdminPanelComponent,
     title: 'Alist | Admin Panel',
+    canActivate: [AuthGuard],
+    data: { role: 'admin' },
   },
   {
     path: 'error',

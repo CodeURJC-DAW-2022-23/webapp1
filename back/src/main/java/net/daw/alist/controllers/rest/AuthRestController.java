@@ -1,5 +1,9 @@
 package net.daw.alist.controllers.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.daw.alist.security.jwt.AuthResponse;
 import net.daw.alist.security.jwt.LoginRequest;
 import net.daw.alist.security.jwt.UserLoginService;
@@ -18,6 +22,11 @@ public class AuthRestController {
   @Autowired
   private UserLoginService userService;
 
+  @Operation(summary = "Sign-in user with credentials")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Sign-in successful"),
+          @ApiResponse(responseCode = "403", description = "Sign-in unsuccessful")
+  })
   @PostMapping("/sign-in")
   public ResponseEntity<AuthResponse> login(
           @CookieValue(name = "accessToken", required = false) String accessToken,
@@ -26,12 +35,10 @@ public class AuthRestController {
     return userService.login(loginRequest, accessToken, refreshToken);
   }
 
-  @PostMapping("/refresh")
-  public ResponseEntity<AuthResponse> refreshToken(
-          @CookieValue(name = "refreshToken", required = false) String refreshToken) {
-    return userService.refresh(refreshToken);
-  }
-
+  @Operation(summary = "Sign-out user")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Sign-out successful")
+  })
   @PostMapping("/sign-out")
   public ResponseEntity<AuthResponse> logOut(HttpServletRequest request, HttpServletResponse response) {
     return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userService.logout(request, response)));

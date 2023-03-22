@@ -1,7 +1,10 @@
 package net.daw.alist.controllers.rest;
 
-import jdk.jshell.execution.Util;
-import net.daw.alist.models.Post;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.daw.alist.models.User;
 import net.daw.alist.services.UserService;
 import net.daw.alist.utils.Utils;
@@ -23,6 +26,12 @@ public class UserRestController {
   @Autowired
   private Utils utils;
 
+  @Operation(summary = "Get a user by its username")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "User found", content = {
+                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
+          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+  })
   @GetMapping("/{username}")
   public ResponseEntity<User> getUser(@PathVariable String username) {
     Optional<User> optionalUser = userService.findByUsername(username);
@@ -33,6 +42,13 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
+  @Operation(summary = "(Admin) Ban/unban user by its id")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
+                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
+          @ApiResponse(responseCode = "403", description = "Admin access required", content = @Content),
+          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+  })
   @PutMapping ("/{id}")
   public ResponseEntity<User> banUser(Authentication authentication, @PathVariable Long id) {
     String userRole = utils.getCurrentUserRole(authentication);
@@ -51,7 +67,6 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  //TODO: followers
   @PutMapping("/{username}/follow")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
     User userProfile = (User) userService.loadUserByUsername(username);

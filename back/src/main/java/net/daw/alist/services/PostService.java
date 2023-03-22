@@ -1,6 +1,7 @@
 package net.daw.alist.services;
 
 import lombok.AllArgsConstructor;
+import net.daw.alist.models.Comment;
 import net.daw.alist.models.Post;
 import net.daw.alist.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,13 @@ public class PostService {
         return postRepository.count();
     }
 
+  public Optional<Comment> getCommentByID(Post post, long commentId) {
+    List<Comment> comments = post.getComments();
+    for (Comment comment : comments) {
+      if (comment.getId() == commentId) {
+        return Optional.of(comment);
+      }
+    }
+    return Optional.empty();
+  }
 }

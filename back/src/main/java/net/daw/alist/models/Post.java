@@ -142,15 +142,4 @@ public class Post {
   public void addDownVote(User user){ this.downVotes.add(user); }
 
   public void removeDownVote(User user) { this.downVotes.remove(user); }
-
-
-    public Optional<Comment> getCommentByID(long commentId) {
-      for (Comment comment:comments) {
-        if(comment.getId() == commentId){
-          Optional<Comment> optionalComment = Optional.of(comment);
-          return optionalComment;
-        }
-      }
-      return null;
-    }
 }

@@ -12,10 +12,12 @@ const routes: Routes = [
       {
         path: 'following',
         component: FollowComponent,
+        title: 'Alist | User Following',
       },
       {
         path: 'followers',
         component: FollowComponent,
+        title: 'Alist | User Followers',
       },
       {
         path: '**',

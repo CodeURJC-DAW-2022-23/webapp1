@@ -17,35 +17,43 @@ const routes: Routes = [
   {
     path: 'followed',
     component: FeedComponent,
+    title: 'Alist | Followed',
   },
   {
     path: 'sign-in',
     component: SignInComponent,
+    title: 'Alist | Sign In',
   },
   {
     path: 'register',
     component: RegisterComponent,
+    title: 'Alist | Register',
   },
   {
     path: 'create',
     component: CreatePostComponent,
+    title: 'Alist | Create Post',
   },
   {
     path: 'post/:id',
     component: TopComponent,
+    title: 'Alist | Post',
   },
   {
     path: 'user/:id',
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),
+    title: 'Alist | User',
   },
   {
     path: 'admin',
     component: AdminPanelComponent,
+    title: 'Alist | Admin Panel',
   },
   {
     path: 'error',
     component: ErrorComponent,
+    title: 'Alist | Error',
   },
   {
     path: '**',

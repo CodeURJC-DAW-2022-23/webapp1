@@ -1,0 +1,36 @@
+.hamburger-container {
+  width: 100%;
+}
+
+.collapse {
+  width: 100%;
+}
+
+.no-transition {
+  -webkit-transition: height 0.001s;
+  -moz-transition: height 0.001s;
+  -ms-transition: height 0.001s;
+  -o-transition: height 0.001s;
+  transition: height 0.001s;
+}
+
+.usernameSug {
+  font-weight: 600;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+}
+
+i {
+  color: white;
+  cursor: pointer;
+}
+
+.collapsing {
+  transition: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+}

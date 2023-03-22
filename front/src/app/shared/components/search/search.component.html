@@ -1,1 +1,44 @@
-<p>search works!</p>
+<div class="body">
+  <!-- TODO: hideContainer() -->
+  <div class="searchWrapper bg-white" onmouseleave="hideContainer()">
+    <div class="d-flex w-100" role="search">
+      <!-- TODO: showContainer() -->
+      <input class="searchBar form-control border-0 shadow-none w-100" id="searchBar" type="search" placeholder="Search"
+        aria-label="Search" onfocus="showContainer()" onmouseover="showContainer()" data-search>
+      <div class="d-flex justify-content-center">
+        <i class="searchIcon fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <div class="autoCompleteBox w-100 z-2">
+      <div class="separator text-center">Users</div>
+      <!-- TODO: {{#searchSuggestedUsers}} -->
+      <!-- TODO: username -->
+      <a class="card w-100 text-decoration-none" [routerLink]="['/user/username']">
+        <div class="cardLink text-left d-flex justify-content-center ms-0 me-auto">
+          <!-- TODO: imagePath -->
+          <img src="imagePath" alt="profilePic" class="profile-pic-search rounded-circle me-2">
+          <!-- TODO: username -->
+          <div class="usernameSug header">username</div>
+          <div class="body"></div>
+        </div>
+      </a>
+      <!-- TODO: {{/searchSuggestedUsers}} -->
+      <div class="separator text-center">Posts</div>
+      <!-- TODO: {{#searchSuggestedPosts}} -->
+      <!-- TODO: id -->
+      <a class="card w-100 text-decoration-none" [routerLink]="['/top-list/id']">
+        <div class="cardLink text-left d-flex flex-column justify-content-center ms-0 me-auto">
+          <div class="d-flex flex-row">
+            <!-- TODO: author.imagePath -->
+            <img src="author.imagePath" alt="profilePic" class="profile-pic-search rounded-circle me-2">
+            <!-- TODO: author.username -->
+            <div class="usernameSug header">author.username</div>
+          </div>
+          <!-- TODO: title -->
+          <div class="body">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &#9900; title</div>
+        </div>
+      </a>
+      <!-- TODO: {{/searchSuggestedPosts}} -->
+    </div>
+  </div>
+</div>

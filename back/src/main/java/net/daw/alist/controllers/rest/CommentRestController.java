@@ -31,11 +31,17 @@ public class CommentRestController {
   @Autowired
   private UserService userService;
 
-
+  @Operation(summary = "Delete a comment of a post")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "201", description = "Comment added", content = {
+                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))}),
+          @ApiResponse(responseCode = "403", description = "Can´t comment if not registered", content = @Content)
+  })
   @PostMapping("/{postId}")
   @ResponseStatus(HttpStatus.CREATED)
   public Comment createComment(@RequestBody String content, @PathVariable long postId, Authentication auth) throws SQLException, IOException {
-    User user = (User) auth.getPrincipal();
+    User author = (User) auth.getPrincipal();
+    User user = userService.findByID(author.getId()).orElseThrow();
     Comment comment = new Comment(user, content, null);
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {

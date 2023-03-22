@@ -64,7 +64,7 @@ public class AdminPanelController {
 
   @GetMapping("/admin-panel/lock/{id}")
   public String changeLockUser(Model model, @PathVariable long id) {
-    User user = userService.findById(id);
+    User user = userService.findByID(id).orElseThrow();
     if (user.isLocked()) {
       userService.unbanUser(user.getUsername());
     } else {

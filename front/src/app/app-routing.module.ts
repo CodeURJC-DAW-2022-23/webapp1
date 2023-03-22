@@ -41,12 +41,12 @@ const routes: Routes = [
     data: { role: 'user' },
   },
   {
-    path: 'post/:id',
+    path: 'post/:postId',
     component: TopComponent,
     title: 'Alist | Post',
   },
   {
-    path: 'user/:id',
+    path: 'user/:username',
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),
     title: 'Alist | User',

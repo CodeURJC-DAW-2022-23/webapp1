@@ -1,48 +1,54 @@
 <div class="body text-center">
   <main class="form-signin w-100 m-auto">
-    <form action="/register" method="post" id="registerForm">
+    <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="save()">
 
       <img class="mb-4" src="assets/images/alistLogo.svg" alt="" width="250" height="150">
 
-      <!-- TODO: error message -->
-      <!-- {{#error}}
-      <div class="alert alert-danger" role="alert">
-        {{errorMSG}}
-      </div>
-      {{/error}} -->
-
-      <!-- TODO: verify message -->
-      <!-- {{#notVerified}}
-      <div class="alert alert-info" role="alert">
-        {{verifyMSG}}
-      </div>
-      {{/notVerified}} -->
-
       <div class="form-floating mb-2">
-        <input type="text" class="form-control" id="usernameInput" placeholder="user" name="username">
+        <input type="text" class="form-control" id="usernameInput" placeholder="user" name="username"
+          formControlName="name">
         <label for="usernameInput" class="text-muted">Username</label>
+        <div class="alert alert-danger" role="alert" *ngIf="isInvalidField('name')">
+          Invalid username
+        </div>
       </div>
-      <div class="form-floating mb-4">
-        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" name="email">
-        <label for="emailInput" class="text-muted">Email address</label>
-      </div>
+
       <div class="form-floating mb-2">
-        <!-- TODO: validatePasswordTOS() -->
-        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
-          onchange='validatePasswordTOS()'>
-        <label for="password" class="text-muted">Password</label>
+        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" name="email"
+          formControlName="email">
+        <label for="emailInput" class="text-muted">Email address</label>
+        <div class="alert alert-danger" role="alert" *ngIf="isInvalidField('email')">
+          Invalid email
+        </div>
       </div>
-      <div class="form-floating">
-        <!-- TODO: validatePasswordTOS() -->
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Password" name="confirmPassword"
-          onchange='validatePasswordTOS()'>
-        <label for="confirmPassword" class="text-muted">Repeat password</label>
+
+      <div formGroupName="passwords">
+        <div class="form-floating mb-2">
+          <input type="password" class="form-control" id="password" placeholder="password" name="password"
+            formControlName="password">
+          <label for="password" class="text-muted">Password</label>
+          <div class="alert alert-danger" role="alert" *ngIf="isInvalidField(['passwords', 'password'])">
+            Invalid password
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input type="password" class="form-control" id="confirmPassword" placeholder="password" name="confirmPassword"
+            formControlName="confirmPassword">
+          <label for="confirmPassword" class="text-muted">Repeat password</label>
+          <div class="alert alert-danger" role="alert" *ngIf="isInvalidField(['passwords', 'confirmPassword'])">
+            Invalid confirm password
+          </div>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="isNotSamePassword()">
+          Passwords need to match
+        </div>
       </div>
 
       <div class="checkbox mb-3">
         <label>
-          <!-- TODO: validatePasswordTOS() -->
-          <input type="checkbox" id="checkBox" value="TOSagreement" onchange='validatePasswordTOS();'> I agree to the
+          <input type="checkbox" id="checkBox" value="TOSagreement" formControlName="termsOfService"> I agree to the
           <a class="text-white"
             href="https://www.termsfeed.com/public/uploads/2021/12/sample-terms-of-service-template.pdf"
             target="_blank">
@@ -50,7 +56,11 @@
           </a>
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" id="submit" type="submit" disabled>Submit</button>
+
+      <button class="w-100 btn btn-lg btn-primary" id="submit" type="submit" [disabled]="!registerForm.valid">
+        Submit
+      </button>
+
       <div class="linkBox mt-4">
         <a class="link text-white" [routerLink]="['/sign-in']">Sign in instead</a>
         <p class="mb-0">or</p>

@@ -1,1 +1,38 @@
-<p>sign-in works!</p>
+<div class="body text-center">
+  <main class="form-signin w-100 m-auto">
+    <form action="/sign-in" method="post" id="loginForm">
+
+      <img class="mb-4" src="assets/images/alistLogo.svg" alt="" width="250" height="150">
+
+      <!-- TODO: error message -->
+      <!-- {{#error}}
+      <div class="alert alert-danger" role="alert">
+        Incorrect username or password
+      </div>
+      {{/error}} -->
+
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+        <label for="username" class="text-muted">Username</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+        <label for="password" class="text-muted">Password</label>
+      </div>
+
+      <!--<div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>-->
+
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <div class="linkBox mt-4">
+        <a class="link text-white" [routerLink]="['/register']">Create a new account</a>
+        <p class="mb-0">or</p>
+        <a class="link text-white" [routerLink]="['/']">Join as a guest</a>
+      </div>
+
+    </form>
+  </main>
+</div>

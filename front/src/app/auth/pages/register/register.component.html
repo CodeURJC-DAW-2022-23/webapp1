@@ -1,1 +1,62 @@
-<p>register works!</p>
+<div class="body text-center">
+  <main class="form-signin w-100 m-auto">
+    <form action="/register" method="post" id="registerForm">
+
+      <img class="mb-4" src="assets/images/alistLogo.svg" alt="" width="250" height="150">
+
+      <!-- TODO: error message -->
+      <!-- {{#error}}
+      <div class="alert alert-danger" role="alert">
+        {{errorMSG}}
+      </div>
+      {{/error}} -->
+
+      <!-- TODO: verify message -->
+      <!-- {{#notVerified}}
+      <div class="alert alert-info" role="alert">
+        {{verifyMSG}}
+      </div>
+      {{/notVerified}} -->
+
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="usernameInput" placeholder="user" name="username">
+        <label for="usernameInput" class="text-muted">Username</label>
+      </div>
+      <div class="form-floating mb-4">
+        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" name="email">
+        <label for="emailInput" class="text-muted">Email address</label>
+      </div>
+      <div class="form-floating mb-2">
+        <!-- TODO: validatePasswordTOS() -->
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+          onchange='validatePasswordTOS()'>
+        <label for="password" class="text-muted">Password</label>
+      </div>
+      <div class="form-floating">
+        <!-- TODO: validatePasswordTOS() -->
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Password" name="confirmPassword"
+          onchange='validatePasswordTOS()'>
+        <label for="confirmPassword" class="text-muted">Repeat password</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <!-- TODO: validatePasswordTOS() -->
+          <input type="checkbox" id="checkBox" value="TOSagreement" onchange='validatePasswordTOS();'> I agree to the
+          <a class="text-white"
+            href="https://www.termsfeed.com/public/uploads/2021/12/sample-terms-of-service-template.pdf"
+            target="_blank">
+            Terms of service
+          </a>
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" id="submit" type="submit" disabled>Submit</button>
+      <div class="linkBox mt-4">
+        <a class="link text-white" [routerLink]="['/sign-in']">Sign in instead</a>
+        <p class="mb-0">or</p>
+        <a class="link text-white" [routerLink]="['/']">Join as a guest</a>
+      </div>
+
+    </form>
+  </main>
+</div>

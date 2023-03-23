@@ -8,22 +8,20 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileComponent,
-    children: [
-      {
-        path: 'following',
-        component: FollowComponent,
-        title: 'Alist | User Following',
-      },
-      {
-        path: 'followers',
-        component: FollowComponent,
-        title: 'Alist | User Followers',
-      },
-      {
-        path: '**',
-        redirectTo: '',
-      },
-    ],
+  },
+  {
+    path: 'following',
+    component: FollowComponent,
+    title: 'Alist | User Following',
+  },
+  {
+    path: 'followers',
+    component: FollowComponent,
+    title: 'Alist | User Followers',
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
 

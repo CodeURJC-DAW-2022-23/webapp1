@@ -1,11 +1,12 @@
 html,
 body {
   height: 100%;
+  background-color: black;
+  color: white;
 }
 
 .body {
   align-items: center;
-  background-color: black;
 }
 
 /* button */

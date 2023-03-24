@@ -6,6 +6,10 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import net.daw.alist.models.Comment;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
@@ -38,19 +42,18 @@ public class CommentRestController {
           @ApiResponse(responseCode = "403", description = "Can´t comment if not registered", content = @Content)
   })
   @PostMapping("/{postId}")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Comment createComment(@RequestBody String content, @PathVariable long postId, Authentication auth) throws SQLException, IOException {
+  public ResponseEntity<Comment> createComment(@RequestBody Data content, @PathVariable long postId, Authentication auth) throws SQLException, IOException {
     User author = (User) auth.getPrincipal();
     User user = userService.findByID(author.getId()).orElseThrow();
-    Comment comment = new Comment(user, content, null);
+    Comment comment = new Comment(user, content.getContent(), content.getImagePath());
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
       Post post = optionalPost.get();
       post.addComment(comment);
       postService.save(post);
-      return comment;
+      return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
-    return null;
+    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
   }
 
   @Operation(summary = "Get all the comments of a post")
@@ -95,7 +98,7 @@ public class CommentRestController {
           @ApiResponse(responseCode = "404", description = "Post or comment not found", content = @Content)
   })
   @DeleteMapping("/{postId}/{commentId}")
-  public ResponseEntity<Post> deletePost(@PathVariable long postId, @PathVariable long commentId, Authentication auth) {
+  public ResponseEntity<Post> deleteComment(@PathVariable long postId, @PathVariable long commentId, Authentication auth) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
       Post post = optionalPost.get();
@@ -113,5 +116,13 @@ public class CommentRestController {
       }
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+  @AllArgsConstructor
+  @Getter
+  @Setter
+  @EqualsAndHashCode
+  public static class Data {
+    private final String content;
+    private final String imagePath;
   }
 }

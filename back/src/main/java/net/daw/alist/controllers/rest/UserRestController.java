@@ -67,18 +67,28 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
+  @Operation(summary = "Current user follows another user by its name")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "User found and followed/unfollowed state changed", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+  })
   @PutMapping("/{username}/follows")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
-    Optional<User> optionalUser = (Optional<User>) userService.loadUserByUsername(username);
-    User userProfile = (User) userService.loadUserByUsername(username);
+    Optional<User> optionalUser =  userService.findByUsername(username);
+    if(authentication == null)
+      return  new ResponseEntity<>(HttpStatus.FORBIDDEN);
     User userSession = (User) authentication;
-    if (userProfile.getFollowers().contains(userSession))
-      userSession.unFollow(userProfile);
-    else
-      userSession.follow(userProfile);
-    userSession.follow(userProfile);
-    userService.saveUser(userSession);
-    return new ResponseEntity<>(HttpStatus.OK);
+    if( optionalUser.isPresent()) {
+      User userProfile = optionalUser.get();
+      if (userProfile.getFollowers().contains(userSession))
+        userSession.unFollow(userProfile);
+      else
+        userSession.follow(userProfile);
+      userService.saveUser(userSession);
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
 }

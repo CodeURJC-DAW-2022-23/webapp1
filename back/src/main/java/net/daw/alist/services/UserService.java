@@ -34,6 +34,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+
     public Optional<User> findByID(Long id){
         return userRepository.findById(id);
     }

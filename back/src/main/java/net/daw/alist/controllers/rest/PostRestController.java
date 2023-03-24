@@ -91,7 +91,13 @@ public class PostRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @PutMapping("/{postId}/upvote")
+  @Operation(summary = "Current user upvote a post")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "User found and upvote the post", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+  })
+  @PutMapping("/{postId}/upvotes")
   public ResponseEntity<Post> upvoteAction(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if(!(authentication == null) && optionalPost.isPresent() ) {
@@ -108,7 +114,13 @@ public class PostRestController {
 
   }
 
-  @PutMapping("/{postId}/downvote")
+  @Operation(summary = "Current user downvote a post")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "User found and downvoted the post", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+  })
+  @PutMapping("/{postId}/downvotes")
   public ResponseEntity<Post> downvoteAction(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if(!(authentication == null) && optionalPost.isPresent() ) {

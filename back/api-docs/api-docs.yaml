@@ -1,0 +1,667 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8443
+  description: Generated server url
+paths:
+  /api/users/{username}/follows:
+    put:
+      tags:
+      - user-rest-controller
+      summary: Current user follows another user by its name
+      operationId: follow
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "403":
+          description: Current user not logged in
+        "404":
+          description: User not found
+        "200":
+          description: User found and followed/unfollowed state changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/users/{id}:
+    put:
+      tags:
+      - user-rest-controller
+      summary: (Admin) Ban/unban user by its id
+      operationId: banUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Admin access required
+        "200":
+          description: User found and banned/unbanned state changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+  /api/posts/{postId}/upvotes:
+    put:
+      tags:
+      - post-rest-controller
+      summary: Current user upvote a post
+      operationId: upvotePost
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Current user not logged in
+        "404":
+          description: Post not found
+        "200":
+          description: User found and upvoted the post
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+  /api/posts/{postId}/downvotes:
+    put:
+      tags:
+      - post-rest-controller
+      summary: Current user downvote a post
+      operationId: downvotePost
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Current user not logged in
+        "200":
+          description: User found and downvoted the post
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "404":
+          description: Post not found
+  /api/users/:
+    post:
+      tags:
+      - user-rest-controller
+      summary: Register a new user
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationRequest'
+        required: true
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Username/password is shorter than 4 characters or invalid email
+            address
+        "403":
+          description: Username already taken
+  /api/topics/:
+    post:
+      tags:
+      - topic-rest-controller
+      summary: Create topic
+      operationId: createTopic
+      parameters:
+      - name: topic
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Topic'
+      responses:
+        "201":
+          description: Topic created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+        "403":
+          description: Create topic only for admin
+  /api/posts/:
+    post:
+      tags:
+      - post-rest-controller
+      summary: Create new post
+      operationId: createPost
+      parameters:
+      - name: post
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Post'
+      responses:
+        "403":
+          description: Can't create post if not registered
+        "201":
+          description: Post created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+  /api/comments/{postId}:
+    post:
+      tags:
+      - comment-rest-controller
+      summary: Delete a comment of a post
+      operationId: createComment
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+        required: true
+      responses:
+        "201":
+          description: Comment added
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        "403":
+          description: Can´t comment if not registered
+  /api/auth/sign-out:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Sign-out user
+      operationId: logOut
+      responses:
+        "200":
+          description: Sign-out successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/sign-in:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Sign-in user with credentials
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "403":
+          description: Sign-in unsuccessful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "200":
+          description: Sign-in successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/users/{username}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get a user by its username
+      operationId: getUser
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+  /api/topics/{topicId}:
+    get:
+      tags:
+      - topic-rest-controller
+      summary: Get specific topic
+      operationId: getTopic
+      parameters:
+      - name: topicId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Topic not found
+        "200":
+          description: Topic found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    delete:
+      tags:
+      - topic-rest-controller
+      summary: Delete specific topic
+      operationId: deleteTopic
+      parameters:
+      - name: topicId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Topic not found
+        "200":
+          description: Topic deleted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+        "403":
+          description: Delete topic only for admin
+  /api/posts/{postId}:
+    get:
+      tags:
+      - post-rest-controller
+      summary: Get specific post
+      operationId: getPost
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Post found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "404":
+          description: Post not found
+    delete:
+      tags:
+      - post-rest-controller
+      summary: Delete specific post
+      operationId: deletePost
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Can't delete other one post
+        "200":
+          description: Post deleted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "404":
+          description: Post not found
+  /api/comments/user/{userId}:
+    get:
+      tags:
+      - comment-rest-controller
+      summary: Get all the comments of an user
+      operationId: getUserComments
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        "404":
+          description: User not found
+  /api/comments/post/{postId}:
+    get:
+      tags:
+      - comment-rest-controller
+      summary: Get all the comments of a post
+      operationId: getPostComments
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Post found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        "404":
+          description: Post not found
+  /api/ajax/posts:
+    get:
+      tags:
+      - ajax-rest-controller
+      summary: Load more posts
+      operationId: getNewPosts
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: New posts loaded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "404":
+          description: No new posts found
+  /api/ajax/followed-users/posts:
+    get:
+      tags:
+      - ajax-rest-controller
+      summary: Load more posts from followed-users
+      operationId: getFollowedUsersPosts
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: New posts loaded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "404":
+          description: No new posts found
+  /api/comments/{postId}/{commentId}:
+    delete:
+      tags:
+      - comment-rest-controller
+      summary: Delete a comment of a post
+      operationId: deleteComment
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Comment deleted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        "403":
+          description: Can´t delete other one comment
+        "404":
+          description: Post or comment not found
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        author:
+          $ref: '#/components/schemas/User'
+        date:
+          type: string
+          format: date-time
+        content:
+          type: string
+        imagePath:
+          type: string
+        '@Id':
+          type: integer
+          format: int32
+    GrantedAuthority:
+      type: object
+      properties:
+        authority:
+          type: string
+    Post:
+      type: object
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+        date:
+          type: string
+          format: date-time
+        title:
+          type: string
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostItem'
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        '@Id':
+          type: integer
+          format: int32
+    PostItem:
+      type: object
+      properties:
+        description:
+          type: string
+        imageFile:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+          writeOnly: true
+        '@Id':
+          type: integer
+          format: int32
+    Topic:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        posts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        '@Id':
+          type: integer
+          format: int32
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date-time
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum:
+          - USER
+          - ADMIN
+        enabled:
+          type: boolean
+        locked:
+          type: boolean
+        bio:
+          type: string
+        imagePath:
+          type: string
+        posts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        admin:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedAuthority'
+        accountNonLocked:
+          type: boolean
+        credentialsNonExpired:
+          type: boolean
+        accountNonExpired:
+          type: boolean
+        '@Id':
+          type: integer
+          format: int32
+    RegistrationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Data:
+      type: object
+      properties:
+        content:
+          type: string
+        imagePath:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string

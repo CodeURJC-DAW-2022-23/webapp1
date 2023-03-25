@@ -2,6 +2,7 @@ package net.daw.alist.controllers;
 
 import java.util.*;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.Topic;
 import net.daw.alist.services.PostService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Hidden
 @RestController
 public class ChartController {
 

@@ -1,15 +1,16 @@
 package net.daw.alist.models;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import net.bytebuddy.dynamic.DynamicType;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@Id")
 public class Post {
 
   @Id
@@ -21,9 +22,11 @@ public class Post {
   private Date date;
   private String title;
 
+  @JsonIgnore
   @ManyToMany
   private Set<User> upVotes = new HashSet<>();
 
+  @JsonIgnore
   @ManyToMany
 
   private Set<User> downVotes = new HashSet<>();
@@ -40,6 +43,7 @@ public class Post {
 
   @OneToMany (orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
+
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
@@ -138,6 +142,4 @@ public class Post {
   public void addDownVote(User user){ this.downVotes.add(user); }
 
   public void removeDownVote(User user) { this.downVotes.remove(user); }
-
-
 }

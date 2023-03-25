@@ -23,7 +23,7 @@ public class VotesService {
 
 
     @Transactional
-    public void actionUpVote(Long postID, User user){
+    public void actionUpVote(Long postID, User user) {
         Post post = postRepository.findById(postID).orElseThrow();
         if(post.getUpVotes().contains(user))
             post.removeUpVote(user);
@@ -36,7 +36,7 @@ public class VotesService {
         postRepository.save(post);
     }
     @Transactional
-    public void actionDownVote(Long postID, User user){
+    public void actionDownVote(Long postID, User user) {
         Post post = postRepository.findById(postID).orElseThrow();
         if (post.getDownVotes().contains(user))
             post.removeDownVote(user);
@@ -49,14 +49,12 @@ public class VotesService {
         postRepository.save(post);
     }
 
-    public void isVoted(Model model, Post post, Authentication authentication)
-    {
-        User userProfile = (User) userService.loadUserByUsername(((User) authentication  //authentication no devuelve el mismo objeto que hay en la base de datos. Por tanto no se puede usar la funcion contains
-                .getPrincipal())
-                .getUsername());
+    public void isVoted(Model model, Post post, Authentication authentication) {
+        if (authentication == null) return;
+        String userAuthUsername = ((User) authentication.getPrincipal()).getUsername();
+        User userProfile = (User) userService.loadUserByUsername(userAuthUsername);
         model.addAttribute("upVoted",post.getUpVotes().contains(userProfile));
         model.addAttribute("downVoted",post.getDownVotes().contains(userProfile));
     }
-
 
 }

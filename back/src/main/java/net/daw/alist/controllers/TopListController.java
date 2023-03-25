@@ -33,9 +33,11 @@ public class TopListController {
   private User userProfile;
   private Post post;
 
+  @Autowired
+  private Utils utils;
+
   @GetMapping("/top-list/{id}")
   public String topList(Model model, Authentication authentication, @PathVariable long id){
-    Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
 
     if(authentication == null){

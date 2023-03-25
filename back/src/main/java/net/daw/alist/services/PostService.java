@@ -1,6 +1,7 @@
 package net.daw.alist.services;
 
 import lombok.AllArgsConstructor;
+import net.daw.alist.models.Comment;
 import net.daw.alist.models.Post;
 import net.daw.alist.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PostService {
     private final int pageSize = 2;
 
     public Page<Post> getPosts(int pageNumber) {
-        return postRepository.findAll(PageRequest.of(pageNumber, pageSize,Sort.by("numUpvotes").descending()));
+        return postRepository.findAll(PageRequest.of(pageNumber, pageSize,Sort.by("votes").descending()));
     }
 
     public Page<Post> getUserPosts(int pageNumber, int user_id) {
@@ -45,4 +46,21 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public void delete(Post post) {
+        postRepository.delete(post);
+    }
+
+    public long count() {
+        return postRepository.count();
+    }
+
+  public Optional<Comment> getCommentByID(Post post, long commentId) {
+    List<Comment> comments = post.getComments();
+    for (Comment comment : comments) {
+      if (comment.getId() == commentId) {
+        return Optional.of(comment);
+      }
+    }
+    return Optional.empty();
+  }
 }

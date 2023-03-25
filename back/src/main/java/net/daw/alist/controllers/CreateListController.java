@@ -34,19 +34,15 @@ public class CreateListController {
 
   @Autowired
   TopicService topicService;
-
   @Autowired
   PostItemService postItemService;
-
-  @Autowired
-  private UserService userService;
-
   @Autowired
   PostService postService;
+  @Autowired
+  private Utils utils;
 
   @GetMapping("/create-list")
   public String createList(Model model) {
-    Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
     List<String> topicOptions = topicService.getAllTopics();
     model.addAttribute("topicOptions", topicOptions);

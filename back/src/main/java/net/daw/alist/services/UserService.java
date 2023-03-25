@@ -34,6 +34,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+
     public Optional<User> findByID(Long id){
         return userRepository.findById(id);
     }
@@ -121,15 +122,12 @@ public class UserService implements UserDetailsService {
         userRepository.banUser(username);
     }
 
-    public User findByUsername(String string) {
-      return userRepository.findByUsername(string).orElseThrow();
+    public Optional<User> findByUsername(String string) {
+      return userRepository.findByUsername(string);
     }
 
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(long id) {
-        return userRepository.findById(id).orElseThrow();
-    }
 }

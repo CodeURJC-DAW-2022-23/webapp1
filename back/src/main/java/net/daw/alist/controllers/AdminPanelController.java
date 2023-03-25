@@ -30,25 +30,26 @@ public class AdminPanelController {
   private TopicService topicService;
   @Autowired
   private PostService postService;
+  @Autowired
+  private Utils utils;
 
   @GetMapping("/admin-panel")
   public String adminPanel(Model model) {
     List<User> userList = userService.findAll();
-    User admin = userService.findByUsername("admin");
+    User admin = userService.findByUsername("admin").orElseThrow();
     userList.remove(admin);
     model.addAttribute("users", userList);
 
     List<Topic> topicList = topicService.findAll();
     model.addAttribute("topics", topicList);
 
-    Utils utils  = new Utils(userService, postService);
     utils.searchBarInitializer(model);
     return "admin-panel";
   }
 
   @GetMapping("/admin-panel/delete/{id}")
   public String deleteFromTopic(Model model, @PathVariable long id) {
-    Topic topic = topicService.findById(id);
+    Topic topic = topicService.findById(id).orElseThrow();
     topicService.delete(topic);
     return "redirect:/admin-panel";
   }
@@ -63,13 +64,12 @@ public class AdminPanelController {
 
   @GetMapping("/admin-panel/lock/{id}")
   public String changeLockUser(Model model, @PathVariable long id) {
-    User user = userService.findById(id);
+    User user = userService.findByID(id).orElseThrow();
     if (user.isLocked()) {
       userService.unbanUser(user.getUsername());
     } else {
       userService.banUser(user.getUsername());
     }
-    
     return "redirect:/admin-panel";
   }
   

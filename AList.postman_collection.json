@@ -1,0 +1,123 @@
+{
+  "info": {
+    "_postman_id": "28f34c32-59c3-47a9-bbe0-2792c5591351",
+    "name": "AList",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26323755"
+  },
+  "item": [
+    {
+      "name": "CommentRestController",
+      "item": [
+        {
+          "name": "getUserComments",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"id\":90, \"author\":\"Peepo\", \"date\": null, \"content\":\"Fran gei\",\"imagePath\": null}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:8443/api/comments/user/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "comments",
+                "user",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPostComments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/comments/post/42",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "comments",
+                "post",
+                "42"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteComment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/comments/40/44",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "comments",
+                "40",
+                "44"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createComment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \r\n    \"content\":\"esto es un comentario\",\r\n    \"imagePath\":null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:8443/api/comments/40",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "comments",
+                "40"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

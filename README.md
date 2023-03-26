@@ -269,3 +269,133 @@ Now selecting one of the user from the list we're going to be redirected to the 
 | #3          | [PostRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/repositories/PostRepository.java) |
 | #4          | [navbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/navbar.html)                          |
 | #5          | [/posts models](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/post.html)                          |
+
+## Rest Class Diagram
+
+## Docker Image Construction
+
+## Instructions to run the app 
+
+## API Specification
+
+## Group members participation
+
+### Frantzes
+
+#### Textual description: 
+
+#### The five most important commits:
+
+| Commit number | Description                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| #1            |                    |
+| #2            |                   |
+| #3            |         |
+| #4            |                  |
+| #5            |  |
+
+#### The five most participated files:
+
+| File number | File                                                                                                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          |                                   |
+| #2          |                             |
+| #3          |                           |
+| #4          | 
+| #5          |                                                        |
+
+### Vicente
+
+#### Textual description: 
+
+#### The five most important commits:
+
+| Commit number | Description                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| #1            |  |
+| #2            |   |
+| #3            |            |
+| #4            |       |
+| #5            |            |
+
+#### The five most participated files:
+
+| File number | File                                                                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          |   |
+| #2          |                                  |
+| #3          |  |
+| #4          |      |
+| #5          |      |
+
+### Alberto
+
+#### Textual description:
+
+#### The five most important commits:
+
+| Commit number | Description                                                                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            |                 |
+| #2            |  |
+| #3            |                 |
+| #4            |                 |
+| #5            |                    |
+
+#### The five most participated files:
+
+| File number | File                                                                                                                                                                                               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | |
+| #2          |                                                               |
+| #3          |           |
+| #4          |                                    |
+| #5          |                               |
+
+### Alejandro
+
+#### Textual description: 
+
+#### The five most important commits:
+
+| Commit number | Description                                                                                                          |
+| ------------- | -------------------------------------------------------------------------------------------------------------------- |
+| #1            |          |
+| #2            |      |
+| #3            | |
+| #4            |       |
+| #5            |        |
+
+#### The five most participated files:
+
+| File number | File                                                                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          |     |
+| #2          |   |
+| #3          |  |
+| #4          |    |
+| #5          |                              |
+
+### Gledrian
+
+#### Textual description:
+
+#### Five most important commits:
+
+| Commit number | Description                                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| #1            |  |
+| #2            |              |
+| #3            |            |
+| #4            |        |
+| #5            |         |
+
+#### Five most participated files:
+
+| File number | File                                                                                                                                               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          |                 |
+| #2          |   |
+| #3          |  |
+| #4          |                       |
+| #5          |                          |

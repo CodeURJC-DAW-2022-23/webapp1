@@ -270,39 +270,48 @@ Now selecting one of the user from the list we're going to be redirected to the 
 | #4          | [navbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/navbar.html)                          |
 | #5          | [/posts models](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/post.html)                          |
 
+
+## Phase 3
 ## Rest Class Diagram
+![phase 3 class diagram](https://user-images.githubusercontent.com/103210830/227791284-7528a13d-13da-4d29-b20c-cf61fe9adb9e.png)
+
 
 ## Docker Image Construction
 
 ## Instructions to run the app 
 
-## API Specification
+## OpenAPI Specification (SpringDoc)
+YAML file:
+https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/api-docs/api-docs.yaml
+
+Visualize HTML file:
+https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs.html
 
 ## Group members participation
 
 ### Frantzes
 
-#### Textual description: 
+#### Textual description: Rest security configuration, AuthRestController, UserRestController register/banUser/getUser methods and SpringDoc generation.
 
 #### The five most important commits:
 
 | Commit number | Description                                                                                                                                      |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| #1            |                    |
-| #2            |                   |
-| #3            |         |
-| #4            |                  |
-| #5            |  |
+| #1            | [Rest security config added](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5238a4d37e9761e9a0c2f77b60e6ca0835be1983)                    |
+| #2            | [Autowired Utils class removes repeated code](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/6d8026f718f403ce035f6a9cbc9a21f5086cd8af)   |
+| #3            | [getUser and banUser methods added to UserRestController](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/808597eee0028c4f8d458418b1e67b5b819ac833)|
+| #4            | [register method added inside UserRestController, documentation added, refactors and fixes to follow and upvote/downvote methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7ab4885d96881376c9f9be64aca868a9d9ec8121)|
+| #5            | [Added SpringDoc](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/4368cccc84e43764e06fa40fcae94d3a80b29a29)                              |
 
 #### The five most participated files:
 
 | File number | File                                                                                                                                                                                              |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          |                                   |
-| #2          |                             |
-| #3          |                           |
-| #4          | 
-| #5          |                                                        |
+| #1          | [AuthRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/AuthRestController.java)                                  |
+| #2          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java)                            |
+| #3          | [RestSecurityConfig.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/security/RestSecurityConfig.java)                          |
+| #4          | [jwt package](https://github.com/CodeURJC-DAW-2022-23/webapp1/tree/main/back/src/main/java/net/daw/alist/security/jwt) |
+| #5          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)                                                       |
 
 ### Vicente
 

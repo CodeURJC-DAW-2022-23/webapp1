@@ -89,8 +89,10 @@ public class UserRestController {
       User user = optionalUser.get();
       if (user.isLocked()) {
         userService.unbanUser(user.getUsername());
+        user.setLocked(false);
       } else {
         userService.banUser(user.getUsername());
+        user.setLocked(true);
       }
       return new ResponseEntity<>(user, HttpStatus.OK);
     }

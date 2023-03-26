@@ -325,7 +325,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | #2            |  [createComment added and documented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/e613ab65efb221ecb1e55155de1e3c14567988d3) |
 | #3            |  [CommentRestController documented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/09a32de06637e7bc6bed8dcd720abf413738ee86)          |
 | #4            |  [getUserComments and getPostComments implemented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3a7943cb1bf0eb3d5327cf6bc977a70b7b26c7d2)     |
-| #5            | [createComment fixed](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f04c9fae3bdbbfa32a725fc13e984ea6bea08109)           |
+| #5            | [banUser fixed](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a6fdde2d84fcf530634dadf9fbcf124a89b2cb67)           |
 
 #### The five most participated files:
 
@@ -333,9 +333,9 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | #1          |  [CommentRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/CommentRestController.java) |
 | #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/AList.postman_collection.json)                                 |
-| #3          |  |
-| #4          |      |
-| #5          |      |
+| #3          |  [PostService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostService.java)|
+| #4          |   [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java)   |
+| #5          |   [Comment](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Comment.java)   |
 
 ### Alberto
 

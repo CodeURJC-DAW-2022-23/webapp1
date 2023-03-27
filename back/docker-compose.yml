@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    ports:
+      - 8443:8443
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/alist
+      - SPRING_DATASOURCE_USERNAME=alist
+      - SPRING_DATASOURCE_PASSWORD=y0JlZhO3z8
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=create-drop
+    depends_on:
+      - db
+      - mail
+    restart: on-failure
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.22
+    environment:
+      - MYSQL_ROOT_PASSWORD=y0JlZhO3z8
+      - MYSQL_DATABASE=alist
+    volumes:
+      - .mysql:/var/lib/mysql
+    restart: on-failure
+  mail:
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+    volumes:
+      - ./maildev:/var/maildev
+    restart: on-failure

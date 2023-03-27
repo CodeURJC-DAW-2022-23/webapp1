@@ -128,6 +128,11 @@ public class DatabaseInitializer {
             PostItem cr73 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
             PostItem cr74 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
             PostItem cr75 = new PostItem("Cristiano Ronaldo", "static/images/example/cr7.jpg");
+            PostItem shanks1 = new PostItem("Hakiman", "static/images/example/hakiman.webp");
+            PostItem shanks2 = new PostItem("Godking","static/images/example/hakiman.webp");
+            PostItem shanks3 = new PostItem("Shanks","static/images/example/hakiman.webp");
+            PostItem shanks4 = new PostItem("Red hair","static/images/example/hakiman.webp");
+            PostItem shanks5 = new PostItem("One shot man","static/images/example/hakiman.webp");
 
             postItemRepository.save(attackOnTitan);
             postItemRepository.save(onePiece);
@@ -149,12 +154,19 @@ public class DatabaseInitializer {
             postItemRepository.save(cr73);
             postItemRepository.save(cr74);
             postItemRepository.save(cr75);
+            postItemRepository.save(shanks1);
+            postItemRepository.save(shanks2);
+            postItemRepository.save(shanks3);
+            postItemRepository.save(shanks4);
+            postItemRepository.save(shanks5);
 
+            Post goatedPost = new Post(shanks, "Top 5 strongest One Piece character", asList(anime, series), asList(shanks1, shanks2, shanks3, shanks4, shanks5));
             Post secondPost = new Post(shanks, "Best animes", asList(anime, series), asList(myLittlePony, inazumaEleven, onePiece, fullMetalAlchemist, attackOnTitan));
             Post firstPost = new Post(cr7Lover, "CR7 is the best", asList(sports, football), asList(cr71, cr72, cr73, cr74, cr75));
             Post thirdPost = new Post(peepo, "Best LaLiga teams", asList(sports, football, laLiga), asList(getafe, rayoVayecano, betis, realMadrid, barcelona));
             Post fourthPost = new Post(manolo, "Best NBA players", asList(sports, basketball, nba), asList(lebronJames, kevinDurant, giannisAntetokounmpo, stephenCurry, antonyDavis));
 
+            
             firstPost.getUpVotes().add(peepo);
             firstPost.getDownVotes().add(cr7Lover);
             firstPost.getUpVotes().add(manolo);
@@ -162,12 +174,19 @@ public class DatabaseInitializer {
             thirdPost.getUpVotes().add(cr7Lover);
             thirdPost.getUpVotes().add(manolo);
 
+            goatedPost.getUpVotes().add(peepo);
+            goatedPost.getUpVotes().add(cr7Lover);
+            goatedPost.getUpVotes().add(manolo);
+            goatedPost.getUpVotes().add(admin);
+
             firstPost.updateVotes();
             thirdPost.updateVotes();
+            goatedPost.updateVotes();
             postRepository.save(firstPost);
             postRepository.save(secondPost);
             postRepository.save(thirdPost);
             postRepository.save(fourthPost);
+            postRepository.save(goatedPost);
 
             Comment firstComment = new Comment(manolo, "Messi is better than Cristiano", null);
             firstPost.addComment(firstComment);
@@ -175,11 +194,14 @@ public class DatabaseInitializer {
             thirdPost.addComment(secondComment);
             Comment thirdComment = new Comment(peepo, "Lebron is the GOAT", null);
             fourthPost.addComment(thirdComment);
+            Comment goatedComment = new Comment(peepo, "Hakiman is goated fr fr no cap top 1 ez", null);
+            goatedPost.addComment(goatedComment);
 
             postRepository.save(firstPost);
             postRepository.save(secondPost);
             postRepository.save(thirdPost);
             postRepository.save(fourthPost);
+            postRepository.save(goatedPost);
 
         }
     }

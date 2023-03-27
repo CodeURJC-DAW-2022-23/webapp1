@@ -136,37 +136,6 @@
             }
           },
           "response": []
-        },
-        {
-          "name": "follow",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "https://localhost:8443/api/users/Peepo/follows",
-              "protocol": "https",
-              "host": [
-                "localhost"
-              ],
-              "port": "8443",
-              "path": [
-                "api",
-                "users",
-                "Peepo",
-                "follows"
-              ]
-            }
-          },
-          "response": []
         }
       ]
     },
@@ -175,9 +144,21 @@
       "item": [
         {
           "name": "getUserComments",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"id\":90, \"author\":\"Peepo\", \"date\": null, \"content\":\"Fran gei\",\"imagePath\": null}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "https://localhost:8443/api/comments/user/1",
               "protocol": "https",

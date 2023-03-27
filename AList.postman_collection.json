@@ -308,5 +308,89 @@
         }
       ]
     }
+    ,
+    {
+      "name": "TopicRestController",
+      "item": [
+        {
+          "name": "getTopic",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/topics/16",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "topics",
+                "16"
+              ]
+            }
+        },
+        "response": []
+      },
+        {
+          "name": "createTopic",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "College",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "topic related to studies and other institutional subjects",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://localhost:8443/api/topics/",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "topics",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteTopic",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/topics/16",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "topics",
+                "16"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
   ]
 }

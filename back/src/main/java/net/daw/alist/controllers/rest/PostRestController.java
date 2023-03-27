@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import net.daw.alist.models.Comment;
 import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;

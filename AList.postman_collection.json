@@ -26,15 +26,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/sign-in",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "sign-in"
-              ]
+              "path": ["api", "auth", "sign-in"]
             }
           },
           "response": []
@@ -47,15 +41,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/sign-out",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "sign-out"
-              ]
+              "path": ["api", "auth", "sign-out"]
             }
           },
           "response": []
@@ -73,15 +61,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users/2",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users",
-                "2"
-              ]
+              "path": ["api", "users", "2"]
             }
           },
           "response": []
@@ -94,15 +76,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users/Peepo",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users",
-                "Peepo"
-              ]
+              "path": ["api", "users", "Peepo"]
             }
           },
           "response": []
@@ -124,15 +100,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users/",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users",
-                ""
-              ]
+              "path": ["api", "users", ""]
             }
           },
           "response": []
@@ -154,16 +124,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users/Peepo/follows",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users",
-                "Peepo",
-                "follows"
-              ]
+              "path": ["api", "users", "Peepo", "follows"]
             }
           },
           "response": []
@@ -181,16 +144,9 @@
             "url": {
               "raw": "https://localhost:8443/api/comments/user/1",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "comments",
-                "user",
-                "1"
-              ]
+              "path": ["api", "comments", "user", "1"]
             }
           },
           "response": []
@@ -203,16 +159,9 @@
             "url": {
               "raw": "https://localhost:8443/api/comments/post/42",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "comments",
-                "post",
-                "42"
-              ]
+              "path": ["api", "comments", "post", "42"]
             }
           },
           "response": []
@@ -225,16 +174,9 @@
             "url": {
               "raw": "https://localhost:8443/api/comments/40/44",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "comments",
-                "40",
-                "44"
-              ]
+              "path": ["api", "comments", "40", "44"]
             }
           },
           "response": []
@@ -256,15 +198,9 @@
             "url": {
               "raw": "https://localhost:8443/api/comments/40",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "comments",
-                "40"
-              ]
+              "path": ["api", "comments", "40"]
             }
           },
           "response": []
@@ -282,16 +218,9 @@
             "url": {
               "raw": "https://localhost:8443/api/posts/40/upvotes",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "posts",
-                "40",
-                "upvotes"
-              ]
+              "path": ["api", "posts", "40", "upvotes"]
             }
           },
           "response": []
@@ -304,16 +233,54 @@
             "url": {
               "raw": "https://localhost:8443/api/posts/40/downvotes",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "posts",
-                "40",
-                "downvotes"
-              ]
+              "path": ["api", "posts", "40", "downvotes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createPost",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/posts/",
+              "protocol": "https",
+              "host": ["localhost"],
+              "port": "8443",
+              "path": ["api", "posts", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPost",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/posts/42",
+              "protocol": "https",
+              "host": ["localhost"],
+              "port": "8443",
+              "path": ["api", "posts", "42"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deletePost",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/posts/42",
+              "protocol": "https",
+              "host": ["localhost"],
+              "port": "8443",
+              "path": ["api", "posts", "42"]
             }
           },
           "response": []
@@ -343,15 +310,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/sign-in",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "sign-in"
-              ]
+              "path": ["api", "auth", "sign-in"]
             }
           },
           "response": []

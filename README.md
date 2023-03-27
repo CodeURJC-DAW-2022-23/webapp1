@@ -392,20 +392,17 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### Five most important commits:
 
-| Commit number | Description                                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| #1            | [Ajax rest controller implementation](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a020e3677662f40507a0f88fb9430574333f51ff)           |
-| #2            | [Ajax rest controller docs](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/358a574d31030945c3d3b3236e9ca7f7c97777bd) |
-| #3            | [Ajax rest controller postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3b757beb8e681a8a559903a721ed7e6ee6fc4ae8)                  |
-| #4            | [Post controller postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/46595e7aee050751754e2b13308a3a73c9423abf)                       |
-| #5            |                                                                                                                                            |
+| Commit number | Description                                                                                                                                                 |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Ajax rest controller implementation](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a020e3677662f40507a0f88fb9430574333f51ff)                      |
+| #2            | [Ajax rest controller docs](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/358a574d31030945c3d3b3236e9ca7f7c97777bd)                                |
+| #3            | [Ajax rest controller postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3b757beb8e681a8a559903a721ed7e6ee6fc4ae8)                             |
+| #4            | [Post controller postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/46595e7aee050751754e2b13308a3a73c9423abf)                                  |
+| #5            | [Fix for empty ajax rest controller in postman collection](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/aff7dc8ac827f612c10995f3c8d94d91dd838372) |
 
-#### Five most participated files:
+#### Most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/AList.postman_collection.json)    |
-| #2          | [AjaxRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/AjaxRestController.java)    |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| File number | File                                                                                                                                                                        |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/AList.postman_collection.json)                                       |
+| #2          | [AjaxRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/AjaxRestController.java) |

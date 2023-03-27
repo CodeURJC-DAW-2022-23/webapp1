@@ -270,6 +270,55 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "PostRestController",
+      "item": [
+        {
+          "name": "upvotePost",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/posts/40/upvotes",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "posts",
+                "40",
+                "upvotes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "downvotePost",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:8443/api/posts/40/downvotes",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "8443",
+              "path": [
+                "api",
+                "posts",
+                "40",
+                "downvotes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }

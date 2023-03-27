@@ -270,17 +270,18 @@ Now selecting one of the user from the list we're going to be redirected to the 
 | #4          | [navbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/navbar.html)                          |
 | #5          | [/posts models](https://github.com/CodeURJC-DAW-2022-23/webapp1/commits/main/back/src/main/resources/templates/post.html)                          |
 
-
 ## Phase 3
-## Rest Class Diagram
-![Untitled Diagram-Page-1](https://user-images.githubusercontent.com/102819481/227911272-25c094dd-4cf9-4280-9d3a-081f6ee484a5.jpg)
 
+## Rest Class Diagram
+
+![Untitled Diagram-Page-1](https://user-images.githubusercontent.com/102819481/227911272-25c094dd-4cf9-4280-9d3a-081f6ee484a5.jpg)
 
 ## Docker Image Construction
 
-## Instructions to run the app 
+## Instructions to run the app
 
 ## OpenAPI Specification (SpringDoc)
+
 YAML file:
 https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/api-docs/api-docs.yaml
 
@@ -295,23 +296,23 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### The five most important commits:
 
-| Commit number | Description                                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| #1            | [Rest security config added](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5238a4d37e9761e9a0c2f77b60e6ca0835be1983)                    |
-| #2            | [Autowired Utils class removes repeated code](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/6d8026f718f403ce035f6a9cbc9a21f5086cd8af)   |
-| #3            | [getUser and banUser methods added to UserRestController](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/808597eee0028c4f8d458418b1e67b5b819ac833)|
-| #4            | [register method added inside UserRestController, documentation added, refactors and fixes to follow and upvote/downvote methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7ab4885d96881376c9f9be64aca868a9d9ec8121)|
-| #5            | [Added SpringDoc](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/4368cccc84e43764e06fa40fcae94d3a80b29a29)                              |
+| Commit number | Description                                                                                                                                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Rest security config added](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5238a4d37e9761e9a0c2f77b60e6ca0835be1983)                                                                                                      |
+| #2            | [Autowired Utils class removes repeated code](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/6d8026f718f403ce035f6a9cbc9a21f5086cd8af)                                                                                     |
+| #3            | [getUser and banUser methods added to UserRestController](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/808597eee0028c4f8d458418b1e67b5b819ac833)                                                                         |
+| #4            | [register method added inside UserRestController, documentation added, refactors and fixes to follow and upvote/downvote methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7ab4885d96881376c9f9be64aca868a9d9ec8121) |
+| #5            | [Added SpringDoc](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/4368cccc84e43764e06fa40fcae94d3a80b29a29)                                                                                                                 |
 
 #### The five most participated files:
 
-| File number | File                                                                                                                                                                                              |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          | [AuthRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/AuthRestController.java)                                  |
-| #2          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java)                            |
-| #3          | [RestSecurityConfig.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/security/RestSecurityConfig.java)                          |
-| #4          | [jwt package](https://github.com/CodeURJC-DAW-2022-23/webapp1/tree/main/back/src/main/java/net/daw/alist/security/jwt) |
-| #5          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)                                                       |
+| File number | File                                                                                                                                                            |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [AuthRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/AuthRestController.java) |
+| #2          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
+| #3          | [RestSecurityConfig.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/security/RestSecurityConfig.java)          |
+| #4          | [jwt package](https://github.com/CodeURJC-DAW-2022-23/webapp1/tree/main/back/src/main/java/net/daw/alist/security/jwt)                                          |
+| #5          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java) |
 
 ### Vicente
 
@@ -319,23 +320,23 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### The five most important commits:
 
-| Commit number | Description                                                                                                             |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| #1            |  [CommentRestController methods added](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/9298bab9a369ca842dd4843a0508222fd7a7dc75)|
-| #2            |  [createComment added and documented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/e613ab65efb221ecb1e55155de1e3c14567988d3) |
-| #3            |  [CommentRestController documented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/09a32de06637e7bc6bed8dcd720abf413738ee86)          |
-| #4            |  [getUserComments and getPostComments implemented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3a7943cb1bf0eb3d5327cf6bc977a70b7b26c7d2)     |
-| #5            | [banUser fixed](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a6fdde2d84fcf530634dadf9fbcf124a89b2cb67)           |
+| Commit number | Description                                                                                                                                        |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [CommentRestController methods added](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/9298bab9a369ca842dd4843a0508222fd7a7dc75)             |
+| #2            | [createComment added and documented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/e613ab65efb221ecb1e55155de1e3c14567988d3)              |
+| #3            | [CommentRestController documented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/09a32de06637e7bc6bed8dcd720abf413738ee86)                |
+| #4            | [getUserComments and getPostComments implemented](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3a7943cb1bf0eb3d5327cf6bc977a70b7b26c7d2) |
+| #5            | [banUser fixed](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a6fdde2d84fcf530634dadf9fbcf124a89b2cb67)                                   |
 
 #### The five most participated files:
 
-| File number | File                                                                                                                                                           |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          |  [CommentRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/CommentRestController.java) |
-| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/AList.postman_collection.json)                                 |
-| #3          |  [PostService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostService.java)|
-| #4          |   [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java)   |
-| #5          |   [Comment.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Comment.java)   |
+| File number | File                                                                                                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [CommentRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/CommentRestController.java)        |
+| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/AList.postman_collection.json)                                       |
+| #3          | [PostService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostService.java)                                    |
+| #4          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
+| #5          | [Comment.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Comment.java)                                              |
 
 ### Alberto
 
@@ -343,47 +344,47 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### The five most important commits:
 
-| Commit number | Description                                                                                                                              |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| #1            |                 |
-| #2            |  |
-| #3            |                 |
-| #4            |                 |
-| #5            |                    |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |             |
+| #2            |             |
+| #3            |             |
+| #4            |             |
+| #5            |             |
 
 #### The five most participated files:
 
-| File number | File                                                                                                                                                                                               |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          | |
-| #2          |                                                               |
-| #3          |           |
-| #4          |                                    |
-| #5          |                               |
+| File number | File |
+| ----------- | ---- |
+| #1          |      |
+| #2          |      |
+| #3          |      |
+| #4          |      |
+| #5          |      |
 
 ### Alejandro
 
-#### Textual description: 
+#### Textual description:
 
 #### The five most important commits:
 
-| Commit number | Description                                                                                                          |
-| ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| #1            |          |
-| #2            |      |
-| #3            | |
-| #4            |       |
-| #5            |        |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |             |
+| #2            |             |
+| #3            |             |
+| #4            |             |
+| #5            |             |
 
 #### The five most participated files:
 
-| File number | File                                                                                                                                                           |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          |     |
-| #2          |   |
-| #3          |  |
-| #4          |    |
-| #5          |                              |
+| File number | File |
+| ----------- | ---- |
+| #1          |      |
+| #2          |      |
+| #3          |      |
+| #4          |      |
+| #5          |      |
 
 ### Gledrian
 
@@ -391,20 +392,20 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### Five most important commits:
 
-| Commit number | Description                                                                                                            |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| #1            |  |
-| #2            |              |
-| #3            |            |
-| #4            |        |
-| #5            |         |
+| Commit number | Description                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| #1            | [Ajax rest controller implementation](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a020e3677662f40507a0f88fb9430574333f51ff)           |
+| #2            | [Ajax rest controller docs](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/358a574d31030945c3d3b3236e9ca7f7c97777bd) |
+| #3            | [Ajax rest controller postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3b757beb8e681a8a559903a721ed7e6ee6fc4ae8)                  |
+| #4            | [Post controller postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/46595e7aee050751754e2b13308a3a73c9423abf)                       |
+| #5            |                                                                                                                                            |
 
 #### Five most participated files:
 
-| File number | File                                                                                                                                               |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          |                 |
-| #2          |   |
-| #3          |  |
-| #4          |                       |
-| #5          |                          |
+| File number | File |
+| ----------- | ---- |
+| #1          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/AList.postman_collection.json)    |
+| #2          | [AjaxRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/AjaxRestController.java)    |
+| #3          |      |
+| #4          |      |
+| #5          |      |

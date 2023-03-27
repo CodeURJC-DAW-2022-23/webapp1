@@ -280,6 +280,15 @@ Now selecting one of the user from the list we're going to be redirected to the 
 
 ## Instructions to run the app
 
+In order to run the dockerized app follow the next steps:
+
+1. Install Docker Desktop or Docker.
+2. Open a bash shell.
+3. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
+4. Execute the command cd/webapp1/back/docker.
+5. Execute the command "docker-compose up" on the shell.
+6. Open the following url "https://localhost:8443".
+
 ## OpenAPI Specification (SpringDoc)
 
 YAML file:

@@ -284,7 +284,6 @@ Now selecting one of the user from the list we're going to be redirected to the 
 4. Execute the command cd ./webapp1/back/docker.
 5. Run "create_image.sh [DockerUsername]/[TagName]".
 
-
 ## Instructions to run the app
 
 In order to run the dockerized app follow the next steps:
@@ -360,23 +359,23 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### The five most important commits:
 
-| Commit number | Description |
-| ------------- | ----------- |
-| #1            | [Post RestController postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/be1bde1d251348b5f7836c51e450a869670b7d45)           |
-| #2            |      [Topic RestController postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/297db0eee9a3e51a24af8e0ee18d9996123b4c01)      |
-| #3            |             [Following methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f9587c2d6465312ce2c2aa7a478ee66a3a49c8a0)|
-| #4            |  [Votes methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/76f7d68f27594b5a5687996043f76738b3efd018)           |
-| #5            |        [votes and following documentation](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a811ea269945cdcda2bc0f752cc1449adc653214)     |
+| Commit number | Description                                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| #1            | [Post RestController postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/be1bde1d251348b5f7836c51e450a869670b7d45)       |
+| #2            | [Topic RestController postman](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/297db0eee9a3e51a24af8e0ee18d9996123b4c01)      |
+| #3            | [Following methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/f9587c2d6465312ce2c2aa7a478ee66a3a49c8a0)                 |
+| #4            | [Votes methods](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/76f7d68f27594b5a5687996043f76738b3efd018)                     |
+| #5            | [votes and following documentation](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a811ea269945cdcda2bc0f752cc1449adc653214) |
 
 #### The five most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          |    [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/76f7d68f27594b5a5687996043f76738b3efd018/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)  |
-| #2          |   [ UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/a811ea269945cdcda2bc0f752cc1449adc653214/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java)  |
-| #3          |    [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/297db0eee9a3e51a24af8e0ee18d9996123b4c01/AList.postman_collection.json)  |
-| #4          |      |
-| #5          |      |
+| File number | File                                                                                                                                                                                                 |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/76f7d68f27594b5a5687996043f76738b3efd018/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)  |
+| #2          | [ UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/a811ea269945cdcda2bc0f752cc1449adc653214/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
+| #3          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/297db0eee9a3e51a24af8e0ee18d9996123b4c01/AList.postman_collection.json)                                        |
+| #4          |                                                                                                                                                                                                      |
+| #5          |                                                                                                                                                                                                      |
 
 ### Alejandro
 
@@ -384,23 +383,23 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 #### The five most important commits:
 
-| Commit number | Description |
-| ------------- | ----------- |
-| #1            |             |
-| #2            |             |
-| #3            |             |
-| #4            |             |
-| #5            |             |
+| Commit number | Description                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| #1            | [Post rest controller](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/21433df60efc20b433d544cd1c38a5ad768dbb03)  |
+| #2            | [Topic rest controller](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0f5f6153981c3473236311591b9e8b11d34d7e57) |
+| #3            | [Database wait on](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/55192e61aae39db58a7672834f9d76ecf3ee2011)      |
+| #4            | [Dockerfile](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/ca1ec94b0cc25cf9cbd56c267716b9efd4ce64a1)            |
+| #5            | [Docker compose](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/fc0a8b7cdf6443a6ed508d11d3f12d175548b480)        |
 
 #### The five most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| File number | File                                                                                                                                                                               |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)                    |
+| #2          | [TopicRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/TopicRestController.java)                  |
+| #3          | [DatabaseWaitConfigurator.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/docker-compose/back/src/main/java/net/daw/alist/services/DatabaseWaitConfigurator.java) |
+| #4          | [Dockerfile](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/docker-compose/back/Dockerfile)                                                                            |
+| #5          | [docker-compose.yml](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/docker-compose/back/docker/docker-compose.yml)                                                     |
 
 ### Gledrian
 

@@ -355,7 +355,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 ### Alberto
 
-#### Textual description:
+#### Textual description: Methods for Post RestController and UserRestController
 
 #### The five most important commits:
 
@@ -378,7 +378,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 ### Alejandro
 
-#### Textual description:
+#### Textual description: Post and topic rest controller. Docker compose.
 
 #### The five most important commits:
 
@@ -402,7 +402,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 
 ### Gledrian
 
-#### Textual description:
+#### Textual description: Ajax rest controller implementation
 
 #### Five most important commits:
 

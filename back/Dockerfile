@@ -1,6 +1,6 @@
 FROM maven:3-openjdk-17 as builder
 WORKDIR /alist
-COPY ../pom.xml /alist
+COPY pom.xml /alist
 COPY /src /alist/src
 RUN mvn package -DskipTests=true
 

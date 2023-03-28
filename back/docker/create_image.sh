@@ -1,4 +1,3 @@
 #!/bin/bash
-
-docker build . -t franchescourjc/webapp1
-docker push franchescourjc/webapp1:upload1
+docker build .. -t $1
+docker push $1

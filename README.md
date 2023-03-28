@@ -374,8 +374,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | #1          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/76f7d68f27594b5a5687996043f76738b3efd018/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)  |
 | #2          | [ UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/a811ea269945cdcda2bc0f752cc1449adc653214/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
 | #3          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/297db0eee9a3e51a24af8e0ee18d9996123b4c01/AList.postman_collection.json)                                        |
-| #4          |                                                                                                                                                                                                      |
-| #5          |                                                                                                                                                                                                      |
+
 
 ### Alejandro
 

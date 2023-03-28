@@ -348,7 +348,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | File number | File                                                                                                                                                                         |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | #1          | [CommentRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/CommentRestController.java)        |
-| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/AList.postman_collection.json)                                       |
+| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/AList.postman_collection.json)                                       |
 | #3          | [PostService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostService.java)                                    |
 | #4          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
 | #5          | [Comment.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Comment.java)                                              |

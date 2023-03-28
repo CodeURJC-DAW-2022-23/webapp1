@@ -1,0 +1,39 @@
+.body {
+  height: 100%;
+  display: flex;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: white;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type='text'] {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.form-signin input[type='email'] {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.form-signin input[type='password'] {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

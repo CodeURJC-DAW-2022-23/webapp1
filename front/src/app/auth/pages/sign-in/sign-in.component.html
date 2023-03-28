@@ -1,0 +1,40 @@
+<div class="body text-center">
+  <main class="form-signin w-100 m-auto">
+    <form id="signInForm" [formGroup]="signInForm" (ngSubmit)="save()">
+
+      <img class="mb-4" src="assets/images/alistLogo.svg" alt="" width="250" height="150">
+
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="username" placeholder="Username" name="username"
+          formControlName="username">
+        <label for="username" class="text-muted">Username</label>
+        <div class="alert alert-danger" role="alert" *ngIf="isInvalidField('username')">
+          Invalid username
+        </div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+          formControlName="password">
+        <label for="password" class="text-muted">Password</label>
+        <div class="alert alert-danger" role="alert" *ngIf="isInvalidField('password')">
+          Invalid password
+        </div>
+      </div>
+
+      <!--<div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>-->
+
+      <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!signInForm.valid">Sign in</button>
+      <div class="linkBox mt-4">
+        <a class="link text-white" [routerLink]="['/register']">Create a new account</a>
+        <p class="mb-0">or</p>
+        <a class="link text-white" [routerLink]="['/']">Join as a guest</a>
+      </div>
+
+    </form>
+  </main>
+</div>

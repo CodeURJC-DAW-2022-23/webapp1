@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+.body {
+  align-items: center;
+}
+
+/* button */
+.btn-primary {
+  background-color: #2d474f;
+  border: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:active:focus {
+  background-color: #63b1b1;
+}
+
+.btn-primary:disabled,
+.btn-primary[disabled] {
+  background-color: #1e2f34;
+}

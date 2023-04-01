@@ -113,7 +113,7 @@ public class UserRestController {
           @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
           @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
-  @PutMapping("/{username}/follows")
+  @PutMapping("/followers/{username}")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
     Optional<User> optionalUser =  userService.findByUsername(username);
     User userSession = (User) authentication.getPrincipal();

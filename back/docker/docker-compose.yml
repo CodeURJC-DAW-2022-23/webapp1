@@ -11,7 +11,6 @@ services:
       - SPRING_JPA_HIBERNATE_DDL-AUTO=create-drop
     depends_on:
       - db
-      - mail
     restart: on-failure
   db:
     platform: linux/x86_64
@@ -23,13 +22,5 @@ services:
       - MYSQL_PASSWORD=y0JlZhO3z8
     volumes:
       - .mysql:/var/lib/mysql
-    restart: on-failure
-  mail:
-    image: maildev/maildev
-    ports:
-      - 1080:1080
-      - 1025:1025
-    volumes:
-      - ./maildev:/var/maildev
     restart: on-failure
 

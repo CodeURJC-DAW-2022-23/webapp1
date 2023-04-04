@@ -54,4 +54,8 @@ public class PostItemService {
     return this.postItemRepository.findById(id);
   }
 
+  public void save(PostItem item){
+    postItemRepository.save(item);
+  }
+
 }

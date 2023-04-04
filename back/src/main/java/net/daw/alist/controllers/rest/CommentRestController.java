@@ -62,7 +62,7 @@ public class CommentRestController {
                   @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))}),
           @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @GetMapping("/post/{postId}")
+  @GetMapping("/posts/{postId}")
   public ResponseEntity<List<Comment>> getPostComments(@PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
@@ -121,7 +121,7 @@ public class CommentRestController {
   @Getter
   @Setter
   @EqualsAndHashCode
-  public static class Data {
+  private static class Data {
     private final String content;
     private final String imagePath;
   }

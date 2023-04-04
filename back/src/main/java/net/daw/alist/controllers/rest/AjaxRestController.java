@@ -18,8 +18,10 @@ import net.daw.alist.models.Post;
 import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;
 
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/api/ajax")
+@RequestMapping("/api/posts")
 public class AjaxRestController {
   
   @Autowired
@@ -31,26 +33,19 @@ public class AjaxRestController {
                   @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
           @ApiResponse(responseCode = "404", description = "No new posts found", content = @Content)
   })
-  @GetMapping("/posts")
-  public Page<Post> getNewPosts(@RequestParam int page) {
-    if (page <= (int) Math.ceil(postService.count() / 2))
+  @GetMapping("")
+  public Page<Post> getNewPosts(Authentication authentication, @RequestParam int page, @RequestParam Optional<Boolean> filter) {
+    boolean validPage = page <= (int) Math.ceil(postService.count()/2);
+    boolean filterPosts = false;
+    if(filter.isPresent()){
+      filterPosts = filter.get();
+    }
+    if((authentication != null) && filterPosts && validPage){
+      User currentUser = (User) authentication.getPrincipal();
+      return postService.getStarredPosts(page, currentUser.getId().intValue());
+    } else if (validPage)
       return postService.getPosts(page);
     return null;
   }
 
-  @Operation(summary = "Load more posts from followed-users")
-  @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "New posts loaded", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
-          @ApiResponse(responseCode = "404", description = "No new posts found", content = @Content)
-  })
-  @GetMapping("/followed-users/posts")
-  public Page<Post> getFollowedUsersPosts(Authentication authentication, @RequestParam int page) {
-    User currentUser = (User) authentication.getPrincipal();
-
-    if (page <= (int) Math.ceil(postService.count()/2))
-      return postService.getStarredPosts(page, currentUser.getId().intValue());
-      
-    return null;
-  }
 }

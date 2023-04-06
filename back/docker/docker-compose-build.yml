@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  web:
+    build: ..
+    ports:
+      - 8443:8443
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/alist
+      - SPRING_DATASOURCE_USERNAME=alist
+      - SPRING_DATASOURCE_PASSWORD=y0JlZhO3z8
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=create-drop
+    depends_on:
+      - db
+    restart: on-failure
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=y0JlZhO3z8
+      - MYSQL_DATABASE=alist
+      - MYSQL_USER=alist
+      - MYSQL_PASSWORD=y0JlZhO3z8
+    volumes:
+      - .mysql:/var/lib/mysql
+    restart: on-failure
+

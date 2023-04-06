@@ -6,17 +6,22 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import net.daw.alist.models.Post;
+import net.daw.alist.models.PostItem;
+import net.daw.alist.models.Topic;
 import net.daw.alist.models.User;
-import net.daw.alist.services.PostService;
-import net.daw.alist.services.UserService;
-import net.daw.alist.services.VotesService;
+import net.daw.alist.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -28,26 +33,42 @@ public class PostRestController {
   private PostService postService;
 
   @Autowired
+  private PostItemService postItemService;
+
+  @Autowired
+  private TopicService topicService;
+
+  @Autowired
   private UserService userService;
 
   @Autowired
   private VotesService votesService;
+
 
   @Operation(summary = "Create new post")
   @ApiResponses(value = {
           @ApiResponse(responseCode = "201", description = "Post created", content = {
             @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
           }),
-          @ApiResponse(responseCode = "403", description = "Can't create post if not registered", content = @Content)
+          @ApiResponse(responseCode = "403", description = "Can't create post if not registered", content = @Content),
+          @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
   @PostMapping("/")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Post createPost(Authentication auth, Post post) {
-    if (auth != null) {
-      postService.save(post);
-      return post;
+  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) {
+    if (content.getTitle() == null || content.getTopicStrings() == null || content.getItems() == null)
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    User author = (User) auth.getPrincipal();
+    author = userService.findByID(author.getId()).orElseThrow();
+    List<PostItem> items = content.getItems();
+    for (PostItem item: items) {
+      postItemService.save(item);
     }
-    return null;
+    List<Topic> topicList = topicService.getTopics(content.getTopicStrings());
+    Post post = new Post(author, content.getTitle(), topicList, items);
+    postService.save(post);
+    return new ResponseEntity<>(post, HttpStatus.CREATED);
+
   }
 
   @Operation(summary = "Get specific post")
@@ -135,4 +156,13 @@ public class PostRestController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
+  @AllArgsConstructor
+  @Getter
+  @Setter
+  @EqualsAndHashCode
+  private static class Data {
+    private final String title;
+    private final List<String> topicStrings;
+    private final List<PostItem> items;
+  }
 }

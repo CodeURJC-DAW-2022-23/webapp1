@@ -33,7 +33,8 @@ public class RegisterController {
       model.addAttribute("error", true);
       model.addAttribute("errorMSG", result);
     }
-    return "/register";
+    System.out.println("------------------------REACHED HERE----------------------");
+    return "register";
   }
 
   @GetMapping("/registration/confirm")

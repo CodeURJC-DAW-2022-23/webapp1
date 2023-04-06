@@ -1,6 +1,6 @@
 <div class="body text-center">
   <main class="form-signin w-100 m-auto">
-    <form id="signInForm" [formGroup]="signInForm" (ngSubmit)="save()">
+    <form id="signInForm" [formGroup]="signInForm" (ngSubmit)="signIn()">
 
       <img class="mb-4" src="assets/images/alistLogo.svg" alt="" width="250" height="150">
 
@@ -20,6 +20,10 @@
         <div class="alert alert-danger" role="alert" *ngIf="isInvalidField('password')">
           Invalid password
         </div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="invalidCredentials">
+        Invalid username or password
       </div>
 
       <!--<div class="checkbox mb-3">

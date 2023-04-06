@@ -1,14 +1,12 @@
 package net.daw.alist.controllers.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.daw.alist.security.jwt.AuthResponse;
 import net.daw.alist.security.jwt.LoginRequest;
 import net.daw.alist.security.jwt.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthRestController {
 
   @Autowired
-  private UserLoginService userService;
+  private UserLoginService userLoginService;
 
   @Operation(summary = "Sign-in user with credentials")
   @ApiResponses(value = {
@@ -32,7 +30,7 @@ public class AuthRestController {
           @CookieValue(name = "accessToken", required = false) String accessToken,
           @CookieValue(name = "refreshToken", required = false) String refreshToken,
           @RequestBody LoginRequest loginRequest) {
-    return userService.login(loginRequest, accessToken, refreshToken);
+    return userLoginService.login(loginRequest, accessToken, refreshToken);
   }
 
   @Operation(summary = "Sign-out user")
@@ -41,7 +39,7 @@ public class AuthRestController {
   })
   @PostMapping("/sign-out")
   public ResponseEntity<AuthResponse> logOut(HttpServletRequest request, HttpServletResponse response) {
-    return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userService.logout(request, response)));
+    return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
   }
 
 }

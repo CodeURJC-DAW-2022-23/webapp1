@@ -2,37 +2,37 @@
   <nav class="navbar navbar-expand-lg bg-black">
     <div class="d-none d-md-block container-fluid">
       <div class="d-flex justify-content-evenly align-items-center m-auto">
-        <a class="navbar-brand" [routerLink]="['/']">
+        <a class="navbar-brand" [routerLink]="['/']" (click)="toggleOff()">
           <img src="assets/images/alistLogo.svg" alt="Alist logo" width="80" height="30">
         </a>
-        <a class="compassNavIcon" [routerLink]="['/']">
-          <i class="fa-regular fa-compass fa-xl"></i>
+        <a class="compassNavIcon" [routerLink]="['/explore']">
+          <i class="fa-compass fa-xl" [ngClass]="compassIconGlow ? 'fa-solid' : 'fa-regular'"></i>
         </a>
         <app-search></app-search>
-        <a class="heartNavIcon" [routerLink]="['/followed']">
-          <i class="fa-regular fa-heart fa-xl"></i>
+        <a class="heartNavIcon" (click)="toggleHeartIcon()">
+          <i class="fa-heart fa-xl" [ngClass]="heartIconGlow ? 'fa-solid' : 'fa-regular'"></i>
         </a>
         <a class="profileNavIcon" [routerLink]="['/profile']">
-          <i class="fa-regular fa-user fa-xl"></i>
+          <i class="fa-user fa-xl" [ngClass]="profileIconGlow ? 'fa-solid' : 'fa-regular'"></i>
         </a>
       </div>
     </div>
 
     <div class="hamburger-container d-sm-block d-md-none">
       <div class="d-flex justify-content-end align-items-center">
-        <a class="navbar-brand ps-2 m-auto flex-grow-1" [routerLink]="['/']">
+        <a class="navbar-brand ps-2 m-auto flex-grow-1" [routerLink]="['/']" (click)="toggleOff()">
           <img src="assets/images/alistLogo.svg" alt="Alist logo" width="101.33 " height="38">
         </a>
         <div class="collapse no-transition" id="collapseNav">
           <div class="icon-container d-flex justify-content-evenly align-items-center ps-2 pe-2 gap-3">
-            <a class="compassNavIcon" [routerLink]="['/']">
-              <i class="fa-regular fa-compass fa-xl"></i>
+            <a class="compassNavIcon" [routerLink]="['/explore']">
+              <i class="fa-compass fa-xl" [ngClass]="compassIconGlow ? 'fa-solid' : 'fa-regular'"></i>
             </a>
-            <a class="heartNavIcon" [routerLink]="['/followed']">
-              <i class="fa-regular fa-heart fa-xl"></i>
+            <a class="heartNavIcon" (click)="toggleHeartIcon()">
+              <i class="fa-heart fa-xl" [ngClass]="heartIconGlow ? 'fa-solid' : 'fa-regular'"></i>
             </a>
             <a class="profileNavIcon" [routerLink]="['/profile']">
-              <i class="fa-regular fa-user fa-xl"></i>
+              <i class="fa-user fa-xl" [ngClass]="profileIconGlow ? 'fa-solid' : 'fa-regular'"></i>
             </a>
           </div>
         </div>

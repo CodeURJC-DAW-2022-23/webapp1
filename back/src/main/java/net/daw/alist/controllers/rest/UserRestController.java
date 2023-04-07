@@ -28,9 +28,10 @@ public class UserRestController {
 
   @Operation(summary = "Get a user by its username")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+    }),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
   @GetMapping("/{username}")
   public ResponseEntity<User> getUser(@PathVariable String username) {
@@ -39,15 +40,20 @@ public class UserRestController {
 
   @Operation(summary = "Edit user by id")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "403", description = "Admin access required", content = @Content),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-          @ApiResponse(responseCode = "400", description = "Operation doesn't exist", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+    }),
+    @ApiResponse(responseCode = "403", description = "Admin access required", content = @Content),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+    @ApiResponse(responseCode = "400", description = "Operation doesn't exist", content = @Content)
   })
-  @PutMapping ("/{id}")
-  public ResponseEntity<User> userOperation(Authentication authentication, @PathVariable Long id,  @RequestParam String operation) {
-    Optional<User> optionalUser = userService.findByID(id);
+  @PutMapping ("/{userId}")
+  public ResponseEntity<User> userOperation(
+    Authentication authentication,
+    @PathVariable Long userId,
+    @RequestParam String operation
+  ) {
+    Optional<User> optionalUser = userService.findByID(userId);
     if (optionalUser.isEmpty())
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     String userRole = utils.getCurrentUserRole(authentication);
@@ -71,12 +77,13 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
   }
 
-  @Operation(summary = "Current user follows another user by its name")
+  @Operation(summary = "Current user follows another user by its username")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found and followed/unfollowed state changed", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found and followed/unfollowed state changed", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+    }),
+    @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
   @PutMapping("/followers/{username}")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){

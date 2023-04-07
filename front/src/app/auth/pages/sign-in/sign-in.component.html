@@ -14,8 +14,8 @@
       </div>
 
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
-          formControlName="password">
+        <input [type]="visiblePassword ? 'text' : 'password'" class="form-control" id="password" placeholder="Password"
+          name="password" formControlName="password">
         <label for="password" class="text-muted">Password</label>
         <div class="alert alert-danger" role="alert" *ngIf="isInvalidField('password')">
           Invalid password
@@ -26,11 +26,13 @@
         Invalid username or password
       </div>
 
-      <!--<div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
+      <div class="form-check mb-3">
+        <label class="form-check-label" for="visiblePassword">
+          <input class="form-check-input" type="checkbox" value="" id="visiblePassword" name="visiblePassword"
+            (click)="alternateVisiblePassword()">
+          Show password
         </label>
-      </div>-->
+      </div>
 
       <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!signInForm.valid">Sign in</button>
       <div class="linkBox mt-4">

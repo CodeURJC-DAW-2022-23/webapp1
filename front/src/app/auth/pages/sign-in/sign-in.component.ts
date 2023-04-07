@@ -14,6 +14,7 @@ export class SignInComponent implements DoCheck {
     username: [, [Validators.required, Validators.minLength(3)]],
     password: [, [Validators.required, Validators.minLength(4)]],
   });
+  visiblePassword: boolean = false;
   invalidCredentials: boolean = false;
 
   constructor(
@@ -31,6 +32,10 @@ export class SignInComponent implements DoCheck {
   isInvalidField(fieldSearch: string) {
     const field = this.signInForm.get(fieldSearch);
     return field?.touched && field?.errors;
+  }
+
+  alternateVisiblePassword() {
+    this.visiblePassword = !this.visiblePassword;
   }
 
   signIn() {

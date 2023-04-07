@@ -1,6 +1,6 @@
 <div class="body text-center">
   <main class="form-signin w-100 m-auto">
-    <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="save()">
+    <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="register()">
 
       <img class="mb-4" src="assets/images/alistLogo.svg" alt="" width="250" height="150">
 
@@ -44,6 +44,14 @@
         <div class="alert alert-danger" role="alert" *ngIf="isNotSamePassword()">
           Passwords need to match
         </div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="usernameTaken">
+        Username already taken
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="emailTaken">
+        Email already taken
       </div>
 
       <div class="form-check">

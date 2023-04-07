@@ -1,21 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { RegisterForm } from '../../interfaces/forms.interface';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['../form.css'],
 })
-export class RegisterComponent {
-  registerForm: FormGroup = this.fb.group({
+export class RegisterComponent implements DoCheck {
+  registerForm: FormGroup = this.formBuilder.group({
     username: [, [Validators.required, Validators.minLength(3)]],
     email: [, [Validators.required, Validators.email]],
-    passwords: this.fb.group(
+    passwords: this.formBuilder.group(
       {
         password: [, [Validators.required, Validators.minLength(4)]],
         confirmPassword: [, [Validators.required, Validators.minLength(4)]],
@@ -25,8 +28,14 @@ export class RegisterComponent {
     termsOfService: [false, [Validators.requiredTrue]],
   });
   visiblePassword: boolean = false;
+  usernameTaken: boolean = false;
+  emailTaken: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   private checkPasswords(
     control: AbstractControl
@@ -35,6 +44,15 @@ export class RegisterComponent {
     const confirmPassword: string = control.get('confirmPassword')?.value;
     if (password !== confirmPassword) return { invalid: true };
     return null;
+  }
+
+  ngDoCheck(): void {
+    if (this.registerForm.get('username')?.touched) {
+      this.usernameTaken = false;
+    }
+    if (this.registerForm.get('email')?.touched) {
+      this.emailTaken = false;
+    }
   }
 
   isNotSamePassword(): boolean {
@@ -50,9 +68,26 @@ export class RegisterComponent {
     this.visiblePassword = !this.visiblePassword;
   }
 
-  save() {
-    // TODO: use service for checking
-    console.log(this.registerForm.value);
-    this.registerForm.reset();
+  register() {
+    const registerForm: RegisterForm = this.registerForm.value;
+    this.authService.register(registerForm).subscribe({
+      next: _ => {
+        alert('Check your email to activate your account');
+        this.registerForm.reset();
+        this.router.navigate(['/sign-in']);
+      },
+      error: error => this.checkError(error.status),
+    });
+  }
+
+  private checkError(error: number) {
+    if (error === 403) {
+      this.usernameTaken = true;
+      this.registerForm.get('username')?.reset();
+    } else if (error === 400) {
+      this.emailTaken = true;
+      this.registerForm.get('email')?.reset();
+    }
+    this.registerForm.get('passwords')?.reset();
   }
 }

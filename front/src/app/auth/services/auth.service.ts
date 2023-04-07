@@ -1,13 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { SignInForm } from '../interfaces/forms.interface';
+import { RegisterForm, SignInForm } from '../interfaces/forms.interface';
 import { Observable, map } from 'rxjs';
 
 const BASE_URL: string = '/api/auth';
 
+interface registerRequest {
+  username: string;
+  email: string;
+  password: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private http: HttpClient) {}
+
+  register(registerForm: RegisterForm) {
+    const registerRequest: registerRequest = {
+      username: registerForm.username,
+      email: registerForm.email,
+      password: registerForm.passwords.password,
+    };
+    return this.http.post(BASE_URL + '/register', registerRequest);
+  }
 
   login(signInForm: SignInForm): Observable<HttpResponse<any>> {
     return this.http

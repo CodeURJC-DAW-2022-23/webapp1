@@ -6,8 +6,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.daw.alist.models.User;
-import net.daw.alist.security.RegistrationRequest;
-import net.daw.alist.services.RegistrationService;
 import net.daw.alist.services.UserService;
 import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Optional;
 
 @RestController
@@ -29,32 +25,6 @@ public class UserRestController {
 
   @Autowired
   private Utils utils;
-
-  @Autowired
-  private RegistrationService registrationService;
-
-  @Operation(summary = "Register a new user")
-  @ApiResponses(value = {
-          @ApiResponse(responseCode = "201", description = "User created", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "403", description = "Username already taken", content = @Content),
-          @ApiResponse(responseCode = "400", description = "Username/password is shorter than 4 characters or invalid email address", content = @Content)
-  })
-  @PostMapping("/")
-  public ResponseEntity<User> register(@RequestBody RegistrationRequest request) throws SQLException, IOException {
-    Optional<User> optionalUser = userService.findByUsername(request.getUsername());
-    if (optionalUser.isEmpty()) {
-      String response = registrationService.register(request);
-      if (response.startsWith("Success")){
-        User user = userService.findByUsername(request.getUsername()).orElseThrow();
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-      } else{
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-      }
-    } else {
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    }
-  }
 
   @Operation(summary = "Get a user by its username")
   @ApiResponses(value = {

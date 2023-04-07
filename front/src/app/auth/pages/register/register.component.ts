@@ -17,13 +17,14 @@ export class RegisterComponent {
     email: [, [Validators.required, Validators.email]],
     passwords: this.fb.group(
       {
-        password: [, [Validators.required, Validators.minLength(5)]],
-        confirmPassword: [, [Validators.required, Validators.minLength(5)]],
+        password: [, [Validators.required, Validators.minLength(4)]],
+        confirmPassword: [, [Validators.required, Validators.minLength(4)]],
       },
       { validator: this.checkPasswords }
     ),
     termsOfService: [false, [Validators.requiredTrue]],
   });
+  visiblePassword: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -40,11 +41,13 @@ export class RegisterComponent {
     return this.registerForm.get('passwords')?.errors !== null;
   }
 
-  isInvalidField(field: string | string[]) {
-    return (
-      this.registerForm.get(field)?.touched &&
-      this.registerForm.get(field)?.errors
-    );
+  isInvalidField(fieldSearch: string | string[]) {
+    const field = this.registerForm.get(fieldSearch);
+    return field?.touched && field?.errors;
+  }
+
+  alternateVisiblePassword() {
+    this.visiblePassword = !this.visiblePassword;
   }
 
   save() {

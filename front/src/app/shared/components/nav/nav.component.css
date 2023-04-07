@@ -22,11 +22,6 @@ nav {
   border-bottom: 1px solid gray;
 }
 
-i {
-  color: white;
-  cursor: pointer;
-}
-
 .collapsing {
   transition: none !important;
 }

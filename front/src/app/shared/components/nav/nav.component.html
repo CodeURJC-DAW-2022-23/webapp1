@@ -5,16 +5,10 @@
         <a class="navbar-brand" [routerLink]="['/']" (click)="toggleOff()">
           <img src="assets/images/alistLogo.svg" alt="Alist logo" width="80" height="30">
         </a>
-        <a class="compassNavIcon" [routerLink]="['/explore']">
-          <i class="fa-compass fa-xl" [ngClass]="compassIconGlow ? 'fa-solid' : 'fa-regular'"></i>
-        </a>
+        <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/explore']"></app-icon>
         <app-search></app-search>
-        <a class="heartNavIcon" (click)="toggleHeartIcon()">
-          <i class="fa-heart fa-xl" [ngClass]="heartIconGlow ? 'fa-solid' : 'fa-regular'"></i>
-        </a>
-        <a class="profileNavIcon" [routerLink]="['/profile']">
-          <i class="fa-user fa-xl" [ngClass]="profileIconGlow ? 'fa-solid' : 'fa-regular'"></i>
-        </a>
+        <app-icon iconName="heart" [glow]="heartIconGlow" (click)="toggleHeartIcon()" [routerLink]="['/']"></app-icon>
+        <app-icon iconName="user" [glow]="profileIconGlow" [routerLink]="['/profile']"></app-icon>
       </div>
     </div>
 
@@ -25,15 +19,11 @@
         </a>
         <div class="collapse no-transition" id="collapseNav">
           <div class="icon-container d-flex justify-content-evenly align-items-center ps-2 pe-2 gap-3">
-            <a class="compassNavIcon" [routerLink]="['/explore']">
-              <i class="fa-compass fa-xl" [ngClass]="compassIconGlow ? 'fa-solid' : 'fa-regular'"></i>
-            </a>
-            <a class="heartNavIcon" (click)="toggleHeartIcon()">
-              <i class="fa-heart fa-xl" [ngClass]="heartIconGlow ? 'fa-solid' : 'fa-regular'"></i>
-            </a>
-            <a class="profileNavIcon" [routerLink]="['/profile']">
-              <i class="fa-user fa-xl" [ngClass]="profileIconGlow ? 'fa-solid' : 'fa-regular'"></i>
-            </a>
+            <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/explore']"></app-icon>
+            <app-search></app-search>
+            <app-icon iconName="heart" [glow]="heartIconGlow" (click)="toggleHeartIcon()"
+              [routerLink]="['/']"></app-icon>
+            <app-icon iconName="user" [glow]="profileIconGlow" [routerLink]="['/profile']"></app-icon>
           </div>
         </div>
         <div class="pe-2">

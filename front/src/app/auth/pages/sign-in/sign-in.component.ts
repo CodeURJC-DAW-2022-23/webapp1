@@ -31,7 +31,7 @@ export class SignInComponent implements DoCheck {
 
   isInvalidField(fieldSearch: string) {
     const field = this.signInForm.get(fieldSearch);
-    return field?.touched && field?.errors;
+    return field?.touched && field?.value && field?.errors;
   }
 
   alternateVisiblePassword() {

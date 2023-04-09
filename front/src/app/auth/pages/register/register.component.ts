@@ -61,7 +61,7 @@ export class RegisterComponent implements DoCheck {
 
   isInvalidField(fieldSearch: string | string[]) {
     const field = this.registerForm.get(fieldSearch);
-    return field?.touched && field?.errors;
+    return field?.touched && field?.value && field?.errors;
   }
 
   alternateVisiblePassword() {

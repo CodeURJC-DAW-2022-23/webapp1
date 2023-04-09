@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { ProfileModule } from './profile/profile.module';
 import { PostModule } from './post/post.module';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     AdminModule,
     ProfileModule,
     PostModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

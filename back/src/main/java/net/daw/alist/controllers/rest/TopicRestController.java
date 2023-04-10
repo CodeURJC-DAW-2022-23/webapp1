@@ -6,6 +6,10 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import net.daw.alist.models.Topic;
 import net.daw.alist.services.TopicService;
 import net.daw.alist.utils.Utils;
@@ -52,10 +56,13 @@ public class TopicRestController {
     @ApiResponse(responseCode = "403", description = "Create topic only for admin", content = @Content)
   })
   @PostMapping("/")
-  public ResponseEntity<Topic> createTopic(Authentication auth, Topic topic) {
-    if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+  public ResponseEntity<Topic> createTopic(Authentication auth, @RequestBody Data content) {
+    if (auth == null)
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
-    if (!isAdmin) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    if (!isAdmin)
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    Topic topic = new Topic(content.getName(), content.getDescription());
     topicService.save(topic);
     return new ResponseEntity<>(topic, HttpStatus.CREATED);
   }
@@ -80,6 +87,15 @@ public class TopicRestController {
       return new ResponseEntity<>(HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @AllArgsConstructor
+  @Getter
+  @Setter
+  @EqualsAndHashCode
+  private static class Data {
+    private final String name;
+    private final String description;
   }
 
 }

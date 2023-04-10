@@ -72,31 +72,38 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @Operation(summary = "(Admin) Ban/unban user by its id")
+  @Operation(summary = "Edit user by id")
   @ApiResponses(value = {
           @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
                   @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
           @ApiResponse(responseCode = "403", description = "Admin access required", content = @Content),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+          @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+          @ApiResponse(responseCode = "400", description = "Operation doesn't exist", content = @Content)
   })
   @PutMapping ("/{id}")
-  public ResponseEntity<User> banUser(Authentication authentication, @PathVariable Long id) {
-    String userRole = utils.getCurrentUserRole(authentication);
-    if (!userRole.equals("ADMIN"))
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+  public ResponseEntity<User> userOperation(Authentication authentication, @PathVariable Long id,  @RequestParam String operation) {
     Optional<User> optionalUser = userService.findByID(id);
-    if (optionalUser.isPresent()) {
-      User user = optionalUser.get();
-      if (user.isLocked()) {
-        userService.unbanUser(user.getUsername());
-        user.setLocked(false);
-      } else {
-        userService.banUser(user.getUsername());
-        user.setLocked(true);
-      }
-      return new ResponseEntity<>(user, HttpStatus.OK);
+    if (optionalUser.isEmpty())
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    String userRole = utils.getCurrentUserRole(authentication);
+
+    User user = optionalUser.get();
+    switch (operation){
+      case("ban"):
+        if (!userRole.equals("ADMIN"))
+          return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        if (user.isLocked()) {
+          userService.unbanUser(user.getUsername());
+          user.setLocked(false);
+        } else {
+          userService.banUser(user.getUsername());
+          user.setLocked(true);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+      //case("profile"):...
+      //Add more operations here
     }
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
   }
 
   @Operation(summary = "Current user follows another user by its name")
@@ -106,7 +113,7 @@ public class UserRestController {
           @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
           @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
-  @PutMapping("/{username}/follows")
+  @PutMapping("/followers/{username}")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
     Optional<User> optionalUser =  userService.findByUsername(username);
     User userSession = (User) authentication.getPrincipal();

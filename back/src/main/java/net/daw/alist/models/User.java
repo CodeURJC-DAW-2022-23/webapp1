@@ -9,6 +9,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
@@ -95,6 +96,7 @@ public class User implements UserDetails {
     this.username = username;
   }
 
+  @JsonProperty
   public void setPassword(String password) {
     this.password = password;
   }
@@ -144,6 +146,7 @@ public class User implements UserDetails {
     return username;
   }
 
+  @JsonIgnore
   @Override
   public String getPassword() {
     return password;

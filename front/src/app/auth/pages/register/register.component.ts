@@ -23,7 +23,7 @@ export class RegisterComponent implements DoCheck {
         password: [, [Validators.required, Validators.minLength(4)]],
         confirmPassword: [, [Validators.required, Validators.minLength(4)]],
       },
-      { validator: this.checkPasswords }
+      { validator: this._checkPasswords }
     ),
     termsOfService: [false, [Validators.requiredTrue]],
   });
@@ -37,7 +37,7 @@ export class RegisterComponent implements DoCheck {
     private authService: AuthService
   ) {}
 
-  private checkPasswords(
+  private _checkPasswords(
     control: AbstractControl
   ): { invalid: boolean } | null {
     const password: string = control.get('password')?.value;
@@ -76,11 +76,11 @@ export class RegisterComponent implements DoCheck {
         this.registerForm.reset();
         this.router.navigate(['/sign-in']);
       },
-      error: error => this.checkError(error.status),
+      error: error => this._checkError(error.status),
     });
   }
 
-  private checkError(error: number) {
+  private _checkError(error: number) {
     if (error === 403) {
       this.usernameTaken = true;
       this.registerForm.get('username')?.reset();

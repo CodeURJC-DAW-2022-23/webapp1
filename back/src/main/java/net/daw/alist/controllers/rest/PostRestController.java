@@ -21,9 +21,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import static net.daw.alist.utils.Utils.pathToImage;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -54,14 +58,16 @@ public class PostRestController {
           @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
   @PostMapping("/")
-  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) {
+  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) throws SQLException, IOException {
     if (content.getTitle() == null || content.getTopicStrings() == null || content.getItems() == null)
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     User author = (User) auth.getPrincipal();
     author = userService.findByID(author.getId()).orElseThrow();
+    System.getProperty("user.dir")
     List<PostItem> items = content.getItems();
     for (PostItem item: items) {
+      item.setImage(pathToImage(item.getImagePath()));
       postItemService.save(item);
     }
     List<Topic> topicList = topicService.getTopics(content.getTopicStrings());

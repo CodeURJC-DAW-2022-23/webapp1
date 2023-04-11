@@ -21,10 +21,12 @@ public class PostItem {
   private Long id;
 
   private String description;
+  private String imagePath;
 
   @Lob
   @JsonIgnore
   private Blob image;
+
 
   public PostItem() { }
 
@@ -47,6 +49,9 @@ public class PostItem {
   public void setDescription(String description) {
     this.description = description;
   }
+  public void setImagePath(String imagePath) {
+    this.imagePath = imagePath;
+  }
 
   public void setImage(String imagePath) throws IOException, SQLException {
     if (imagePath == null) {
@@ -62,7 +67,9 @@ public class PostItem {
   public String getDescription() {
     return description;
   }
-
+  public String getImagePath() {
+    return imagePath;
+  }
   public Blob getImage() {
     return image;
   }

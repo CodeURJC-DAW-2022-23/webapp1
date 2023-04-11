@@ -14,7 +14,12 @@ interface registerRequest {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  loggedUser: LoggedUser | undefined;
+  private _loggedUser: LoggedUser | undefined;
+
+  get loggedUser(): LoggedUser | undefined {
+    if (!this._loggedUser) return this._getLoggedInUser();
+    return this._loggedUser;
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -43,12 +48,11 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.loggedUser = undefined;
+    this._loggedUser = undefined;
     this.http.post(BASE_URL + '/sign-out', null);
   }
 
   isLoggedIn(): boolean {
-    console.log('inside', this.loggedUser);
     return this.loggedUser !== undefined;
   }
 
@@ -56,13 +60,14 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  private _getLoggedInUser() {
+  private _getLoggedInUser(): LoggedUser | undefined {
     this.http
       .get<LoggedUser>(BASE_URL + '/logged-user')
       .subscribe(loggedUser => {
-        console.log('api', loggedUser);
-        this.loggedUser = loggedUser;
+        this._loggedUser = loggedUser;
+        return loggedUser;
       });
+    return;
   }
 
   private _saveToken(token: string | null) {

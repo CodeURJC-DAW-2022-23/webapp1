@@ -2,10 +2,11 @@
   <nav class="navbar navbar-expand-lg bg-black">
     <div class="d-none d-md-block container-fluid">
       <div class="d-flex justify-content-evenly align-items-center m-auto">
-        <a class="navbar-brand" [routerLink]="['/']" (click)="toggleOff()">
+        <a class="navbar-brand" [routerLink]="['/']" (click)="toggleCompassIcon()">
           <img src="assets/images/alistLogo.svg" alt="Alist logo" width="80" height="30">
         </a>
-        <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/explore']"></app-icon>
+        <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/']"
+          (click)="toggleCompassIcon()"></app-icon>
         <app-search></app-search>
         <app-icon iconName="heart" [glow]="heartIconGlow" (click)="toggleHeartIcon()" [routerLink]="['/']"></app-icon>
         <app-icon iconName="user" [glow]="profileIconGlow" [routerLink]="['/profile']"></app-icon>
@@ -14,12 +15,13 @@
 
     <div class="hamburger-container d-sm-block d-md-none">
       <div class="d-flex justify-content-end align-items-center">
-        <a class="navbar-brand ps-2 m-auto flex-grow-1" [routerLink]="['/']" (click)="toggleOff()">
+        <a class="navbar-brand ps-2 m-auto flex-grow-1" [routerLink]="['/']" (click)="toggleCompassIcon()">
           <img src="assets/images/alistLogo.svg" alt="Alist logo" width="101.33 " height="38">
         </a>
         <div class="collapse no-transition" id="collapseNav">
           <div class="icon-container d-flex justify-content-evenly align-items-center ps-2 pe-2 gap-3">
-            <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/explore']"></app-icon>
+            <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/']"
+              (click)="toggleCompassIcon()"></app-icon>
             <app-search></app-search>
             <app-icon iconName="heart" [glow]="heartIconGlow" (click)="toggleHeartIcon()"
               [routerLink]="['/']"></app-icon>

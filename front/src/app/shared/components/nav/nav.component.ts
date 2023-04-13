@@ -8,46 +8,51 @@ import { filter } from 'rxjs';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent {
-  compassIconGlow: boolean;
-  heartIconGlow: boolean;
-  profileIconGlow: boolean;
-  currentRoute: string;
-  filtered: boolean;
+  compassIconGlow: boolean = false;
+  heartIconGlow: boolean = false;
+  profileIconGlow: boolean = false;
+  // TODO: make this thing work with something, now not used
+  filtered: boolean = false;
 
   constructor(private router: Router) {
-    this.filtered = false;
-    this.currentRoute = '';
-    this.compassIconGlow = false;
-    this.heartIconGlow = false;
-    this.profileIconGlow = false;
     this.router.events
       .pipe(
-        filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
+        filter(
+          (event: Event): event is NavigationEnd =>
+            event instanceof NavigationEnd
+        )
       )
-      .subscribe(e => {
-        this.currentRoute = e.url;
-        this.toggleOff();
-        if (this.currentRoute === '/profile') {
-          this.profileIconGlow = true;
-        } else if (this.currentRoute === '/explore') {
+      .subscribe(event => {
+        this.disableAllIcons();
+        const redirectRoute: string = event.urlAfterRedirects;
+        if (redirectRoute === '/error') return;
+        const currentRoute: string = event.url;
+        if (currentRoute === '/') {
           this.compassIconGlow = true;
+        } else if (
+          currentRoute === '/profile' &&
+          redirectRoute.startsWith('/user')
+        ) {
+          this.profileIconGlow = true;
         }
       });
   }
 
-  toggleHeartIcon = () => {
-    this.toggleOff();
+  toggleCompassIcon() {
+    this.disableAllIcons();
+    this.compassIconGlow = true;
+  }
+
+  toggleHeartIcon() {
+    this.disableAllIcons();
     this.filtered = true;
     this.heartIconGlow = true;
-  };
+  }
 
-  toggleOff = () => {
+  disableAllIcons() {
     this.compassIconGlow = false;
     this.heartIconGlow = false;
-    this.profileIconGlow = false;
-    this.heartIconGlow = false;
     this.filtered = false;
-  };
-
-  ngOnInit() {}
+    this.profileIconGlow = false;
+  }
 }

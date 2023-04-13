@@ -39,6 +39,14 @@ const routes: Routes = [
     title: 'Alist | Post',
   },
   {
+    path: 'profile',
+    loadChildren: () =>
+      import('./profile/profile.module').then(m => m.ProfileModule),
+    title: 'Alist | Profile',
+    canActivate: [AuthGuard],
+    data: { role: 'user' },
+  },
+  {
     path: 'user/:username',
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),

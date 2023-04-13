@@ -29,6 +29,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/comments")
 public class CommentRestController {
+
   @Autowired
   private PostService postService;
 
@@ -37,9 +38,10 @@ public class CommentRestController {
 
   @Operation(summary = "Delete a comment of a post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "201", description = "Comment added", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))}),
-          @ApiResponse(responseCode = "403", description = "Can´t comment if not registered", content = @Content)
+    @ApiResponse(responseCode = "201", description = "Comment added", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))
+    }),
+    @ApiResponse(responseCode = "403", description = "Can´t comment if not registered", content = @Content)
   })
   @PostMapping("/{postId}")
   public ResponseEntity<Comment> createComment(@RequestBody Data content, @PathVariable long postId, Authentication auth) throws SQLException, IOException {
@@ -58,9 +60,10 @@ public class CommentRestController {
 
   @Operation(summary = "Get all the comments of a post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "Post found", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))}),
-          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "Post found", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))
+    }),
+    @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
   @GetMapping("/posts/{postId}")
   public ResponseEntity<List<Comment>> getPostComments(@PathVariable long postId) {
@@ -75,9 +78,10 @@ public class CommentRestController {
 
   @Operation(summary = "Get all the comments of an user")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))}),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))
+    }),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
   @GetMapping("/user/{userId}")
   public ResponseEntity<List<Comment>> getUserComments(@PathVariable long userId) {
@@ -92,10 +96,11 @@ public class CommentRestController {
 
   @Operation(summary = "Delete a comment of a post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "Comment deleted", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))}),
-          @ApiResponse(responseCode = "403", description = "Can´t delete other one comment", content = @Content),
-          @ApiResponse(responseCode = "404", description = "Post or comment not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "Comment deleted", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Comment.class)))
+    }),
+    @ApiResponse(responseCode = "403", description = "Can´t delete other one comment", content = @Content),
+    @ApiResponse(responseCode = "404", description = "Post or comment not found", content = @Content)
   })
   @DeleteMapping("/{postId}/{commentId}")
   public ResponseEntity<Post> deleteComment(@PathVariable long postId, @PathVariable long commentId, Authentication auth) {
@@ -117,6 +122,7 @@ public class CommentRestController {
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
+
   @AllArgsConstructor
   @Getter
   @Setter
@@ -125,4 +131,5 @@ public class CommentRestController {
     private final String content;
     private final String imagePath;
   }
+
 }

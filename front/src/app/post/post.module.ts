@@ -8,7 +8,13 @@ import { FeedComponent } from './pages/feed/feed.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 
 @NgModule({
-  declarations: [PostComponent, CommentComponent, TopComponent, FeedComponent, CreatePostComponent],
+  declarations: [
+    PostComponent,
+    CommentComponent,
+    TopComponent,
+    FeedComponent,
+    CreatePostComponent,
+  ],
   imports: [CommonModule],
   exports: [FeedComponent, TopComponent],
 })

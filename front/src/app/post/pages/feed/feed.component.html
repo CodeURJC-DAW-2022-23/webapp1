@@ -5,12 +5,14 @@
     </button>
   </a>
   <div class="post-container">
-    <!-- add posts -->
+    <li *ngFor="let currentPost of posts">
+      <app-post [post]="currentPost"></app-post>
+    </li>
   </div>
   <div class="text-center my-5">
-    <div class="spinner-border text-white invisible" role="status">
+    <div class="spinner-border text-white" role="status" [style.display]="loading ? 'block' : 'none'">
     </div>
-    <div class="no-posts text-white invisible">No more posts :(
+    <div class="no-posts text-white" [style.display]="endOfFeed ? 'block' : 'none'">No more posts :(
     </div>
   </div>
 </div>

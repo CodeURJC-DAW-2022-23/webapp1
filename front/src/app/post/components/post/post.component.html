@@ -1,1 +1,63 @@
-<p>post works!</p>
+<div class="post mt-3 mb-3">
+  <div class="postInfo border bg-white d-flex gap-3 py-3">
+    <img src={{post.author.imagePath}} alt="Profile picture" width="75" height="75"
+      class="profileImg rounded-circle flex-shrink-0">
+    <div class="d-flex gap-2 w-100 justify-content-between">
+      <div>
+        <div class="d-flex flex-wrap">
+          <h6 class="topics pe-1" *ngFor="let topic of post.topics">
+            <a class="topic">@{{topic.name}}</a>
+          </h6>
+        </div>
+        <a class="OP text-black text-decoration-none" href="/user/{{post.author.username}}">
+          {{post.author.username}}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="list-group m-auto">
+    <div class="bg-white text-black d-flex gap-3 py-3 text-center justify-content-*-center align-items-center"
+      aria-current="true">
+      <div class="top w-75 m-auto">
+        <a class="text-black text-decoration-none" href="/top-list/{{post.id}}">
+          <h1 class="topName">{{post.title}}</h1>
+        </a>
+        <ol class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
+          <div class="itemWrapper d-flex justify-content-center p-2">
+            <li class="ms-0 me-auto">
+              {{item.description}}
+            </li>
+            <img src="{{item.id}}/image" alt="image" width="45" height="45"
+              class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
+          </div>
+        </ol>
+      </div>
+    </div>
+    <div class="list-group-item d-flex z-0">
+      <div class="w-auto m-auto">
+        <h6 class="pe-1 d-inline">
+          {{post.numUpvotes}}
+        </h6>
+        <a class="btn btn-primary " type="button" href="/post/{{post.id}}/upvote-action">
+          <!-- TODO: faltan condiciones de upvotes-->
+
+          <i class="fa-regular fa-circle-up fa-xl"></i>
+
+          <i class="fa-solid fa-circle-up fa-xl"></i>
+
+        </a>
+        <h6 class="pe-1 d-inline">
+          {{post.numDownvotes}}
+        </h6>
+        <a class="btn btn-primary" type="button" href="/post/{{post.id}}/downvote-action">
+
+          <i class="fa-regular fa-circle-down fa-xl"></i>
+
+          <i class="fa-solid fa-circle-down fa-xl"></i>
+          
+        </a>
+      </div>
+      <img class="shareIcon m-auto" src="/images/shareIcon.svg" alt="" width="35" height="35">
+    </div>
+  </div>
+</div>

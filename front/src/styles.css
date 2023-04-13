@@ -9,6 +9,16 @@ body {
   align-items: center;
 }
 
+/* checkbox */
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #63b1b1;
+  border-color: #63b1b1;
+}
+
 /* button */
 .btn-primary {
   background-color: #2d474f;

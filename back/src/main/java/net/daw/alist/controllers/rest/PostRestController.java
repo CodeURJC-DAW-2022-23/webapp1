@@ -47,11 +47,11 @@ public class PostRestController {
 
   @Operation(summary = "Create new post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "201", description = "Post created", content = {
-            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
-          }),
-          @ApiResponse(responseCode = "403", description = "Can't create post if not registered", content = @Content),
-          @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
+    @ApiResponse(responseCode = "201", description = "Post created", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+    }),
+    @ApiResponse(responseCode = "403", description = "Can't create post if not registered", content = @Content),
+    @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
   @PostMapping("/")
   public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) {
@@ -68,15 +68,14 @@ public class PostRestController {
     Post post = new Post(author, content.getTitle(), topicList, items);
     postService.save(post);
     return new ResponseEntity<>(post, HttpStatus.CREATED);
-
   }
 
   @Operation(summary = "Get specific post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "Post found", content = {
-            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
-          }),
-          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "Post found", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+    }),
+    @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
   @GetMapping("/{postId}")
   public ResponseEntity<Post> getPost(@PathVariable long postId) {
@@ -90,11 +89,11 @@ public class PostRestController {
 
   @Operation(summary = "Delete specific post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "Post deleted", content = {
-            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
-          }),
-          @ApiResponse(responseCode = "403", description = "Can't delete other one post", content = @Content),
-          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "Post deleted", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+    }),
+    @ApiResponse(responseCode = "403", description = "Can't delete other one post", content = @Content),
+    @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
   @DeleteMapping("/{postId}")
   public ResponseEntity<Post> deletePost(Authentication auth, @PathVariable long postId) {
@@ -113,11 +112,11 @@ public class PostRestController {
 
   @Operation(summary = "Current user upvote a post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found and upvoted the post", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
-          }),
-          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
-          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found and upvoted the post", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+    }),
+    @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+    @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
   @PutMapping("/{postId}/upvotes")
   public ResponseEntity<Post> upvotePost(Authentication authentication, @PathVariable long postId) {
@@ -129,31 +128,28 @@ public class PostRestController {
       votesService.actionUpVote(postId, userSession);
       return new ResponseEntity<>(optionalPost.get(), HttpStatus.OK);
     }
-    else
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
   @Operation(summary = "Current user downvote a post")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found and downvoted the post", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
-          }),
-          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
-          @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found and downvoted the post", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+    }),
+    @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+    @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
   @PutMapping("/{postId}/downvotes")
   public ResponseEntity<Post> downvotePost(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
-    if(optionalPost.isPresent()) {
+    if (optionalPost.isPresent()) {
       User userSession = (User) userService.loadUserByUsername(((User) authentication
               .getPrincipal())
               .getUsername());
       votesService.actionDownVote(postId, userSession);
       return new ResponseEntity<>(optionalPost.get(), HttpStatus.OK);
     }
-    else
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
   @AllArgsConstructor
@@ -165,4 +161,5 @@ public class PostRestController {
     private final List<String> topicStrings;
     private final List<PostItem> items;
   }
+
 }

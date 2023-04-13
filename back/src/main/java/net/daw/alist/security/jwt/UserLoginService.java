@@ -39,37 +39,39 @@ public class UserLoginService {
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    String accessToken = SecurityCipher.decrypt(encryptedAccessToken);
-    String refreshToken = SecurityCipher.decrypt(encryptedRefreshToken);
+    String accessTokenValue = SecurityCipher.decrypt(encryptedAccessToken);
+    String refreshTokenValue = SecurityCipher.decrypt(encryptedRefreshToken);
 
     String username = loginRequest.getUsername();
     UserDetails user = userDetailsService.loadUserByUsername(username);
 
-    Boolean accessTokenValid = jwtTokenProvider.validateToken(accessToken);
-    Boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
+    boolean accessTokenValid = jwtTokenProvider.validateToken(accessTokenValue);
+    boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshTokenValue);
 
     HttpHeaders responseHeaders = new HttpHeaders();
     Token newAccessToken;
     Token newRefreshToken;
     if (!accessTokenValid && !refreshTokenValid) {
       newAccessToken = jwtTokenProvider.generateToken(user);
+      accessTokenValue = newAccessToken.getTokenValue();
+      newRefreshToken = jwtTokenProvider.generateRefreshToken(user);
+      addAccessTokenCookie(responseHeaders, newAccessToken);
+      addRefreshTokenCookie(responseHeaders, newRefreshToken);
+    }
+    else if (!accessTokenValid) {
+      newAccessToken = jwtTokenProvider.generateToken(user);
+      accessTokenValue = newAccessToken.getTokenValue();
+      addAccessTokenCookie(responseHeaders, newAccessToken);
+    }
+    else if (refreshTokenValid) {
+      newAccessToken = jwtTokenProvider.generateToken(user);
+      accessTokenValue = newAccessToken.getTokenValue();
       newRefreshToken = jwtTokenProvider.generateRefreshToken(user);
       addAccessTokenCookie(responseHeaders, newAccessToken);
       addRefreshTokenCookie(responseHeaders, newRefreshToken);
     }
 
-    if (!accessTokenValid && refreshTokenValid) {
-      newAccessToken = jwtTokenProvider.generateToken(user);
-      addAccessTokenCookie(responseHeaders, newAccessToken);
-    }
-
-    if (accessTokenValid && refreshTokenValid) {
-      newAccessToken = jwtTokenProvider.generateToken(user);
-      newRefreshToken = jwtTokenProvider.generateRefreshToken(user);
-      addAccessTokenCookie(responseHeaders, newAccessToken);
-      addRefreshTokenCookie(responseHeaders, newRefreshToken);
-    }
-
+    addAuthTokenHeader(responseHeaders, accessTokenValue);
     AuthResponse loginResponse = new AuthResponse(AuthResponse.Status.SUCCESS,
             "Auth successful. Tokens are created in cookie.");
     return ResponseEntity.ok().headers(responseHeaders).body(loginResponse);
@@ -77,9 +79,9 @@ public class UserLoginService {
 
   public ResponseEntity<AuthResponse> refresh(String encryptedRefreshToken) {
 
-    String refreshToken = SecurityCipher.decrypt(encryptedRefreshToken);
+    String refreshTokenValue = SecurityCipher.decrypt(encryptedRefreshToken);
 
-    Boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
+    boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshTokenValue);
 
     if (!refreshTokenValid) {
       AuthResponse loginResponse = new AuthResponse(AuthResponse.Status.FAILURE,
@@ -87,7 +89,7 @@ public class UserLoginService {
       return ResponseEntity.ok().body(loginResponse);
     }
 
-    String username = jwtTokenProvider.getUsername(refreshToken);
+    String username = jwtTokenProvider.getUsername(refreshTokenValue);
     UserDetails user = userDetailsService.loadUserByUsername(username);
 
     Token newAccessToken = jwtTokenProvider.generateToken(user);
@@ -95,16 +97,10 @@ public class UserLoginService {
     responseHeaders.add(HttpHeaders.SET_COOKIE, cookieUtil
             .createAccessTokenCookie(newAccessToken.getTokenValue(), newAccessToken.getDuration()).toString());
 
+    addAuthTokenHeader(responseHeaders, newAccessToken.getTokenValue());
     AuthResponse loginResponse = new AuthResponse(AuthResponse.Status.SUCCESS,
             "Auth successful. Tokens are created in cookie.");
     return ResponseEntity.ok().headers(responseHeaders).body(loginResponse);
-  }
-
-  public String getUserName() {
-
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-    return authentication.getName();
   }
 
   public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -138,4 +134,9 @@ public class UserLoginService {
     httpHeaders.add(HttpHeaders.SET_COOKIE,
             cookieUtil.createRefreshTokenCookie(token.getTokenValue(), token.getDuration()).toString());
   }
+
+  private void addAuthTokenHeader(HttpHeaders httpHeaders, String tokenValue) {
+    httpHeaders.add(HttpHeaders.AUTHORIZATION, tokenValue);
+  }
+
 }

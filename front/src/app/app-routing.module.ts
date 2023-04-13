@@ -55,7 +55,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminPanelComponent,
     title: 'Alist | Admin Panel',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     data: { role: 'admin' },
   },
   {

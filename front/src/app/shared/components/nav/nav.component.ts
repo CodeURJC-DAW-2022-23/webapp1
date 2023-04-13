@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, Event } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +15,7 @@ export class NavComponent {
   // TODO: make this thing work with something, now not used
   filtered: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.router.events
       .pipe(
         filter(
@@ -30,8 +31,8 @@ export class NavComponent {
         if (currentRoute === '/') {
           this.compassIconGlow = true;
         } else if (
-          currentRoute === '/profile' &&
-          redirectRoute.startsWith('/user')
+          currentRoute.startsWith('/user') &&
+          this.authService.isLoggedIn()
         ) {
           this.profileIconGlow = true;
         }
@@ -44,6 +45,7 @@ export class NavComponent {
   }
 
   toggleHeartIcon() {
+    if (!this.authService.isLoggedIn()) return;
     this.disableAllIcons();
     this.filtered = true;
     this.heartIconGlow = true;

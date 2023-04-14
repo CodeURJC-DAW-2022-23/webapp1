@@ -1,3 +1,17 @@
-<app-chart></app-chart>
-<app-manage-users></app-manage-users>
-<app-manage-topics></app-manage-topics>
+<div class="container px-4 py-5 text-center" id="featured-3">
+  <h1 class="pb-2 border-bottom">Admin Panel</h1>
+  <h5 class="mt-4 font-weight-bold">Topic popularity</h5>
+  <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
+    <app-chart></app-chart>
+
+  </div>
+  <div class="row d-flex row-cols-1 row-cols-lg-3 m-auto">
+
+    <div class="feature col flex-grow-1">
+      <app-manage-users></app-manage-users>
+    </div>
+    <div class="feature col flex-grow-1">
+      <app-manage-topics></app-manage-topics>
+    </div>
+  </div>
+</div>

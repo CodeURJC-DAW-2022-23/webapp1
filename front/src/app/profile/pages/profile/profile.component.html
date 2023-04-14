@@ -1,1 +1,67 @@
-<p>profile works!</p>
+<div class="body">
+  <main>
+    <form class="row bg-black pt-3">
+      <div class="profile-container col-md-4 text-white text-center">
+        <div class="profile-pic text-center pt-2">
+          <!-- TODO: profile pic display -->
+          <!-- <img src="{{user.imagePath}}" alt="profilePic" class="prof-pic"> -->
+        </div>
+        <div class="row text-inherit m-0 d-flex align-items-center">
+          <div class="col prof-name fs-2">
+            {{user.username}}
+          </div>
+          <ng-container *ngIf="notGuest">
+            <div class="col btn-setting" *ngIf="ownProfile">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-gear"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="settingsButton">
+                  <li>
+                    <a class="dropdown-item" id="admin-panel" [routerLink]="['/admin']" *ngIf="user.admin">
+                      Admin Panel
+                    </a>
+                  </li>
+                  <li><a class="dropdown-item" id="sign-out" (click)="logout()">Log-out</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col" *ngIf="!ownProfile">
+              <!-- TODO: followed -->
+              <!-- {{#followed}} -->
+              <!-- <a class="btn btn-primary btn-round btn-following" type="button"
+                href="/user/{{user.username}}/unfollow"></a> -->
+              <!-- {{/followed}} -->
+              <!-- {{^followed}} -->
+              <!-- <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a> -->
+              <!-- {{/followed}} -->
+            </div>
+          </ng-container>
+        </div>
+        <div class="row fs-5 mt-1">
+          <div class="col follow">
+            <!-- TODO: following list count -->
+            <!-- <a type="button" href="/user/{{user.username}}/following">
+              <strong class="text-white">{{user.following.size}}</strong> Following
+            </a> -->
+          </div>
+          <div class="col follow">
+            <!-- TODO: followers list count -->
+            <!-- <a type="button" href="/user/{{user.username}}/followers">
+              <strong class="text-white">{{user.followers.size}}</strong> Followers
+            </a> -->
+          </div>
+        </div>
+        <hr>
+        <div class="bio-container">
+          <p>{{user.bio}}</p>
+        </div>
+      </div>
+      <div class="post-container col-md-9 p-0">
+        <!-- TODO: posts user display -->
+        <!-- {{>post}} -->
+      </div>
+    </form>
+  </main>
+</div>

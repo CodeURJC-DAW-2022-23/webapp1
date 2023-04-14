@@ -20,23 +20,23 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const username: string = this._getUsernameFormURL(this.router.url);
-    this._checkLoggedUser(username);
-    this.userService.getUser(username).subscribe({
+    const profileUsername: string = this._getUsernameFormUrl(this.router.url);
+    this._checkLoggedUser(profileUsername);
+    this.userService.getUser(profileUsername).subscribe({
       next: user => (this.user = user),
       error: _ => this.router.navigate(['/error']),
     });
   }
 
-  private _getUsernameFormURL(url: string): string {
+  private _getUsernameFormUrl(url: string): string {
     return url.split('/')[2];
   }
 
-  private _checkLoggedUser(username: string) {
+  private _checkLoggedUser(profileUsername: string) {
     if (!this.authService.isLoggedIn()) return;
     this.notGuest = true;
-    const loggedUser = this.authService.loggedUser;
-    if (loggedUser!.username === username) this.ownProfile = true;
+    const loggedUserUsername: string = this.authService.loggedUser!.username;
+    if (loggedUserUsername === profileUsername) this.ownProfile = true;
   }
 
   logout() {

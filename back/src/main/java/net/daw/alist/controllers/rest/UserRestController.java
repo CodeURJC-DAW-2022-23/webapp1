@@ -6,8 +6,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.daw.alist.models.User;
-import net.daw.alist.security.RegistrationRequest;
-import net.daw.alist.services.RegistrationService;
 import net.daw.alist.services.UserService;
 import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Optional;
 
 @RestController
@@ -30,65 +26,40 @@ public class UserRestController {
   @Autowired
   private Utils utils;
 
-  @Autowired
-  private RegistrationService registrationService;
-
-  @Operation(summary = "Register a new user")
-  @ApiResponses(value = {
-          @ApiResponse(responseCode = "201", description = "User created", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "403", description = "Username already taken", content = @Content),
-          @ApiResponse(responseCode = "400", description = "Username/password is shorter than 4 characters or invalid email address", content = @Content)
-  })
-  @PostMapping("/")
-  public ResponseEntity<User> register(@RequestBody RegistrationRequest request) throws SQLException, IOException {
-    Optional<User> optionalUser = userService.findByUsername(request.getUsername());
-    if (optionalUser.isEmpty()) {
-      String response = registrationService.register(request);
-      if (response.startsWith("Success")){
-        User user = userService.findByUsername(request.getUsername()).orElseThrow();
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-      } else{
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-      }
-    } else {
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    }
-  }
-
   @Operation(summary = "Get a user by its username")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+    }),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
   @GetMapping("/{username}")
   public ResponseEntity<User> getUser(@PathVariable String username) {
-    Optional<User> optionalUser = userService.findByUsername(username);
-    if (optionalUser.isPresent()) {
-      User user = optionalUser.get();
-      return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    return getUserResponseEntity(username, userService);
   }
 
   @Operation(summary = "Edit user by id")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "403", description = "Admin access required", content = @Content),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-          @ApiResponse(responseCode = "400", description = "Operation doesn't exist", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+    }),
+    @ApiResponse(responseCode = "403", description = "Admin access required", content = @Content),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+    @ApiResponse(responseCode = "400", description = "Operation doesn't exist", content = @Content)
   })
-  @PutMapping ("/{id}")
-  public ResponseEntity<User> userOperation(Authentication authentication, @PathVariable Long id,  @RequestParam String operation) {
-    Optional<User> optionalUser = userService.findByID(id);
+  @PutMapping ("/{userId}")
+  public ResponseEntity<User> userOperation(
+    Authentication authentication,
+    @PathVariable Long userId,
+    @RequestParam String operation
+  ) {
+    Optional<User> optionalUser = userService.findByID(userId);
     if (optionalUser.isEmpty())
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     String userRole = utils.getCurrentUserRole(authentication);
 
     User user = optionalUser.get();
-    switch (operation){
+    switch (operation) {
       case("ban"):
         if (!userRole.equals("ADMIN"))
           return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -106,19 +77,20 @@ public class UserRestController {
     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
   }
 
-  @Operation(summary = "Current user follows another user by its name")
+  @Operation(summary = "Current user follows another user by its username")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "User found and followed/unfollowed state changed", content = {
-                  @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
-          @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
-          @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "User found and followed/unfollowed state changed", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+    }),
+    @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
   @PutMapping("/followers/{username}")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
     Optional<User> optionalUser =  userService.findByUsername(username);
     User userSession = (User) authentication.getPrincipal();
     userSession  = userService.findByID(userSession.getId()).orElseThrow();
-    if(optionalUser.isPresent()) {
+    if (optionalUser.isPresent()) {
       User userProfile = optionalUser.get();
       if (userProfile.getFollowers().contains(userSession))
         userSession.unFollow(userProfile);
@@ -126,6 +98,15 @@ public class UserRestController {
         userSession.follow(userProfile);
       userService.saveUser(userSession);
       return new ResponseEntity<>(userProfile, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  public static ResponseEntity<User> getUserResponseEntity(String username, UserService userService) {
+    Optional<User> userPrincipal = userService.findByUsername(username);
+    if (userPrincipal.isPresent()) {
+      User user = userPrincipal.get();
+      return new ResponseEntity<>(user, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }

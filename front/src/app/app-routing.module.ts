@@ -17,13 +17,6 @@ const routes: Routes = [
     component: FeedComponent,
   },
   {
-    path: 'followed',
-    component: FeedComponent,
-    title: 'Alist | Followed',
-    canActivate: [AuthGuard],
-    data: { role: 'user' },
-  },
-  {
     path: 'sign-in',
     component: SignInComponent,
     title: 'Alist | Sign In',
@@ -44,6 +37,14 @@ const routes: Routes = [
     path: 'post/:postId',
     component: TopComponent,
     title: 'Alist | Post',
+  },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./profile/profile.module').then(m => m.ProfileModule),
+    title: 'Alist | Profile',
+    canActivate: [AuthGuard],
+    data: { role: 'user' },
   },
   {
     path: 'user/:username',

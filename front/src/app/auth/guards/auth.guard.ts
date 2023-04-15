@@ -67,6 +67,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private _isProfilePage(url: string): boolean {
-    return url.startsWith('/profile');
+    return url === '/profile';
   }
 }

@@ -17,13 +17,6 @@ const routes: Routes = [
     component: FeedComponent,
   },
   {
-    path: 'followed',
-    component: FeedComponent,
-    title: 'Alist | Followed',
-    canActivate: [AuthGuard],
-    data: { role: 'user' },
-  },
-  {
     path: 'sign-in',
     component: SignInComponent,
     title: 'Alist | Sign In',

@@ -136,6 +136,18 @@ input[type='text'] {
   border-color: rgb(224, 224, 224);
 }
 
+.feed-container {
+  margin: 0 1rem;
+}
+.createPostButton{
+  position: -webkit-sticky; /* Safari */
+  z-index: 1;
+  position: sticky;
+  top: 90%;
+  left: 100%;
+}
+
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .post,
@@ -143,5 +155,10 @@ input[type='text'] {
   .comment {
     width: 40%;
     margin: auto;
+  }
+
+  .createPostButton{
+    top: 50%;
+    left: 75%;
   }
 }

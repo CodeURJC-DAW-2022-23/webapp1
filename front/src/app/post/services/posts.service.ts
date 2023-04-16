@@ -1,20 +1,20 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, filter } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 
-const BASE_URL = 'https://localhost:8443/api/posts';
+const BASE_URL = 'api/posts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostsService {
   constructor(private http: HttpClient) {}
-
-  getPosts(page: number): Observable<any> {
-    return this.http.get(
-      BASE_URL + '?page=' + page.toString()
-    ) as Observable<any>;
+  getPosts(page: number, filter: boolean): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('filter', filter);
+    return this.http.get(BASE_URL, {params}) as Observable<any>;
 
   }
 }

@@ -23,7 +23,7 @@ export class FeedComponent implements OnInit {
 
   getPosts() {
     this.postsService
-      .getPosts(this.page)
+      .getPosts(this.page, false)
       .pipe(take(1))
       .subscribe(response => {
         let data: any = response;

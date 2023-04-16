@@ -34,7 +34,7 @@ public class AjaxRestController {
     }),
     @ApiResponse(responseCode = "404", description = "No new posts found", content = @Content)
   })
-  @GetMapping("/")
+  @GetMapping("")
   public Page<Post> getNewPosts(Authentication authentication, @RequestParam int page, @RequestParam Optional<Boolean> filter) {
     boolean validPage = page <= (int) Math.ceil(postService.count()/2);
     boolean filterPosts = false;

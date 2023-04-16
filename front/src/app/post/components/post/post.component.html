@@ -41,9 +41,9 @@
         <a class="btn btn-primary " type="button" href="/post/{{post.id}}/upvote-action">
           <!-- TODO: faltan condiciones de upvotes-->
 
-          <i class="fa-regular fa-circle-up fa-xl"></i>
+          <i class="fa-regular fa-circle-up fa-xl" *ngIf=""></i>
 
-          <i class="fa-solid fa-circle-up fa-xl"></i>
+          <i class="fa-solid fa-circle-up fa-xl" ></i>
 
         </a>
         <h6 class="pe-1 d-inline">
@@ -51,10 +51,10 @@
         </h6>
         <a class="btn btn-primary" type="button" href="/post/{{post.id}}/downvote-action">
 
-          <i class="fa-regular fa-circle-down fa-xl"></i>
+          <i class="fa-regular fa-circle-down fa-xl" *ngIf=""></i>
 
           <i class="fa-solid fa-circle-down fa-xl"></i>
-          
+
         </a>
       </div>
       <img class="shareIcon m-auto" src="/images/shareIcon.svg" alt="" width="35" height="35">

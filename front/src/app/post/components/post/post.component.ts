@@ -8,4 +8,7 @@ import { Post } from 'src/app/models/post.model';
 })
 export class PostComponent {
   @Input() post!: Post;
+  //TODO: UPVOTES AND DOWNVOTES
+  //upvoted: boolean = this.post.upVotes.find;
+  //downvoted: boolean = this.post.downVotes.
 }

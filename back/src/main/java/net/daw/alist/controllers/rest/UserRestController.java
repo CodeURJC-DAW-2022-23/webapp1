@@ -5,6 +5,9 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import net.daw.alist.models.User;
 import net.daw.alist.services.UserService;
 import net.daw.alist.utils.Utils;
@@ -14,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -85,7 +91,7 @@ public class UserRestController {
     @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
     @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
-  @PutMapping("/followers/{username}")
+  @PutMapping("/{username}/follow")
   public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
     Optional<User> optionalUser =  userService.findByUsername(username);
     User userSession = (User) authentication.getPrincipal();
@@ -109,6 +115,83 @@ public class UserRestController {
       return new ResponseEntity<>(user, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @Operation(summary = "Profile user following")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "User found", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = Follow.class))
+    }),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+    @ApiResponse(responseCode = "400", description = "User logged in but not found", content = @Content)
+  })
+  @GetMapping("{username}/following")
+  public ResponseEntity<Follow> following(HttpServletRequest request, @PathVariable String username) {
+    return checkFollowingFollow(request, username, true);
+  }
+
+  @Operation(summary = "Profile user followers")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "User found", content = {
+      @Content(mediaType = "application/json", schema = @Schema(implementation = Follow.class))
+    }),
+    @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+    @ApiResponse(responseCode = "400", description = "User logged in but not found", content = @Content)
+  })
+  @GetMapping("{username}/followers")
+  public ResponseEntity<Follow> followers(HttpServletRequest request, @PathVariable String username) {
+    return checkFollowingFollow(request, username, false);
+  }
+
+  private ResponseEntity<Follow> checkFollowingFollow(
+    HttpServletRequest request,
+    String username,
+    boolean following
+  ) {
+    Optional<User> optionalUserProfile =  userService.findByUsername(username);
+    if (optionalUserProfile.isPresent()) {
+      User userProfile = optionalUserProfile.get();
+      List<User> followUsers;
+      if (following) followUsers = userProfile.getFollowing();
+      else followUsers = userProfile.getFollowers();
+      List<FollowUser> followUserFollows = new ArrayList<>();
+      boolean userLoggedIn = request.getUserPrincipal() != null;
+      if (userLoggedIn) {
+        String userSessionUsername = request.getUserPrincipal().getName();
+        Optional<User> optionalUserSession = userService.findByUsername(userSessionUsername);
+        if (optionalUserSession.isPresent()) {
+          User userSession = optionalUserSession.get();
+          for (User user: followUsers) {
+            FollowUser followUser = new FollowUser(user.getUsername(), userSession.getFollowing().contains(user));
+            followUserFollows.add(followUser);
+          }
+        } else new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      } else {
+        for (User user: followUsers) {
+          FollowUser followUser = new FollowUser(user.getUsername(), false);
+          followUserFollows.add(followUser);
+        }
+      }
+      Follow follow = new Follow(followUsers.size(), followUserFollows);
+      return new ResponseEntity<>(follow, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @AllArgsConstructor
+  @Getter
+  @EqualsAndHashCode
+  private static class Follow {
+    private final int count;
+    private final List<FollowUser> users;
+  }
+
+  @AllArgsConstructor
+  @Getter
+  @EqualsAndHashCode
+  private static class FollowUser {
+    private final String username;
+    private final boolean follow;
   }
 
 }

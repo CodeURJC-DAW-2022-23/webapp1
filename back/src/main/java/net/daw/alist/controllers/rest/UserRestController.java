@@ -44,6 +44,17 @@ public class UserRestController {
     return getUserResponseEntity(username, userService);
   }
 
+  public static ResponseEntity<User> getUserResponseEntity(String username, UserService userService) {
+    Optional<User> userPrincipal = userService.findByUsername(username);
+    if (userPrincipal.isPresent()) {
+      User user = userPrincipal.get();
+      user.setFollowingCount(user.getFollowing().size());
+      user.setFollowersCount(user.getFollowers().size());
+      return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
   @Operation(summary = "Edit user by id")
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "User found and banned/unbanned state changed", content = {
@@ -92,10 +103,10 @@ public class UserRestController {
     @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
   })
   @PutMapping("/{username}/follow")
-  public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username){
-    Optional<User> optionalUser =  userService.findByUsername(username);
+  public ResponseEntity<User> follow(Authentication authentication, @PathVariable String username) {
+    Optional<User> optionalUser = userService.findByUsername(username);
     User userSession = (User) authentication.getPrincipal();
-    userSession  = userService.findByID(userSession.getId()).orElseThrow();
+    userSession = userService.findByID(userSession.getId()).orElseThrow();
     if (optionalUser.isPresent()) {
       User userProfile = optionalUser.get();
       if (userProfile.getFollowers().contains(userSession))
@@ -104,15 +115,6 @@ public class UserRestController {
         userSession.follow(userProfile);
       userService.saveUser(userSession);
       return new ResponseEntity<>(userProfile, HttpStatus.OK);
-    }
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  }
-
-  public static ResponseEntity<User> getUserResponseEntity(String username, UserService userService) {
-    Optional<User> userPrincipal = userService.findByUsername(username);
-    if (userPrincipal.isPresent()) {
-      User user = userPrincipal.get();
-      return new ResponseEntity<>(user, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }

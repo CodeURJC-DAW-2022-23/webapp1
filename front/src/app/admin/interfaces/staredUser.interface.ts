@@ -1,4 +1,4 @@
-export interface LoggedUser {
+export interface StaredUser {
   '@Id': number;
   id: number;
   date: Date;

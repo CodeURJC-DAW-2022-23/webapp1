@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoggedUser } from '../../interfaces/staredUser.interface';
+import { StaredUser } from '../../interfaces/staredUser.interface';
 
 
 
@@ -14,13 +14,14 @@ import { LoggedUser } from '../../interfaces/staredUser.interface';
 })
   
 export class ManageUsersComponent  {
-  userStared: LoggedUser | undefined;
+  usersURL = "/api/users/";
+  userStared: StaredUser | undefined;
   username = '';
 
   constructor(private httpClient: HttpClient) { }
   
   getUser(username: String) {
-    this.httpClient.get<LoggedUser>("https://localhost:8443/api/users/" + username).subscribe(
+    this.httpClient.get<StaredUser>(this.usersURL+ username).subscribe(
       response => {
         this.userStared = response; 
       }
@@ -28,7 +29,7 @@ export class ManageUsersComponent  {
   }
 
   banUser() {
-    this.httpClient.put("https://localhost:8443/api/users/" + this.userStared?.id, this.userStared).subscribe(
+    this.httpClient.put(this.usersURL + this.userStared?.id, this.userStared).subscribe(
       response => console.log(response),
       error => console.error(error)
     );

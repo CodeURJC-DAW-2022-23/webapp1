@@ -38,7 +38,7 @@ public class TopicRestController {
           }),
           @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
-  @GetMapping("/{topicName}")
+  @GetMapping("/byName/{topicName}")
   public ResponseEntity<Topic> getTopic(@PathVariable String topicName) {
     Optional<Topic> optionalTopic = topicService.findByName(topicName);
     if (optionalTopic.isPresent()) {
@@ -96,6 +96,28 @@ public class TopicRestController {
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
     if (!isAdmin) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     Optional<Topic> optionalTopic = topicService.findById(topicId);
+    if (optionalTopic.isPresent()) {
+      Topic topic = optionalTopic.get();
+      topicService.delete(topic);
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @Operation(summary = "Delete specific topic")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Topic deleted", content = {
+                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Topic.class)))
+          }),
+          @ApiResponse(responseCode = "403", description = "Delete topic only for admin", content = @Content),
+          @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
+  })
+  @DeleteMapping("/byName/{topicName}")
+  public ResponseEntity<Topic> deleteTopic(Authentication auth, @PathVariable String topicName) {
+    if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
+    if (!isAdmin) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    Optional<Topic> optionalTopic = topicService.findByName(topicName);
     if (optionalTopic.isPresent()) {
       Topic topic = optionalTopic.get();
       topicService.delete(topic);

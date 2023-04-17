@@ -1,31 +1,38 @@
-<p>manage-topics works!</p>
-<div class="feature col flex-grow-1">
-  <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
-    <i class="fa-regular fa-solid fa-at fa-xl"></i>
-  </div>
-  <h3 class="fs-2">Manage Topics</h3>
+<div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+  <i class="fa-regular fa-solid fa-at fa-xl"></i>
+</div>
+<h3 class="fs-2">Manage Topics</h3>
 
-  <p>
-    Type in a new topic to create it, or click on an already existing one to delete it.
-  </p>
+<p>
+  Type in a new topic to create it, or click on an already existing one to delete it.
+</p>
 
-  <form class="m-auto" action="/addTopic">
-    <div class="form-floating mb-2">
-      <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="topicName">
-      <label for="newTopic" class="text-muted">Type new topic...</label>
+<div class="m-auto">
+  <div class="form-floating mb-2 row">
+    <div class="col-6">
+      <button class="btn btn-primary m-auto" (click)="optionChose('add')">Add topic</button>
     </div>
-    <button class="w-100 btn btn-lg btn-light" type="submit">Add topic</button>
-  </form>
+    <div class="col-6">
+      <button class="btn btn-primary m-auto" (click)="optionChose('delete')">deleteTopic</button>
+    </div>
+  </div>
 
+</div>
 
-  <input class="form-control h-100" type="text" #topicName>
+<div class="m-auto" *ngIf="this.option  === 'add'; else deleteAction">
+  <input class="form-control m-2" type="text" placeholder=" Type a topic name..." #newTopicName>
+  <input class="form-control m-2" type="text" placeholder=" Type a topic descripion..." #newTopicDescription>
+  <button class="btn btn-primary mt-2"
+    (click)="addTopic(newTopicName.value, newTopicDescription.value)">addTopic</button>
 
-  <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">
-    Search
-  </button>
+</div>
+
+<ng-template #deleteAction class="mt-2">
+  <input class="form-control h-20 mt-10" placeholder=" Type a topic name..." type="text" #topicName>
+  <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">Search</button>
   <div *ngIf="topic">
     <a (click)="deleteTopic(topic.name)" class="listItem btn btn-primary mt-2">
       {{topic.name}}
     </a>
   </div>
-</div>
+</ng-template>

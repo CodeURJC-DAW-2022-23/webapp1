@@ -11,32 +11,38 @@
             {{user.username}}
           </div>
           <ng-container *ngIf="notGuest">
-            <div class="col btn-setting" *ngIf="ownProfile">
-              <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa-solid fa-gear"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="settingsButton">
-                  <li>
-                    <a class="dropdown-item" id="admin-panel" [routerLink]="['/admin']" *ngIf="user.admin">
-                      Admin Panel
-                    </a>
-                  </li>
-                  <li><a class="dropdown-item" id="sign-out" (click)="logout()">Log-out</a></li>
-                </ul>
+            <ng-container *ngIf="ownProfile; else elseOwnProfile">
+              <div class="col btn-setting">
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="settingsButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-gear"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="settingsButton">
+                    <li>
+                      <a class="dropdown-item" id="admin-panel" *ngIf="user.admin" [routerLink]="['/admin']">
+                        Admin Panel
+                      </a>
+                    </li>
+                    <li><a class="dropdown-item" id="sign-out" (click)="logout()">Log-out</a></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="col" *ngIf="!ownProfile">
-              <!-- TODO: followed -->
-              <!-- {{#followed}} -->
-              <!-- <a class="btn btn-primary btn-round btn-following" type="button"
-                href="/user/{{user.username}}/unfollow"></a> -->
-              <!-- {{/followed}} -->
-              <!-- {{^followed}} -->
-              <!-- <a class="btn btn-primary btn-round" type="button" href="/user/{{user.username}}/follow">Follow</a> -->
-              <!-- {{/followed}} -->
-            </div>
+            </ng-container>
+            <ng-template #elseOwnProfile>
+              <div class="col">
+                <ng-container *ngIf="followed; else elseFollowed">
+                  <a class="btn btn-primary btn-round btn-following" type="button" (click)="follow()">
+                    Following
+                  </a>
+                </ng-container>
+                <ng-template #elseFollowed>
+                  <a class="btn btn-primary btn-round" type="button" (click)="follow()">
+                    Follow
+                  </a>
+                </ng-template>
+              </div>
+            </ng-template>
           </ng-container>
         </div>
         <div class="row fs-5 mt-1">

@@ -50,6 +50,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  follow() {}
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);

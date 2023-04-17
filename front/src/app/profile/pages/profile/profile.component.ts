@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   notGuest: boolean = false;
   ownProfile: boolean = false;
+  followed: boolean = false;
 
   constructor(
     private router: Router,
@@ -23,7 +24,10 @@ export class ProfileComponent implements OnInit {
     const profileUsername: string = this._getUsernameFormUrl(this.router.url);
     this._checkLoggedUser(profileUsername);
     this.userService.getUser(profileUsername).subscribe({
-      next: user => (this.user = user),
+      next: user => {
+        console.log(user);
+        this.user = user;
+      },
       error: _ => this.router.navigate(['/error']),
     });
   }
@@ -37,6 +41,13 @@ export class ProfileComponent implements OnInit {
     this.notGuest = true;
     const loggedUserUsername: string = this.authService.loggedUser!.username;
     if (loggedUserUsername === profileUsername) this.ownProfile = true;
+    else this._checkFollow(loggedUserUsername, profileUsername);
+  }
+
+  private _checkFollow(loggedUserUsername: string, profileUsername: string) {
+    this.userService.getFollowing(loggedUserUsername).subscribe(follow => {
+      console.log(follow);
+    });
   }
 
   logout() {

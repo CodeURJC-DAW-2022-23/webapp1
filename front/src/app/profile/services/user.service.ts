@@ -10,4 +10,12 @@ export class UserService {
   getUser(username: string) {
     return this.http.get(`/api/users/${username}`);
   }
+
+  getFollowing(username: string) {
+    return this.http.get(`/api/users/${username}/following`);
+  }
+
+  getFollowers(username: string) {
+    return this.http.get(`/api/users/${username}/followers`);
+  }
 }

@@ -41,16 +41,14 @@
         </div>
         <div class="row fs-5 mt-1">
           <div class="col follow">
-            <!-- TODO: following list count -->
-            <!-- <a type="button" href="/user/{{user.username}}/following">
-              <strong class="text-white">{{user.following.size}}</strong> Following
-            </a> -->
+            <a type="button" [routerLink]="['/user/{{user.username}}/following']">
+              <strong class="text-white">{{user.followingCount}}</strong> Following
+            </a>
           </div>
           <div class="col follow">
-            <!-- TODO: followers list count -->
-            <!-- <a type="button" href="/user/{{user.username}}/followers">
-              <strong class="text-white">{{user.followers.size}}</strong> Followers
-            </a> -->
+            <a type="button" [routerLink]="['/user/{{user.username}}/followers']">
+              <strong class="text-white">{{user.followersCount}}</strong> Followers
+            </a>
           </div>
         </div>
         <hr>

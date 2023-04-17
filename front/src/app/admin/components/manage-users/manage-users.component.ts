@@ -16,7 +16,7 @@ import { StaredUser } from '../../interfaces/staredUser.interface';
 export class ManageUsersComponent  {
   usersURL = "api/users/";
   userStared: StaredUser | undefined;
-  username = '';
+  isVisible = false;
 
   constructor(private httpClient: HttpClient) { }
   
@@ -26,6 +26,7 @@ export class ManageUsersComponent  {
         this.userStared = response; 
       }
     )
+    this.isVisible = true;
   }
 
   banUser() {
@@ -35,6 +36,8 @@ export class ManageUsersComponent  {
       response => console.log(response),
       error => console.error(error)
     );
+    let username = (this.userStared?.username as String)
+    this.getUser((username))
   }
   
 

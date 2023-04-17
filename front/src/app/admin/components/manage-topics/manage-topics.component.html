@@ -1,35 +1,31 @@
 <p>manage-topics works!</p>
 <div class="feature col flex-grow-1">
-  <a href="#collapseTopics" data-bs-toggle="collapse" data-bs-target="#collapseTopics" role="button"
-    aria-expanded="true" aria-controls="collapseTopics">
-    <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
-      <i class="fa-regular fa-solid fa-at fa-xl"></i>
-    </div>
-    <h3 class="fs-2">Manage Topics</h3>
-  </a>
+  <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+    <i class="fa-regular fa-solid fa-at fa-xl"></i>
+  </div>
+  <h3 class="fs-2">Manage Topics</h3>
+
   <p>
     Type in a new topic to create it, or click on an already existing one to delete it.
   </p>
-  <div class="collapse" id="collapseTopics">
 
-    <form class="m-auto" action="/addTopic">
-      <div class="form-floating mb-2">
-        <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="topicName">
-        <label for="newTopic" class="text-muted">Type new topic...</label>
-      </div>
-      <button class="w-100 btn btn-lg btn-light" type="submit">Add topic</button>
-    </form>
-
-
-    <input type="text" #topicName>
-
-    <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">
-      Search
-    </button>
-    <div *ngIf="topic">
-      <a (click)="deleteTopic(topic.name)" class="listItem btn btn-primary mt-2">
-        {{topic.name}}
-      </a>
+  <form class="m-auto" action="/addTopic">
+    <div class="form-floating mb-2">
+      <input type="text" class="form-control h-100" id="newTopic" placeholder="Type new topic..." name="topicName">
+      <label for="newTopic" class="text-muted">Type new topic...</label>
     </div>
+    <button class="w-100 btn btn-lg btn-light" type="submit">Add topic</button>
+  </form>
+
+
+  <input class="form-control h-100" type="text" #topicName>
+
+  <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">
+    Search
+  </button>
+  <div *ngIf="topic">
+    <a (click)="deleteTopic(topic.name)" class="listItem btn btn-primary mt-2">
+      {{topic.name}}
+    </a>
   </div>
 </div>

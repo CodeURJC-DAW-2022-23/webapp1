@@ -32,6 +32,7 @@ public class TopicService {
         return topics;
     }
 
+    public Optional<Topic> findByName(String name){return topicRepository.findByName(name);}
     public List<Topic> findAll() {
         return topicRepository.findAll();
     }

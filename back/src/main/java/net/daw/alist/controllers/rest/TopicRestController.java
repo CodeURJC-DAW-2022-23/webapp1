@@ -33,6 +33,23 @@ public class TopicRestController {
 
   @Operation(summary = "Get specific topic")
   @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Topic found", content = {
+                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Topic.class)))
+          }),
+          @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
+  })
+  @GetMapping("/{topicName}")
+  public ResponseEntity<Topic> getTopic(@PathVariable String topicName) {
+    Optional<Topic> optionalTopic = topicService.findByName(topicName);
+    if (optionalTopic.isPresent()) {
+      Topic topic = optionalTopic.get();
+      return new ResponseEntity<>(topic, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @Operation(summary = "Get specific topic")
+  @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "Topic found", content = {
       @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Topic.class)))
     }),

@@ -1,0 +1,8 @@
+.listItem, form{
+  width: 100%;
+}
+
+.listItemLocked{
+  width: 100%;
+  background-color: rgb(126, 64, 64);
+}

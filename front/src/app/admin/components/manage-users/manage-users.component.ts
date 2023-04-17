@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { StaredUser } from '../../interfaces/staredUser.interface';
 
 
@@ -14,7 +14,7 @@ import { StaredUser } from '../../interfaces/staredUser.interface';
 })
   
 export class ManageUsersComponent  {
-  usersURL = "/api/users/";
+  usersURL = "api/users/";
   userStared: StaredUser | undefined;
   username = '';
 
@@ -29,7 +29,9 @@ export class ManageUsersComponent  {
   }
 
   banUser() {
-    this.httpClient.put(this.usersURL + this.userStared?.id, this.userStared).subscribe(
+    const params = new HttpParams()
+      .set('operation', 'ban');
+    this.httpClient.put(this.usersURL + this.userStared?.id, params).subscribe(
       response => console.log(response),
       error => console.error(error)
     );

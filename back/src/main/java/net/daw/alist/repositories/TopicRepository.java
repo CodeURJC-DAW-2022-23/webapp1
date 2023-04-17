@@ -19,7 +19,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
   Optional<Topic> findByName(String name);
 
-
     @Query(value = "SELECT name FROM Topic t")
     List<String> findAllTopicNames();
 }

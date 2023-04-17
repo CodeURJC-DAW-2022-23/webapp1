@@ -13,19 +13,24 @@ export class ManageTopicsComponent {
   topicsURL = "/api/topics/";
   topic: Topic | undefined;
 
-  constructor(private httpClient: HttpClient, private array_topics:Array<Topic>) { }
+  constructor(private httpClient: HttpClient) {
 
-  deleteTopic(title: string) {
-    
   }
-
-  getTopic(username: String) {
-    this.httpClient.get<Topic>(this.topicsURL+ username).subscribe(
+  getTopic(topicName: String) {
+    this.httpClient.get<Topic>(this.topicsURL + topicName).subscribe(
       response => {
         this.topic = response; 
       }
     )
   }
+
+  deleteTopic(topicName: String) {
+    this.httpClient.delete(this.topicsURL+topicName)
+  }
+
+ 
+
+  
 
 
 

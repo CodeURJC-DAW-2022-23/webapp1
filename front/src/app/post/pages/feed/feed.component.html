@@ -8,9 +8,8 @@
     <app-post *ngFor="let currentPost of posts" [post]="currentPost"></app-post>
   </div>
   <div class="text-center my-5">
-    <div class="spinner-border text-white" role="status" [style.display]="loading ? 'block' : 'none'">
-    </div>
-    <div class="no-posts text-white" [style.display]="endOfFeed ? 'block' : 'none'">No more posts :(
-    </div>
+    <mat-progress-spinner class="m-auto" mode="indeterminate" color="white"
+      [style.display]="loading ? 'block' : 'none'"></mat-progress-spinner>
+    <div class="no-posts text-white" [style.display]="endOfFeed ? 'block' : 'none'">No more posts :(</div>
   </div>
 </div>

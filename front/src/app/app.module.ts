@@ -10,6 +10,8 @@ import { ProfileModule } from './profile/profile.module';
 import { PostModule } from './post/post.module';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,8 @@ import { AppComponent } from './app.component';
     ProfileModule,
     PostModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

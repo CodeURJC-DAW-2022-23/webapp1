@@ -11,7 +11,7 @@ import { take } from 'rxjs';
 export class FeedComponent implements OnInit {
   posts: Post[] = [];
   page: number = 0;
-  loading: boolean = false;
+  loading: boolean = true;
   endOfFeed: boolean = false;
 
   constructor(private postsService: PostsService) {}
@@ -47,7 +47,6 @@ export class FeedComponent implements OnInit {
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
     if (pos == max) {
       this.page++;
-      this.loading = true;
       this.getPosts();
       this.loading = false;
     }

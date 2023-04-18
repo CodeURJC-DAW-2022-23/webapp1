@@ -1,0 +1,59 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$white-palette: (
+  50: #ffffff,
+  100: #fafafa,
+  200: #f5f5f5,
+  500: #c2c2c2,
+  900: #3c3c3c,
+
+  contrast: (
+    50: rgba(#ffffff, 1),
+    100: rgba(#fafafa, 1),
+    200: rgba(#f5f5f5, 1),
+    500: rgba(#c2c2c2, 1),
+    900: rgba(#3c3c3c, 1),
+  ),
+);
+
+$green-palette: (
+  300: #69c0a2,
+  A100: #bbe3d5,
+  A200: #91d2bc,
+  A400: #50b18f,
+  contrast: (),
+);
+
+$alist-primary: mat.define-palette($white-palette);
+$alist-accent: mat.define-palette($green-palette);
+
+// The warn palette is optional (defaults to red).
+$alist-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$alist-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $alist-primary,
+      accent: $alist-accent,
+      warn: $alist-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($alist-theme);

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
@@ -16,8 +17,15 @@ public class Post {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @JsonIgnore
   @ManyToOne
   private User author;
+  private String authorName;
+
+  public String getAuthorName() {
+    return authorName = author.getUsername();
+  }
+
   private Date date;
   private String title;
 
@@ -36,14 +44,21 @@ public class Post {
 
   private int votes;
 
+  @JsonIgnore
   @ManyToMany
   private List<Topic> topics = new ArrayList<>();
-  
+
+  public List<String> getTopicNames() {
+    return topicNames;
+  }
+
+  @ElementCollection
+  private List<String> topicNames = new ArrayList<>();
 
   @OneToMany (orphanRemoval = true)
   private List<PostItem> items = new ArrayList<>();
 
-
+  @JsonIgnore
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 
@@ -58,9 +73,12 @@ public class Post {
   ) {
     this.date = new Date();
     this.author = author;
+    authorName = author.getUsername();
     this.title = title;
     this.items = items;
     this.topics = topics;
+    topicNames = topics.stream().map( topic -> topic.getName()).collect(Collectors.toList());
+
     updateVotes();
     author.addPost(this);
   }

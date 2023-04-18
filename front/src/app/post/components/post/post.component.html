@@ -1,16 +1,15 @@
 <div class="post mt-3 mb-3">
   <div class="postInfo border bg-white d-flex gap-3 py-3">
-    <img src={{post.author.imagePath}} alt="Profile picture" width="75" height="75"
-      class="profileImg rounded-circle flex-shrink-0">
+    <img src=# alt="Profile picture" width="75" height="75" class="profileImg rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
         <div class="d-flex flex-wrap">
-          <h6 class="topics pe-1" *ngFor="let topic of post.topics">
-            <a class="topic">@{{topic.name}}</a>
+          <h6 class="topics pe-1" *ngFor="let topic of post.topicNames">
+            <a class="topic">@{{topic}}</a>
           </h6>
         </div>
-        <a class="OP text-black text-decoration-none" href="/user/{{post.author.username}}">
-          {{post.author.username}}
+        <a class="OP text-black text-decoration-none" href="/user/{{post.authorName}}">
+          {{post.authorName}}
         </a>
       </div>
     </div>
@@ -22,7 +21,8 @@
         <a class="text-black text-decoration-none" href="/top-list/{{post.id}}">
           <h1 class="topName">{{post.title}}</h1>
         </a>
-        <ol class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
+        <ol>
+          <ng-container class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
           <div class="itemWrapper d-flex justify-content-center p-2">
             <li class="ms-0 me-auto">
               {{item.description}}
@@ -30,6 +30,12 @@
             <img src="{{item.id}}/image" alt="image" width="45" height="45"
               class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
           </div>
+          </ng-container>
+        </ol>
+        <ol class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
+
+
+
         </ol>
       </div>
     </div>
@@ -43,7 +49,7 @@
 
           <i class="fa-regular fa-circle-up fa-xl" *ngIf=""></i>
 
-          <i class="fa-solid fa-circle-up fa-xl" ></i>
+          <i class="fa-solid fa-circle-up fa-xl"></i>
 
         </a>
         <h6 class="pe-1 d-inline">

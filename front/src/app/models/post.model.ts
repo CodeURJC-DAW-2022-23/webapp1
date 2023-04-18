@@ -4,7 +4,7 @@ import { User } from './user.model';
 
 export interface Post {
   id?: number;
-  author: User;
+  authorName: String;
   date: Date;
   title: string;
   upVotes: User[];
@@ -12,7 +12,7 @@ export interface Post {
   numUpvotes: number;
   numDownvotes: number;
   votes: number;
-  topics: Topic[];
+  topicNames: string[];
   items: PostItem[];
   comments: Comment[];
 }

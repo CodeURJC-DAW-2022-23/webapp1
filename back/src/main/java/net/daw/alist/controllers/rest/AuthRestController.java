@@ -93,8 +93,9 @@ public class AuthRestController {
   })
   @GetMapping("/logged-user")
   public ResponseEntity<User> userLogged(HttpServletRequest request) {
-    String username = request.getUserPrincipal().getName();
-    return getUserResponseEntity(username, userService);
+    java.security.Principal principal = request.getUserPrincipal();
+    if (principal == null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    return getUserResponseEntity(principal.getName(), userService);
   }
 
 }

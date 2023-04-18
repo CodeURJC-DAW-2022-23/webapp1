@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class ProfileComponent implements OnInit {
   user: any;
   notGuest: boolean = false;
-  ownProfile: boolean = false;
+  ownProfile: boolean | undefined;
   followed: boolean = false;
 
   constructor(
@@ -24,10 +24,7 @@ export class ProfileComponent implements OnInit {
     const profileUsername: string = this._getUsernameFormUrl(this.router.url);
     this._checkLoggedUser(profileUsername);
     this.userService.getUser(profileUsername).subscribe({
-      next: user => {
-        console.log(user);
-        this.user = user;
-      },
+      next: user => (this.user = user),
       error: _ => this.router.navigate(['/error']),
     });
   }
@@ -41,7 +38,10 @@ export class ProfileComponent implements OnInit {
     this.notGuest = true;
     const loggedUserUsername: string = this.authService.loggedUser!.username;
     if (loggedUserUsername === profileUsername) this.ownProfile = true;
-    else this._checkFollow(loggedUserUsername, profileUsername);
+    else {
+      this.ownProfile = false;
+      this._checkFollow(loggedUserUsername, profileUsername);
+    }
   }
 
   private _checkFollow(loggedUserUsername: string, profileUsername: string) {

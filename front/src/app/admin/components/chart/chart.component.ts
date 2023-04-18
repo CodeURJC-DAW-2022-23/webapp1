@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartType } from 'angular-google-charts';
-
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AdminHttpsService } from '../../services/admin-Https-Service';
+import { ChartType, Row } from 'angular-google-charts';
+declare var google: any;
 
 
 @Component({
@@ -8,28 +9,53 @@ import { ChartType } from 'angular-google-charts';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
-export class ChartComponent {
-  title = ' Topic popularity';
-  data = [
-    ['Firefox', 45.0],
-   ['IE', 26.8],
-   ['Chrome', 12.8],
-   ['Safari', 8.5],
-   ['Opera', 6.2],
-   ['Others', 0.7] 
-  ]
-  type: ChartType = ChartType.PieChart;
-  columnNames = ['Browser', 'Percentage'];
-  options = {
-  
-	  titleTextStyle: {color: 'white'},
-		backgroundColor: 'transparent',
-		chartArea: {width: '100%', height: '85%'},
-		legend: { position: 'right', alignment: 'center', textStyle: { color: 'white', fontSize: 16 } },
-		colors: ['#69c0a1', '#6399A4', '#426f76', '#203E4F', '#356E57']
-  };
-  width = 550;
-  height = 400;
+export class ChartComponent implements OnInit {
+  topicsArray: Array<[string, number]> | undefined
+  title: string | undefined;
+  type!: ChartType;
+  data: Row[] = [];
+  options!: object;
+  width: number | undefined;
+  height: number | undefined;
+
+  constructor(private httpService: AdminHttpsService) { }
+
+  ngOnInit() {
+
+    const map = this.httpService.getTopicsMapped().subscribe(topics => {
+      const topicsMapped = new Map<string, number>(
+        Object.entries(topics).reduce((acc, [key, value]) => {
+          acc.set(key, value);
+          return acc;
+        }, new Map<string, number>())
+      );
+      this.topicsArray = [...topicsMapped.entries()].sort((a, b) => b[1] - a[1]);
+      console.log(this.topicsArray[0])
+      this.data = [
+        [this.topicsArray[0][0], this.topicsArray[0][1]],
+        [this.topicsArray[1][0], this.topicsArray[1][1]],
+        [this.topicsArray[2][0], this.topicsArray[2][1]],
+        [this.topicsArray[3][0], this.topicsArray[3][1]],
+        [this.topicsArray[4][0], this.topicsArray[4][1]],
+      ]
+
+
+    });
+
+    this.options = {
+      titleTextStyle: { color: 'white' },
+      backgroundColor: 'transparent',
+      chartArea: { width: '100%', height: '85%' },
+      legend: { position: 'right', alignment: 'center', textStyle: { color: 'white', fontSize: 16 } },
+      colors: ['#69c0a1', '#6399A4', '#426f76', '#203E4F', '#356E57']
+    };
+    this.title = ' Topic popularity';
+    this.type = ChartType.PieChart;
+    this.width = 550;
+    this.height = 400;
+
+  }
+
 
 }
 

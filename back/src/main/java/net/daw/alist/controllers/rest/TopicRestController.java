@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import net.daw.alist.models.Topic;
+import net.daw.alist.services.ChartService;
 import net.daw.alist.services.TopicService;
 import net.daw.alist.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,9 +32,12 @@ public class TopicRestController {
 
   @Autowired
   private TopicService topicService;
+  @Autowired
+  private ChartService chartService;
 
   @Autowired
   private Utils utils;
+
 
   @Operation(summary = "Get specific topic")
   @ApiResponses(value = {
@@ -63,6 +71,13 @@ public class TopicRestController {
       return new ResponseEntity<>(topic, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+
+  @GetMapping("/chart")
+  public ResponseEntity<Map<String, Integer>> getMappedTopics(){
+    Map<String, Integer> topicsMapped = chartService.getTopicsMapped();
+    return new ResponseEntity<>(topicsMapped, HttpStatus.OK);
   }
 
   @Operation(summary = "Create topic")

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleChartsModule } from 'angular-google-charts';
 
+
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';

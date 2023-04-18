@@ -1,2 +1,6 @@
 <p>chart works!</p>
-<div id="piechart" class="m-auto"></div>
+<div class="m-auto">
+  <google-chart #chart [title]="title" [type]="type" [data]="data" [options]="options" [width]="width"
+    [height]="height">
+  </google-chart>
+</div>

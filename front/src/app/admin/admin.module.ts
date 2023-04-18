@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { ChartComponent } from './components/chart/chart.component';
@@ -14,12 +15,15 @@ import { ManageTopicsComponent } from './components/manage-topics/manage-topics.
     AdminPanelComponent,
     ChartComponent,
     ManageUsersComponent,
-    ManageTopicsComponent,
+    ManageTopicsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule],
+    HttpClientModule,
+    GoogleChartsModule
+
+    ],
   exports: [AdminPanelComponent],
 })
 export class AdminModule {}

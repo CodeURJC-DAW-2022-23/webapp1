@@ -21,16 +21,16 @@
         <a class="text-black text-decoration-none" href="/top-list/{{post.id}}">
           <h1 class="topName">{{post.title}}</h1>
         </a>
-        <ol>
-          <ng-container class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
-          <div class="itemWrapper d-flex justify-content-center p-2">
-            <li class="ms-0 me-auto">
-              {{item.description}}
-            </li>
-            <img src="{{item.id}}/image" alt="image" width="45" height="45"
-              class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
+        <ol class="w-100 p-0 w-100 d-flex flex-column gap-3">
+          <div class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
+            <div class="itemWrapper d-flex justify-content-center p-2">
+              <li class="ms-0 me-auto">
+                {{item.description}}
+              </li>
+              <img src="{{item.id}}/image" alt="image" width="45" height="45"
+                class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
+            </div>
           </div>
-          </ng-container>
         </ol>
         <ol class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
 

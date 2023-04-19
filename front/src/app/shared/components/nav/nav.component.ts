@@ -54,7 +54,6 @@ export class NavComponent {
     if (!this.authService.isLoggedIn()) return;
     this.disableAllIcons();
     this.filtered = true;
-    console.log("filterState CHANGED NAV: " + this.filtered);
     this.postService.setFilter(this.filtered);
     this.heartIconGlow = true;
   }

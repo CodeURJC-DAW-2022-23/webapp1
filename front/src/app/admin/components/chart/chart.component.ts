@@ -31,7 +31,6 @@ export class ChartComponent implements OnInit {
         }, new Map<string, number>())
       );
       this.topicsArray = [...topicsMapped.entries()].sort((a, b) => b[1] - a[1]);
-      console.log(this.topicsArray[0])
       this.data = [
         [this.topicsArray[0][0], this.topicsArray[0][1]],
         [this.topicsArray[1][0], this.topicsArray[1][1]],

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -36,6 +37,11 @@ public class UserRestController {
   @GetMapping("/{username}")
   public ResponseEntity<User> getUser(@PathVariable String username) {
     return getUserResponseEntity(username, userService);
+  }
+
+  @GetMapping("/names/{prefix}")
+  public ResponseEntity<List<User>> getUserByPrefix(@PathVariable String prefix){
+    return new ResponseEntity<>(userService.findUserPrefix(prefix), HttpStatus.OK);
   }
 
   @Operation(summary = "Edit user by id")

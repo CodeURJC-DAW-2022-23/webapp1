@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Topic } from '../../interfaces/topic.interface';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
+import { AdminHttpsService } from '../../services/admin-Https-Service';
 
 
 @Component({
@@ -14,46 +13,75 @@ export class ManageTopicsComponent {
   topic: Topic | undefined;
   newTopic: Topic | undefined;
   option: String | undefined;
-  
 
-  constructor(private httpClient: HttpClient) {
+
+  constructor(private httpService: AdminHttpsService) {
 
   }
   getTopic(topicName: String) {
-    this.httpClient.get<Topic>(this.topicsURL +"/byName/" + topicName).subscribe(
+    this.httpService.getTopic(topicName).subscribe(
       response => {
-        this.topic = response; 
-      }
+        console.log(response);
+        this.topic = response;
+      },
+      error => { }
     )
   }
 
   deleteTopic(topicName: String) {
-    this.httpClient.delete(this.topicsURL +"/byName/"+ topicName).subscribe(
+    this.httpService.deleteTopic(topicName).subscribe(
       response => {
-        let answer = response;
+
+        //Notification of topic deleted
+        if (Notification.permission === 'granted') {
+          new Notification('topic deleted', {
+            body: 'The topic has been deleted',
+          });
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              new Notification('topic deleted', {
+                body: 'The topic has been deleted',
+              });
+            }
+          });
+        }
       }
     )
   }
 
- addTopic(topicName: string, topicDescription: string) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = { name: topicName, description: topicDescription };
+  addTopic(topicName: string, topicDescription: string) {
 
-    this.httpClient.post<Topic>(this.topicsURL, body, { headers }).subscribe(
+    this.httpService.addTopic(topicName, topicDescription).subscribe(
       response => {
         this.newTopic = response;
+
+        //Notification of topic created
+        if (Notification.permission === 'granted') {
+          new Notification('topic created', {
+            body: 'The topic has been created',
+          });
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              new Notification('topic created', {
+                body: 'The topic has been created',
+              });
+            }
+          });
+        }
       }
     )
   }
 
   optionChose(option: String) {
     this.option = option;
-    
+
   }
 
- 
 
-  
+
+
 
 
 

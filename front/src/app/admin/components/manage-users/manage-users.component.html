@@ -4,8 +4,7 @@
 <h3 class="fs-2">Manage Users</h3>
 
 <p>
-  Click on a user to ban their account. If a user is highlighted in red, that means their account is suspended.
-  Clicking on it again will unban the user.
+  Click on a user to change it's status
 </p>
 <div class="m-auto">
   <input class="form-control h-20" type="text" placeholder="Type a user" #username>
@@ -16,13 +15,13 @@
 </button>
 <div *ngIf="isVisible">
   <div *ngIf="userStared?.locked; else otherCont">
-    <a (click)="banUser()" class="listItem btn btn-primary mt-2">
+    <a (click)="banUser()" class="listItemLocked btn btn-primary mt-2">
       {{userStared?.username}}
     </a>
   </div>
   <ng-template #otherCont>
     <div>
-      <a (click)="banUser()" class="listItemLocked btn btn-primary mt-2">
+      <a (click)="banUser()" class="listItem btn btn-primary mt-2">
         {{userStared?.username}}
       </a>
     </div>

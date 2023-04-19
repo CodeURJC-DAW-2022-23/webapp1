@@ -1,21 +1,25 @@
-<div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
-  <i class="fa-regular fa-solid fa-at fa-xl"></i>
-</div>
-<h3 class="fs-2">Manage Topics</h3>
-
+<a href="#collapseTopics" data-bs-toggle="collapse" data-bs-target="#collapseTopics" role="button" aria-expanded="true"
+  aria-controls="collapseTopics">
+  <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+    <i class="fa-regular fa-solid fa-at fa-xl"></i>
+  </div>
+  <h3 class="fs-2">Manage Topics</h3>
+</a>
 <p>
-  Type in a new topic to create it, or click on an already existing one to delete it.
+  Chose what action you want to perform.
 </p>
-
-<div class="m-auto">
-  <div class="form-floating mb-2 row">
-    <div class="col-6">
-      <button class="btn btn-primary m-auto" (click)="optionChose('add')">Add topic</button>
-    </div>
-    <div class="col-6">
-      <button class="btn btn-primary m-auto" (click)="optionChose('delete')">deleteTopic</button>
+<div class="collapse" id="collapseTopics">
+  <div class="m-auto">
+    <div class="form-floating mb-2 row">
+      <div class="col-6">
+        <button class="btn btn-primary m-auto" (click)="optionChose('add')">Add topic</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-primary m-auto" (click)="optionChose('delete')">deleteTopic</button>
+      </div>
     </div>
   </div>
+
 
 </div>
 

@@ -10,20 +10,20 @@ import { StaredUser } from '../../interfaces/staredUser.interface';
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
   styleUrls: ['./manage-users.component.css'],
-  
+
 })
-  
-export class ManageUsersComponent  {
+
+export class ManageUsersComponent {
   usersURL = "api/users/";
   userStared: StaredUser | undefined;
   isVisible = false;
 
   constructor(private httpClient: HttpClient) { }
-  
+
   getUser(username: String) {
-    this.httpClient.get<StaredUser>(this.usersURL+ username).subscribe(
+    this.httpClient.get<StaredUser>(this.usersURL + username).subscribe(
       response => {
-        this.userStared = response; 
+        this.userStared = response;
       }
     )
     this.isVisible = true;
@@ -33,12 +33,11 @@ export class ManageUsersComponent  {
     const params = new HttpParams()
       .set('operation', 'ban');
     this.httpClient.put(this.usersURL + this.userStared?.id, params).subscribe(
-      response => console.log(response),
+      response => this.userStared = response as StaredUser,
       error => console.error(error)
     );
     let username = (this.userStared?.username as String)
-    this.getUser((username))
   }
-  
+
 
 }

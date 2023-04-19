@@ -85,13 +85,15 @@ public class TopicRestController {
     @ApiResponse(responseCode = "201", description = "Topic created", content = {
       @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Topic.class)))
     }),
-    @ApiResponse(responseCode = "403", description = "Create topic only for admin", content = @Content)
+    @ApiResponse(responseCode = "403", description = "Create topic only for admin", content = @Content),
+    @ApiResponse(responseCode = "409",description = "The name chose is already taken", content=@Content )
   })
   @PostMapping("/")
   public ResponseEntity<Topic> createTopic(Authentication auth, @RequestBody Data content) {
     if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
     if (!isAdmin) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    if (topicService.checkChosenName( content.getName())){ return new ResponseEntity<>(HttpStatus.CONFLICT);}
     Topic topic = new Topic(content.getName(), content.getDescription());
     topicService.save(topic);
     return new ResponseEntity<>(topic, HttpStatus.CREATED);

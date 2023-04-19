@@ -32,6 +32,14 @@ public class TopicService {
         return topics;
     }
 
+    public boolean checkChosenName(String name){
+        List<String> listTopics = this.getAllTopics();
+        if (listTopics.contains(name)){
+            return true;
+        }
+        else { return false;}
+    }
+
     public Optional<Topic> findByName(String name){return topicRepository.findByName(name);}
     public List<Topic> findAll() {
         return topicRepository.findAll();

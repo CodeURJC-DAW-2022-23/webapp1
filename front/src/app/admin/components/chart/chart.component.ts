@@ -23,6 +23,7 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
 
     const map = this.httpService.getTopicsMapped().subscribe(topics => {
+      //from object to Map<string,number>
       const topicsMapped = new Map<string, number>(
         Object.entries(topics).reduce((acc, [key, value]) => {
           acc.set(key, value);

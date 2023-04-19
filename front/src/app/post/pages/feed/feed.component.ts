@@ -1,7 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { Post } from 'src/app/models/post.model';
-import { take } from 'rxjs';
+import { distinctUntilChanged, take } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
@@ -10,6 +10,7 @@ import { take } from 'rxjs';
 })
 export class FeedComponent implements OnInit {
   posts: Post[] = [];
+  followedUsers: string[] = [];
   page: number = 0;
   loading: boolean = true;
   endOfFeed: boolean = false;
@@ -17,13 +18,21 @@ export class FeedComponent implements OnInit {
   constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
-    this.page = 0;
-    this.getPosts();
+    //this.initializeFollowersList();
+    this.postsService
+      .getFilter()
+      .pipe(distinctUntilChanged())
+      .subscribe(data => {
+        this.page = 0;
+        this.posts = [];
+        this.getPosts();
+        console.log('FILTERING POSTS: ', data);
+      });
   }
 
   getPosts() {
     this.postsService
-      .getPosts(this.page, false)
+      .getPosts(this.page)
       .pipe(take(1))
       .subscribe(response => {
         let data: any = response;
@@ -31,11 +40,33 @@ export class FeedComponent implements OnInit {
         else {
           for (var i = 0; i < data.content.length; i++) {
             let post = data.content[i];
+            //check author
+            /* if (this.authService.isLoggedIn()) {
+                post.followingAuthor = this.followedUsers.includes(
+                  post.authorName
+                );
+              } */
             this.posts.push(post);
           }
         }
       });
   }
+
+  /* initializeFollowersList() {
+    if (this.authService.isLoggedIn())
+      this.userService
+        .getFollowing(this.authService.loggedUser!.username)
+        .pipe()
+        .subscribe(response => {
+          let usernames: any = response;
+          for (var i = 0; i < usernames.users.length; i++) {
+            let username = usernames.users[i].username;
+            if (username !== this.authService.loggedUser?.username)
+              this.followedUsers.push(username);
+          }
+        });
+    console.log(this.followedUsers);
+  } */
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {

@@ -1,10 +1,9 @@
 import { PostItem } from './postItem.model';
-import { Topic } from './topic.model';
 import { User } from './user.model';
 
 export interface Post {
   id?: number;
-  authorName: String;
+  authorName: string;
   date: Date;
   title: string;
   upVotes: User[];
@@ -15,4 +14,5 @@ export interface Post {
   topicNames: string[];
   items: PostItem[];
   comments: Comment[];
+  followingAuthor: boolean;
 }

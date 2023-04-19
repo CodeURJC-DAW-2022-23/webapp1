@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -46,6 +47,12 @@ public class TopicRestController {
       return new ResponseEntity<>(topic, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @GetMapping("/}")
+  public ResponseEntity<List<Topic>> getTopics() {
+    List<Topic> all = topicService.findAll();
+    return new ResponseEntity<>(all, HttpStatus.OK);
   }
 
   @Operation(summary = "Create topic")

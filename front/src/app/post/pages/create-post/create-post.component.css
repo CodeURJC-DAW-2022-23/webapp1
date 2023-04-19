@@ -1,0 +1,35 @@
+.form-container {
+  background-color: white;
+  padding: 30px;
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 10px 20px; /* Ajusta estos valores para cambiar el tamaño del botón */
+  font-size: 1.2em; /* Ajusta este valor para cambiar el tamaño del texto del botón */
+  display: block; /* Hace que el botón se comporte como un elemento de bloque */
+  margin: 0 auto; /* Centra el botón en el contenedor */
+}
+
+.title {
+  width: 100%;
+}
+
+.description-title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.description {
+  width: 100%;
+  height: 10px;
+  resize: vertical;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}

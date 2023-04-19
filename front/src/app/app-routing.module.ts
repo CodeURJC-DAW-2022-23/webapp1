@@ -37,7 +37,7 @@ const routes: Routes = [
     path: 'create',
     component: CreatePostComponent,
     title: 'Alist | Create Post',
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     data: { role: 'user' },
   },
   {

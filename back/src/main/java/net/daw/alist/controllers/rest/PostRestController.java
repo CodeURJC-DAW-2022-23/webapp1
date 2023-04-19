@@ -64,7 +64,6 @@ public class PostRestController {
 
     User author = (User) auth.getPrincipal();
     author = userService.findByID(author.getId()).orElseThrow();
-    System.getProperty("user.dir")
     List<PostItem> items = content.getItems();
     for (PostItem item: items) {
       item.setImage(pathToImage(item.getImagePath()));

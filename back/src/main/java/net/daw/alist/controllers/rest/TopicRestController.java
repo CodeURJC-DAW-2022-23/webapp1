@@ -64,11 +64,9 @@ public class TopicRestController {
   })
   @PostMapping("/")
   public ResponseEntity<Topic> createTopic(Authentication auth, @RequestBody Data content) {
-    if (auth == null)
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
-    if (!isAdmin)
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    if (!isAdmin) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     Topic topic = new Topic(content.getName(), content.getDescription());
     topicService.save(topic);
     return new ResponseEntity<>(topic, HttpStatus.CREATED);

@@ -29,22 +29,22 @@ public class AjaxRestController {
 
   @Operation(summary = "Load more posts")
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "New posts loaded", content = {
-                  @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
-          @ApiResponse(responseCode = "404", description = "No new posts found", content = @Content)
+    @ApiResponse(responseCode = "200", description = "New posts loaded", content = {
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+    }),
+    @ApiResponse(responseCode = "404", description = "No new posts found", content = @Content)
   })
-  @GetMapping("")
+  @GetMapping("/")
   public Page<Post> getNewPosts(Authentication authentication, @RequestParam int page, @RequestParam Optional<Boolean> filter) {
     boolean validPage = page <= (int) Math.ceil(postService.count()/2);
     boolean filterPosts = false;
-    if(filter.isPresent()){
+    if (filter.isPresent()) {
       filterPosts = filter.get();
     }
-    if((authentication != null) && filterPosts && validPage){
+    if ((authentication != null) && filterPosts && validPage) {
       User currentUser = (User) authentication.getPrincipal();
       return postService.getStarredPosts(page, currentUser.getId().intValue());
-    } else if (validPage)
-      return postService.getPosts(page);
+    } else if (validPage) return postService.getPosts(page);
     return null;
   }
 

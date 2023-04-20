@@ -17,6 +17,14 @@ import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [PostComponent, CommentComponent, TopComponent, FeedComponent, CreatePostComponent],
   imports: [BrowserModule, HttpClientModule,FormsModule, CommonModule, SharedModule, ReactiveFormsModule],
+  declarations: [
+    PostComponent,
+    CommentComponent,
+    TopComponent,
+    FeedComponent,
+    CreatePostComponent,
+  ],
+  imports: [CommonModule],
   exports: [FeedComponent, TopComponent],
 })
 export class PostModule {}

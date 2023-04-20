@@ -25,8 +25,16 @@ export class PostsService {
     return this.http.get(BASE_URL, { params }) as Observable<any>;
   }
 
+  upvotePost(id: number) {
+    return this.http.put(BASE_URL + '/upvotes/' + id, null);
+  }
+
+  downvotePost(id?: number) {
+    return this.http.put(BASE_URL + '/downvotes/' + id, null);
+  }
+
   setFilter(filter: boolean) {
-      this.filter.next(filter);
+    this.filter.next(filter);
   }
 
   getFilter() {

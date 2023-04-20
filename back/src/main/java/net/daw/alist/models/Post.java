@@ -13,6 +13,10 @@ import javax.persistence.*;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@Id")
 public class Post {
 
+  public Long getId() {
+    return id;
+  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
@@ -33,10 +37,32 @@ public class Post {
   @ManyToMany
   private Set<User> upVotes = new HashSet<>();
 
+  public Set<String> getUpVotesUsernames() {
+    return upVotesUsernames;
+  }
+
+  public Set<String> getDownVotesUsernames() {
+    return downVotesUsernames;
+  }
+
+  @ElementCollection
+  private Set<String> upVotesUsernames = new HashSet<>();
+
   @JsonIgnore
   @ManyToMany
 
   private Set<User> downVotes = new HashSet<>();
+
+  @ElementCollection
+  private Set<String> downVotesUsernames = new HashSet<>();
+
+  public int getNumUpvotes() {
+    return numUpvotes;
+  }
+
+  public int getNumDownvotes() {
+    return numDownvotes;
+  }
 
   private int numUpvotes = upVotes.size();
 
@@ -78,7 +104,6 @@ public class Post {
     this.items = items;
     this.topics = topics;
     topicNames = topics.stream().map( topic -> topic.getName()).collect(Collectors.toList());
-
     updateVotes();
     author.addPost(this);
   }
@@ -136,6 +161,8 @@ public class Post {
     numDownvotes=downVotes.size();
     numUpvotes=upVotes.size();
     votes = numUpvotes-numDownvotes;
+    downVotesUsernames = downVotes.stream().map( downvote -> downvote.getUsername()).collect(Collectors.toSet());
+    upVotesUsernames = upVotes.stream().map( upvote -> upvote.getUsername()).collect(Collectors.toSet());
   }
 
   public List<Topic> getTopics() {

@@ -33,9 +33,6 @@
           </div>
         </ol>
         <ol class="m-auto p-0 w-100 d-flex flex-column gap-3" *ngFor="let item of post.items">
-
-
-
         </ol>
       </div>
     </div>
@@ -44,22 +41,21 @@
         <h6 class="pe-1 d-inline">
           {{post.numUpvotes}}
         </h6>
-        <a class="btn btn-primary " type="button" href="/post/{{post.id}}/upvote-action">
-          <!-- TODO: faltan condiciones de upvotes-->
+        <a class="btn btn-primary " type="button" (click)="upvotePost()">
 
-          <i class="fa-regular fa-circle-up fa-xl" *ngIf=""></i>
+          <i class="fa-regular fa-circle-up fa-xl" *ngIf="!upvoted"></i>
 
-          <i class="fa-solid fa-circle-up fa-xl"></i>
+          <i class="fa-solid fa-circle-up fa-xl"*ngIf="upvoted"></i>
 
         </a>
         <h6 class="pe-1 d-inline">
           {{post.numDownvotes}}
         </h6>
-        <a class="btn btn-primary" type="button" href="/post/{{post.id}}/downvote-action">
+        <a class="btn btn-primary" type="button" (click)="downvotePost()">
 
-          <i class="fa-regular fa-circle-down fa-xl" *ngIf=""></i>
+          <i class="fa-regular fa-circle-down fa-xl" *ngIf="!downvoted"></i>
 
-          <i class="fa-solid fa-circle-down fa-xl"></i>
+          <i class="fa-solid fa-circle-down fa-xl" *ngIf="downvoted"></i>
 
         </a>
       </div>

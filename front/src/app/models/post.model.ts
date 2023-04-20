@@ -2,12 +2,12 @@ import { PostItem } from './postItem.model';
 import { User } from './user.model';
 
 export interface Post {
-  id?: number;
+  id: number;
   authorName: string;
   date: Date;
   title: string;
-  upVotes: User[];
-  downVotes: User[];
+  upVotesUsernames: string[];
+  downVotesUsernames: string[];
   numUpvotes: number;
   numDownvotes: number;
   votes: number;

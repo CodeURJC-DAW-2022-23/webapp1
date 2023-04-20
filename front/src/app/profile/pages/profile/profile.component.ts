@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   notGuest: boolean = false;
   ownProfile: boolean | undefined;
-  followed: boolean | undefined;
+  followUser: UserFollow | undefined;
 
   constructor(
     private router: Router,
@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
     const loggedUserUsername: string = this.authService.loggedUser!.username;
     if (loggedUserUsername === profileUsername) {
       this.ownProfile = true;
-      this.followed = false;
     } else {
       this.ownProfile = false;
       this._checkFollow(loggedUserUsername, profileUsername);
@@ -50,18 +49,19 @@ export class ProfileComponent implements OnInit {
   private _checkFollow(loggedUserUsername: string, profileUsername: string) {
     this.userService.getFollowing(loggedUserUsername).subscribe({
       next: (follow: Follow) => {
+        console.log(follow);
         const followUsers: UserFollow[] = follow.users;
-        console.log(followUsers);
-        this.followed = followUsers.some((followUser: UserFollow) => {
-          if (followUser.username === profileUsername) return true;
-          else return false;
+        this.followUser = followUsers.find((followUser: UserFollow) => {
+          if (followUser.username === profileUsername) return followUser;
+          return;
         });
+        if (!this.followUser) {
+          this.followUser = { username: profileUsername, follow: false };
+        }
       },
-      error: _ => (this.followed = false),
+      error: _ => (this.followUser = undefined),
     });
   }
-
-  follow() {}
 
   logout() {
     this.authService.logout();

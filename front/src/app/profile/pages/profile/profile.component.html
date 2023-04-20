@@ -1,4 +1,4 @@
-<div class="body" *ngIf="user && ownProfile !== undefined && followed !== undefined">
+<div class="body" *ngIf="user && ownProfile !== undefined">
   <main>
     <form class="row bg-black pt-3">
       <div class="profile-container col-md-4 text-white text-center">
@@ -31,30 +31,14 @@
             </ng-container>
             <ng-template #elseOwnProfile>
               <div class="col">
-                <ng-container *ngIf="followed; else elseFollowed">
-                  <!-- Following text inside css -->
-                  <a class="btn btn-primary btn-round btn-following" type="button" (click)="follow()"></a>
-                </ng-container>
-                <ng-template #elseFollowed>
-                  <a class="btn btn-primary btn-round" type="button" (click)="follow()">
-                    Follow
-                  </a>
-                </ng-template>
+                <app-follow-button [followUser]="followUser"></app-follow-button>
               </div>
             </ng-template>
           </ng-container>
         </div>
         <div class="row fs-5 mt-1">
-          <div class="col follow">
-            <a type="button" [routerLink]="['/user/{{user.username}}/following']">
-              <strong class="text-white">{{user.followingCount}}</strong> Following
-            </a>
-          </div>
-          <div class="col follow">
-            <a type="button" [routerLink]="['/user/{{user.username}}/followers']">
-              <strong class="text-white">{{user.followersCount}}</strong> Followers
-            </a>
-          </div>
+          <app-follow-count class="col" [followCount]="user.followingCount" [follow]=true></app-follow-count>
+          <app-follow-count class="col" [followCount]="user.followersCount" [follow]=false></app-follow-count>
         </div>
         <hr>
         <div class="bio-container">

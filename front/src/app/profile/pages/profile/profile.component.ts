@@ -23,9 +23,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const profileUsername: string = this._getUsernameFormUrl(this.router.url);
-    this._checkLoggedUser(profileUsername);
     this.userService.getUser(profileUsername).subscribe({
-      next: user => (this.user = user),
+      next: user => {
+        this.user = user;
+        this._checkLoggedUser(profileUsername);
+      },
       error: _ => this.router.navigate(['/error']),
     });
   }
@@ -35,15 +37,12 @@ export class ProfileComponent implements OnInit {
   }
 
   private _checkLoggedUser(profileUsername: string) {
+    this.ownProfile = false;
     if (!this.authService.isLoggedIn()) return;
     this.notGuest = true;
     const loggedUserUsername: string = this.authService.loggedUser!.username;
-    if (loggedUserUsername === profileUsername) {
-      this.ownProfile = true;
-    } else {
-      this.ownProfile = false;
-      this._checkFollow(loggedUserUsername, profileUsername);
-    }
+    if (loggedUserUsername === profileUsername) this.ownProfile = true;
+    else this._checkFollow(loggedUserUsername, profileUsername);
   }
 
   private _checkFollow(loggedUserUsername: string, profileUsername: string) {

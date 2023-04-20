@@ -7,7 +7,11 @@
   Click on a user to change it's status
 </p>
 <div class="m-auto">
+  <label for="newTopicName">Type the user's name you want to manage:</label>
   <input class="form-control h-20" type="text" placeholder="Type a user" #username>
+</div>
+<div class="alert alert-danger mt-2" role="alert" *ngIf="userNotFound">
+  This username doesn't exist in our database
 </div>
 
 <button class="btn btn-primary mt-2" (click)="getUser(username.value)">

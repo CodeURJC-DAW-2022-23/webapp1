@@ -47,7 +47,7 @@ public class TopicRestController {
           @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
   @GetMapping("/byName/{topicName}")
-  public ResponseEntity<Topic> getTopic(@PathVariable String topicName) {
+  public ResponseEntity<Topic> getTopicByName(@PathVariable String topicName) {
     Optional<Topic> optionalTopic = topicService.findByName(topicName);
     if (optionalTopic.isPresent()) {
       Topic topic = optionalTopic.get();

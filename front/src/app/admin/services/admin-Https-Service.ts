@@ -15,11 +15,11 @@ export class AdminHttpsService {
   }
 
   getTopic(topicName: String): Observable<Topic> {
-    return this.httpClient.get<Topic>("api/topics/" + "/byName/" + topicName);
+    return this.httpClient.get<Topic>("api/topics/byName/" + topicName);
   }
 
   deleteTopic(topicName: String): Observable<Topic> {
-    return this.httpClient.delete<Topic>("api/topics/" + "/byName/" + topicName);
+    return this.httpClient.delete<Topic>("api/topics/byName/" + topicName);
   }
 
   addTopic(topicName: string, topicDescription: string): Observable<Topic> {

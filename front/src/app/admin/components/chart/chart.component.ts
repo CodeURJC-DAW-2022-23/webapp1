@@ -56,6 +56,10 @@ export class ChartComponent implements OnInit {
 
   }
 
+  selectChart(selection: String): ChartType {
+    return ChartType.PieChart;
+  }
+
 
 }
 

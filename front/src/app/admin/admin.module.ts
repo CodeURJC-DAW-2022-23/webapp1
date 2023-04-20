@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
@@ -22,9 +23,10 @@ import { ManageTopicsComponent } from './components/manage-topics/manage-topics.
     CommonModule,
     FormsModule,
     HttpClientModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    ReactiveFormsModule
 
-    ],
+  ],
   exports: [AdminPanelComponent],
 })
-export class AdminModule {}
+export class AdminModule { }

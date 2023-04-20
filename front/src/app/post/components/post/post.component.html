@@ -41,21 +41,21 @@
         <h6 class="pe-1 d-inline">
           {{post.numUpvotes}}
         </h6>
-        <a class="btn btn-primary " type="button" (click)="upvotePost()">
+        <a class="" type="button" (click)="upvotePost()">
 
           <i class="fa-regular fa-circle-up fa-xl" *ngIf="!upvoted"></i>
 
-          <i class="fa-solid fa-circle-up fa-xl"*ngIf="upvoted"></i>
+          <i class="fa-solid fa-circle-up fa-xl" style="color: #63b1b1"  *ngIf="upvoted"></i>
 
         </a>
         <h6 class="pe-1 d-inline">
           {{post.numDownvotes}}
         </h6>
-        <a class="btn btn-primary" type="button" (click)="downvotePost()">
+        <a class="" type="button" (click)="downvotePost()">
 
           <i class="fa-regular fa-circle-down fa-xl" *ngIf="!downvoted"></i>
 
-          <i class="fa-solid fa-circle-down fa-xl" *ngIf="downvoted"></i>
+          <i class="fa-solid fa-circle-down fa-xl" style="color: #63b1b1" *ngIf="downvoted"></i>
 
         </a>
       </div>

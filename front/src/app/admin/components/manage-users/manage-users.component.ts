@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { StaredUser } from '../../interfaces/staredUser.interface';
+import { AdminHttpsService } from '../../services/admin-Https-Service';
+
 
 
 
@@ -14,14 +15,13 @@ import { StaredUser } from '../../interfaces/staredUser.interface';
 })
 
 export class ManageUsersComponent {
-  usersURL = "api/users/";
   userStared: StaredUser | undefined;
   isVisible = false;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpService: AdminHttpsService) { }
 
   getUser(username: String) {
-    this.httpClient.get<StaredUser>(this.usersURL + username).subscribe(
+    this.httpService.getUser(username).subscribe(
       response => {
         this.userStared = response;
       }
@@ -30,13 +30,10 @@ export class ManageUsersComponent {
   }
 
   banUser() {
-    const params = new HttpParams()
-      .set('operation', 'ban');
-    this.httpClient.put(this.usersURL + this.userStared?.id, params).subscribe(
+    this.httpService.banUser(this.userStared as StaredUser).subscribe(
       response => this.userStared = response as StaredUser,
       error => console.error(error)
     );
-    let username = (this.userStared?.username as String)
   }
 
 

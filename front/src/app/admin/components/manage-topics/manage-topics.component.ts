@@ -46,6 +46,7 @@ export class ManageTopicsComponent {
             }
           });
         }
+        this.topic = undefined;
       }
     )
   }

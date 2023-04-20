@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { Follow, UserFollow } from '../../interfaces/follow.interface';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   notGuest: boolean = false;
   ownProfile: boolean | undefined;
-  followed: boolean = false;
+  followed: boolean | undefined;
 
   constructor(
     private router: Router,
@@ -37,16 +38,26 @@ export class ProfileComponent implements OnInit {
     if (!this.authService.isLoggedIn()) return;
     this.notGuest = true;
     const loggedUserUsername: string = this.authService.loggedUser!.username;
-    if (loggedUserUsername === profileUsername) this.ownProfile = true;
-    else {
+    if (loggedUserUsername === profileUsername) {
+      this.ownProfile = true;
+      this.followed = false;
+    } else {
       this.ownProfile = false;
       this._checkFollow(loggedUserUsername, profileUsername);
     }
   }
 
   private _checkFollow(loggedUserUsername: string, profileUsername: string) {
-    this.userService.getFollowing(loggedUserUsername).subscribe(follow => {
-      console.log(follow);
+    this.userService.getFollowing(loggedUserUsername).subscribe({
+      next: (follow: Follow) => {
+        const followUsers: UserFollow[] = follow.users;
+        console.log(followUsers);
+        this.followed = followUsers.some((followUser: UserFollow) => {
+          if (followUser.username === profileUsername) return true;
+          else return false;
+        });
+      },
+      error: _ => (this.followed = false),
     });
   }
 

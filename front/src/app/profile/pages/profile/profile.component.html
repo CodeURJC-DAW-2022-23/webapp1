@@ -1,4 +1,4 @@
-<div class="body" *ngIf="user && ownProfile !== undefined">
+<div class="body" *ngIf="user && ownProfile !== undefined && followed !== undefined">
   <main>
     <form class="row bg-black pt-3">
       <div class="profile-container col-md-4 text-white text-center">
@@ -32,9 +32,8 @@
             <ng-template #elseOwnProfile>
               <div class="col">
                 <ng-container *ngIf="followed; else elseFollowed">
-                  <a class="btn btn-primary btn-round btn-following" type="button" (click)="follow()">
-                    Following
-                  </a>
+                  <!-- Following text inside css -->
+                  <a class="btn btn-primary btn-round btn-following" type="button" (click)="follow()"></a>
                 </ng-container>
                 <ng-template #elseFollowed>
                   <a class="btn btn-primary btn-round" type="button" (click)="follow()">

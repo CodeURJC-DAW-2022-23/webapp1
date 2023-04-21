@@ -1,12 +1,9 @@
 import {
   HttpClient,
-  HttpHeaders,
   HttpParams,
-  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, filter, BehaviorSubject } from 'rxjs';
-import { Post } from 'src/app/models/post.model';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 const BASE_URL = 'api/posts';
 

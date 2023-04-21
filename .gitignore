@@ -161,3 +161,4 @@ Webpack/*
 *.iml
 *.ipr
 .metals/metals.lock.db
+.metals/metals.mv.db

@@ -70,10 +70,11 @@ export class CreatePostComponent implements OnInit {
 
   onSubmit() {
     if (this.myForm.valid) {
+      const descriptionsAndImages = this.myForm.get('descriptionsAndImages')?.value.filter((item: any) => item.description !== null);
       const post: Post = {
         title: this.myForm.get('title')?.value,
         topicStrings: this.myForm.get('selectedTopics')?.value,
-        items: this.myForm.get('descriptionsAndImages')?.value
+        items: descriptionsAndImages
       };
 
       console.log('items', this.myForm.get('descriptionsAndImages')?.value);

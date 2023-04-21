@@ -33,6 +33,10 @@ export class PostsService {
     return this.http.put(BASE_URL + '/downvotes/' + id, null);
   }
 
+  getPostById(id: number) {
+    return this.http.get(BASE_URL + '/' + id);
+  }
+
   setFilter(filter: boolean) {
     this.filter.next(filter);
   }

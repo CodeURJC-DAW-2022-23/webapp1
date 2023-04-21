@@ -16,7 +16,6 @@
   transition: transform 0.25s ease-in-out;
 }
 
-
 .icon-square {
   width: 3rem;
   height: 3rem;
@@ -65,7 +64,7 @@ a {
   color: white;
 }
 
-a:hover {
+a:hover h3{
   color: #63b1b1;
 }
 

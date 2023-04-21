@@ -5,7 +5,7 @@
   </div>
   <h3 class="fs-2">Manage Topics</h3>
 </a>
-<p>
+<p class="text-center">
   Chose what action you want to perform.
 </p>
 <div class="collapse" id="collapseTopics">
@@ -21,42 +21,42 @@
   </div>
 
 
-</div>
+  <div class="m-auto" *ngIf="this.option  === 'add'; else deleteAction">
+    <form id="newTopicForm" [formGroup]="newTopicForm"
+      (ngSubmit)="addTopic(newTopicName.value, newTopicDescription.value)">
 
-<div class="m-auto" *ngIf="this.option  === 'add'; else deleteAction">
-  <form id="newTopicForm" [formGroup]="newTopicForm"
-    (ngSubmit)="addTopic(newTopicName.value, newTopicDescription.value)">
+      <label for="newTopicName">New Topic Name:</label>
+      <input class="form-control m-2" type="text" formControlName="newTopicName" placeholder=" Type a topic name..."
+        #newTopicName>
 
-    <label for="newTopicName">New Topic Name:</label>
-    <input class="form-control m-2" type="text" formControlName="newTopicName" placeholder=" Type a topic name..."
-      #newTopicName>
+      <label for="newTopicDescription">New Topic Description:</label>
+      <input class="form-control m-2" type="text" formControlName="newTopicDescription"
+        placeholder=" Type a topic descripion..." #newTopicDescription>
 
-    <label for="newTopicDescription">New Topic Description:</label>
-    <input class="form-control m-2" type="text" formControlName="newTopicDescription"
-      placeholder=" Type a topic descripion..." #newTopicDescription>
-
-    <button class="btn btn-primary mt-2" id="submit" type="submit" [disabled]="!newTopicForm.valid">addTopic</button>
-    <div class="alert alert-danger mt-2" role="alert" *ngIf="alreadyTaken">
-      This topic already exist
-    </div>
-    <div class="alert alert-danger mt-2" role="alert" *ngIf="invalidFields">
-      Introduce valid fields
-    </div>
-  </form>
+      <button class="btn btn-primary mt-2" id="submit" type="submit" [disabled]="!newTopicForm.valid">addTopic</button>
+      <div class="alert alert-danger mt-2" role="alert" *ngIf="alreadyTaken">
+        This topic already exist
+      </div>
+      <div class="alert alert-danger mt-2" role="alert" *ngIf="invalidFields">
+        Introduce valid fields
+      </div>
+    </form>
 
 
-</div>
-
-<ng-template #deleteAction class="mt-2">
-  <label for="newTopicName">Type the topic's name you want to delete:</label>
-  <input class="form-control h-20 mt-10" placeholder=" Type a topic name..." type="text" #topicName>
-  <div class="alert alert-danger mt-2" role="alert" *ngIf="topicNotFound">
-    Introduce a valid topic name
   </div>
-  <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">Search</button>
-  <div *ngIf="topic">
-    <a (click)="deleteTopic(topic.name)" class="listItem btn btn-primary mt-2">
-      {{topic.name}}
-    </a>
-  </div>
-</ng-template>
+
+  <ng-template #deleteAction class="mt-2">
+    <label for="newTopicName">Type the topic's name you want to delete:</label>
+    <input class="form-control h-20 mt-10" placeholder=" Type a topic name..." type="text" #topicName>
+    <div class="alert alert-danger mt-2" role="alert" *ngIf="topicNotFound">
+      Introduce a valid topic name
+    </div>
+    <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">Search</button>
+    <div *ngIf="topic">
+      <a (click)="deleteTopic(topic.name)" class="listItem btn btn-primary mt-2">
+        {{topic.name}}
+      </a>
+    </div>
+  </ng-template>
+
+</div>

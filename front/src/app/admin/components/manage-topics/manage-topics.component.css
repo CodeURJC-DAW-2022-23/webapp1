@@ -67,7 +67,7 @@ a {
   color: white;
 }
 
-a:hover {
+a:hover h3{
   color: #63b1b1;
 }
 

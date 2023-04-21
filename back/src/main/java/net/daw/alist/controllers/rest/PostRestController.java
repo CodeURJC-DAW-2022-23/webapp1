@@ -66,7 +66,6 @@ public class PostRestController {
     author = userService.findByID(author.getId()).orElseThrow();
     List<PostItem> items = content.getItems();
     for (PostItem item: items) {
-      item.setImage(pathToImage(item.getImagePath()));
       postItemService.save(item);
     }
     List<Topic> topicList = topicService.getTopics(content.getTopicStrings());

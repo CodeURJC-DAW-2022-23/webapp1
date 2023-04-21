@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TopicsService } from '../../services/topic.service';
 import { Topic } from '../../interfaces/topic.interface';
-
+import { PostService } from '../../services/post.service';
+import { Post } from '../../interfaces/post.interface';
 
 
 @Component({
@@ -15,9 +16,9 @@ export class CreatePostComponent implements OnInit {
   myForm!: FormGroup;
 
   topics: Topic[] = [];
-  selectedTopics: Topic[] = [];
 
-  constructor(private topicsService: TopicsService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private postService: PostService, private topicsService: TopicsService, private router: Router, private formBuilder: FormBuilder) { }
+
 
   ngOnInit() {
     this.topicsService.getTopics().subscribe((topics: Topic[]) => {
@@ -25,6 +26,7 @@ export class CreatePostComponent implements OnInit {
     });
     this.myForm = this.formBuilder.group({
       'title': [null],
+      'selectedTopics': this.formBuilder.control([]), // <-- Agrega el control de formulario para el select
       'descriptionsAndImages': this.formBuilder.array([
         this.createDescriptionAndImageGroup(),
         this.createDescriptionAndImageGroup(),
@@ -34,6 +36,16 @@ export class CreatePostComponent implements OnInit {
       ])
     });
   }
+
+  get selectedTopics(): string[] {
+    return this.myForm.controls['selectedTopics'].value;
+  }
+
+  onTopicsChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const selectedOptions = target.selectedOptions;
+  }
+
 
   createDescriptionAndImageGroup(): FormGroup {
     return this.formBuilder.group({
@@ -57,7 +69,25 @@ export class CreatePostComponent implements OnInit {
   }
 
   onSubmit() {
-    // Handle form submission logic here
-    this.router.navigate(['/']);
+    if (this.myForm.valid) {
+      const post: Post = {
+        title: this.myForm.get('title')?.value,
+        topicStrings: this.myForm.get('selectedTopics')?.value,
+        items: this.myForm.get('descriptionsAndImages')?.value
+      };
+
+      console.log('items', this.myForm.get('descriptionsAndImages')?.value);
+
+      this.postService.createPost(post).subscribe(
+        (response) => {
+          console.log('Post creado con éxito:', response);
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.error('Error al crear el post:', error);
+        }
+      );
+    }
   }
+
 }

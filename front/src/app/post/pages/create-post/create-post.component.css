@@ -7,6 +7,19 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+ul {
+  z-index: 1000; /* Ajusta este valor según sea necesario */
+  position: relative;
+}
+
+li {
+  background-color: black; /* Ajusta este valor según sea necesario */
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+
+
 .btn {
   padding: 10px 20px; /* Ajusta estos valores para cambiar el tamaño del botón */
   font-size: 1.2em; /* Ajusta este valor para cambiar el tamaño del texto del botón */

@@ -49,7 +49,7 @@ public class TopicRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @GetMapping("/}")
+  @GetMapping("")
   public ResponseEntity<List<Topic>> getTopics() {
     List<Topic> all = topicService.findAll();
     return new ResponseEntity<>(all, HttpStatus.OK);

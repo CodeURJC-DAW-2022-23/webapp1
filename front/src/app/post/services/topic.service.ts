@@ -13,7 +13,7 @@ export class TopicsService {
   constructor(private http: HttpClient) {}
 
   getTopics(){
-    return this.http.get<Topic[]>(BASE_URL+'/').pipe(
+    return this.http.get<Topic[]>(BASE_URL).pipe(
       map((topics: Topic[]) => {
         return topics.map((topic) => {
           return {

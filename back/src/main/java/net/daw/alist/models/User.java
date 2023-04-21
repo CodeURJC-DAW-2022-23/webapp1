@@ -60,10 +60,12 @@ public class User implements UserDetails {
   @ManyToMany
   @JsonIgnore
   private List<User> following = new ArrayList<>();
+  private int followingCount;
 
   @ManyToMany(mappedBy="following")
   @JsonIgnore
   private List<User> followers = new ArrayList<>();
+  private int followersCount;
 
   @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private List<Post> posts = new ArrayList<>();
@@ -125,8 +127,16 @@ public class User implements UserDetails {
     this.following = following;
   }
 
+  public void setFollowingCount(int followingCount) {
+    this.followingCount = followingCount;
+  }
+
   public void setFollowers(List<User> followers) {
     this.followers = followers;
+  }
+
+  public void setFollowersCount(int followersCount) {
+    this.followersCount = followersCount;
   }
 
   public void setPosts(List<Post> posts) {
@@ -180,8 +190,16 @@ public class User implements UserDetails {
     return following;
   }
 
+  public int getFollowingCount() {
+    return followingCount;
+  }
+
   public List<User> getFollowers() {
     return followers;
+  }
+
+  public int getFollowersCount() {
+    return followersCount;
   }
 
   public List<Post> getPosts() {

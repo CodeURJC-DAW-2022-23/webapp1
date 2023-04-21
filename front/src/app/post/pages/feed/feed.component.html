@@ -1,1 +1,15 @@
-<p>feed works!</p>
+<div class="feed-container pt-3"> <!-- *ngIf="!filter"-->
+  <a class="createPostButton" href="/create-list">
+    <button class="btn btn-lg btn-primary">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </a>
+  <div class="post-container">
+    <app-post *ngFor="let currentPost of posts" [post]="currentPost"></app-post>
+  </div>
+  <div class="text-center my-5">
+    <mat-progress-spinner class="m-auto" mode="indeterminate" color="white"
+      [style.display]="loading ? 'block' : 'none'"></mat-progress-spinner>
+    <div class="no-posts text-white" [style.display]="endOfFeed ? 'block' : 'none'">No more posts :(</div>
+  </div>
+</div>

@@ -81,7 +81,8 @@ public class CommentRestController {
   public ResponseEntity<List<Comment>> getNewComments(@RequestParam int id, @RequestParam int page) {
     Optional<Post> optionalPost = postService.findByID(Long.valueOf(id));
     if (optionalPost.isPresent()){
-      boolean validPage = page <= (int) Math.ceil(optionalPost.get().getComments().size()/2);
+      int check = (int) Math.ceil((float) optionalPost.get().getComments().size()/2);
+      boolean validPage = page < check;
       if (validPage) {
         Post post = optionalPost.get();
         postService.getNewComments(post.getId(), page);

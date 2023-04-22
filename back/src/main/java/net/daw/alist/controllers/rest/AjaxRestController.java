@@ -36,7 +36,7 @@ public class AjaxRestController {
   })
   @GetMapping("")
   public Page<Post> getNewPosts(Authentication authentication, @RequestParam int page, @RequestParam Optional<Boolean> filter) {
-    boolean validPage = page <= (int) Math.ceil(postService.count()/2);
+    boolean validPage = page < (int) Math.ceil((float) postService.count()/2);
     boolean filterPosts = false;
     if (filter.isPresent()) {
       filterPosts = filter.get();

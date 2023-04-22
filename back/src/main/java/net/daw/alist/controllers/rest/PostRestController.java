@@ -164,15 +164,20 @@ public class PostRestController {
   }
   
   @GetMapping("/images/{id}")
-	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
-		Optional<PostItem> postItem = postItemService.findById(id);
+  public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+    Optional<User> author = userService.findByID(id);
+    Optional<PostItem> postItem = postItemService.findById(id);
 		
-		if (postItem.isPresent() && postItem.get().getImage() != null) {
+		if (postItem.isPresent()) {
 			Resource file = new InputStreamResource(postItem.get().getImage().getBinaryStream());
 			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(postItem.get().getImage().length()).body(file);
-		} else {
+		} else if(author.isPresent()) {
+      Resource file = new InputStreamResource(author.get().getImage().getBinaryStream());
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(author.get().getImage().length()).body(file);
+    }else {
 			return ResponseEntity.notFound().build();
 		}
+    
 	}
 
   @AllArgsConstructor

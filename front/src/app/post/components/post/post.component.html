@@ -1,6 +1,7 @@
 <div class="post mt-3 mb-3">
   <div class="postInfo border bg-white d-flex gap-3 py-3">
-    <img src=# alt="Profile picture" width="75" height="75" class="profileImg rounded-circle flex-shrink-0">
+    <img [src]="fetchImage(post.author)" alt="Profile picture" width="75" height="75"
+      class="profileImg rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
         <div class="d-flex flex-wrap">
@@ -8,8 +9,8 @@
             <a class="topic">@{{topic}}</a>
           </h6>
         </div>
-        <a class="OP text-black text-decoration-none" href="/user/{{post.authorName}}">
-          {{post.authorName}}
+        <a class="OP text-black text-decoration-none" href="/user/{{post.author.username}}">
+          {{post.author.username}}
         </a>
       </div>
     </div>
@@ -43,9 +44,9 @@
         </h6>
         <a class="" type="button" (click)="upvotePost()">
 
-          <i class="fa-regular fa-circle-up fa-xl" style="color: gray"  *ngIf="!upvoted"></i>
+          <i class="fa-regular fa-circle-up fa-xl" style="color: gray" *ngIf="!upvoted"></i>
 
-          <i class="fa-solid fa-circle-up fa-xl" style="color: #63b1b1"  *ngIf="upvoted"></i>
+          <i class="fa-solid fa-circle-up fa-xl" style="color: #63b1b1" *ngIf="upvoted"></i>
 
         </a>
         <h6 class="pe-1 d-inline">

@@ -1,0 +1,94 @@
+.body {
+  overflow-x: hidden;
+}
+
+main {
+  height: 100vh;
+  padding: 0 1rem;
+}
+
+.profile-container {
+  max-width: none;
+}
+
+.prof-pic {
+  height: 60vw;
+  width: 60vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.prof-pic:before {
+  /* Responsive trick */
+  padding-top: 100%;
+}
+
+.btn-setting .btn-primary {
+  border: 1px solid white;
+  background-color: inherit;
+  color: white;
+}
+
+.btn-setting .btn-primary:hover {
+  background-color: black;
+}
+
+.btn-setting .dropdown-menu {
+  --bs-dropdown-link-active-bg: #63b1b1;
+}
+
+.btn-following {
+  background-color: #63b1b1;
+}
+
+.btn-following:after {
+  content: 'Following';
+}
+
+.btn-following:hover,
+.btn-following:active:focus {
+  background-color: red;
+}
+
+.btn-following:hover:after,
+.btn-following:active:focus:after {
+  content: 'Unfollow';
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.follow a {
+  color: gray;
+  font-size: medium;
+  text-decoration: none;
+}
+
+.follow a:hover {
+  text-decoration: underline;
+}
+
+.bio-container {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.vl {
+  border-left: 1px solid gray;
+  height: 100%;
+  width: 1px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .profile-container {
+    max-width: 23vw;
+    height: 100%;
+  }
+  .prof-pic {
+    height: 15vw;
+    width: 15vw;
+  }
+}

@@ -14,14 +14,12 @@ interface registerRequest {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private _loggedUser: LoggedUser | undefined;
+  loggedUser: LoggedUser | undefined;
+  logged: boolean = false;
 
-  get loggedUser(): LoggedUser | undefined {
-    if (!this._loggedUser) return this._getLoggedInUser();
-    return this._loggedUser;
+  constructor(private http: HttpClient) {
+    this._getLoggedInUser();
   }
-
-  constructor(private http: HttpClient) {}
 
   register(registerForm: RegisterForm) {
     const registerRequest: registerRequest = {
@@ -29,12 +27,17 @@ export class AuthService {
       email: registerForm.email,
       password: registerForm.passwords.password,
     };
-    return this.http.post(BASE_URL + '/register', registerRequest);
+    return this.http.post(BASE_URL + '/register', registerRequest, {
+      withCredentials: true,
+    });
   }
 
   login(signInForm: SignInForm): Observable<HttpResponse<any>> {
     return this.http
-      .post(BASE_URL + '/sign-in', signInForm, { observe: 'response' })
+      .post(BASE_URL + '/sign-in', signInForm, {
+        withCredentials: true,
+        observe: 'response',
+      })
       .pipe(
         map((response: HttpResponse<any>) => {
           this._getLoggedInUser();
@@ -47,27 +50,38 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this._loggedUser = undefined;
-    this.http.post(BASE_URL + '/sign-out', null);
+    this.http
+      .post(BASE_URL + '/sign-out', { withCredentials: true })
+      .subscribe(_ => {
+        localStorage.removeItem('token');
+        this.loggedUser = undefined;
+        this.logged = false;
+      });
   }
 
   isLoggedIn(): boolean {
-    return this.loggedUser !== undefined;
+    return this.logged;
   }
 
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  private _getLoggedInUser(): LoggedUser | undefined {
+  private _getLoggedInUser() {
     this.http
-      .get<LoggedUser>(BASE_URL + '/logged-user')
-      .subscribe(loggedUser => {
-        this._loggedUser = loggedUser;
-        return loggedUser;
+      .get<LoggedUser>(BASE_URL + '/logged-user', { withCredentials: true })
+      .subscribe({
+        next: (loggedUser: LoggedUser) => {
+          this.loggedUser = loggedUser;
+          this.logged = true;
+        },
       });
-    return;
+  }
+
+  getLoggedInUserSubscription() {
+    return this.http.get<LoggedUser>(BASE_URL + '/logged-user', {
+      withCredentials: true,
+    });
   }
 
   private _saveToken(token: string | null) {

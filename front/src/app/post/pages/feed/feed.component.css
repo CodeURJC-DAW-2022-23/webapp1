@@ -1,0 +1,164 @@
+img {
+  object-fit: cover;
+}
+
+.commentTitle {
+  color: black;
+  margin: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.commentBox {
+  background-color: white;
+}
+
+.commentSection {
+  background-color: white;
+  border-radius: var(--bs-border-radius);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.post,
+.commentSection,
+.comment {
+  width: 95%;
+  margin: auto;
+}
+
+.postInfo {
+  border-top-left-radius: var(--bs-border-radius);
+  border-top-right-radius: var(--bs-border-radius);
+}
+
+.writeComment,
+.comment {
+  background-color: white;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224);
+}
+
+.form-control {
+  margin: auto;
+  width: 90%;
+}
+
+.own-comment-image {
+  margin: auto;
+  margin-right: 0.25em;
+}
+
+.topName {
+  font-weight: 600;
+}
+
+.comment-image {
+  margin-top: 0.1em;
+}
+
+.commentBox {
+  margin: auto;
+}
+
+.OP {
+  color: black;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.username {
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+h6 {
+  color: grey;
+}
+
+input[type='text'] {
+  min-height: 7em;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.list-group li + li {
+  margin-top: 1rem;
+}
+
+.list-group ol li {
+  padding: 0.5em;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.list-group ol {
+  width: 75%;
+  list-style-position: inside;
+}
+
+.text-left {
+  margin: 0;
+}
+
+.profileImg {
+  margin-left: 1em;
+}
+
+.itemWrapper {
+  border-radius: 10px;
+  border: solid 3px;
+  border-color: #69c0a1;
+}
+
+.topic {
+  color: gray;
+  text-decoration: none;
+}
+
+.topic:hover {
+  color: black;
+}
+
+.topic,
+.upvoteIcon,
+.downvoteIcon,
+.shareIcon {
+  cursor: pointer;
+}
+
+.commentTitle {
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224);
+}
+
+.feed-container {
+  margin: 0 1rem;
+}
+.createPostButton{
+  position: -webkit-sticky; /* Safari */
+  z-index: 1;
+  position: sticky;
+  top: 90%;
+  left: 100%;
+}
+
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .post,
+  .commentSection,
+  .comment {
+    width: 40%;
+    margin: auto;
+  }
+
+  .createPostButton{
+    top: 50%;
+    left: 75%;
+  }
+}

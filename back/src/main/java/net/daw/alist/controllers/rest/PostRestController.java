@@ -16,11 +16,15 @@ import net.daw.alist.models.Topic;
 import net.daw.alist.models.User;
 import net.daw.alist.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -148,8 +152,8 @@ public class PostRestController {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
       User userSession = (User) userService.loadUserByUsername(((User) authentication
-              .getPrincipal())
-              .getUsername());
+          .getPrincipal())
+          .getUsername());
       votesService.actionDownVote(postId, userSession);
       ArrayList<Integer> upvotesAndDownvotes = new ArrayList<>();
       upvotesAndDownvotes.add(optionalPost.get().getNumUpvotes());
@@ -158,6 +162,18 @@ public class PostRestController {
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
+  
+  @GetMapping("/images/{id}")
+	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+		Optional<PostItem> postItem = postItemService.findById(id);
+		
+		if (postItem.isPresent() && postItem.get().getImage() != null) {
+			Resource file = new InputStreamResource(postItem.get().getImage().getBinaryStream());
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(postItem.get().getImage().length()).body(file);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 
   @AllArgsConstructor
   @Getter

@@ -27,7 +27,7 @@
               <li class="ms-0 me-auto">
                 {{item.description}}
               </li>
-              <img src="{{item.id}}/image" alt="image" width="45" height="45"
+              <img [src]="fetchImage(item)" alt="image" width="45" height="45"
                 class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
             </div>
           </div>

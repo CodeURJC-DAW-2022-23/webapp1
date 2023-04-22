@@ -7,6 +7,8 @@ import { TopComponent } from './pages/top/top.component';
 import { FeedComponent } from './pages/feed/feed.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +17,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     TopComponent,
     FeedComponent,
     CreatePostComponent,
+    CommentFormComponent
   ],
-  imports: [CommonModule, MatProgressSpinnerModule],
+  imports: [CommonModule, MatProgressSpinnerModule, ReactiveFormsModule],
   exports: [FeedComponent, TopComponent],
 })
 export class PostModule {}

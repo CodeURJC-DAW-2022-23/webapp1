@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { Comment } from 'src/app/models/comment.model';
+import { CommentForm } from '../components/comment/comment-form/CommentForm';
 
 const BASE_URL = 'api/comments';
 
@@ -20,5 +21,9 @@ export class CommentsService {
     return this.http
       .get<Comment[]>(BASE_URL + '/posts', { params })
       .pipe(map(res => res));
+  }
+
+  postComment(postId: number, commentForm: CommentForm) {
+    return this.http.post(BASE_URL + '/' + postId, commentForm);
   }
 }

@@ -77,7 +77,7 @@ export class CreatePostComponent implements OnInit {
         items: descriptionsAndImages
       };
 
-      console.log('items', this.myForm.get('descriptionsAndImages')?.value);
+      console.log('Imágenes enviadas:', descriptionsAndImages.map((item: { image: any; }) => item.image));
 
       this.postService.createPost(post).subscribe(
         (response) => {

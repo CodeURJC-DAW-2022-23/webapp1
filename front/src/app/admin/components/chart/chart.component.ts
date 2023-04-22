@@ -31,13 +31,10 @@ export class ChartComponent implements OnInit {
         }, new Map<string, number>())
       );
       this.topicsArray = [...topicsMapped.entries()].sort((a, b) => b[1] - a[1]);
-      this.data = [
-        [this.topicsArray[0][0], this.topicsArray[0][1]],
-        [this.topicsArray[1][0], this.topicsArray[1][1]],
-        [this.topicsArray[2][0], this.topicsArray[2][1]],
-        [this.topicsArray[3][0], this.topicsArray[3][1]],
-        [this.topicsArray[4][0], this.topicsArray[4][1]],
-      ]
+      this.data = [];
+      for (let i = 0; i < this.topicsArray.length && i < 5; i++) {
+        this.data.push([this.topicsArray[i][0], this.topicsArray[i][1]]);
+      }
 
 
     });

@@ -20,10 +20,7 @@ export class FollowButtonComponent implements OnInit {
 
   follow() {
     this.userService.follow(this.followUser!.username).subscribe({
-      next: _ => {
-        this.followed = !this.followed;
-        console.log(this.router.url);
-      },
+      next: _ => (this.followed = !this.followed),
     });
   }
 }

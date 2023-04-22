@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 export class FollowCountComponent implements OnInit {
   @Input() followCount: number | undefined;
   @Input() follow: boolean | undefined;
+  @Input() followData: any;
   followUrl: string = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    console.log(this.followData);
     const profileUrl: string = this.router.url;
     if (this.follow) this.followUrl = `${profileUrl}/following`;
     else this.followUrl = `${profileUrl}/followers`;

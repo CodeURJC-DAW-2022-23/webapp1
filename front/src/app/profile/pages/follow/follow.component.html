@@ -1,1 +1,15 @@
-<p>follow works!</p>
+<div class="body">
+  <div class="bg-black text-white">
+    <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user/{{profileUser?.username}}']">
+      <!-- TODO: profile user img src -->
+      <img class="profile-img" src="" alt="{{profileUser?.username}} picture"> {{follow}}
+      {{profileUser?.username}}
+    </a>
+    <div class="list-group mt-3" *ngFor="let followUser of followUsers">
+      <a class="list-group-item list-group-item-action" type="button" [routerLink]="['/user/{{followUser.username}}']">
+        <!-- TODO: follow user img src -->
+        <img class="profile-img" src="" alt="{{followUser.username}} picture"> {{followUser.username}}
+      </a>
+    </div>
+  </div>
+</div>

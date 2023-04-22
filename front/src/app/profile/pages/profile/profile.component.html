@@ -1,14 +1,14 @@
-<div class="body" *ngIf="user && ownProfile !== undefined">
+<div class="body" *ngIf="profileUser && ownProfile !== undefined">
   <main>
     <form class="row bg-black pt-3">
       <div class="profile-container col-md-4 text-white text-center">
         <div class="profile-pic text-center pt-2">
           <!-- TODO: profile pic display -->
-          <!-- <img src="{{user.imagePath}}" alt="profilePic" class="prof-pic"> -->
+          <!-- <img src="{{profileUser.imagePath}}" alt="profilePic" class="prof-pic"> -->
         </div>
         <div class="row text-inherit m-0 d-flex align-items-center">
           <div class="col prof-name fs-2">
-            {{user.username}}
+            {{profileUser.username}}
           </div>
           <ng-container *ngIf="notGuest">
             <ng-container *ngIf="ownProfile; else elseOwnProfile">
@@ -20,7 +20,7 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="settingsButton">
                     <li>
-                      <a class="dropdown-item" id="admin-panel" *ngIf="user.admin" [routerLink]="['/admin']">
+                      <a class="dropdown-item" id="admin-panel" *ngIf="profileUser.admin" [routerLink]="['/admin']">
                         Admin Panel
                       </a>
                     </li>
@@ -37,12 +37,14 @@
           </ng-container>
         </div>
         <div class="row fs-5 mt-1">
-          <app-follow-count class="col" [followCount]="user.followingCount" [follow]=true></app-follow-count>
-          <app-follow-count class="col" [followCount]="user.followersCount" [follow]=false></app-follow-count>
+          <app-follow-count class="col" [followCount]="profileUser.followingCount" [follow]=true
+            [followData]="followData"></app-follow-count>
+          <app-follow-count class="col" [followCount]="profileUser.followersCount" [follow]=false
+            [followData]="followData"></app-follow-count>
         </div>
         <hr>
         <div class="bio-container">
-          <p>{{user.bio}}</p>
+          <p>{{profileUser.bio}}</p>
         </div>
       </div>
       <div class="post-container col-md-9 p-0">

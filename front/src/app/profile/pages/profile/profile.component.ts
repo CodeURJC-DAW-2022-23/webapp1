@@ -10,10 +10,11 @@ import { Follow, UserFollow } from '../../interfaces/follow.interface';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  user: any;
+  profileUser: any;
   notGuest: boolean = false;
   ownProfile: boolean | undefined;
   followUser: UserFollow | undefined;
+  followData: any;
 
   constructor(
     private router: Router,
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit {
     const profileUsername: string = this._getUsernameFormUrl(this.router.url);
     this.userService.getUser(profileUsername).subscribe({
       next: user => {
-        this.user = user;
+        this.profileUser = user;
         this._checkLoggedUser(profileUsername);
       },
       error: _ => this.router.navigate(['/error']),
@@ -42,13 +43,12 @@ export class ProfileComponent implements OnInit {
     this.notGuest = true;
     const loggedUserUsername: string = this.authService.loggedUser!.username;
     if (loggedUserUsername === profileUsername) this.ownProfile = true;
-    else this._checkFollow(loggedUserUsername, profileUsername);
+    this._checkFollow(loggedUserUsername, profileUsername);
   }
 
   private _checkFollow(loggedUserUsername: string, profileUsername: string) {
     this.userService.getFollowing(loggedUserUsername).subscribe({
       next: (follow: Follow) => {
-        console.log(follow);
         const followUsers: UserFollow[] = follow.users;
         this.followUser = followUsers.find((followUser: UserFollow) => {
           if (followUser.username === profileUsername) return followUser;
@@ -57,9 +57,18 @@ export class ProfileComponent implements OnInit {
         if (!this.followUser) {
           this.followUser = { username: profileUsername, follow: false };
         }
+        this._createFollowData();
       },
       error: _ => (this.followUser = undefined),
     });
+  }
+
+  private _createFollowData() {
+    this.followData = {
+      profileUser: this.profileUser,
+      followUsers: this.followUser,
+    };
+    console.log(this.followData);
   }
 
   logout() {

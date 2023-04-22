@@ -192,6 +192,14 @@ public class DatabaseInitializer {
             firstPost.addComment(firstComment);
             Comment secondComment = new Comment(shanks, "Where is LeganesCF in this Top?!?", null);
             thirdPost.addComment(secondComment);
+            Comment fourthComment = new Comment(manolo, "HALA MADRID!", null);
+            thirdPost.addComment(fourthComment);
+            Comment fifthComment = new Comment(admin, "Manolo is looking to get banned...", null);
+            thirdPost.addComment(fifthComment);
+            Comment sixthComment = new Comment(admin, "FORÇA BARÇA!!!", null);
+            thirdPost.addComment(sixthComment);
+            Comment seventhComment = new Comment(peepo, "GetafeCF forever...", null);
+            thirdPost.addComment(seventhComment);
             Comment thirdComment = new Comment(peepo, "Lebron is the GOAT", null);
             fourthPost.addComment(thirdComment);
             Comment goatedComment = new Comment(peepo, "Hakiman is goated fr fr no cap top 1 ez", null);

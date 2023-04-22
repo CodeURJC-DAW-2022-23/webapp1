@@ -5,9 +5,7 @@ import net.daw.alist.models.Comment;
 import net.daw.alist.models.Post;
 import net.daw.alist.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +22,16 @@ public class PostService {
 
     public Page<Post> getPosts(int pageNumber) {
         return postRepository.findAll(PageRequest.of(pageNumber, pageSize,Sort.by("votes").descending()));
+    }
+
+    public List<Comment> getNewComments(Long id, int pageNumber) {
+        List<Comment> comments = postRepository.getReferenceById(id).getComments();
+        int start = pageSize * pageNumber;
+        int end = start + pageSize;
+        if (end > comments.size()){
+            end = comments.size();
+        }
+        return comments.subList(start, end);
     }
 
     public Page<Post> getUserPosts(int pageNumber, int user_id) {

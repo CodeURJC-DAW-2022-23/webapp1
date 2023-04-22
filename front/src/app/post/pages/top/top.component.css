@@ -16,8 +16,7 @@ img {
 .commentSection{
   background-color: white;
   border-radius: var(--bs-border-radius);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  
 }
 
 .post,

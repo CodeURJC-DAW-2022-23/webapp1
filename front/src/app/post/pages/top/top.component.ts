@@ -14,8 +14,11 @@ import { ActivatedRoute } from '@angular/router';
 export class TopComponent implements OnInit {
   isLoggedIn: boolean = false;
   comments: Comment[] = [];
+  page: number = 0;
   post!: Post;
   postId!: number;
+  endOfComments: boolean = false;
+  loading: boolean = false;
 
   constructor(
     private postsService: PostsService,
@@ -31,8 +34,19 @@ export class TopComponent implements OnInit {
     this.postsService
       .getPostById(this.postId)
       .subscribe(response => (this.post = response as Post));
-    this.commentsService
-      .getCommentsByPostId(this.postId)
-      .subscribe(response => (this.comments = response as Comment[]));
+    this.getComments();
+  }
+
+  getComments() {
+    this.loading = true;
+    if (!this.endOfComments) {
+      this.commentsService.getComments(this.postId, this.page).subscribe(
+        (fetchedComments: Comment[]) =>
+          (this.comments = [...this.comments, ...fetchedComments]),
+        error => (this.endOfComments = true)
+      );
+      this.page++;
+    }
+    this.loading = false;
   }
 }

@@ -1,6 +1,6 @@
 <app-post [post]="post"></app-post>
 <div class="commentSection mb-3">
-  <p class="commentTitle text-muted pb-3">Comments</p>
+  <p class="commentTitle text-muted p-3">Comments</p>
   <!--TODO: fix forum-->
   <form action="#" *ngIf="isLoggedIn">
     <div class="writeComment p-3">
@@ -16,5 +16,13 @@
   </form>
   <div class="commentBox" *ngFor="let comment of comments">
     <app-comment [comment]="comment"></app-comment>
+  </div>
+  <div class="d-flex justify-content-center flex-column p-3" *ngIf="!endOfComments">
+    <mat-progress-spinner class="m-auto" mode="indeterminate" color="white"
+      [style.display]="loading ? 'block' : 'none'"></mat-progress-spinner>
+    <a class="btn btn-primary btn-sm shadow-none m-auto" (click)="getComments()">Load more...</a>
+  </div>
+  <div class="d-flex justify-content-center p-3" *ngIf="endOfComments">
+    <p class="text-muted m-auto">No more comments :(</p>
   </div>
 </div>

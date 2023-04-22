@@ -17,10 +17,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -53,6 +55,13 @@ public class UserRestController {
       return new ResponseEntity<>(user, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+  }
+  @GetMapping("/names/{prefix}")
+  public ResponseEntity<List<User>> getUserByPrefix(@PathVariable String prefix){
+    List<User> firstElementsList = userService.findUserPrefix(prefix).stream().limit(5).collect(Collectors.toList());
+
+    return new ResponseEntity<>(firstElementsList, HttpStatus.OK);
   }
 
   @Operation(summary = "Edit user by id")

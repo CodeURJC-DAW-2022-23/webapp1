@@ -16,6 +16,13 @@
       "projectName": "alist",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "node-terminal",
+      "name": "Run Script: ng",
+      "request": "launch",
+      "command": "npm run ng",
+      "cwd": "${workspaceFolder}/front"
     }
   ]
 }

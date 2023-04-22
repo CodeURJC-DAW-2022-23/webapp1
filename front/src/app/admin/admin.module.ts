@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
@@ -11,9 +17,16 @@ import { ManageTopicsComponent } from './components/manage-topics/manage-topics.
     AdminPanelComponent,
     ChartComponent,
     ManageUsersComponent,
-    ManageTopicsComponent,
+    ManageTopicsComponent
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    GoogleChartsModule,
+    ReactiveFormsModule
+
+  ],
   exports: [AdminPanelComponent],
 })
-export class AdminModule {}
+export class AdminModule { }

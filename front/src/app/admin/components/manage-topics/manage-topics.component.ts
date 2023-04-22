@@ -12,7 +12,7 @@ import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/fo
 
 export class ManageTopicsComponent implements DoCheck {
   topicsURL = "api/topics/";
-  topic: Topic | undefined;
+  topic: Topic[] = [];
   newTopic: Topic | undefined;
   option: String | undefined;
   alreadyTaken = false;
@@ -41,8 +41,8 @@ export class ManageTopicsComponent implements DoCheck {
     )
   }
 
-  deleteTopic(topicName: String) {
-    this.httpService.deleteTopic(topicName).subscribe(
+  deleteTopic(index: number) {
+    this.httpService.deleteTopic(this.topic[index].name).subscribe(
       response => {
 
         //Notification of topic deleted
@@ -59,7 +59,7 @@ export class ManageTopicsComponent implements DoCheck {
             }
           });
         }
-        this.topic = undefined;
+        this.topic.splice(index, 1);
       }
     )
   }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -41,7 +42,9 @@ public class UserRestController {
 
   @GetMapping("/names/{prefix}")
   public ResponseEntity<List<User>> getUserByPrefix(@PathVariable String prefix){
-    return new ResponseEntity<>(userService.findUserPrefix(prefix), HttpStatus.OK);
+    List<User> firstElementsList = userService.findUserPrefix(prefix).stream().limit(5).collect(Collectors.toList());
+
+    return new ResponseEntity<>(firstElementsList, HttpStatus.OK);
   }
 
   @Operation(summary = "Edit user by id")

@@ -15,7 +15,7 @@ import { AdminHttpsService } from '../../services/admin-Https-Service';
 })
 
 export class ManageUsersComponent {
-  userStared: StaredUser | undefined;
+  userStared: StaredUser[] = [];
   isVisible = false;
   userNotFound = false;
   banAction = "";
@@ -36,10 +36,10 @@ export class ManageUsersComponent {
     )
   }
 
-  banUser() {
-    this.httpService.banUser(this.userStared as StaredUser).subscribe(
+  banUser(i: number) {
+    this.httpService.banUser(this.userStared[i] as StaredUser).subscribe(
       response => {
-        this.userStared = response as StaredUser
+        this.userStared[i] = response as StaredUser
         this._banNotification(response.locked);
       },
       error => console.error(error)

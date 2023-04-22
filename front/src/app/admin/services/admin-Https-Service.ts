@@ -14,8 +14,8 @@ export class AdminHttpsService {
     return this.httpClient.get<Map<string, number>>("api/topics/chart");
   }
 
-  getTopic(topicName: String): Observable<Topic> {
-    return this.httpClient.get<Topic>("api/topics/byName/" + topicName);
+  getTopic(topicName: String): Observable<Topic[]> {
+    return this.httpClient.get<Topic[]>("api/topics/byName/" + topicName);
   }
 
   deleteTopic(topicName: String): Observable<Topic> {
@@ -35,8 +35,8 @@ export class AdminHttpsService {
     return this.httpClient.put<StaredUser>("api/users/" + userStared?.id, params);
   }
 
-  getUser(username: String): Observable<StaredUser> {
-    return this.httpClient.get<StaredUser>("api/users/" + username);
+  getUser(username: String): Observable<StaredUser[]> {
+    return this.httpClient.get<StaredUser[]>("api/users/names/" + username);
   }
 
 

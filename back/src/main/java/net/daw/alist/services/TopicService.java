@@ -56,4 +56,8 @@ public class TopicService {
     public void save(Topic topic) {
         topicRepository.save(topic);
     }
+
+    public List<Topic> findByNameStartingWith(String prefix){
+        return topicRepository.findByNameStartingWith(prefix);
+    }
 }

@@ -22,17 +22,19 @@
     Search
   </button>
   <div *ngIf="isVisible">
-    <div *ngIf="userStared?.locked; else otherCont">
-      <a (click)="banUser()" class="listItemLocked btn btn-primary mt-2">
-        {{userStared?.username}}
-      </a>
-    </div>
-    <ng-template #otherCont>
-      <div>
-        <a (click)="banUser()" class="listItem btn btn-primary mt-2">
-          {{userStared?.username}}
+    <div *ngFor="let item of userStared; index as i">
+      <div *ngIf="item?.locked; else otherCont">
+        <a (click)="banUser(i)" class="listItemLocked btn btn-primary mt-2">
+          {{item?.username}}
         </a>
       </div>
-    </ng-template>
+      <ng-template #otherCont>
+        <div>
+          <a (click)="banUser(i)" class="listItem btn btn-primary mt-2">
+            {{item?.username}}
+          </a>
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>

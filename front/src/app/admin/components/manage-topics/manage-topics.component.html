@@ -52,9 +52,9 @@
       Introduce a valid topic name
     </div>
     <button class="btn btn-primary mt-2" (click)="getTopic(topicName.value)">Search</button>
-    <div *ngIf="topic">
-      <a (click)="deleteTopic(topic.name)" class="listItem btn btn-primary mt-2">
-        {{topic.name}}
+    <div *ngFor="let item of topic; index as i">
+      <a (click)="deleteTopic(i)" class="listItem btn btn-primary mt-2">
+        {{item.name}}
       </a>
     </div>
   </ng-template>

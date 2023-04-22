@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import net.daw.alist.models.Topic;
+import net.daw.alist.models.User;
 import net.daw.alist.services.ChartService;
 import net.daw.alist.services.TopicService;
 import net.daw.alist.utils.Utils;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/topics")
@@ -47,11 +49,12 @@ public class TopicRestController {
           @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
   @GetMapping("/byName/{topicName}")
-  public ResponseEntity<Topic> getTopicByName(@PathVariable String topicName) {
-    Optional<Topic> optionalTopic = topicService.findByName(topicName);
-    if (optionalTopic.isPresent()) {
-      Topic topic = optionalTopic.get();
-      return new ResponseEntity<>(topic, HttpStatus.OK);
+  public ResponseEntity<List<Topic>> getTopicByName(@PathVariable String topicName) {
+
+    List<Topic> firstElementsList = topicService.findByNameStartingWith(topicName).stream().limit(5).collect(Collectors.toList());
+
+    if (firstElementsList.size()>0) {
+      return new ResponseEntity<>(firstElementsList, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }

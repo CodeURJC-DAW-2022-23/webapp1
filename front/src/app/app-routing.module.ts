@@ -56,7 +56,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminPanelComponent,
     title: 'Alist | Admin Panel',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     data: { role: 'admin' },
   },
   {
@@ -74,4 +74,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

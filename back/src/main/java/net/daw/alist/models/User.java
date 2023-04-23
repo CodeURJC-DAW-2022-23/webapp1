@@ -27,15 +27,20 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @JsonIgnore
   private Date date;
   private String username;
+  @JsonIgnore
   private String password;
+  @JsonIgnore
   private String email;
+
+  @JsonIgnore
   @Enumerated(EnumType.STRING)
   private UserRole role;
-
+  @JsonIgnore
   private boolean enabled; //For email verification
-
+  @JsonIgnore
   private boolean locked; //For banning
 
   public void setEnabled(boolean enabled) {
@@ -50,26 +55,32 @@ public class User implements UserDetails {
     this.locked = locked;
   }
 
+  @JsonIgnore
   private String bio = "";
 
   @Lob
   @JsonIgnore
   private Blob image;
+  @JsonIgnore
   private String imagePath;
 
   @ManyToMany
   @JsonIgnore
   private List<User> following = new ArrayList<>();
+  @JsonIgnore
   private int followingCount;
 
   @ManyToMany(mappedBy="following")
   @JsonIgnore
   private List<User> followers = new ArrayList<>();
+  @JsonIgnore
   private int followersCount;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private List<Post> posts = new ArrayList<>();
 
+  @JsonIgnore
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
   private List<Comment> comments = new ArrayList<>();
 
@@ -170,6 +181,7 @@ public class User implements UserDetails {
     return role;
   }
 
+  @JsonIgnore
   public boolean isAdmin() {
     return role.equals(UserRole.ADMIN);
   }
@@ -210,16 +222,18 @@ public class User implements UserDetails {
     return comments;
   }
 
+  @JsonIgnore
   @Override
   public boolean isAccountNonExpired() {
     return true;
   }
 
+  @JsonIgnore
   @Override
   public boolean isAccountNonLocked() {
     return !locked;
   }
-
+  @JsonIgnore
   @Override
   public boolean isCredentialsNonExpired() {
     return true;
@@ -230,6 +244,7 @@ public class User implements UserDetails {
     return enabled;
   }
 
+  @JsonIgnore
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     SimpleGrantedAuthority authority =

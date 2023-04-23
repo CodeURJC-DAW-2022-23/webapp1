@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
 import { PostsService } from '../../services/posts.service';
 import { distinctUntilChanged } from 'rxjs';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements AfterViewInit {
   @Input() post!: Post;
 
   filterState: boolean = false;
@@ -22,7 +22,7 @@ export class PostComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.checkIfVoted();
     this.postsService
       .getFilter()

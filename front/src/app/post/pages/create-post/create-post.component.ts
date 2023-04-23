@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TopicsService } from '../../services/topic.service';
@@ -10,7 +10,8 @@ import { Post } from '../../interfaces/post.interface';
 @Component({
   selector: 'app-post-form',
   templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.css']
+  styleUrls: ['./create-post.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CreatePostComponent implements OnInit {
   myForm!: FormGroup;
@@ -27,7 +28,7 @@ export class CreatePostComponent implements OnInit {
 
     this.myForm = this.formBuilder.group({
       'title': ['', Validators.required],
-      'selectedTopics': this.formBuilder.control([]), // <-- Agrega el control de formulario para el select
+      'selectedTopics': this.formBuilder.control([]),
       'descriptionsAndImages': this.formBuilder.array([
         this.createDescriptionAndImageGroup(),
         this.createDescriptionAndImageGroup(),
@@ -41,12 +42,6 @@ export class CreatePostComponent implements OnInit {
   get selectedTopics(): string[] {
     return this.myForm.controls['selectedTopics'].value;
   }
-
-  onTopicsChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    const selectedOptions = target.selectedOptions;
-  }
-
 
   createDescriptionAndImageGroup(): FormGroup {
     return this.formBuilder.group({
@@ -77,8 +72,6 @@ export class CreatePostComponent implements OnInit {
         topicStrings: this.myForm.get('selectedTopics')?.value,
         items: descriptionsAndImages
       };
-
-      console.log('Imágenes enviadas:', descriptionsAndImages.map((item: { image: any; }) => item.image));
 
       this.postService.createPost(post).subscribe(
         (response) => {

@@ -8,23 +8,23 @@
 }
 
 ul {
-  z-index: 1000; /* Ajusta este valor según sea necesario */
+  z-index: 1000;
   position: relative;
 }
 
-li {
-  background-color: black; /* Ajusta este valor según sea necesario */
-  padding: 5px;
-  border: 1px solid #ccc;
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled)  {
+  color: lightseagreen;
 }
 
+.mat-primary .mat-pseudo-checkbox-checked,  .mat-pseudo-checkbox-indeterminate {
+  background:lightseagreen;
+}
 
-
-.btn {
-  padding: 10px 20px; /* Ajusta estos valores para cambiar el tamaño del botón */
-  font-size: 1.2em; /* Ajusta este valor para cambiar el tamaño del texto del botón */
-  display: block; /* Hace que el botón se comporte como un elemento de bloque */
-  margin: 0 auto; /* Centra el botón en el contenedor */
+.btn-cp {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  display: block;
+  margin: 0 auto;
 }
 
 .title {

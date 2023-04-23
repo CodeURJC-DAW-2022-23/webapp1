@@ -348,7 +348,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | File number | File                                                                                                                                                                         |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | #1          | [CommentRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/CommentRestController.java)        |
-| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/AList.postman_collection.json)                                       |
+| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/AList.postman_collection.json)                                                    |
 | #3          | [PostService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostService.java)                                    |
 | #4          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
 | #5          | [Comment.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Comment.java)                                              |
@@ -374,7 +374,6 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | #1          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/76f7d68f27594b5a5687996043f76738b3efd018/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)  |
 | #2          | [ UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/a811ea269945cdcda2bc0f752cc1449adc653214/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
 | #3          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/297db0eee9a3e51a24af8e0ee18d9996123b4c01/AList.postman_collection.json)                                        |
-
 
 ### Alejandro
 
@@ -420,3 +419,144 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | #1          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/AList.postman_collection.json)                                       |
 | #2          | [AjaxRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/AjaxRestController.java) |
+
+## Phase 4##
+
+Instructions for developer environment
+In order to execute the SPA application you should follow the next steps:
+
+1. Install Docker Desktop.
+2. Create and account on Dockerhub.
+3. Open any shell of type "bash".
+4. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
+5. Use command "cd" until you get to the folder "Docker".
+6. Execute the command "./create_image.sh franchescourjc/webapp1".
+7. Execute the command "docker-compose up" on the shell.
+8. When the app is running, open any browser and search "https://localhost:8443/new/".
+
+## SPA Classes and Templates Diagram
+
+
+
+## Group members participation
+
+### Frantzes
+
+#### Textual description: 
+
+#### Five most important commits:
+
+| Commit number | Description                                            |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+#### Five most participated files:
+
+| File number   | File                                                   |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+### Vicente
+
+#### Textual description: 
+
+#### Five most important commits:
+
+| Commit number | Description                                            |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+#### Five most participated files:
+
+| File number   | File                                                   |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+
+### Alejandro
+
+#### Textual description: 
+
+#### Five most important commits:
+
+| Commit number | Description                                            |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+#### Five most participated files:
+
+| File number   | File                                                   |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+### Alberto
+
+#### Textual description: 
+
+#### Five most important commits:
+
+| Commit number | Description                                            |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+#### Five most participated files:
+
+| File number   | File                                                   |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+### Gledrian
+
+#### Textual description: 
+
+#### Five most important commits:
+
+| Commit number | Description                                            |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |
+
+#### Five most participated files:
+
+| File number   | File                                                   |
+|---------------|--------------------------------------------------------|
+|#1             |                                                        |
+|#2             |                                                        |
+|#3             |                                                        |
+|#4             |                                                        |
+|#5             |                                                        |

@@ -7,6 +7,7 @@ import { Post } from 'src/app/models/post.model';
 import { PostsService } from 'src/app/post/services/posts.service';
 import { take } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private titleService: Title,
     private authService: AuthService,
     private userService: UserService,
     private postService: PostsService
@@ -34,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const profileUsername: string = this._getUsernameFormUrl(this.router.url);
+    this.titleService.setTitle(`Alist | ${profileUsername}`);
     this.userService.getUser(profileUsername).subscribe({
       next: user => {
         this.profileUser = user;

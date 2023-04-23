@@ -27,7 +27,6 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @JsonIgnore
   private Date date;
   private String username;
   @JsonIgnore
@@ -40,7 +39,6 @@ public class User implements UserDetails {
   private UserRole role;
   @JsonIgnore
   private boolean enabled; //For email verification
-  @JsonIgnore
   private boolean locked; //For banning
 
   public void setEnabled(boolean enabled) {
@@ -178,7 +176,6 @@ public class User implements UserDetails {
     return role;
   }
 
-  @JsonIgnore
   public boolean isAdmin() {
     return role.equals(UserRole.ADMIN);
   }

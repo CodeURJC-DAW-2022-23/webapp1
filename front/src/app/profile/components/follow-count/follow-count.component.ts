@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class FollowCountComponent implements OnInit {
   @Input() followCount!: number;
   @Input() follow!: boolean;
-  @Input() followData: any;
   followUrl: string = '';
 
   constructor(private router: Router) { }

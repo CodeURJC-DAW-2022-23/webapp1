@@ -35,11 +35,9 @@
             </ng-template>
           </ng-container>
         </div>
-        <div class="row fs-5 mt-1" *ngIf="followData">
-          <app-follow-count class="col" [followCount]="profileUser.followingCount" [follow]=true
-            [followData]="followData"></app-follow-count>
-          <app-follow-count class="col" [followCount]="profileUser.followersCount" [follow]=false
-            [followData]="followData"></app-follow-count>
+        <div class="row fs-5 mt-1">
+          <app-follow-count class="col" [followCount]="profileUser.followingCount" [follow]=true></app-follow-count>
+          <app-follow-count class="col" [followCount]="profileUser.followersCount" [follow]=false></app-follow-count>
         </div>
         <hr>
         <div class="bio-container">

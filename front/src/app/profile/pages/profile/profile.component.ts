@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
   notGuest: boolean = false;
   ownProfile: boolean | undefined;
   followUser: UserFollow | undefined;
-  followData: any;
 
   posts: Post[] = [];
   page: number = 0;
@@ -71,17 +70,9 @@ export class ProfileComponent implements OnInit {
         if (!this.followUser) {
           this.followUser = { username: profileUsername, follow: false };
         }
-        this._createFollowData();
       },
       error: _ => (this.followUser = undefined),
     });
-  }
-
-  private _createFollowData() {
-    this.followData = {
-      profileUser: this.profileUser,
-      followUsers: this.followUser,
-    };
   }
 
   private _getPosts(profileUsername: string) {

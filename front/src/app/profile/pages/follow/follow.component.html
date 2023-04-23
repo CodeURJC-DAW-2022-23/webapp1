@@ -1,14 +1,15 @@
 <div class="body">
   <div class="bg-black text-white">
-    <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user/{{profileUser?.username}}']">
-      <!-- TODO: profile user img src -->
-      <img class="profile-img" src="" alt="{{profileUser?.username}} picture"> {{follow}}
-      {{profileUser?.username}}
+    <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user, profileUser.username']">
+      <img class="profile-img" [src]="fetchImage(profileUser)" alt="{{profileUser.username}} picture"> {{follow}}
+      {{profileUser.username}}
     </a>
-    <div class="list-group mt-3" *ngFor="let followUser of followUsers">
-      <a class="list-group-item list-group-item-action" type="button" [routerLink]="['/user/{{followUser.username}}']">
-        <!-- TODO: follow user img src -->
-        <img class="profile-img" src="" alt="{{followUser.username}} picture"> {{followUser.username}}
+    <div class="list-group mt-3" *ngFor="let profilefollowUser of profileFollowUsers">
+      <a class="list-group-item list-group-item-action" type="button"
+        [routerLink]="['/user, profilefollowUser.username']">
+        <img class="profile-img" [src]="fetchImageString(profilefollowUser.username)"
+          alt="{{profilefollowUser.username}} picture">
+        {{profilefollowUser.username}}
       </a>
     </div>
   </div>

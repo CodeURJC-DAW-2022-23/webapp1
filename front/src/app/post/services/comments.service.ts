@@ -12,10 +12,6 @@ const BASE_URL = 'api/comments';
 export class CommentsService {
   constructor(private http: HttpClient) {}
 
-  getCommentsByPostId(postId: number) {
-    return this.http.get(BASE_URL + '/posts/' + postId);
-  }
-
   getComments(id: number, page: number) {
     const params = new HttpParams().set('id', id).set('page', page);
     return this.http

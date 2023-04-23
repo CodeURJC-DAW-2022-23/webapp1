@@ -34,19 +34,31 @@ export class TopComponent implements OnInit {
     this.postsService
       .getPostById(this.postId)
       .subscribe(response => (this.post = response as Post));
+
     this.getComments();
   }
 
   getComments() {
-    this.loading = true;
     if (!this.endOfComments) {
+      this.loading = true;
       this.commentsService.getComments(this.postId, this.page).subscribe(
-        (fetchedComments: Comment[]) =>
-          (this.comments = [...this.comments, ...fetchedComments]),
+        (fetchedComments: Comment[]) => {
+          if (
+            this.comments.at(this.comments.length)?.id == fetchedComments.at(0)?.id
+          )
+            fetchedComments.shift();
+          this.comments = [...this.comments, ...fetchedComments];
+        },
         error => (this.endOfComments = true)
       );
       this.page++;
+      this.loading = false;
     }
-    this.loading = false;
+  }
+
+  receiveNewComment(data: any) {
+    console.log('Received from child: ', data);
+    const newComment: Comment = data as Comment;
+    this.comments.unshift(newComment);
   }
 }

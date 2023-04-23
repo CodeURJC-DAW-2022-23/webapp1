@@ -1,7 +1,7 @@
 import { CommentForm } from './CommentForm';
 import { AuthService } from './../../../../auth/services/auth.service';
 import { CommentsService } from './../../../services/comments.service';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CommentFormComponent {
   @Input() postId!: number;
+  @Output() newComment: EventEmitter<Comment> = new EventEmitter<Comment>();
+
   commentForm: FormGroup;
   commentCreated: boolean = false;
   content = '';
@@ -33,11 +35,12 @@ export class CommentFormComponent {
     this.commentCreated = false;
     if (this.commentForm.valid) {
       const commentForm: CommentForm = this.commentForm.value;
-      this.commentsService.postComment(this.postId, commentForm).subscribe(
-        response => {
+      this.commentsService
+        .postComment(this.postId, commentForm)
+        .subscribe(response => {
           this.commentCreated = true;
-        }
-      );
+          this.newComment.emit(response as Comment);
+        });
     }
     this.content = '';
   }

@@ -1,7 +1,7 @@
 <app-post [post]="post"></app-post>
 <div class="commentSection mb-3">
   <p class="commentTitle text-muted p-3">Comments</p>
-  <app-comment-form *ngIf="isLoggedIn" [postId]="postId"></app-comment-form>
+  <app-comment-form *ngIf="isLoggedIn" [postId]="postId" (newComment)="receiveNewComment($event)"></app-comment-form>
   <div class="commentBox" *ngFor="let comment of comments">
     <app-comment [comment]="comment"></app-comment>
   </div>

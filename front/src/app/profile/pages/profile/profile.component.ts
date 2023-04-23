@@ -82,7 +82,6 @@ export class ProfileComponent implements OnInit {
       profileUser: this.profileUser,
       followUsers: this.followUser,
     };
-    console.log(this.followData);
   }
 
   private _getPosts(profileUsername: string) {

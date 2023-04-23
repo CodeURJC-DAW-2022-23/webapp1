@@ -35,7 +35,7 @@
             </ng-template>
           </ng-container>
         </div>
-        <div class="row fs-5 mt-1">
+        <div class="row fs-5 mt-1" *ngIf="followData">
           <app-follow-count class="col" [followCount]="profileUser.followingCount" [follow]=true
             [followData]="followData"></app-follow-count>
           <app-follow-count class="col" [followCount]="profileUser.followersCount" [follow]=false

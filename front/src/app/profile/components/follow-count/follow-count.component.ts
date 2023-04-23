@@ -7,15 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./follow-count.component.css'],
 })
 export class FollowCountComponent implements OnInit {
-  @Input() followCount: number | undefined;
-  @Input() follow: boolean | undefined;
+  @Input() followCount!: number;
+  @Input() follow!: boolean;
   @Input() followData: any;
   followUrl: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.followData);
     const profileUrl: string = this.router.url;
     if (this.follow) this.followUrl = `${profileUrl}/following`;
     else this.followUrl = `${profileUrl}/followers`;

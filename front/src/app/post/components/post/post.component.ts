@@ -13,16 +13,16 @@ import { User } from 'src/app/models/user.model';
 })
 export class PostComponent implements OnInit {
   @Input() post!: Post;
-
   filterState: boolean = false;
   followingList: string[] = [];
   filter: boolean = false;
   upvoted: boolean = false;
   downvoted: boolean = false;
+
   constructor(
     private postsService: PostsService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.checkIfVoted();
@@ -83,7 +83,7 @@ export class PostComponent implements OnInit {
   }
 
   fetchImage(src: PostItem | User) {
-      return this.postsService.downloadImage(src);
+    return this.postsService.downloadImage(src);
   }
 
   //TODO: UPVOTES AND DOWNVOTES

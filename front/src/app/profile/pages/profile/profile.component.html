@@ -3,8 +3,7 @@
     <form class="row bg-black pt-3">
       <div class="profile-container col-md-4 text-white text-center">
         <div class="profile-pic text-center pt-2">
-          <!-- TODO: profile pic display -->
-          <!-- <img src="{{profileUser.imagePath}}" alt="profilePic" class="prof-pic"> -->
+          <img [src]="fetchImage(profileUser)" alt="profilePic" class="prof-pic">
         </div>
         <div class="row text-inherit m-0 d-flex align-items-center">
           <div class="col prof-name fs-2">

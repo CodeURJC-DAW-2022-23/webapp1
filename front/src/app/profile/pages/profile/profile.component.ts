@@ -6,6 +6,7 @@ import { Follow, UserFollow } from '../../interfaces/follow.interface';
 import { Post } from 'src/app/models/post.model';
 import { PostsService } from 'src/app/post/services/posts.service';
 import { take } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private postService: PostsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const profileUsername: string = this._getUsernameFormUrl(this.router.url);
@@ -109,6 +110,10 @@ export class ProfileComponent implements OnInit {
       this.page++;
       this._getPosts(this.profileUser.username);
     }
+  }
+
+  fetchImage(src: User) {
+    return this.postService.downloadImage(src);
   }
 
   logout() {

@@ -9,7 +9,7 @@
             <a class="topic">@{{topic}}</a>
           </h6>
         </div>
-        <a class="OP text-black text-decoration-none" href="/user/{{post.author.username}}">
+        <a class="OP text-black text-decoration-none" [routerLink]="['/user', post.author.username]">
           {{post.author.username}}
         </a>
       </div>
@@ -19,7 +19,7 @@
     <div class="bg-white text-black d-flex gap-3 py-3 text-center justify-content-*-center align-items-center"
       aria-current="true">
       <div class="top w-75 m-auto">
-        <a class="text-black text-decoration-none" href="/top-list/{{post.id}}">
+        <a class="text-black text-decoration-none" [routerLink]="['/post, post.id']">
           <h1 class="topName">{{post.title}}</h1>
         </a>
         <ol class="w-100 p-0 w-100 d-flex flex-column gap-3">

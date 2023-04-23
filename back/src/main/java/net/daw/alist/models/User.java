@@ -55,7 +55,6 @@ public class User implements UserDetails {
     this.locked = locked;
   }
 
-  @JsonIgnore
   private String bio = "";
 
   @Lob
@@ -67,13 +66,11 @@ public class User implements UserDetails {
   @ManyToMany
   @JsonIgnore
   private List<User> following = new ArrayList<>();
-  @JsonIgnore
   private int followingCount;
 
   @ManyToMany(mappedBy="following")
   @JsonIgnore
   private List<User> followers = new ArrayList<>();
-  @JsonIgnore
   private int followersCount;
 
   @JsonIgnore

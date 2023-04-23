@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -17,7 +18,7 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
     FeedComponent,
     CreatePostComponent,
   ],
-  imports: [CommonModule, MatProgressSpinnerModule],
+  imports: [CommonModule, RouterModule, MatProgressSpinnerModule],
   exports: [FeedComponent, TopComponent, PostComponent],
 })
-export class PostModule {}
+export class PostModule { }

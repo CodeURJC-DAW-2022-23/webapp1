@@ -130,4 +130,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    public List<User> findUserPrefix(String prefix){return userRepository.findByUsernameStartingWith(prefix);}
+
 }

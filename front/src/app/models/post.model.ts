@@ -3,7 +3,7 @@ import { User } from './user.model';
 
 export interface Post {
   id: number;
-  authorName: string;
+  author: User;
   date: Date;
   title: string;
   upVotesUsernames: string[];

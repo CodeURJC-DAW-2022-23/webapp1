@@ -7,6 +7,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, map, filter, BehaviorSubject } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
+import { PostItem } from 'src/app/models/postItem.model';
+import { User } from 'src/app/models/user.model';
 
 const BASE_URL = 'api/posts';
 
@@ -44,5 +46,9 @@ export class PostsService {
 
   getFilter() {
     return this.filter.asObservable();
+  }
+
+  downloadImage(src: PostItem | User): String {
+    return BASE_URL + '/images/' + src.id;
   }
 }

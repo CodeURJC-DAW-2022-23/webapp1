@@ -1,1 +1,40 @@
-<p>manage-users works!</p>
+<a href="#collapseUsers" data-bs-toggle="collapse" data-bs-target="#collapseUsers" role="button" aria-expanded="true"
+  aria-controls="collapseUsers">
+  <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+    <i class="fa-regular fa-solid fa-user fa-xl"></i>
+  </div>
+  <h3 class="fs-2">Manage Users</h3>
+</a>
+<p>
+  Click on a user to ban their account. If a user is highlighted in red, that means their account is suspended. Clicking
+  on it again will unban the user.
+</p>
+<div class="collapse" id="collapseUsers">
+  <div class="m-auto">
+    <label for="newTopicName">Type the user's name you want to manage:</label>
+    <input class="form-control h-20" type="text" placeholder="Type a user" #username>
+  </div>
+  <div class="alert alert-danger mt-2" role="alert" *ngIf="userNotFound">
+    This username doesn't exist in our database
+  </div>
+
+  <button class="btn btn-primary mt-2" (click)="getUser(username.value)">
+    Search
+  </button>
+  <div *ngIf="isVisible">
+    <div *ngFor="let item of userStared; index as i">
+      <div *ngIf="item?.locked; else otherCont">
+        <a (click)="banUser(i)" class="listItemLocked btn btn-primary mt-2">
+          {{item?.username}}
+        </a>
+      </div>
+      <ng-template #otherCont>
+        <div>
+          <a (click)="banUser(i)" class="listItem btn btn-primary mt-2">
+            {{item?.username}}
+          </a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

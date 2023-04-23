@@ -2,12 +2,13 @@
   <h2 class="form-title" [ngStyle]="{'color': '#2d474f', 'text-align': 'center'}">Create a new Post</h2>
   <form id='createPostForm' [formGroup]='myForm' (ngSubmit)='onSubmit()'>
     <input class='title form-control mt-3 mb-2' id='topTitle' formControlName='title' placeholder='Write the title...'>
-    <select formControlName="selectedTopics" multiple (change)="onTopicsChange($event)">
-      <option *ngFor="let option of topics" [value]="option.name">{{ option.name }}</option>
-    </select>
-    <ul>
-      <li *ngFor="let selectedTopic of selectedTopics">{{ selectedTopic }}</li>
-    </ul>
+    <mat-form-field appearance="outline" class="mat-select-centered">
+      <mat-label>Choose the topics</mat-label>
+      <mat-select formControlName="selectedTopics" multiple>
+        <mat-option *ngFor="let option of topics" [value]="option.name">{{ option.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
 
     <div formArrayName='descriptionsAndImages'>
       <ng-container *ngFor='let item of descriptionsAndImagesControls; let i = index;'>

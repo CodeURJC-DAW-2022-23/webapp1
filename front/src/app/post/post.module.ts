@@ -11,12 +11,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [PostComponent, CommentComponent, TopComponent, FeedComponent, CreatePostComponent],
-  imports: [BrowserModule, HttpClientModule,FormsModule, CommonModule, SharedModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatSelectModule, BrowserModule, HttpClientModule,FormsModule, CommonModule, SharedModule, ReactiveFormsModule],
   exports: [FeedComponent, TopComponent],
 })
 export class PostModule {}

@@ -10,6 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 import { PostModule } from './post/post.module';
 
 import { AppComponent } from './app.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { AppComponent } from './app.component';
     AdminModule,
     ProfileModule,
     PostModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TopicsService } from '../../services/topic.service';
 import { Topic } from '../../interfaces/topic.interface';
@@ -24,8 +24,9 @@ export class CreatePostComponent implements OnInit {
     this.topicsService.getTopics().subscribe((topics: Topic[]) => {
       this.topics = topics;
     });
+
     this.myForm = this.formBuilder.group({
-      'title': [null],
+      'title': ['', Validators.required],
       'selectedTopics': this.formBuilder.control([]), // <-- Agrega el control de formulario para el select
       'descriptionsAndImages': this.formBuilder.array([
         this.createDescriptionAndImageGroup(),

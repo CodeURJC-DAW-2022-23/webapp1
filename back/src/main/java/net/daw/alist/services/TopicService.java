@@ -32,6 +32,15 @@ public class TopicService {
         return topics;
     }
 
+    public boolean checkChosenName(String name){
+        List<String> listTopics = this.getAllTopics();
+        if (listTopics.contains(name)){
+            return true;
+        }
+        else { return false;}
+    }
+
+    public Optional<Topic> findByName(String name){return topicRepository.findByName(name);}
     public List<Topic> findAll() {
         return topicRepository.findAll();
     }
@@ -46,5 +55,9 @@ public class TopicService {
 
     public void save(Topic topic) {
         topicRepository.save(topic);
+    }
+
+    public List<Topic> findByNameStartingWith(String prefix){
+        return topicRepository.findByNameStartingWith(prefix);
     }
 }

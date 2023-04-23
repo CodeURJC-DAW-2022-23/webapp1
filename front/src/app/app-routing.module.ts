@@ -15,16 +15,22 @@ const routes: Routes = [
   {
     path: '',
     component: FeedComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'guest' },
   },
   {
     path: 'sign-in',
     component: SignInComponent,
     title: 'Alist | Sign In',
+    canActivate: [AuthGuard],
+    data: { role: 'guest' },
   },
   {
     path: 'register',
     component: RegisterComponent,
     title: 'Alist | Register',
+    canActivate: [AuthGuard],
+    data: { role: 'guest' },
   },
   {
     path: 'create',
@@ -37,6 +43,8 @@ const routes: Routes = [
     path: 'post/:postId',
     component: TopComponent,
     title: 'Alist | Post',
+    canActivate: [AuthGuard],
+    data: { role: 'guest' },
   },
   {
     path: 'profile',
@@ -51,6 +59,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),
     title: 'Alist | User',
+    canActivate: [AuthGuard],
+    data: { role: 'guest' },
   },
   {
     path: 'admin',
@@ -74,4 +84,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

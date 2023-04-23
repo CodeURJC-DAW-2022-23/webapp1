@@ -19,7 +19,11 @@ import static net.daw.alist.utils.Utils.pathToImage;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@Id")
 public class PostItem {
 
-  @Id
+    public Long getId() {
+        return id;
+    }
+
+    @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 

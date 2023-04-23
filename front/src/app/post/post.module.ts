@@ -14,10 +14,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [PostComponent, CommentComponent, TopComponent, FeedComponent, CreatePostComponent],
-  imports: [MatFormFieldModule, MatSelectModule, BrowserModule, HttpClientModule,FormsModule, CommonModule, SharedModule, ReactiveFormsModule],
+  imports: [CommonModule, MatProgressSpinnerModule, MatFormFieldModule, MatSelectModule, BrowserModule, HttpClientModule,FormsModule, CommonModule, SharedModule, ReactiveFormsModule],
   exports: [FeedComponent, TopComponent],
 })
 export class PostModule {}

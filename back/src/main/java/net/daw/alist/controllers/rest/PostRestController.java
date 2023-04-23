@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -82,14 +83,11 @@ public class PostRestController {
     for (PostItem item : items) {
       postItemService.save(item);
     }
-
     List<Topic> topicList = topicService.getTopics(content.getTopicStrings());
     Post post = new Post(author, content.getTitle(), topicList, items);
     postService.save(post);
-
     return new ResponseEntity<>(post, HttpStatus.CREATED);
   }
-
 
   @Operation(summary = "Get specific post")
   @ApiResponses(value = {
@@ -134,20 +132,23 @@ public class PostRestController {
   @Operation(summary = "Current user upvote a post")
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "User found and upvoted the post", content = {
-      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ArrayList.class)))
     }),
     @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @PutMapping("/{postId}/upvotes")
-  public ResponseEntity<Post> upvotePost(Authentication authentication, @PathVariable long postId) {
+  @PutMapping("/upvotes/{postId}")
+  public ResponseEntity<ArrayList> upvotePost(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if(optionalPost.isPresent()) {
       User userSession = (User) userService.loadUserByUsername(((User) authentication
               .getPrincipal())
               .getUsername());
       votesService.actionUpVote(postId, userSession);
-      return new ResponseEntity<>(optionalPost.get(), HttpStatus.OK);
+      ArrayList<Integer> upvotesAndDownvotes = new ArrayList<>();
+      upvotesAndDownvotes.add(optionalPost.get().getNumUpvotes());
+      upvotesAndDownvotes.add(optionalPost.get().getNumDownvotes());
+      return new ResponseEntity<>(upvotesAndDownvotes, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
@@ -155,20 +156,23 @@ public class PostRestController {
   @Operation(summary = "Current user downvote a post")
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "User found and downvoted the post", content = {
-      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class)))
+      @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ArrayList.class)))
     }),
     @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @PutMapping("/{postId}/downvotes")
-  public ResponseEntity<Post> downvotePost(Authentication authentication, @PathVariable long postId) {
+  @PutMapping("/downvotes/{postId}")
+  public ResponseEntity<ArrayList> downvotePost(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
       User userSession = (User) userService.loadUserByUsername(((User) authentication
               .getPrincipal())
               .getUsername());
       votesService.actionDownVote(postId, userSession);
-      return new ResponseEntity<>(optionalPost.get(), HttpStatus.OK);
+      ArrayList<Integer> upvotesAndDownvotes = new ArrayList<>();
+      upvotesAndDownvotes.add(optionalPost.get().getNumUpvotes());
+      upvotesAndDownvotes.add(optionalPost.get().getNumDownvotes());
+      return new ResponseEntity<>(upvotesAndDownvotes, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }

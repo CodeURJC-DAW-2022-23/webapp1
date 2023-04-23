@@ -7,8 +7,9 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { LoggedUser } from '../interfaces/loggedUser.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate, CanActivateChild {
@@ -40,28 +41,38 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   private _checkLoggedUserPerms(
     route: ActivatedRouteSnapshot,
     url: string
-  ): boolean {
-    const isLoggedInUser: boolean = this.authService.isLoggedIn();
-    if (isLoggedInUser) {
-      const pageRole: string = route.data['role'];
-      return this._redirectLoggedUser(pageRole, url);
-    }
-    if (this._isProfilePage(url)) this.router.navigate(['/sign-in']);
-    else this.router.navigate(['/']);
-    return false;
+  ): Observable<boolean> {
+    return this.authService.getLoggedInUserSubscription().pipe(
+      map((loggedUser: LoggedUser) => {
+        const pageRole: string = this._getPageRole(route);
+        return this._redirectLoggedUser(loggedUser, pageRole, url);
+      }),
+      catchError(_ => {
+        if (this._getPageRole(route) === 'guest') return of(true);
+        if (this._isProfilePage(url)) this.router.navigate(['/sign-in']);
+        else this.router.navigate(['/']);
+        return of(false);
+      })
+    );
   }
 
-  private _redirectLoggedUser(pageRole: string, url: string): boolean {
+  private _getPageRole(route: ActivatedRouteSnapshot): string {
+    return route.data['role'];
+  }
+
+  private _redirectLoggedUser(
+    loggedUser: LoggedUser,
+    pageRole: string,
+    url: string
+  ): boolean {
     const isAdminPage: boolean = pageRole === 'admin';
     if (isAdminPage) {
-      const isAdminUser: boolean = this.authService.loggedUser!.admin;
-      if (isAdminUser) return true;
+      if (loggedUser.admin) return true;
       this.router.navigate(['/']);
       return false;
     }
     if (this._isProfilePage(url)) {
-      const loggedUserUsername: string = this.authService.loggedUser!.username;
-      this.router.navigate(['/user/' + loggedUserUsername]);
+      this.router.navigate(['/user/' + loggedUser.username]);
     }
     return true;
   }

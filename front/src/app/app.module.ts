@@ -11,6 +11,8 @@ import { PostModule } from './post/post.module';
 
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +26,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ProfileModule,
     PostModule,
     NoopAnimationsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

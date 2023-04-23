@@ -35,7 +35,7 @@ export class RegisterComponent implements DoCheck {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   private _checkPasswords(
     control: AbstractControl

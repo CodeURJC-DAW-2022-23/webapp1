@@ -173,13 +173,13 @@ public class UserRestController {
         if (optionalUserSession.isPresent()) {
           User userSession = optionalUserSession.get();
           for (User user: followUsers) {
-            FollowUser followUser = new FollowUser(user.getUsername(), userSession.getFollowing().contains(user));
+            FollowUser followUser = new FollowUser(user.getUsername(), user.getId(), userSession.getFollowing().contains(user));
             followUserFollows.add(followUser);
           }
         } else new ResponseEntity<>(HttpStatus.BAD_REQUEST);
       } else {
         for (User user: followUsers) {
-          FollowUser followUser = new FollowUser(user.getUsername(), false);
+          FollowUser followUser = new FollowUser(user.getUsername(), user.getId(), false);
           followUserFollows.add(followUser);
         }
       }
@@ -202,6 +202,7 @@ public class UserRestController {
   @EqualsAndHashCode
   private static class FollowUser {
     private final String username;
+    private final Long id;
     private final boolean follow;
   }
 

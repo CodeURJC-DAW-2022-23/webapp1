@@ -70,11 +70,6 @@ export class FollowComponent implements OnInit {
     });
   }
 
-  checkLoggedUserFollow(profileUsername: string): boolean {
-    if (!this.loggedUserFollow) return false;
-    return this.loggedUserFollow.some((user: UserFollow) => user.username === profileUsername);
-  }
-
   getLoggedUserFollow(profileUsername: string): UserFollow | undefined {
     if (!this.loggedUserFollow) return undefined;
     return this.loggedUserFollow.find((user: UserFollow) => user.username === profileUsername);

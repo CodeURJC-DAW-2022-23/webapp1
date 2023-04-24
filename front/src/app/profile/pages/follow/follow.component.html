@@ -10,8 +10,7 @@
         <img class="profile-img" [src]="fetchImageString(profilefollowUser.username)"
           alt="{{profilefollowUser.username}} picture">
         {{profilefollowUser.username}}
-        <app-follow-button class="text-right"
-          *ngIf="loggedUserFollow && checkLoggedUserFollow(profilefollowUser.username)"
+        <app-follow-button class="text-right" *ngIf="loggedUserFollow"
           [followUser]="getLoggedUserFollow(profilefollowUser.username)"></app-follow-button>
       </a>
     </div>

@@ -3,6 +3,8 @@ import { Post } from 'src/app/models/post.model';
 import { PostsService } from '../../services/posts.service';
 import { distinctUntilChanged } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { PostItem } from 'src/app/models/postItem.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-post',
@@ -78,6 +80,10 @@ export class PostComponent implements OnInit {
 
     if (upvotes !== undefined) this.post.numUpvotes = upvotes;
     if (downvotes !== undefined) this.post.numDownvotes = downvotes;
+  }
+
+  fetchImage(src: PostItem | User) {
+      return this.postsService.downloadImage(src);
   }
 
   //TODO: UPVOTES AND DOWNVOTES

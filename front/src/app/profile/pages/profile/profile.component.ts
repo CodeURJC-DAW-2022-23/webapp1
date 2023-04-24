@@ -15,7 +15,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  profileUser: any;
+  profileUser: any | undefined;
   notGuest: boolean = false;
   ownProfile: boolean | undefined;
   followUser: UserFollow | undefined;
@@ -94,6 +94,7 @@ export class ProfileComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
+    if (!this.profileUser) return;
     if (!this.loading) return;
     const maxHeight: number = document.documentElement.scrollHeight;
     const heightPos: number =

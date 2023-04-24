@@ -1,12 +1,12 @@
 <div class="body">
   <div class="bg-black text-white">
-    <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user, profileUser.username']">
+    <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user', profileUser.username]">
       <img class="profile-img" [src]="fetchImage(profileUser)" alt="{{profileUser.username}} picture"> {{follow}}
       {{profileUser.username}}
     </a>
     <div class="list-group mt-3" *ngFor="let profilefollowUser of profileFollowUsers">
       <a class="list-group-item list-group-item-action" type="button"
-        [routerLink]="['/user, profilefollowUser.username']">
+        [routerLink]="['/user', profilefollowUser.username]">
         <img class="profile-img" [src]="fetchImageString(profilefollowUser.username)"
           alt="{{profilefollowUser.username}} picture">
         {{profilefollowUser.username}}

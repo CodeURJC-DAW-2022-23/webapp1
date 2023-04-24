@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { User } from 'src/app/models/user.model';
 import { PostsService } from 'src/app/post/services/posts.service';
 import { map } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-follow',
@@ -15,9 +16,12 @@ export class FollowComponent implements OnInit {
   profileUser!: any;
   profileFollowUsers!: UserFollow[];
   follow: string = '';
+  notGuest: boolean = false;
+  loggedUserFollow: UserFollow[] | undefined;
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     private userService: UserService,
     private postService: PostsService
   ) { }
@@ -37,8 +41,9 @@ export class FollowComponent implements OnInit {
   private _getUser(username: string) {
     this.userService.getUser(username).subscribe({
       next: user => {
-        this.profileUser = user
+        this.profileUser = user;
         this._getFollowUsers(username);
+        this._checkLoggedUser();
       },
       error: _ => this.router.navigate(['/error']),
     });
@@ -54,6 +59,25 @@ export class FollowComponent implements OnInit {
         next: (followers: Follow) => this.profileFollowUsers = followers.users,
       });
     }
+  }
+
+  private _checkLoggedUser() {
+    this.notGuest = this.authService.isLoggedIn();
+    if (!this.notGuest) return;
+    const loggedUserUsername: string = this.authService.loggedUser!.username;
+    this.userService.getFollowing(loggedUserUsername).subscribe({
+      next: (following: Follow) => this.loggedUserFollow = following.users,
+    });
+  }
+
+  checkLoggedUserFollow(profileUsername: string): boolean {
+    if (!this.loggedUserFollow) return false;
+    return this.loggedUserFollow.some((user: UserFollow) => user.username === profileUsername);
+  }
+
+  getLoggedUserFollow(profileUsername: string): UserFollow | undefined {
+    if (!this.loggedUserFollow) return undefined;
+    return this.loggedUserFollow.find((user: UserFollow) => user.username === profileUsername);
   }
 
   fetchImage(user: User) {

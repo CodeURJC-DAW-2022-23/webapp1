@@ -1,8 +1,8 @@
 <div class="body">
   <div class="bg-black text-white">
     <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user', profileUser.username]">
-      <img class="profile-img" [src]="fetchImage(profileUser)" alt="{{profileUser.username}} picture"> {{follow}}
-      {{profileUser.username}}
+      <img class="profile-img" [src]="fetchImage(profileUser)" alt="{{profileUser.username}} picture">
+      {{follow | titlecase}} {{profileUser.username}}
     </a>
     <div class="list-group mt-3" *ngFor="let profilefollowUser of profileFollowUsers">
       <a class="list-group-item list-group-item-action" type="button"
@@ -10,6 +10,9 @@
         <img class="profile-img" [src]="fetchImageString(profilefollowUser.username)"
           alt="{{profilefollowUser.username}} picture">
         {{profilefollowUser.username}}
+        <app-follow-button class="text-right"
+          *ngIf="loggedUserFollow && checkLoggedUserFollow(profilefollowUser.username)"
+          [followUser]="getLoggedUserFollow(profilefollowUser.username)"></app-follow-button>
       </a>
     </div>
   </div>

@@ -46,11 +46,11 @@ public class CommentRestController {
   })
   @PostMapping("/{postId}")
   public ResponseEntity<Comment> createComment(@RequestBody Data content, @PathVariable long postId, Authentication auth) throws SQLException, IOException {
-    User author = (User) auth.getPrincipal();
-    User user = userService.findByID(author.getId()).orElseThrow();
-    Comment comment = new Comment(user, content.getContent(), content.getImagePath());
     Optional<Post> optionalPost = postService.findByID(postId);
-    if (optionalPost.isPresent()) {
+      if (optionalPost.isPresent()) {
+      User author = (User) auth.getPrincipal();
+      User user = userService.findByID(author.getId()).orElseThrow();
+      Comment comment = new Comment(user, content.getContent(), content.getImagePath());
       Post post = optionalPost.get();
       post.addComment(comment);
       postService.save(post);

@@ -49,10 +49,11 @@ export class TopComponent implements OnInit {
           const filteredFetchedComments = fetchedComments.filter(
             fetchedComment => {
               return !this.comments.some(
-                comment => comment.id == fetchedComment.id
+                comment => comment.id === fetchedComment.id
               );
             }
           );
+          console.log('filtered: ', filteredFetchedComments);
           this.comments = [...this.comments, ...filteredFetchedComments];
         },
         error => (this.endOfComments = true)

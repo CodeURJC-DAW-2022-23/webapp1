@@ -6,7 +6,7 @@
       Please enter a title for the post.
     </mat-error>
 
-    <mat-form-field appearance="outline" class="mat-select-centered">
+    <mat-form-field appearance="outline" class="mat-select-centered d-flex justify-content-center">
       <mat-label>Choose the topics</mat-label>
       <mat-select formControlName="selectedTopics" multiple>
         <mat-option *ngFor="let option of topics" [value]="option.name">{{ option.name }}</mat-option>
@@ -23,7 +23,7 @@
         </div>
       </ng-container>
     </div>
-    <button type="submit" class="btn-cp btn-primary mt-3" [disabled]="!myForm.valid">Submit</button>
+    <button type="submit" class="btn btn-lg btn-primary m-auto d-flex mt-3" [disabled]="!myForm.valid">Submit</button>
 
   </form>
 </div>

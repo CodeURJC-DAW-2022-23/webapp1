@@ -46,3 +46,6 @@ ul {
   max-width: 100%;
   height: auto;
 }
+mat-form-field, mat-label, .mat-option-text, mat-select{
+  font-family: var(--bs-body-font-family);
+}

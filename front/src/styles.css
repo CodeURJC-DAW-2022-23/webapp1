@@ -36,6 +36,3 @@ body {
 .btn-primary[disabled] {
   background-color: #1e2f34;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

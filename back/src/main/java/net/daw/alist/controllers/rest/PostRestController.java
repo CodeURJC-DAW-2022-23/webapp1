@@ -71,10 +71,7 @@ public class PostRestController {
     User author = (User) auth.getPrincipal();
     author = userService.findByID(author.getId()).orElseThrow();
 
-    // Imprimir las imágenes base64 recibidas
-    System.out.println("Imágenes recibidas: " + content.getItems().stream().map(ItemData::getImageBase64).collect(Collectors.toList()));
-
-    // Convertir la lista de objetos ItemData en objetos PostItem
+    // Convert list of ItemData objects to PostItem objects
     List<PostItem> items = content.getItems().stream().map(itemData -> {
       try {
         return new PostItem(itemData.getDescription(), itemData.getImageBase64());

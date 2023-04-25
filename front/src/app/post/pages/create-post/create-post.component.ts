@@ -75,11 +75,7 @@ export class CreatePostComponent implements OnInit {
 
       this.postService.createPost(post).subscribe(
         (response) => {
-          console.log('Post creado con éxito:', response);
           this.router.navigate(['/']);
-        },
-        (error) => {
-          console.error('Error al crear el post:', error);
         }
       );
     }

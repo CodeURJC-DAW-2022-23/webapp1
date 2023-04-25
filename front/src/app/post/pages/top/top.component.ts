@@ -43,11 +43,17 @@ export class TopComponent implements OnInit {
       this.loading = true;
       this.commentsService.getComments(this.postId, this.page).subscribe(
         (fetchedComments: Comment[]) => {
-          if (
-            this.comments.at(this.comments.length)?.id == fetchedComments.at(0)?.id
-          )
-            fetchedComments.shift();
-          this.comments = [...this.comments, ...fetchedComments];
+          console.log('comments: ', this.comments);
+          console.log('fetched: ', fetchedComments);
+
+          const filteredFetchedComments = fetchedComments.filter(
+            fetchedComment => {
+              return !this.comments.some(
+                comment => comment.id == fetchedComment.id
+              );
+            }
+          );
+          this.comments = [...this.comments, ...filteredFetchedComments];
         },
         error => (this.endOfComments = true)
       );
@@ -57,7 +63,6 @@ export class TopComponent implements OnInit {
   }
 
   receiveNewComment(data: any) {
-    console.log('Received from child: ', data);
     const newComment: Comment = data as Comment;
     this.comments.unshift(newComment);
   }

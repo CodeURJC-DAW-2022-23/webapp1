@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserFollow } from '../../interfaces/follow.interface';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-follow-button',
@@ -12,7 +11,7 @@ export class FollowButtonComponent implements OnInit {
   @Input() followUser: UserFollow | undefined;
   followed: boolean | undefined;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.followed = this.followUser?.follow;

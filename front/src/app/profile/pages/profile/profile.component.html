@@ -30,7 +30,7 @@
             </ng-container>
             <ng-template #elseOwnProfile>
               <div class="col">
-                <app-follow-button [followUser]="followUser"></app-follow-button>
+                <app-follow-button *ngIf="followUser" [followUser]="followUser"></app-follow-button>
               </div>
             </ng-template>
           </ng-container>

@@ -6,11 +6,11 @@ servers:
 - url: http://localhost:8443
   description: Generated server url
 paths:
-  /api/users/{username}/follows:
+  /api/users/{username}/follow:
     put:
       tags:
       - user-rest-controller
-      summary: Current user follows another user by its name
+      summary: Current user follows another user by its username
       operationId: follow
       parameters:
       - name: username
@@ -19,29 +19,34 @@ paths:
         schema:
           type: string
       responses:
-        "403":
-          description: Current user not logged in
-        "404":
-          description: User not found
         "200":
           description: User found and followed/unfollowed state changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-  /api/users/{id}:
+        "404":
+          description: User not found
+        "403":
+          description: Current user not logged in
+  /api/users/{userId}:
     put:
       tags:
       - user-rest-controller
-      summary: (Admin) Ban/unban user by its id
-      operationId: banUser
+      summary: Edit user by id
+      operationId: userOperation
       parameters:
-      - name: id
+      - name: userId
         in: path
         required: true
         schema:
           type: integer
           format: int64
+      - name: operation
+        in: query
+        required: true
+        schema:
+          type: string
       responses:
         "403":
           description: Admin access required
@@ -53,7 +58,9 @@ paths:
                 $ref: '#/components/schemas/User'
         "404":
           description: User not found
-  /api/posts/{postId}/upvotes:
+        "400":
+          description: Operation doesn't exist
+  /api/posts/upvotes/{postId}:
     put:
       tags:
       - post-rest-controller
@@ -67,8 +74,6 @@ paths:
           type: integer
           format: int64
       responses:
-        "403":
-          description: Current user not logged in
         "404":
           description: Post not found
         "200":
@@ -78,8 +83,10 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Post'
-  /api/posts/{postId}/downvotes:
+                  type: string
+        "403":
+          description: Current user not logged in
+  /api/posts/downvotes/{postId}:
     put:
       tags:
       - post-rest-controller
@@ -93,8 +100,8 @@ paths:
           type: integer
           format: int64
       responses:
-        "403":
-          description: Current user not logged in
+        "404":
+          description: Post not found
         "200":
           description: User found and downvoted the post
           content:
@@ -102,45 +109,21 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Post'
-        "404":
-          description: Post not found
-  /api/users/:
-    post:
-      tags:
-      - user-rest-controller
-      summary: Register a new user
-      operationId: register
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RegistrationRequest'
-        required: true
-      responses:
-        "201":
-          description: User created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        "400":
-          description: Username/password is shorter than 4 characters or invalid email
-            address
+                  type: string
         "403":
-          description: Username already taken
+          description: Current user not logged in
   /api/topics/:
     post:
       tags:
       - topic-rest-controller
       summary: Create topic
       operationId: createTopic
-      parameters:
-      - name: topic
-        in: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
         required: true
-        schema:
-          $ref: '#/components/schemas/Topic'
       responses:
         "201":
           description: Topic created
@@ -150,6 +133,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Topic'
+        "409":
+          description: The name chose is already taken
         "403":
           description: Create topic only for admin
   /api/posts/:
@@ -158,15 +143,13 @@ paths:
       - post-rest-controller
       summary: Create new post
       operationId: createPost
-      parameters:
-      - name: post
-        in: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
         required: true
-        schema:
-          $ref: '#/components/schemas/Post'
       responses:
-        "403":
-          description: Can't create post if not registered
         "201":
           description: Post created
           content:
@@ -175,6 +158,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Post'
+        "403":
+          description: Can't create post if not registered
+        "400":
+          description: Bad formatting
   /api/comments/{postId}:
     post:
       tags:
@@ -254,6 +241,30 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AuthResponse'
+  /api/auth/register:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Register a new user
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationRequest'
+        required: true
+      responses:
+        "403":
+          description: Username already taken
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Username/password is shorter than 4 characters or invalid email
+            address
   /api/users/{username}:
     get:
       tags:
@@ -267,14 +278,80 @@ paths:
         schema:
           type: string
       responses:
+        "404":
+          description: User not found
         "200":
           description: User found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+  /api/users/{username}/following:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Profile user following
+      operationId: following
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Follow'
         "404":
           description: User not found
+        "400":
+          description: User logged in but not found
+  /api/users/{username}/followers:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Profile user followers
+      operationId: followers
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Follow'
+        "404":
+          description: User not found
+        "400":
+          description: User logged in but not found
+  /api/users/names/{prefix}:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUserByPrefix
+      parameters:
+      - name: prefix
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
   /api/topics/{topicId}:
     get:
       tags:
@@ -324,6 +401,97 @@ paths:
                   $ref: '#/components/schemas/Topic'
         "403":
           description: Delete topic only for admin
+  /api/topics/chart:
+    get:
+      tags:
+      - topic-rest-controller
+      operationId: getMappedTopics
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+  /api/topics/byName/{topicName}:
+    get:
+      tags:
+      - topic-rest-controller
+      summary: Get specific topic
+      operationId: getTopicByName
+      parameters:
+      - name: topicName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Topic not found
+        "200":
+          description: Topic found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    delete:
+      tags:
+      - topic-rest-controller
+      summary: Delete specific topic
+      operationId: deleteTopic_1
+      parameters:
+      - name: topicName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Topic not found
+        "200":
+          description: Topic deleted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+        "403":
+          description: Delete topic only for admin
+  /api/posts:
+    get:
+      tags:
+      - ajax-rest-controller
+      summary: Load more posts
+      operationId: getNewPosts
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: New posts loaded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "404":
+          description: No new posts found
   /api/posts/{postId}:
     get:
       tags:
@@ -361,8 +529,8 @@ paths:
           type: integer
           format: int64
       responses:
-        "403":
-          description: Can't delete other one post
+        "404":
+          description: Post not found
         "200":
           description: Post deleted
           content:
@@ -371,8 +539,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Post'
-        "404":
-          description: Post not found
+        "403":
+          description: Can't delete other one post
+  /api/posts/images/{id}:
+    get:
+      tags:
+      - post-rest-controller
+      operationId: downloadImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
   /api/comments/user/{userId}:
     get:
       tags:
@@ -387,6 +574,8 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: User not found
         "200":
           description: User found
           content:
@@ -395,9 +584,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Comment'
-        "404":
-          description: User not found
-  /api/comments/post/{postId}:
+  /api/comments/posts/{postId}:
     get:
       tags:
       - comment-rest-controller
@@ -411,6 +598,8 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Post not found
         "200":
           description: Post found
           content:
@@ -419,56 +608,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Comment'
-        "404":
-          description: Post not found
-  /api/ajax/posts:
+  /api/auth/logged-user:
     get:
       tags:
-      - ajax-rest-controller
-      summary: Load more posts
-      operationId: getNewPosts
-      parameters:
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int32
+      - auth-rest-controller
+      summary: Get logged user
+      operationId: userLogged
       responses:
+        "404":
+          description: User not found
         "200":
-          description: New posts loaded
+          description: User found
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Post'
-        "404":
-          description: No new posts found
-  /api/ajax/followed-users/posts:
-    get:
-      tags:
-      - ajax-rest-controller
-      summary: Load more posts from followed-users
-      operationId: getFollowedUsersPosts
-      parameters:
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int32
-      responses:
-        "200":
-          description: New posts loaded
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Post'
-        "404":
-          description: No new posts found
+                $ref: '#/components/schemas/User'
+        "500":
+          description: No user logged in
   /api/comments/{postId}/{commentId}:
     delete:
       tags:
@@ -489,6 +645,10 @@ paths:
           type: integer
           format: int64
       responses:
+        "403":
+          description: Can´t delete other one comment
+        "404":
+          description: Post or comment not found
         "200":
           description: Comment deleted
           content:
@@ -497,13 +657,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Comment'
-        "403":
-          description: Can´t delete other one comment
-        "404":
-          description: Post or comment not found
 components:
   schemas:
-    Comment:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+        '@Id':
+          type: integer
+          format: int32
+    Data:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Post:
       type: object
       properties:
         id:
@@ -514,46 +691,41 @@ components:
         date:
           type: string
           format: date-time
-        content:
-          type: string
-        imagePath:
-          type: string
-        '@Id':
-          type: integer
-          format: int32
-    GrantedAuthority:
-      type: object
-      properties:
-        authority:
-          type: string
-    Post:
-      type: object
-      properties:
-        author:
-          $ref: '#/components/schemas/User'
-        date:
-          type: string
-          format: date-time
         title:
           type: string
-        topics:
+        upVotesUsernames:
+          uniqueItems: true
           type: array
           items:
-            $ref: '#/components/schemas/Topic'
+            type: string
+        downVotesUsernames:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        numUpvotes:
+          type: integer
+          format: int32
+        numDownvotes:
+          type: integer
+          format: int32
+        topicNames:
+          type: array
+          items:
+            type: string
         items:
           type: array
           items:
             $ref: '#/components/schemas/PostItem'
-        comments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Comment'
         '@Id':
           type: integer
           format: int32
     PostItem:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
         description:
           type: string
         imageFile:
@@ -579,73 +751,24 @@ components:
         '@Id':
           type: integer
           format: int32
-    User:
+    Comment:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        author:
+          $ref: '#/components/schemas/User'
         date:
           type: string
           format: date-time
-        username:
-          type: string
-        password:
-          type: string
-        email:
-          type: string
-        role:
-          type: string
-          enum:
-          - USER
-          - ADMIN
-        enabled:
-          type: boolean
-        locked:
-          type: boolean
-        bio:
-          type: string
-        imagePath:
-          type: string
-        posts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Post'
-        comments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Comment'
-        admin:
-          type: boolean
-        authorities:
-          type: array
-          items:
-            $ref: '#/components/schemas/GrantedAuthority'
-        accountNonLocked:
-          type: boolean
-        credentialsNonExpired:
-          type: boolean
-        accountNonExpired:
-          type: boolean
-        '@Id':
-          type: integer
-          format: int32
-    RegistrationRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-    Data:
-      type: object
-      properties:
         content:
           type: string
         imagePath:
           type: string
+        '@Id':
+          type: integer
+          format: int32
     AuthResponse:
       type: object
       properties:
@@ -665,3 +788,29 @@ components:
           type: string
         password:
           type: string
+    RegistrationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Follow:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/FollowUser'
+    FollowUser:
+      type: object
+      properties:
+        username:
+          type: string
+        follow:
+          type: boolean

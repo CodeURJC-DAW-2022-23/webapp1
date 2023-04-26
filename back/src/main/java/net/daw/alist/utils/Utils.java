@@ -12,11 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,15 +22,16 @@ public class Utils {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private PostService postService;
 
-    public static Blob pathToImage(String path) throws IOException, SQLException {
+    public static Blob pathToImage(String path) throws IOException {
         if (path == null) return null;
         Resource image = new ClassPathResource(path);
-        Blob blob = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
-        return new SerialBlob(blob);
+        return BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
     }
+
     public void searchBarInitializer(Model model){
         List<User> userList = userService.findAll();
         model.addAttribute("searchSuggestedUsers", userList);

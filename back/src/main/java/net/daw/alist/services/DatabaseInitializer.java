@@ -66,17 +66,23 @@ public class DatabaseInitializer {
             userRepository.save(cr7Lover);
             userRepository.save(admin);
 
-            admin.follow(shanks);
-            admin.follow(peepo);
-            peepo.follow(shanks);
-            peepo.follow(admin);
-            shanks.follow(admin);
-            cr7Lover.follow(admin);
-
-            userRepository.save(peepo);
-            userRepository.save(shanks);
-            userRepository.save(cr7Lover);
-            userRepository.save(admin);
+//            peepo = userRepository.findByUsername("Peepo").get();
+//            shanks = userRepository.findByUsername("Shanks").get();
+//            manolo = userRepository.findByUsername("Manolo").get();
+//            cr7Lover = userRepository.findByUsername("CR7Lover").get();
+//            admin = userRepository.findByUsername("admin").get();
+//
+//            admin.follow(shanks);
+//            admin.follow(peepo);
+//            peepo.follow(shanks);
+//            peepo.follow(admin);
+//            shanks.follow(admin);
+//            cr7Lover.follow(admin);
+//
+//            userRepository.save(peepo);
+//            userRepository.save(shanks);
+//            userRepository.save(cr7Lover);
+//            userRepository.save(admin);
 
             Topic sports = new Topic("Sports", "General topic about sports");
             Topic football = new Topic("Football", "Topic about football teams, players, etc");

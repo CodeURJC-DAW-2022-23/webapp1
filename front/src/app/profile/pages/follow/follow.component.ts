@@ -72,7 +72,9 @@ export class FollowComponent implements OnInit {
 
   getLoggedUserFollow(profileUsername: string): UserFollow | undefined {
     if (!this.loggedUserFollow) return undefined;
-    return this.loggedUserFollow.find((user: UserFollow) => user.username === profileUsername);
+    const profileUserFollow = this.loggedUserFollow.find((user: UserFollow) => user.username === profileUsername);
+    if (!profileUserFollow) return { username: profileUsername, follow: false };
+    return profileUserFollow;
   }
 
   fetchImage(user: User) {

@@ -5,12 +5,13 @@
       {{follow | titlecase}} {{profileUser.username}}
     </a>
     <div class="list-group mt-3" *ngFor="let profilefollowUser of profileFollowUsers">
-      <a class="list-group-item list-group-item-action" type="button"
-        [routerLink]="['/user', profilefollowUser.username]">
-        <img class="profile-img" [src]="fetchImageString(profilefollowUser.username)"
-          alt="{{profilefollowUser.username}} picture">
-        {{profilefollowUser.username}}
-        <app-follow-button class="text-right" *ngIf="loggedUserFollow"
+      <a class="list-group-item list-group-item-action" type="button">
+        <div [routerLink]="['/user', profilefollowUser.username]">
+          <img class="profile-img" [src]="fetchImageString(profilefollowUser.username)"
+            alt="{{profilefollowUser.username}} picture">
+          {{profilefollowUser.username}}
+        </div>
+        <app-follow-button *ngIf="loggedUserFollow"
           [followUser]="getLoggedUserFollow(profilefollowUser.username)"></app-follow-button>
       </a>
     </div>

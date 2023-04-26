@@ -1,5 +1,5 @@
 <div class="body">
-  <div class="bg-black text-white">
+  <div class="bg-black text-white" *ngIf="profileUser">
     <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user', profileUser.username]">
       <img class="profile-img" [src]="fetchImage(profileUser)" alt="{{profileUser.username}} picture">
       {{follow | titlecase}} {{profileUser.username}}

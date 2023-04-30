@@ -48,7 +48,7 @@ export class PostsService {
     return this.filter.asObservable();
   }
 
-  downloadImage(src: PostItem | User): String {
-    return BASE_URL + '/images/' + src.id;
+  downloadImage(id: number): String {
+    return BASE_URL + '/images/' + id;
   }
 }

@@ -1,6 +1,6 @@
 <div class="post mt-3 mb-3">
   <div class="postInfo border bg-white d-flex gap-3 py-3">
-    <img [src]="fetchImage(post.author)" alt="Profile picture" width="75" height="75"
+    <img [src]="fetchImage(post.author.id!)" alt="Profile picture" width="75" height="75"
       class="profileImg rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
@@ -28,7 +28,7 @@
               <li class="ms-0 me-auto">
                 {{item.description}}
               </li>
-              <img [src]="fetchImage(item)" alt="image" width="45" height="45"
+              <img [src]="fetchImage(item.id!)" alt="image" width="45" height="45"
                 class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
             </div>
           </div>

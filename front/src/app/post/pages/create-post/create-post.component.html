@@ -1,1 +1,30 @@
-<p>create-post works!</p>
+<div class='form-container'>
+  <h2 class="form-title" [ngStyle]="{'color': '#2d474f', 'text-align': 'center'}">Create a new Post</h2>
+  <form id='createPostForm' [formGroup]='myForm' (ngSubmit)='onSubmit()'>
+    <input class='title form-control mt-3 mb-2' id='topTitle' formControlName='title' placeholder='Write the title...'>
+    <mat-error *ngIf="myForm.controls['title'].invalid && myForm.controls['title'].touched">
+      Please enter a title for the post.
+    </mat-error>
+
+    <mat-form-field appearance="outline" class="mat-select-centered d-flex justify-content-center">
+      <mat-label>Choose the topics</mat-label>
+      <mat-select formControlName="selectedTopics" multiple>
+        <mat-option *ngFor="let option of topics" [value]="option.name">{{ option.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div formArrayName='descriptionsAndImages'>
+      <ng-container *ngFor='let item of descriptionsAndImagesControls; let i = index;'>
+        <div [formGroupName]='i'>
+          <h4 class="description-title" [ngStyle]="{'color': '#2d474f'}">Top #{{i + 1}}</h4>
+          <textarea class="description form-control mt-3 mb-2" id="description" formControlName="description" placeholder="Write a description..."></textarea>
+          <input class='form-control mt-3 mb-2' type='file' id='image' (change)='loadFile($event, i)'>
+          <img class='img-fluid rounded mt-3' id='imgOne' [src]="item.get('image')?.value" alt=''>
+        </div>
+      </ng-container>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary m-auto d-flex mt-3" [disabled]="!myForm.valid">Submit</button>
+
+  </form>
+</div>
+

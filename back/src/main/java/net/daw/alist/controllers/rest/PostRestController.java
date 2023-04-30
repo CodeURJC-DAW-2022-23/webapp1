@@ -1,5 +1,6 @@
 package net.daw.alist.controllers.rest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,11 +25,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static net.daw.alist.utils.Utils.pathToImage;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -59,14 +64,23 @@ public class PostRestController {
     @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
   @PostMapping("/")
-  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) {
+  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) throws SQLException, IOException {
     if (content.getTitle() == null || content.getTopicStrings() == null || content.getItems() == null)
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     User author = (User) auth.getPrincipal();
     author = userService.findByID(author.getId()).orElseThrow();
-    List<PostItem> items = content.getItems();
-    for (PostItem item: items) {
+
+    // Convert list of ItemData objects to PostItem objects
+    List<PostItem> items = content.getItems().stream().map(itemData -> {
+      try {
+        return new PostItem(itemData.getDescription(), itemData.getImageBase64());
+      } catch (IOException | SQLException e) {
+        throw new RuntimeException("Error al crear el objeto PostItem", e);
+      }
+    }).collect(Collectors.toList());
+
+    for (PostItem item : items) {
       postItemService.save(item);
     }
     List<Topic> topicList = topicService.getTopics(content.getTopicStrings());
@@ -187,7 +201,21 @@ public class PostRestController {
   private static class Data {
     private final String title;
     private final List<String> topicStrings;
-    private final List<PostItem> items;
+    private final List<ItemData> items;
   }
+
+  @AllArgsConstructor
+  @Getter
+  @Setter
+  @EqualsAndHashCode
+  private static class ItemData {
+    @JsonProperty("description")
+    private final String description;
+
+    @JsonProperty("image")
+    private final String imageBase64;
+  }
+
+
 
 }

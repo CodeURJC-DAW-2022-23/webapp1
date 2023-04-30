@@ -106,8 +106,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  fetchImage(src: User) {
-    return this.postService.downloadImage(src);
+  fetchImage(id: number) {
+    return this.postService.downloadImage(id);
   }
 
   logout() {

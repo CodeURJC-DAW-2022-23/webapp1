@@ -82,8 +82,8 @@ export class PostComponent implements OnInit {
     if (downvotes !== undefined) this.post.numDownvotes = downvotes;
   }
 
-  fetchImage(src: PostItem | User) {
-    return this.postsService.downloadImage(src);
+  fetchImage(id: number) {
+    return this.postsService.downloadImage(id);
   }
 
   //TODO: UPVOTES AND DOWNVOTES

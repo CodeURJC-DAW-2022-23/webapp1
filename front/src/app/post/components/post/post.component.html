@@ -1,6 +1,6 @@
 <div class="post mt-3 mb-3">
   <div class="postInfo border bg-white d-flex gap-3 py-3">
-    <img [src]="fetchImage(post.author.id!)" alt="Profile picture" width="75" height="75"
+    <img [src]="fetchImage(post.authorId)" alt="Profile picture" width="75" height="75"
       class="profileImg rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
@@ -9,8 +9,8 @@
             <a class="topic">@{{topic}}</a>
           </h6>
         </div>
-        <a class="OP text-black text-decoration-none" [routerLink]="['/user', post.author.username]">
-          {{post.author.username}}
+        <a class="OP text-black text-decoration-none" [routerLink]="['/user', post.authorName]">
+          {{post.authorName}}
         </a>
       </div>
     </div>

@@ -3,8 +3,9 @@
   <div class="searchWrapper bg-white" onmouseleave="hideContainer()">
     <div class="d-flex w-100" role="search">
       <!-- TODO: showContainer() -->
-      <input class="searchBar form-control border-0 shadow-none w-100" id="searchBar" type="search" placeholder="Search"
-        aria-label="Search" onfocus="showContainer()" onmouseover="showContainer()" data-search>
+      <input class="searchBar form-control border-0 shadow-none w-100" #userPrefix id="searchBar" type="search"
+        placeholder="Search" aria-label="Search" (change)="getUser(userPrefix.value)" onfocus="showContainer()"
+        onmouseover="showContainer()" data-search>
       <div class="d-flex justify-content-center">
         <i class="searchIcon fa-solid fa-magnifying-glass"></i>
       </div>
@@ -13,15 +14,17 @@
       <div class="separator text-center">Users</div>
       <!-- TODO: {{#searchSuggestedUsers}} -->
       <!-- TODO: username -->
-      <a class="card w-100 text-decoration-none" [routerLink]="['/user/username']">
-        <div class="cardLink text-left d-flex justify-content-center ms-0 me-auto">
-          <!-- TODO: imagePath -->
-          <img src="imagePath" alt="profilePic" class="profile-pic-search rounded-circle me-2">
-          <!-- TODO: username -->
-          <div class="usernameSug header">username</div>
-          <div class="body"></div>
-        </div>
-      </a>
+      <div *ngFor="let user of userResults">
+        <a class="card w-100 text-decoration-none" [routerLink]="['/user/' + user?.username]">
+          <div class="cardLink text-left d-flex justify-content-center ms-0 me-auto">
+            <!-- TODO: imagePath -->
+            <img src="imagePath" alt="profilePic" class="profile-pic-search rounded-circle me-2">
+            <!-- TODO: username -->
+            <div class="usernameSug header">{{user?.username}}</div>
+            <div class="body"></div>
+          </div>
+        </a>
+      </div>
       <!-- TODO: {{/searchSuggestedUsers}} -->
       <div class="separator text-center">Posts</div>
       <!-- TODO: {{#searchSuggestedPosts}} -->

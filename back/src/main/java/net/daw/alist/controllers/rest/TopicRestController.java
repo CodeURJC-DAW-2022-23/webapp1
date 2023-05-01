@@ -21,7 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,12 +74,6 @@ public class TopicRestController {
       return new ResponseEntity<>(topic, HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  }
-
-  @GetMapping("")
-  public ResponseEntity<List<Topic>> getTopics() {
-    List<Topic> all = topicService.findAll();
-    return new ResponseEntity<>(all, HttpStatus.OK);
   }
 
 

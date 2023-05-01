@@ -3,12 +3,9 @@ package net.daw.alist.models;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Base64;
 
 import javax.persistence.*;
-import javax.sql.rowset.serial.SerialBlob;
 
-import ch.qos.logback.classic.Logger;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -33,24 +30,14 @@ public class PostItem {
   @JsonIgnore
   private Blob image;
 
-
   public PostItem() { }
 
   public PostItem(
     String description,
-    String imagePath,
-    boolean bool
+    String imagePath
   ) throws IOException, SQLException {
     this.description = description;
     setImage(imagePath);
-  }
-
-  public PostItem(
-        String description,
-        String base64Image
-  ) throws IOException, SQLException {
-    this.description = description;
-    setImage(base64ToBlob(base64Image));
   }
 
  public PostItem(
@@ -72,13 +59,6 @@ public class PostItem {
     this.image = pathToImage(imagePath);
   }
 
-    public Blob base64ToBlob(String base64Image) throws SQLException {
-        String base64Data = base64Image.substring(base64Image.indexOf(",") + 1);
-        byte[] imageBytes = Base64.getDecoder().decode(base64Data);
-        Blob blob = new SerialBlob(imageBytes);
-        return blob;
-    }
-
   public void setImage(Blob image) {
     this.image = image;
   }
@@ -86,6 +66,7 @@ public class PostItem {
   public String getDescription() {
     return description;
   }
+
   public Blob getImage() {
     return image;
   }

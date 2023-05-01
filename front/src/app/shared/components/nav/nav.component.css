@@ -26,10 +26,6 @@ nav {
   transition: none !important;
 }
 
-#desktopSearchBar{
-    display: none;
-  }
-  
 @media only screen and (min-width: 768px) {
   /* For desktop: */
 }

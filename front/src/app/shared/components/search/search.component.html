@@ -1,11 +1,11 @@
 <div class="body">
   <!-- TODO: hideContainer() -->
-  <div class="searchWrapper bg-white" onmouseleave="hideContainer()">
+  <div class="searchWrapper bg-white" (mouseleave)="hideContainer()">
     <div class="d-flex w-100" role="search">
       <!-- TODO: showContainer() -->
-      <input class="searchBar form-control border-0 shadow-none w-100" #userPrefix id="searchBar" type="search"
-        placeholder="Search" aria-label="Search" (change)="getUser(userPrefix.value)" onfocus="showContainer()"
-        onmouseover="showContainer()" data-search>
+      <input class="searchBar form-control border-0 shadow-none w-100" #userPrefix id="searchBar"
+        (change)="searcher(userPrefix.value)" type="search" placeholder="Search" aria-label="Search"
+        (focus)="showContainer()" (mouseover)="showContainer()" data-search>
       <div class="d-flex justify-content-center">
         <i class="searchIcon fa-solid fa-magnifying-glass"></i>
       </div>
@@ -15,12 +15,13 @@
       <!-- TODO: {{#searchSuggestedUsers}} -->
       <!-- TODO: username -->
       <div *ngFor="let user of userResults">
-        <a class="card w-100 text-decoration-none" [routerLink]="['/user/' + user?.username]">
+        <a class="card w-100 text-decoration-none" href="/user/{{user.username}}">
           <div class="cardLink text-left d-flex justify-content-center ms-0 me-auto">
             <!-- TODO: imagePath -->
-            <img src="imagePath" alt="profilePic" class="profile-pic-search rounded-circle me-2">
+            <img [src]="fetchImage(user)" alt="Profile picture" width="35" height="35"
+              class="profileImg rounded-circle flex-shrink-0">
             <!-- TODO: username -->
-            <div class="usernameSug header">{{user?.username}}</div>
+            <div class="usernameSug header m-auto">{{user?.username}}</div>
             <div class="body"></div>
           </div>
         </a>
@@ -29,18 +30,20 @@
       <div class="separator text-center">Posts</div>
       <!-- TODO: {{#searchSuggestedPosts}} -->
       <!-- TODO: id -->
-      <a class="card w-100 text-decoration-none" [routerLink]="['/top-list/id']">
-        <div class="cardLink text-left d-flex flex-column justify-content-center ms-0 me-auto">
-          <div class="d-flex flex-row">
-            <!-- TODO: author.imagePath -->
-            <img src="author.imagePath" alt="profilePic" class="profile-pic-search rounded-circle me-2">
-            <!-- TODO: author.username -->
-            <div class="usernameSug header">author.username</div>
+      <div *ngFor="let post of postResults">
+        <a class="card w-100 text-decoration-none" href="/top-list/{{post.id}}">
+          <div class="cardLink text-left d-flex flex-column justify-content-center ms-0 me-auto">
+            <div class="d-flex flex-row">
+              <!-- TODO: author.imagePath -->
+              <img [src]="fetchImage(post.author)" alt="profilePic" width="35" height="35"
+                class="profileImg rounded-circle flex-shrink-0">
+              <!-- TODO: author.username -->
+              <div class="usernameSug header">{{post.author.username}}</div>
+            </div>
+            <div class="d-flex flex-row "> {{post.title}}</div>
           </div>
-          <!-- TODO: title -->
-          <div class="body">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &#9900; title</div>
-        </div>
-      </a>
+        </a>
+      </div>
       <!-- TODO: {{/searchSuggestedPosts}} -->
     </div>
   </div>

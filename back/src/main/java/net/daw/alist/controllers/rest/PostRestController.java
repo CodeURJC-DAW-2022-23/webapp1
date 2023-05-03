@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -73,6 +74,13 @@ public class PostRestController {
     Post post = new Post(author, content.getTitle(), topicList, items);
     postService.save(post);
     return new ResponseEntity<>(post, HttpStatus.CREATED);
+  }
+
+  @GetMapping("/names/{prefix}")
+  public ResponseEntity<List<Post>> getUserByPrefix(@PathVariable String prefix){
+    List<Post> firstElementsList = postService.findPostPrefix(prefix).stream().limit(5).collect(Collectors.toList());
+
+    return new ResponseEntity<>(firstElementsList, HttpStatus.OK);
   }
 
   @Operation(summary = "Get specific post")

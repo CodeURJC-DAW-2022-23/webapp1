@@ -63,4 +63,6 @@ public class PostService {
     }
     return Optional.empty();
   }
+
+  public List<Post> findPostPrefix(String prefix){return postRepository.findByTitleStartingWith(prefix);}
 }

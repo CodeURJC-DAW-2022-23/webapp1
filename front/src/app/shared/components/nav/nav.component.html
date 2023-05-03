@@ -5,7 +5,7 @@
         <a class="navbar-brand" [routerLink]="['/']" (click)="toggleCompassIcon()">
           <img src="assets/images/alistLogo.svg" alt="Alist logo" width="80" height="30">
         </a>
-        <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/']"
+        <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/admin']"
           (click)="toggleCompassIcon()"></app-icon>
         <app-search></app-search>
         <app-icon iconName="heart" [glow]="heartIconGlow" (click)="toggleHeartIcon()" [routerLink]="['/']"></app-icon>
@@ -22,14 +22,13 @@
           <div class="icon-container d-flex justify-content-evenly align-items-center ps-2 pe-2 gap-3">
             <app-icon iconName="compass" [glow]="compassIconGlow" [routerLink]="['/']"
               (click)="toggleCompassIcon()"></app-icon>
-            <app-search></app-search>
+            <app-search id="desktopSearchBar"></app-search>
             <app-icon iconName="heart" [glow]="heartIconGlow" (click)="toggleHeartIcon()"
               [routerLink]="['/']"></app-icon>
             <app-icon iconName="user" [glow]="profileIconGlow" [routerLink]="['/profile']"></app-icon>
           </div>
         </div>
         <div class="pe-2">
-          <!-- TODO: hideContainer() -->
           <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseNav" role="button" aria-expanded="false"
             aria-controls="collapseNav" onclick="hideContainer()">
             <i class="fa-solid fa-bars fa-xl"></i>
@@ -37,7 +36,6 @@
         </div>
       </div>
       <div class="collapse border-top mt-2" id="collapseNav">
-        <!--Duplicate ID necessary for Bootstrap navbar to work properly-->
         <app-search></app-search>
       </div>
     </div>

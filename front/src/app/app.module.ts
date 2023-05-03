@@ -10,6 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 import { PostModule } from './post/post.module';
 
 import { AppComponent } from './app.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -24,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AdminModule,
     ProfileModule,
     PostModule,
+    NoopAnimationsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,

@@ -1,5 +1,6 @@
 package net.daw.alist.controllers.rest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,15 +17,23 @@ import net.daw.alist.models.Topic;
 import net.daw.alist.models.User;
 import net.daw.alist.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static net.daw.alist.utils.Utils.pathToImage;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -55,14 +64,23 @@ public class PostRestController {
     @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
   @PostMapping("/")
-  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) {
+  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) throws SQLException, IOException {
     if (content.getTitle() == null || content.getTopicStrings() == null || content.getItems() == null)
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     User author = (User) auth.getPrincipal();
     author = userService.findByID(author.getId()).orElseThrow();
-    List<PostItem> items = content.getItems();
-    for (PostItem item: items) {
+
+    // Convert list of ItemData objects to PostItem objects
+    List<PostItem> items = content.getItems().stream().map(itemData -> {
+      try {
+        return new PostItem(itemData.getDescription(), itemData.getImageBase64());
+      } catch (IOException | SQLException e) {
+        throw new RuntimeException("Error al crear el objeto PostItem", e);
+      }
+    }).collect(Collectors.toList());
+
+    for (PostItem item : items) {
       postItemService.save(item);
     }
     List<Topic> topicList = topicService.getTopics(content.getTopicStrings());
@@ -148,8 +166,8 @@ public class PostRestController {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
       User userSession = (User) userService.loadUserByUsername(((User) authentication
-              .getPrincipal())
-              .getUsername());
+          .getPrincipal())
+          .getUsername());
       votesService.actionDownVote(postId, userSession);
       ArrayList<Integer> upvotesAndDownvotes = new ArrayList<>();
       upvotesAndDownvotes.add(optionalPost.get().getNumUpvotes());
@@ -158,6 +176,23 @@ public class PostRestController {
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
+  
+  @GetMapping("/images/{id}")
+  public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+    Optional<User> author = userService.findByID(id);
+    Optional<PostItem> postItem = postItemService.findById(id);
+		
+		if (postItem.isPresent()) {
+			Resource file = new InputStreamResource(postItem.get().getImage().getBinaryStream());
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(postItem.get().getImage().length()).body(file);
+		} else if(author.isPresent()) {
+      Resource file = new InputStreamResource(author.get().getImage().getBinaryStream());
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(author.get().getImage().length()).body(file);
+    }else {
+			return ResponseEntity.notFound().build();
+		}
+    
+	}
 
   @AllArgsConstructor
   @Getter
@@ -166,7 +201,21 @@ public class PostRestController {
   private static class Data {
     private final String title;
     private final List<String> topicStrings;
-    private final List<PostItem> items;
+    private final List<ItemData> items;
   }
+
+  @AllArgsConstructor
+  @Getter
+  @Setter
+  @EqualsAndHashCode
+  private static class ItemData {
+    @JsonProperty("description")
+    private final String description;
+
+    @JsonProperty("image")
+    private final String imageBase64;
+  }
+
+
 
 }

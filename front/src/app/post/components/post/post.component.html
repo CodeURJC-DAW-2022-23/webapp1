@@ -1,6 +1,7 @@
 <div class="post mt-3 mb-3">
   <div class="postInfo border bg-white d-flex gap-3 py-3">
-    <img src=# alt="Profile picture" width="75" height="75" class="profileImg rounded-circle flex-shrink-0">
+    <img [src]="fetchImage(post.author)" alt="Profile picture" width="75" height="75"
+      class="profileImg rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
         <div class="d-flex flex-wrap">
@@ -8,8 +9,8 @@
             <a class="topic">@{{topic}}</a>
           </h6>
         </div>
-        <a class="OP text-black text-decoration-none" href="/user/{{post.authorName}}">
-          {{post.authorName}}
+        <a class="OP text-black text-decoration-none" href="/user/{{post.author.username}}">
+          {{post.author.username}}
         </a>
       </div>
     </div>
@@ -27,7 +28,7 @@
               <li class="ms-0 me-auto">
                 {{item.description}}
               </li>
-              <img src="{{item.id}}/image" alt="image" width="45" height="45"
+              <img [src]="fetchImage(item)" alt="image" width="45" height="45"
                 class="itemImage rounded-circle ms-auto me-2 mt-auto mb-auto">
             </div>
           </div>
@@ -59,7 +60,7 @@
 
         </a>
       </div>
-      <img class="shareIcon m-auto" src="/images/shareIcon.svg" alt="" width="35" height="35">
+      <img class="shareIcon m-auto" src="/assets/images/shareIcon.svg" alt="" width="35" height="35">
     </div>
   </div>
 </div>

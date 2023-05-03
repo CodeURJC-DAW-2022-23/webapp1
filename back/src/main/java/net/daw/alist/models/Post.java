@@ -23,14 +23,8 @@ public class Post {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @JsonIgnore
   @ManyToOne
   private User author;
-  private String authorName;
-
-  public String getAuthorName() {
-    return authorName = author.getUsername();
-  }
 
   private Date date;
   private String title;
@@ -101,7 +95,6 @@ public class Post {
   ) {
     this.date = new Date();
     this.author = author;
-    authorName = author.getUsername();
     this.title = title;
     this.items = items;
     this.topics = topics;

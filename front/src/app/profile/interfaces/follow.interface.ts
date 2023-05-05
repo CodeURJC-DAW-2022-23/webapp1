@@ -5,5 +5,6 @@ export interface Follow {
 
 export interface UserFollow {
   username: string;
+  id?: number;
   follow: boolean;
 }

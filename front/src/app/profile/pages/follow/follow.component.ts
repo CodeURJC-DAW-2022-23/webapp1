@@ -81,11 +81,4 @@ export class FollowComponent implements OnInit {
   fetchImage(id: number) {
     return this.postService.downloadImage(id);
   }
-
-  fetchImageString(username: string) {
-    return this.userService.getUser(username).pipe(
-      map((user: User) => {
-        return this.postService.downloadImage(user.id!);
-      }));
-  }
 }

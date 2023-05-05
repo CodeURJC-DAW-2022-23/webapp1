@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Follow, UserFollow } from '../../interfaces/follow.interface';
 import { UserService } from '../../services/user.service';
-import { User } from 'src/app/models/user.model';
 import { PostsService } from 'src/app/post/services/posts.service';
-import { map } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-follow',
@@ -22,6 +21,7 @@ export class FollowComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private titleService: Title,
     private authService: AuthService,
     private userService: UserService,
     private postService: PostsService
@@ -32,6 +32,7 @@ export class FollowComponent implements OnInit {
     if (url.includes('following')) this.follow = 'following';
     else this.follow = 'followers';
     const username: string = this._getUsernameFromUrl(url);
+    this.titleService.setTitle(`Alist | ${username} ${this.follow}`);
     this._getUser(username);
   }
 

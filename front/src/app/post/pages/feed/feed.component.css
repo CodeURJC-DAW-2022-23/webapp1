@@ -138,7 +138,9 @@ input[type='text'] {
 
 .feed-container {
   margin: 0 1rem;
+  margin-top: -2rem;
 }
+
 .createPostButton {
   position: -webkit-sticky; /* Safari */
   z-index: 1;
@@ -155,7 +157,6 @@ input[type='text'] {
     width: 40%;
     margin: auto;
   }
-
   .createPostButton {
     top: 50%;
     left: 75%;

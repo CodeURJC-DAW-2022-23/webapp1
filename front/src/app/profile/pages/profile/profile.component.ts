@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Follow, UserFollow } from '../../interfaces/follow.interface';
-import { Post } from 'src/app/models/post.model';
 import { PostsService } from 'src/app/post/services/posts.service';
-import { take } from 'rxjs';
-import { User } from 'src/app/models/user.model';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -19,11 +16,6 @@ export class ProfileComponent implements OnInit {
   notGuest: boolean = false;
   ownProfile: boolean | undefined;
   followUser: UserFollow | undefined;
-
-  posts: Post[] = [];
-  page: number = 0;
-  loading: boolean = true;
-  endOfFeed: boolean | undefined;
 
   constructor(
     private router: Router,
@@ -40,7 +32,6 @@ export class ProfileComponent implements OnInit {
       next: user => {
         this.profileUser = user;
         this._checkLoggedUser(profileUsername);
-        this._getPosts(profileUsername);
       },
       error: _ => this.router.navigate(['/error']),
     });
@@ -73,37 +64,6 @@ export class ProfileComponent implements OnInit {
       },
       error: _ => (this.followUser = undefined),
     });
-  }
-
-  private _getPosts(profileUsername: string) {
-    this.postService
-      .getUserPosts(this.page, profileUsername)
-      .pipe(take(1))
-      .subscribe(data => {
-        const postsData: Post[] = data.content;
-        const noPostsUser: boolean =
-          postsData.length === 0 && this.endOfFeed === undefined;
-        if (noPostsUser) this.loading = false;
-        else if (postsData.length <= 1) {
-          this.endOfFeed = true;
-          this.loading = false;
-        } else this.endOfFeed = false;
-        this.posts.push(...postsData);
-      });
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
-    if (!this.profileUser) return;
-    if (!this.loading) return;
-    const maxHeight: number = document.documentElement.scrollHeight;
-    const heightPos: number =
-      (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.offsetHeight;
-    if (heightPos >= maxHeight) {
-      this.page++;
-      this._getPosts(this.profileUser.username);
-    }
   }
 
   fetchImage(id: number) {

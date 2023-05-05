@@ -11,7 +11,7 @@
             alt="{{profilefollowUser.username}} picture">
           {{profilefollowUser.username}}
         </div>
-        <app-follow-button *ngIf="loggedUserFollow"
+        <app-follow-button *ngIf="loggedUserFollow && profilefollowUser.username !== loggedUserUsername"
           [followUser]="getLoggedUserFollow(profilefollowUser.username)"></app-follow-button>
       </a>
     </div>

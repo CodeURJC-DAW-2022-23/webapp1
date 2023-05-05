@@ -17,6 +17,7 @@ export class FollowComponent implements OnInit {
   profileFollowUsers!: UserFollow[];
   follow: string = '';
   notGuest: boolean = false;
+  loggedUserUsername: string = '';
   loggedUserFollow: UserFollow[] | undefined;
 
   constructor(
@@ -64,8 +65,8 @@ export class FollowComponent implements OnInit {
   private _checkLoggedUser() {
     this.notGuest = this.authService.isLoggedIn();
     if (!this.notGuest) return;
-    const loggedUserUsername: string = this.authService.loggedUser!.username;
-    this.userService.getFollowing(loggedUserUsername).subscribe({
+    this.loggedUserUsername = this.authService.loggedUser!.username;
+    this.userService.getFollowing(this.loggedUserUsername).subscribe({
       next: (following: Follow) => this.loggedUserFollow = following.users,
     });
   }

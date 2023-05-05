@@ -91,7 +91,6 @@ public class Post {
     String title,
     List<Topic> topics,
     List<PostItem> items
-    
   ) {
     this.date = new Date();
     this.author = author;
@@ -99,11 +98,15 @@ public class Post {
     this.title = title;
     this.items = items;
     this.topics = topics;
-    topicNames = topics.stream().map(topic -> topic.getName()).collect(Collectors.toList());
+    topicNames = topics.stream().map(Topic::getName).collect(Collectors.toList());
     updateVotes();
     author.addPost(this);
   }
-  
+
+  public User getAuthor() {
+    return author;
+  }
+
   public String getAuthorName() {
     return authorName;
   }

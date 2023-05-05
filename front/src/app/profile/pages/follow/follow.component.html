@@ -12,7 +12,7 @@
           {{profilefollowUser.username}}
         </div>
         <app-follow-button *ngIf="loggedUserFollow && profilefollowUser.username !== loggedUserUsername"
-          [followUser]="getLoggedUserFollow(profilefollowUser.username)"></app-follow-button>
+          [followUser]="getLoggedUserFollow(profilefollowUser.username)" (click)="refresh()"></app-follow-button>
       </a>
     </div>
     <div class="text-white text-center" *ngIf="profileFollowUsers && profileFollowUsers.length === 0">

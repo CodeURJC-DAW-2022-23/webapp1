@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Follow, UserFollow } from '../../interfaces/follow.interface';
 import { UserService } from '../../services/user.service';
 import { PostsService } from 'src/app/post/services/posts.service';
@@ -21,6 +21,7 @@ export class FollowComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private titleService: Title,
     private authService: AuthService,
     private userService: UserService,
@@ -77,6 +78,15 @@ export class FollowComponent implements OnInit {
     const profileUserFollow = this.loggedUserFollow.find((user: UserFollow) => user.username === profileUsername);
     if (!profileUserFollow) return { username: profileUsername, follow: false };
     return profileUserFollow;
+  }
+
+  refresh() {
+    this._getFollowUsers(this.profileUser.username);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.navigate(['./'], {
+      relativeTo: this.route,
+      queryParamsHandling: 'merge'
+    });
   }
 
   fetchImage(id: number) {

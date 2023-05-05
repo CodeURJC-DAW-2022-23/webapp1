@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Follow, UserFollow } from '../../interfaces/follow.interface';
@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private titleService: Title,
     private authService: AuthService,
     private userService: UserService,
@@ -63,6 +64,17 @@ export class ProfileComponent implements OnInit {
         }
       },
       error: _ => (this.followUser = undefined),
+    });
+  }
+
+  refresh() {
+    this.userService.getUser(this.profileUser.username).subscribe({
+      next: user => this.profileUser = user,
+    })
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.navigate(['./'], {
+      relativeTo: this.route,
+      queryParamsHandling: 'merge'
     });
   }
 

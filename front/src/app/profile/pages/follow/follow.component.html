@@ -15,5 +15,8 @@
           [followUser]="getLoggedUserFollow(profilefollowUser.username)"></app-follow-button>
       </a>
     </div>
+    <div class="text-white text-center" *ngIf="profileFollowUsers && profileFollowUsers.length === 0">
+      User has no {{follow}} :(
+    </div>
   </div>
 </div>

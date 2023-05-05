@@ -12,8 +12,8 @@
       <mat-progress-spinner class="m-auto" mode="indeterminate" color="white"></mat-progress-spinner>
     </ng-container>
     <ng-template #elseLoading>
-      <div class="no-posts text-white" *ngIf="endOfFeed">No more posts :(</div>
-      <div class="no-posts text-white" *ngIf="endOfFeed === undefined && profileUsername">User has no posts :(</div>
+      <div class="text-white" *ngIf="endOfFeed">No more posts :(</div>
+      <div class="text-white" *ngIf="endOfFeed === undefined && profileUsername">User has no posts :(</div>
     </ng-template>
   </div>
 </div>

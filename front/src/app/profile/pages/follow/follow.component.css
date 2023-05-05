@@ -3,6 +3,7 @@
   align-items: center;
   text-align: center;
   text-decoration: none;
+  color: white;
 }
 
 .list-group {
@@ -24,6 +25,15 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
+}
+
+.list-group-item {
+  display: flex;
+}
+
+app-follow-button {
+  margin-left: auto;
+  margin-top: 7px;
 }
 
 @media only screen and (min-width: 768px) {

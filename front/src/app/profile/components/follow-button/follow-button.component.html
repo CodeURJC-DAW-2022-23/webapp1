@@ -1,0 +1,9 @@
+<ng-container *ngIf="followed; else elseFollowed">
+  <!-- Following text inside css -->
+  <a class="btn btn-primary btn-round btn-following" type="button" (click)="follow()"></a>
+</ng-container>
+<ng-template #elseFollowed>
+  <a class="btn btn-primary btn-round" type="button" (click)="follow()">
+    Follow
+  </a>
+</ng-template>

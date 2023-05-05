@@ -1,7 +1,10 @@
 package net.daw.alist.controllers.rest;
 
+import net.daw.alist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,9 @@ public class AjaxRestController {
   @Autowired
   PostService postService;
 
+  @Autowired
+  UserService userService;
+
   @Operation(summary = "Load more posts")
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "New posts loaded", content = {
@@ -35,17 +41,29 @@ public class AjaxRestController {
     @ApiResponse(responseCode = "404", description = "No new posts found", content = @Content)
   })
   @GetMapping("")
-  public Page<Post> getNewPosts(Authentication authentication, @RequestParam int page, @RequestParam Optional<Boolean> filter) {
-    boolean validPage = page <= (int) Math.ceil(postService.count()/2);
-    boolean filterPosts = false;
-    if (filter.isPresent()) {
-      filterPosts = filter.get();
+  public ResponseEntity<Page<Post>> getNewPosts(
+    Authentication authentication,
+    @RequestParam int page,
+    @RequestParam Optional<Boolean> filter,
+    @RequestParam Optional<String> username
+  ) {
+    boolean validPage = page <= (int) Math.ceil(postService.count() / 2);
+    if (validPage) {
+      boolean filterPosts = false;
+      if (filter.isPresent()) filterPosts = filter.get();
+      boolean searchUsername = username.isPresent();
+      if (searchUsername) {
+        Optional<User> optionalUser = userService.findByUsername(username.get());
+        if (optionalUser.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        int userId = optionalUser.get().getId().intValue();
+        return new ResponseEntity<>(postService.getUserPosts(page, userId), HttpStatus.OK);
+      } else if ((authentication != null) && filterPosts) {
+        User currentUser = (User) authentication.getPrincipal();
+        int currentUserId = currentUser.getId().intValue();
+        return new ResponseEntity<>(postService.getStarredPosts(page, currentUserId), HttpStatus.OK);
+      } else return new ResponseEntity<>(postService.getPosts(page), HttpStatus.OK);
     }
-    if ((authentication != null) && filterPosts && validPage) {
-      User currentUser = (User) authentication.getPrincipal();
-      return postService.getStarredPosts(page, currentUser.getId().intValue());
-    } else if (validPage) return postService.getPosts(page);
-    return null;
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
 }

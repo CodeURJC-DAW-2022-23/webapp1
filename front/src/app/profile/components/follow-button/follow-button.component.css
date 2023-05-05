@@ -1,0 +1,17 @@
+.btn-following {
+  background-color: #63b1b1;
+}
+
+.btn-following:after {
+  content: 'Following';
+}
+
+.btn-following:hover,
+.btn-following:active:focus {
+  background-color: red;
+}
+
+.btn-following:hover:after,
+.btn-following:active:focus:after {
+  content: 'Unfollow';
+}

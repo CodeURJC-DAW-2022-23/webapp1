@@ -1,1 +1,22 @@
-<p>follow works!</p>
+<div class="body">
+  <div class="bg-black text-white" *ngIf="profileUser">
+    <a class="profile-title h1 mt-3" type="button" [routerLink]="['/user', profileUser.username]">
+      <img class="profile-img" [src]="fetchImage(profileUser.id)" alt="{{profileUser.username}} picture">
+      {{follow | titlecase}} {{profileUser.username}}
+    </a>
+    <div class="list-group mt-3" *ngFor="let profilefollowUser of profileFollowUsers">
+      <a class="list-group-item list-group-item-action" type="button">
+        <div [routerLink]="['/user', profilefollowUser.username]">
+          <img class="profile-img" [src]="fetchImage(profilefollowUser.id!)"
+            alt="{{profilefollowUser.username}} picture">
+          {{profilefollowUser.username}}
+        </div>
+        <app-follow-button *ngIf="loggedUserFollow && profilefollowUser.username !== loggedUserUsername"
+          [followUser]="getLoggedUserFollow(profilefollowUser.username)" (click)="refresh()"></app-follow-button>
+      </a>
+    </div>
+    <div class="text-white text-center" *ngIf="profileFollowUsers && profileFollowUsers.length === 0">
+      User has no {{follow}} :(
+    </div>
+  </div>
+</div>

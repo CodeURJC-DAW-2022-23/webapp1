@@ -1,7 +1,3 @@
-.body {
-  overflow-x: hidden;
-}
-
 main {
   height: 100vh;
   padding: 0 1rem;
@@ -38,36 +34,8 @@ main {
   --bs-dropdown-link-active-bg: #63b1b1;
 }
 
-.btn-following {
-  background-color: #63b1b1;
-}
-
-.btn-following:after {
-  content: 'Following';
-}
-
-.btn-following:hover,
-.btn-following:active:focus {
-  background-color: red;
-}
-
-.btn-following:hover:after,
-.btn-following:active:focus:after {
-  content: 'Unfollow';
-}
-
 .dropdown-item {
   cursor: pointer;
-}
-
-.follow a {
-  color: gray;
-  font-size: medium;
-  text-decoration: none;
-}
-
-.follow a:hover {
-  text-decoration: underline;
 }
 
 .bio-container {

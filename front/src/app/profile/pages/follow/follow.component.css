@@ -1,0 +1,45 @@
+.profile-title {
+  display: block;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.list-group {
+  width: 90%;
+  margin: auto;
+}
+
+.profile-title:hover {
+  text-decoration: underline;
+}
+
+.list-group-item:hover {
+  color: gray;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.list-group-item {
+  display: flex;
+}
+
+app-follow-button {
+  margin-left: auto;
+  margin-top: 7px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .list-group {
+    width: 30%;
+    margin: auto;
+  }
+}

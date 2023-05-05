@@ -27,6 +27,11 @@ export class PostsService {
     return this.http.get(BASE_URL, { params }) as Observable<any>;
   }
 
+  getUserPosts(page: number, username: string) {
+    const params = new HttpParams().set('page', page).set('username', username);
+    return this.http.get(BASE_URL, { params }) as Observable<any>;
+  }
+
   upvotePost(id: number) {
     return this.http.put(BASE_URL + '/upvotes/' + id, null);
   }
@@ -43,7 +48,7 @@ export class PostsService {
     return this.filter.asObservable();
   }
 
-  downloadImage(src: PostItem | User): String {
-    return BASE_URL + '/images/' + src.id;
+  downloadImage(id: number): String {
+    return BASE_URL + '/images/' + id;
   }
 }

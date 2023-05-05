@@ -1,5 +1,5 @@
-<div class="feed-container pt-3"> <!-- *ngIf="!filter"-->
-  <a class="createPostButton" href="/create">
+<div class="feed-container">
+  <a class="createPostButton" [routerLink]="['/create']">
     <button class="btn btn-lg btn-primary">
       <i class="fa-solid fa-plus"></i>
     </button>
@@ -8,8 +8,12 @@
     <app-post *ngFor="let currentPost of posts" [post]="currentPost"></app-post>
   </div>
   <div class="text-center my-5">
-    <mat-progress-spinner class="m-auto" mode="indeterminate" color="white"
-      [style.display]="loading ? 'block' : 'none'"></mat-progress-spinner>
-    <div class="no-posts text-white" [style.display]="endOfFeed ? 'block' : 'none'">No more posts :(</div>
+    <ng-container *ngIf="loading; else elseLoading">
+      <mat-progress-spinner class="m-auto" mode="indeterminate" color="white"></mat-progress-spinner>
+    </ng-container>
+    <ng-template #elseLoading>
+      <div class="text-white" *ngIf="endOfFeed">No more posts :(</div>
+      <div class="text-white" *ngIf="endOfFeed === undefined && profileUsername">User has no posts :(</div>
+    </ng-template>
   </div>
 </div>

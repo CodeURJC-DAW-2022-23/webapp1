@@ -1,0 +1,9 @@
+.follow a {
+  color: gray;
+  font-size: medium;
+  text-decoration: none;
+}
+
+.follow a:hover {
+  text-decoration: underline;
+}

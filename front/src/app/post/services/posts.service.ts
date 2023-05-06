@@ -1,8 +1,6 @@
 import {
   HttpClient,
-  HttpHeaders,
   HttpParams,
-  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, filter, BehaviorSubject } from 'rxjs';
@@ -38,6 +36,10 @@ export class PostsService {
 
   downvotePost(id?: number) {
     return this.http.put(BASE_URL + '/downvotes/' + id, null);
+  }
+
+  getPostById(id: number) {
+    return this.http.get(BASE_URL + '/' + id);
   }
 
   setFilter(filter: boolean) {

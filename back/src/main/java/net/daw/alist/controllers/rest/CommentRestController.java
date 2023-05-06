@@ -16,6 +16,7 @@ import net.daw.alist.models.User;
 import net.daw.alist.services.PostService;
 import net.daw.alist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -45,11 +46,11 @@ public class CommentRestController {
   })
   @PostMapping("/{postId}")
   public ResponseEntity<Comment> createComment(@RequestBody Data content, @PathVariable long postId, Authentication auth) throws SQLException, IOException {
-    User author = (User) auth.getPrincipal();
-    User user = userService.findByID(author.getId()).orElseThrow();
-    Comment comment = new Comment(user, content.getContent(), content.getImagePath());
     Optional<Post> optionalPost = postService.findByID(postId);
-    if (optionalPost.isPresent()) {
+      if (optionalPost.isPresent()) {
+      User author = (User) auth.getPrincipal();
+      User user = userService.findByID(author.getId()).orElseThrow();
+      Comment comment = new Comment(user, content.getContent(), content.getImagePath());
       Post post = optionalPost.get();
       post.addComment(comment);
       postService.save(post);
@@ -72,6 +73,21 @@ public class CommentRestController {
       Post post = optionalPost.get();
       List<Comment> comments = post.getComments();
       return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @GetMapping("/posts")
+  public ResponseEntity<List<Comment>> getNewComments(@RequestParam int id, @RequestParam int page) {
+    Optional<Post> optionalPost = postService.findByID(Long.valueOf(id));
+    if (optionalPost.isPresent()){
+      int check = (int) Math.ceil((float) optionalPost.get().getComments().size()/2);
+      boolean validPage = page < check;
+      if (validPage) {
+        Post post = optionalPost.get();
+        postService.getNewComments(post.getId(), page);
+        return new ResponseEntity<>(postService.getNewComments(post.getId(), page), HttpStatus.OK);
+      }
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }

@@ -1,4 +1,4 @@
 export interface PostItem {
-  id?: number;
+  id: number;
   description: string;
 }

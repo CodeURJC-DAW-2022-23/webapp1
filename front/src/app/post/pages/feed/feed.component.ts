@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { Post } from 'src/app/models/post.model';
 import { distinctUntilChanged, take } from 'rxjs';
@@ -13,72 +13,59 @@ export class FeedComponent implements OnInit {
   followedUsers: string[] = [];
   page: number = 0;
   loading: boolean = true;
-  endOfFeed: boolean = false;
+  endOfFeed: boolean | undefined;
 
-  constructor(private postsService: PostsService) {}
+  @Input() profileUsername: any | undefined;
+
+  constructor(private postService: PostsService) { }
 
   ngOnInit(): void {
-    //this.initializeFollowersList();
-    this.postsService
-      .getFilter()
-      .pipe(distinctUntilChanged())
-      .subscribe(data => {
-        this.page = 0;
-        this.posts = [];
-        this.getPosts();
-      });
+    if (this.profileUsername) this._getUserPosts();
+    else {
+      this.postService
+        .getFilter()
+        .pipe(distinctUntilChanged())
+        .subscribe(_ => this._getPosts());
+    }
   }
 
-  getPosts() {
-    this.postsService
+  private _getUserPosts() {
+    this.postService
+      .getUserPosts(this.page, this.profileUsername)
+      .pipe(take(1))
+      .subscribe(data => this._processData(data));
+  }
+
+  private _getPosts() {
+    this.postService
       .getPosts(this.page)
       .pipe(take(1))
-      .subscribe(response => {
-        let data: any = response;
-        if (data === null) this.endOfFeed = true;
-        else {
-          for (var i = 0; i < data.content.length; i++) {
-            let post = data.content[i];
-            //check author
-            /* if (this.authService.isLoggedIn()) {
-                post.followingAuthor = this.followedUsers.includes(
-                  post.authorName
-                );
-              } */
-            this.posts.push(post);
-          }
-        }
-      });
+      .subscribe(data => this._processData(data));
   }
 
-  /* initializeFollowersList() {
-    if (this.authService.isLoggedIn())
-      this.userService
-        .getFollowing(this.authService.loggedUser!.username)
-        .pipe()
-        .subscribe(response => {
-          let usernames: any = response;
-          for (var i = 0; i < usernames.users.length; i++) {
-            let username = usernames.users[i].username;
-            if (username !== this.authService.loggedUser?.username)
-              this.followedUsers.push(username);
-          }
-        });
-    console.log(this.followedUsers);
-  } */
+  private _processData(data: any) {
+    const postsData: Post[] = data.content;
+    const noPostsUser: boolean =
+      postsData.length === 0 && this.endOfFeed === undefined;
+    if (noPostsUser) this.loading = false;
+    else if (postsData.length <= 1) {
+      this.endOfFeed = true;
+      this.loading = false;
+    } else this.endOfFeed = false;
+    this.posts.push(...postsData);
+  }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    //In chrome and some browser scroll is given to body tag
-    let pos =
+    if (!this.posts || !this.loading) return;
+    const maxHeight: number = document.documentElement.scrollHeight - 1;
+    const heightPos: number =
       (document.documentElement.scrollTop || document.body.scrollTop) +
       document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
-    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if (pos == max) {
+    if (heightPos >= maxHeight) {
       this.page++;
-      this.getPosts();
-      this.loading = false;
+      if (this.profileUsername) this._getUserPosts();
+      else this._getPosts();
     }
   }
 }

@@ -18,6 +18,7 @@ export class AuthService {
   logged: boolean = false;
 
   constructor(private http: HttpClient) {
+    // TODO: delete this & add const assing to getLoggedInUserSubscription
     this._getLoggedInUser();
   }
 
@@ -74,6 +75,10 @@ export class AuthService {
         next: (loggedUser: LoggedUser) => {
           this.loggedUser = loggedUser;
           this.logged = true;
+        },
+        error: _ => {
+          this.loggedUser = undefined;
+          this.logged = false;
         },
       });
   }

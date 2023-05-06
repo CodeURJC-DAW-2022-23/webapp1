@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { PostComponent } from './components/post/post.component';
 import { CommentComponent } from './components/comment/comment.component';
@@ -26,7 +27,7 @@ import { CommentFormComponent } from './components/comment/comment-form/comment-
     CreatePostComponent,
     CommentFormComponent
   ],
-  imports: [CommonModule, MatProgressSpinnerModule, MatFormFieldModule, MatSelectModule, BrowserModule, HttpClientModule, FormsModule, CommonModule, SharedModule, ReactiveFormsModule],
-  exports: [FeedComponent, TopComponent],
+  imports: [CommonModule, RouterModule, MatProgressSpinnerModule, MatFormFieldModule, MatSelectModule, BrowserModule, HttpClientModule, FormsModule, SharedModule, ReactiveFormsModule],
+  exports: [FeedComponent, TopComponent, PostComponent],
 })
 export class PostModule {}

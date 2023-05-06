@@ -1,14 +1,13 @@
-<div class="body" *ngIf="user && ownProfile !== undefined">
+<div class="body" *ngIf="profileUser && ownProfile !== undefined">
   <main>
     <form class="row bg-black pt-3">
       <div class="profile-container col-md-4 text-white text-center">
         <div class="profile-pic text-center pt-2">
-          <!-- TODO: profile pic display -->
-          <!-- <img src="{{user.imagePath}}" alt="profilePic" class="prof-pic"> -->
+          <img [src]="fetchImage(profileUser.id)" alt="profilePic" class="prof-pic">
         </div>
         <div class="row text-inherit m-0 d-flex align-items-center">
           <div class="col prof-name fs-2">
-            {{user.username}}
+            {{profileUser.username}}
           </div>
           <ng-container *ngIf="notGuest">
             <ng-container *ngIf="ownProfile; else elseOwnProfile">
@@ -20,7 +19,7 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="settingsButton">
                     <li>
-                      <a class="dropdown-item" id="admin-panel" *ngIf="user.admin" [routerLink]="['/admin']">
+                      <a class="dropdown-item" id="admin-panel" *ngIf="profileUser.admin" [routerLink]="['/admin']">
                         Admin Panel
                       </a>
                     </li>
@@ -31,41 +30,21 @@
             </ng-container>
             <ng-template #elseOwnProfile>
               <div class="col">
-                <ng-container *ngIf="followed; else elseFollowed">
-                  <a class="btn btn-primary btn-round btn-following" type="button" (click)="follow()">
-                    Following
-                  </a>
-                </ng-container>
-                <ng-template #elseFollowed>
-                  <a class="btn btn-primary btn-round" type="button" (click)="follow()">
-                    Follow
-                  </a>
-                </ng-template>
+                <app-follow-button *ngIf="followUser" [followUser]="followUser" (click)="refresh()"></app-follow-button>
               </div>
             </ng-template>
           </ng-container>
         </div>
         <div class="row fs-5 mt-1">
-          <div class="col follow">
-            <a type="button" [routerLink]="['/user/{{user.username}}/following']">
-              <strong class="text-white">{{user.followingCount}}</strong> Following
-            </a>
-          </div>
-          <div class="col follow">
-            <a type="button" [routerLink]="['/user/{{user.username}}/followers']">
-              <strong class="text-white">{{user.followersCount}}</strong> Followers
-            </a>
-          </div>
+          <app-follow-count class="col" [followCount]="profileUser.followingCount" [follow]=true></app-follow-count>
+          <app-follow-count class="col" [followCount]="profileUser.followersCount" [follow]=false></app-follow-count>
         </div>
         <hr>
         <div class="bio-container">
-          <p>{{user.bio}}</p>
+          <p>{{profileUser.bio}}</p>
         </div>
       </div>
-      <div class="post-container col-md-9 p-0">
-        <!-- TODO: posts user display -->
-        <!-- {{>post}} -->
-      </div>
+      <app-feed class="col-md-9 p-0" [profileUsername]="profileUser.username"></app-feed>
     </form>
   </main>
 </div>

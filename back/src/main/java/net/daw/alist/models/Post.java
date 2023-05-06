@@ -26,6 +26,8 @@ public class Post {
   @ManyToOne
   private User author;
 
+  private String authorName;
+
   private Date date;
   private String title;
 
@@ -91,16 +93,28 @@ public class Post {
     String title,
     List<Topic> topics,
     List<PostItem> items
-    
   ) {
     this.date = new Date();
     this.author = author;
+    this.authorName = author.getUsername();
     this.title = title;
     this.items = items;
     this.topics = topics;
-    topicNames = topics.stream().map( topic -> topic.getName()).collect(Collectors.toList());
+    topicNames = topics.stream().map(Topic::getName).collect(Collectors.toList());
     updateVotes();
     author.addPost(this);
+  }
+
+  public User getAuthor() {
+    return author;
+  }
+
+  public String getAuthorName() {
+    return authorName;
+  }
+
+  public Long getAuthorId() {
+    return author.getId();
   }
 
   public void setAuthor(User author) {
@@ -130,10 +144,6 @@ public class Post {
 
   public void setComments(List<Comment> comments) {
     this.comments = comments;
-  }
-
-  public User getAuthor() {
-    return author;
   }
 
   public Date getDate() {

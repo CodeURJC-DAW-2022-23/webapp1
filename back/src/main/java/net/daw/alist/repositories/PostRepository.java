@@ -2,6 +2,7 @@ package net.daw.alist.repositories;
 
 import net.daw.alist.models.Post;
 
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,5 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
   @Query(value="select * from post where post.author_id=?1 order by post.date desc", nativeQuery=true)
   Page<Post> findPostsByUser(int user_id, Pageable page);
+
+  List<Post> findByTitleStartingWith(String prefix);
 
 }

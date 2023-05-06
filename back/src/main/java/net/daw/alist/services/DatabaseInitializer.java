@@ -202,7 +202,7 @@ public class DatabaseInitializer {
             thirdPost.addComment(seventhComment);
             Comment thirdComment = new Comment(peepo, "Lebron is the GOAT", null);
             fourthPost.addComment(thirdComment);
-            Comment goatedComment = new Comment(peepo, "Hakiman is goated fr fr no cap top 1 ez", null);
+            Comment goatedComment = new Comment(peepo, "A hakiman? Do you mean a fighter that relies on haki? like every other fighter in the new world?", null);
             goatedPost.addComment(goatedComment);
 
             postRepository.save(firstPost);

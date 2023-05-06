@@ -4,7 +4,7 @@
       Comment posted successfully
     </div>
     <div class="d-flex flex-row">
-      <img src="#" alt="pfp" width="40" height="40" class="own-comment-image rounded-circle flex-shrink-0">
+      <img [src]="fetchUserImage()" alt="pfp" width="40" height="40" class="own-comment-image rounded-circle flex-shrink-0">
       <textarea [(ngModel)]="content" formControlName="content"
                 class="commentBox form-control ml-1 shadow-none textarea" placeholder="Write a comment..."
                 name="commentContent"></textarea>

@@ -25,7 +25,7 @@ export class TopComponent implements OnInit {
     private commentsService: CommentsService,
     private authService: AuthService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -43,9 +43,6 @@ export class TopComponent implements OnInit {
       this.loading = true;
       this.commentsService.getComments(this.postId, this.page).subscribe(
         (fetchedComments: Comment[]) => {
-          console.log('comments: ', this.comments);
-          console.log('fetched: ', fetchedComments);
-
           const filteredFetchedComments = fetchedComments.filter(
             fetchedComment => {
               return !this.comments.some(
@@ -53,7 +50,6 @@ export class TopComponent implements OnInit {
               );
             }
           );
-          console.log('filtered: ', filteredFetchedComments);
           this.comments = [...this.comments, ...filteredFetchedComments];
         },
         error => (this.endOfComments = true)

@@ -4,6 +4,7 @@ import { CommentsService } from './../../../services/comments.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { PostsService } from 'src/app/post/services/posts.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -22,7 +23,8 @@ export class CommentFormComponent {
     private formBuilder: FormBuilder,
     private commentsService: CommentsService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private postsService: PostsService
   ) {
     this.commentForm = this.formBuilder.group({
       username: this.authService.loggedUser?.username,
@@ -43,5 +45,10 @@ export class CommentFormComponent {
         });
     }
     this.content = '';
+  }
+
+  fetchUserImage() {
+    const userID = this.authService.loggedUser?.id as number;
+    return this.postsService.downloadImage(userID);
   }
 }

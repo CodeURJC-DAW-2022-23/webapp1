@@ -1,5 +1,5 @@
 import { PostsService } from './../../../post/services/posts.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, Event } from '@angular/router';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   compassIconGlow: boolean = false;
   heartIconGlow: boolean = false;
   profileIconGlow: boolean = false;
@@ -19,7 +19,9 @@ export class NavComponent {
     private router: Router,
     private authService: AuthService,
     private postService: PostsService
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.router.events
       .pipe(
         filter(
@@ -27,20 +29,28 @@ export class NavComponent {
             event instanceof NavigationEnd
         )
       )
-      .subscribe(event => {
+      .subscribe((event: NavigationEnd) => {
         this.disableAllIcons();
-        const redirectRoute: string = event.urlAfterRedirects;
-        if (redirectRoute === '/error') return;
         const currentRoute: string = event.url;
         if (currentRoute === '/') {
-          this.compassIconGlow = true;
-        } else if (
-          currentRoute.startsWith('/user') &&
-          this.authService.isLoggedIn()
-        ) {
-          this.profileIconGlow = true;
-        }
+          this.postService.getFilter().subscribe((filter: boolean) => {
+            if (filter) this.heartIconGlow = true;
+            else this._checkRoute(event, currentRoute);
+          });
+        } else this._checkRoute(event, currentRoute);
       });
+  }
+
+  private _checkRoute(event: NavigationEnd, currentRoute: string) {
+    const redirectRoute: string = event.urlAfterRedirects;
+    if (redirectRoute === '/error') return;
+    if (currentRoute === '/') this.compassIconGlow = true
+    else if (
+      currentRoute.startsWith('/user') &&
+      this.authService.isLoggedIn()
+    ) {
+      this.profileIconGlow = true;
+    }
   }
 
   toggleCompassIcon() {

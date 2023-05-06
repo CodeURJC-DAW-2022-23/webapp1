@@ -47,7 +47,7 @@ public class AjaxRestController {
     @RequestParam Optional<Boolean> filter,
     @RequestParam Optional<String> username
   ) {
-    boolean validPage = page <= (int) Math.ceil((float) postService.count() / 2);
+    boolean validPage = page < (int) Math.ceil((float) postService.count() / 2);
     if (validPage) {
       boolean filterPosts = false;
       if (filter.isPresent()) filterPosts = filter.get();

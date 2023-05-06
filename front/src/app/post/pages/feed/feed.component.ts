@@ -25,7 +25,12 @@ export class FeedComponent implements OnInit {
       this.postService
         .getFilter()
         .pipe(distinctUntilChanged())
-        .subscribe(_ => this._getPosts());
+        .subscribe(_ => {
+          this.endOfFeed = false;
+          this.posts = [];
+          this.page = 0;
+          this._getPosts();
+        });
     }
   }
 
@@ -45,9 +50,15 @@ export class FeedComponent implements OnInit {
 
   private _processData(data: any) {
     const postsData: Post[] = data.content;
-    const noPostsUser: boolean =
-      postsData.length === 0 && this.endOfFeed === undefined;
-    if (noPostsUser) this.loading = false;
+    console.log(postsData.length);
+    const noPostsUser: boolean = postsData.length === 0;
+    if (noPostsUser && this.profileUsername && this.page == 0) {
+      this.loading = false;
+      this.endOfFeed = undefined;
+    } else if (noPostsUser) {
+      this.loading = false;
+      this.endOfFeed = true;
+    }
     else if (postsData.length <= 1) {
       this.endOfFeed = true;
       this.loading = false;
@@ -57,7 +68,7 @@ export class FeedComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (!this.posts || !this.loading) return;
+    if (this.posts.length == 0) return;
     const maxHeight: number = document.documentElement.scrollHeight - 1;
     const heightPos: number =
       (document.documentElement.scrollTop || document.body.scrollTop) +
@@ -66,6 +77,7 @@ export class FeedComponent implements OnInit {
       this.page++;
       if (this.profileUsername) this._getUserPosts();
       else this._getPosts();
+      this.loading = false;
     }
   }
 }

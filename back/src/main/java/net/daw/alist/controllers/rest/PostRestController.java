@@ -64,7 +64,8 @@ public class PostRestController {
     @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
   @PostMapping("/")
-  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content) throws SQLException, IOException {
+  public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content)
+      throws SQLException, IOException {
     if (content.getTitle() == null || content.getTopicStrings() == null || content.getItems() == null)
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -87,6 +88,13 @@ public class PostRestController {
     Post post = new Post(author, content.getTitle(), topicList, items);
     postService.save(post);
     return new ResponseEntity<>(post, HttpStatus.CREATED);
+  }
+  
+  @GetMapping("/names/{prefix}")
+  public ResponseEntity<List<Post>> getUserByPrefix(@PathVariable String prefix){
+    List<Post> firstElementsList = postService.findPostPrefix(prefix).stream().limit(5).collect(Collectors.toList());
+
+    return new ResponseEntity<>(firstElementsList, HttpStatus.OK);
   }
 
   @Operation(summary = "Get specific post")

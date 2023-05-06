@@ -65,13 +65,16 @@ public class PostService {
         return postRepository.count();
     }
 
-  public Optional<Comment> getCommentByID(Post post, long commentId) {
-    List<Comment> comments = post.getComments();
-    for (Comment comment : comments) {
-      if (comment.getId() == commentId) {
-        return Optional.of(comment);
-      }
+    public Optional<Comment> getCommentByID(Post post, long commentId) {
+        List<Comment> comments = post.getComments();
+        for (Comment comment : comments) {
+            if (comment.getId() == commentId) {
+                return Optional.of(comment);
+            }
+        }
+        return Optional.empty();
     }
-    return Optional.empty();
-  }
+  
+    public List<Post> findPostPrefix(String prefix){return postRepository.findByTitleStartingWith(prefix);}
+
 }

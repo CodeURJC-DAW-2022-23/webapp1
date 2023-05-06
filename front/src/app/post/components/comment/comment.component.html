@@ -1,7 +1,7 @@
 <div class="comment w-100 p-3 d-flex justify-content-center flex-column gap-2">
   <div class="userInfo w-100 d-flex align-items-center gap-2">
-    <img src="#" alt="pfp" width="33" height="33" class="comment-image rounded-circle flex-shrink-0">
-    <a class="username text-black text-decoration-none w-auto" href="#">
+    <img [src]="fetchImage(comment.imageID!)" alt="pfp" width="33" height="33" class="comment-image rounded-circle flex-shrink-0">
+    <a class="username text-black text-decoration-none w-auto" [routerLink]="['/user', comment.authorName]">
       {{comment.authorName}}
     </a>
   </div>

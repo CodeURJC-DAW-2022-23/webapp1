@@ -27,7 +27,7 @@ import { CommentFormComponent } from './components/comment/comment-form/comment-
     CreatePostComponent,
     CommentFormComponent
   ],
-  imports: [CommonModule, RouterModule, MatProgressSpinnerModule, MatFormFieldModule, MatSelectModule, BrowserModule, HttpClientModule, FormsModule, SharedModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, MatProgressSpinnerModule, MatFormFieldModule, MatSelectModule, HttpClientModule, FormsModule, SharedModule, ReactiveFormsModule],
   exports: [FeedComponent, TopComponent, PostComponent],
 })
 export class PostModule {}

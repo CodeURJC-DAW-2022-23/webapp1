@@ -21,6 +21,11 @@ public class Comment {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  public Long getImageID() {
+    return imageID;
+  }
+
+  private Long imageID;
   @JsonIgnore
   @ManyToOne
   private User author;
@@ -48,6 +53,7 @@ public class Comment {
     this.date = new Date();
     this.author = author;
     authorName = author.getUsername();
+    imageID = author.getId();
     this.content = content;
     setImage(imagePath);
     author.addComment(this);

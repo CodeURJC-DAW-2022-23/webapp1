@@ -19,13 +19,15 @@ export class SearchComponent {
 
   getUser(username: String) {
     this.searchService.getUser(username).subscribe(
-      Response => this.userResults = Response as User[]
+      Response => this.userResults = Response as User[],
+      error => this.userResults = []
     )
   }
 
   getPost(name: String) {
     this.searchService.getPost(name).subscribe(
-      Response => this.postResults = Response as Post[]
+      Response => this.postResults = Response as Post[],
+      error => this.postResults = []
     )
   }
 

@@ -536,7 +536,7 @@ In order to execute the SPA application you should follow the next steps:
 
 ### Gledrian
 
-#### Textual description:
+#### Textual description: Image renders, backend models refactor, navbar icon glow
 
 #### Five most important commits:
 

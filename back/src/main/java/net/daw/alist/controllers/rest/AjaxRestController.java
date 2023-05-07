@@ -24,7 +24,7 @@ import net.daw.alist.services.PostService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/new/api/posts")
 public class AjaxRestController {
   
   @Autowired

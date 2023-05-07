@@ -30,7 +30,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/topics")
+@RequestMapping("")
 public class TopicRestController {
 
   @Autowired
@@ -49,7 +49,7 @@ public class TopicRestController {
           }),
           @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
-  @GetMapping("/byName/{topicName}")
+  @GetMapping("/new/api/topics/byName/{topicName}")
   public ResponseEntity<List<Topic>> getTopicByName(@PathVariable String topicName) {
 
     List<Topic> firstElementsList = topicService.findByNameStartingWith(topicName).stream().limit(5).collect(Collectors.toList());
@@ -67,7 +67,7 @@ public class TopicRestController {
     }),
     @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
-  @GetMapping("/{topicId}")
+  @GetMapping("/new/api/topics/{topicId}")
   public ResponseEntity<Topic> getTopic(@PathVariable long topicId) {
     Optional<Topic> optionalTopic = topicService.findById(topicId);
     if (optionalTopic.isPresent()) {
@@ -77,14 +77,14 @@ public class TopicRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @GetMapping("")
+  @GetMapping("/new/api/topics")
   public ResponseEntity<List<Topic>> getTopics() {
     List<Topic> all = topicService.findAll();
     return new ResponseEntity<>(all, HttpStatus.OK);
   }
 
 
-  @GetMapping("/chart")
+  @GetMapping("/new/api/topics/chart")
   public ResponseEntity<Map<String, Integer>> getMappedTopics(){
     Map<String, Integer> topicsMapped = chartService.getTopicsMapped();
     return new ResponseEntity<>(topicsMapped, HttpStatus.OK);
@@ -98,7 +98,7 @@ public class TopicRestController {
     @ApiResponse(responseCode = "403", description = "Create topic only for admin", content = @Content),
     @ApiResponse(responseCode = "409",description = "The name chose is already taken", content=@Content )
   })
-  @PostMapping("/")
+  @PostMapping("/new/api/topics/")
   public ResponseEntity<Topic> createTopic(Authentication auth, @RequestBody Data content) {
     if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
@@ -117,7 +117,7 @@ public class TopicRestController {
     @ApiResponse(responseCode = "403", description = "Delete topic only for admin", content = @Content),
     @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
-  @DeleteMapping("/{topicId}")
+  @DeleteMapping("/new/api/topics/{topicId}")
   public ResponseEntity<Topic> deleteTopic(Authentication auth, @PathVariable long topicId) {
     if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
@@ -139,8 +139,9 @@ public class TopicRestController {
           @ApiResponse(responseCode = "403", description = "Delete topic only for admin", content = @Content),
           @ApiResponse(responseCode = "404", description = "Topic not found", content = @Content)
   })
-  @DeleteMapping("/byName/{topicName}")
+  @DeleteMapping("/new/api/topics/byName/{topicName}")
   public ResponseEntity<Topic> deleteTopic(Authentication auth, @PathVariable String topicName) {
+    System.out.println("gledrian gei");
     if (auth == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     boolean isAdmin = utils.getCurrentUserRole(auth).equals("ADMIN");
     if (!isAdmin) return new ResponseEntity<>(HttpStatus.FORBIDDEN);

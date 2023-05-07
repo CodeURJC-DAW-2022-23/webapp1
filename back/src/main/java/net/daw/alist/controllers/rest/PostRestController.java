@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 import static net.daw.alist.utils.Utils.pathToImage;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("")
 public class PostRestController {
 
   @Autowired
@@ -63,7 +63,7 @@ public class PostRestController {
     @ApiResponse(responseCode = "403", description = "Can't create post if not registered", content = @Content),
     @ApiResponse(responseCode = "400", description = "Bad formatting", content = @Content)
   })
-  @PostMapping("/")
+  @PostMapping("/api/posts")
   public ResponseEntity<Post> createPost(Authentication auth, @RequestBody Data content)
       throws SQLException, IOException {
     if (content.getTitle() == null || content.getTopicStrings() == null || content.getItems() == null)
@@ -90,7 +90,7 @@ public class PostRestController {
     return new ResponseEntity<>(post, HttpStatus.CREATED);
   }
   
-  @GetMapping("/names/{prefix}")
+  @GetMapping("/api/posts/names/{prefix}")
   public ResponseEntity<List<Post>> getUserByPrefix(@PathVariable String prefix){
     List<Post> firstElementsList = postService.findPostPrefix(prefix).stream().limit(5).collect(Collectors.toList());
 
@@ -104,7 +104,7 @@ public class PostRestController {
     }),
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @GetMapping("/{postId}")
+  @GetMapping("/api/posts/{postId}")
   public ResponseEntity<Post> getPost(@PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
@@ -122,7 +122,7 @@ public class PostRestController {
     @ApiResponse(responseCode = "403", description = "Can't delete other one post", content = @Content),
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @DeleteMapping("/{postId}")
+  @DeleteMapping("/api/posts/{postId}")
   public ResponseEntity<Post> deletePost(Authentication auth, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (auth != null && optionalPost.isPresent()) {
@@ -145,7 +145,7 @@ public class PostRestController {
     @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @PutMapping("/upvotes/{postId}")
+  @PutMapping("/api/posts/upvotes/{postId}")
   public ResponseEntity<ArrayList> upvotePost(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if(optionalPost.isPresent()) {
@@ -169,7 +169,7 @@ public class PostRestController {
     @ApiResponse(responseCode = "403", description = "Current user not logged in", content = @Content),
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content)
   })
-  @PutMapping("/downvotes/{postId}")
+  @PutMapping("/api/posts/downvotes/{postId}")
   public ResponseEntity<ArrayList> downvotePost(Authentication authentication, @PathVariable long postId) {
     Optional<Post> optionalPost = postService.findByID(postId);
     if (optionalPost.isPresent()) {
@@ -185,7 +185,7 @@ public class PostRestController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
   
-  @GetMapping("/images/{id}")
+  @GetMapping("/new/api/posts/images/{id}")
   public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
     Optional<User> author = userService.findByID(id);
     Optional<PostItem> postItem = postItemService.findById(id);

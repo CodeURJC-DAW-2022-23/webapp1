@@ -540,20 +540,20 @@ In order to execute the SPA application you should follow the next steps:
 
 #### Five most important commits:
 
-| Commit number | Description |
-| ------------- | ----------- |
-| #1            |             |
-| #2            |             |
-| #3            |             |
-| #4            |             |
-| #5            |             |
+| Commit number | Description                                                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Render Image](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3d148bc8d831442db8eb1c76e2bddc2ca1e8ace8)                             |
+| #2            | [Navbar icon glow based on route](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a257b12a5deb6f7f18b568eb5150bd1cc0f5a89b)          |
+| #3            | [App icon component](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a502f1e320b4211781ecfdeb63543739c8027598)                       |
+| #4            | [User image render](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0725bf455bde5c9ab8251ccf19129423d59365db)                        |
+| #5            | [Refactored classes for better efficiency](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/af11f10c2f54b055bd081a14a86eff4a7817ad0c) |
 
 #### Five most participated files:
 
 | File number | File |
 | ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| #1          | [nav.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/nav/nav.component.ts)     |
+| #2          | [icon.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/icon/icon.component.ts)      |
+| #3          | [post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/post/post.component.html)     |
+| #4          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/models/Post.java)     |
+| #5          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/services/posts.service.ts)     |

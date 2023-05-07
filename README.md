@@ -436,127 +436,124 @@ In order to execute the SPA application you should follow the next steps:
 
 ## SPA Classes and Templates Diagram
 
-
-
 ## Group members participation
 
 ### Frantzes
 
-#### Textual description: 
+#### Textual description:
 
 #### Five most important commits:
 
-| Commit number | Description                                            |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |             |
+| #2            |             |
+| #3            |             |
+| #4            |             |
+| #5            |             |
 
 #### Five most participated files:
 
-| File number   | File                                                   |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| File number | File |
+| ----------- | ---- |
+| #1          |      |
+| #2          |      |
+| #3          |      |
+| #4          |      |
+| #5          |      |
 
 ### Vicente
 
-#### Textual description: 
+#### Textual description:
 
 #### Five most important commits:
 
-| Commit number | Description                                            |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |             |
+| #2            |             |
+| #3            |             |
+| #4            |             |
+| #5            |             |
 
 #### Five most participated files:
 
-| File number   | File                                                   |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
-
+| File number | File |
+| ----------- | ---- |
+| #1          |      |
+| #2          |      |
+| #3          |      |
+| #4          |      |
+| #5          |      |
 
 ### Alejandro
 
-#### Textual description: 
+#### Textual description: Angular init, auth & profile related
 
 #### Five most important commits:
 
-| Commit number | Description                                            |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| Commit number | Description                                                                                                                |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Generic feed component](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/94033c162d95dd325fb0f4c7b7a6e9dbac9fffbc)  |
+| #2            | [Logged user consistency](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7f872d6792386516f978a3de5c78de3cabafa86b) |
+| #3            | [Profile basis](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/58dd3b76fe091276e315cad5942b4eb65e9a798c)           |
+| #4            | [Register reactive form](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/82249e7b6607e5305b2c9a02ecdd1d15d583dde0)  |
+| #5            | [Angular init components](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7fc861b36720474f867cf99a7f5c7be9ed238da4) |
 
 #### Five most participated files:
 
-| File number   | File                                                   |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| File number | File                                                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [auth.guard.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/auth/guards/auth.guard.ts)                         |
+| #2          | [auth.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/auth/services/auth.service.ts)                   |
+| #3          | [register.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/auth/pages/register/register.component.ts) |
+| #4          | [profile.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/profile/pages/profile/profile.component.ts) |
+| #5          | [follow.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/profile/pages/follow/follow.component.ts)    |
 
 ### Alberto
 
-#### Textual description: 
+#### Textual description:
 
 #### Five most important commits:
 
-| Commit number | Description                                            |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |             |
+| #2            |             |
+| #3            |             |
+| #4            |             |
+| #5            |             |
 
 #### Five most participated files:
 
-| File number   | File                                                   |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| File number | File |
+| ----------- | ---- |
+| #1          |      |
+| #2          |      |
+| #3          |      |
+| #4          |      |
+| #5          |      |
 
 ### Gledrian
 
-#### Textual description: 
+#### Textual description:
 
 #### Five most important commits:
 
-| Commit number | Description                                            |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |             |
+| #2            |             |
+| #3            |             |
+| #4            |             |
+| #5            |             |
 
 #### Five most participated files:
 
-| File number   | File                                                   |
-|---------------|--------------------------------------------------------|
-|#1             |                                                        |
-|#2             |                                                        |
-|#3             |                                                        |
-|#4             |                                                        |
-|#5             |                                                        |
+| File number | File |
+| ----------- | ---- |
+| #1          |      |
+| #2          |      |
+| #3          |      |
+| #4          |      |
+| #5          |      |

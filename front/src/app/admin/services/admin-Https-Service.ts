@@ -11,36 +11,31 @@ export class AdminHttpsService {
   constructor(private httpClient: HttpClient) { }
 
   getTopicsMapped(): Observable<Map<string, number>> {
-    return this.httpClient.get<Map<string, number>>("api/topics/chart");
+    return this.httpClient.get<Map<string, number>>("/api/topics/chart");
   }
 
   getTopic(topicName: String): Observable<Topic[]> {
-    return this.httpClient.get<Topic[]>("api/topics/byName/" + topicName);
+    return this.httpClient.get<Topic[]>("/api/topics/byName/" + topicName);
   }
 
   deleteTopic(topicName: String): Observable<Topic> {
-    return this.httpClient.delete<Topic>("api/topics/byName/" + topicName);
+    return this.httpClient.delete<Topic>("/api/topics/byName/" + topicName);
   }
 
   addTopic(topicName: string, topicDescription: string): Observable<Topic> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { name: topicName, description: topicDescription };
 
-    return this.httpClient.post<Topic>("api/topics/", body, { headers });
+    return this.httpClient.post<Topic>("/api/topics/", body, { headers });
   }
 
   banUser(userStared: StaredUser): Observable<StaredUser> {
     const params = new HttpParams()
       .set('operation', 'ban');
-    return this.httpClient.put<StaredUser>("api/users/" + userStared?.id, params);
+    return this.httpClient.put<StaredUser>("/api/users/" + userStared?.id, params);
   }
 
   getUser(username: String): Observable<StaredUser[]> {
-    return this.httpClient.get<StaredUser[]>("api/users/names/" + username);
+    return this.httpClient.get<StaredUser[]>("/api/users/names/" + username);
   }
-
-
-
-
-
 }

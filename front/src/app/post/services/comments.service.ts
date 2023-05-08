@@ -4,13 +4,13 @@ import { map } from 'rxjs';
 import { Comment } from 'src/app/models/comment.model';
 import { CommentForm } from '../components/comment/comment-form/CommentForm';
 
-const BASE_URL = 'api/comments';
+const BASE_URL = '/api/comments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getComments(id: number, page: number) {
     const params = new HttpParams().set('id', id).set('page', page);

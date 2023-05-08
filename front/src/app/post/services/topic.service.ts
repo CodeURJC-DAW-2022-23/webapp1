@@ -4,15 +4,15 @@ import { map } from 'rxjs/operators';
 import { Topic } from '../interfaces/topic.interface';
 
 
-const BASE_URL = 'api/topics';
+const BASE_URL = '/api/topics';
 
 @Injectable({
   providedIn: "root",
 })
 export class TopicsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getTopics(){
+  getTopics() {
     return this.http.get<Topic[]>(BASE_URL).pipe(
       map((topics: Topic[]) => {
         return topics.map((topic) => {

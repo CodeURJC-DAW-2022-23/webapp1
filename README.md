@@ -424,6 +424,9 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 ## App Demo:
 https://youtu.be/vr3C2wiKIMQ
 
+## Class diagram
+![Untitled Diagram-Page-3 drawio](https://user-images.githubusercontent.com/102819481/236791586-8a51fed7-b1d0-4fff-803f-dfb03f7ad915.png)
+
 ## Instructions for developer environment 
 
 In order to execute the SPA application in a dev environment you should follow the next steps:

@@ -420,22 +420,23 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | #1          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/AList.postman_collection.json)                                       |
 | #2          | [AjaxRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/AjaxRestController.java) |
 
-## Phase 4##
+## Phase 4
+## App Demo:
+https://youtu.be/vr3C2wiKIMQ
 
-Instructions for developer environment
-In order to execute the SPA application you should follow the next steps:
+## Instructions for developer environment 
+
+In order to execute the SPA application in a dev environment you should follow the next steps:
 
 1. Install Docker Desktop.
 2. Create and account on Dockerhub.
-3. Open any shell of type "bash". Execute the following commands:
-
-```bash
-git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git
-cd webapp1/back/docker
-docker-compose -f docker-compose-build.yml up
-```
-
-4. When the app is running, open any browser and search "https://localhost:8443/new/".
+3. Open any shell of type "bash".
+4. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
+5. Use command "cd" until you get to the folder "Docker".
+7. Execute the command "docker-compose -f docker-compose-build.yml up" on the shell.
+8. Use command "cd" until you get to the /front/src/app directory.
+9. Run "npm install" followed by "ng serve" to download dependencies and run the app.
+10. The app is now running on "https://localhost:4200" for development.
 
 ## SPA Classes and Templates Diagram
 
@@ -449,21 +450,21 @@ docker-compose -f docker-compose-build.yml up
 
 | Commit number | Description |
 | ------------- | ----------- |
-| #1            |             |
-| #2            |             |
-| #3            |             |
-| #4            |             |
-| #5            |             |
+| #1            | [Top-list page](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/4b060fdf5fc0d37ad3350a125a946638097d3809)      |
+| #2            | [Home and following page](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a5f57b4fccc60e003de66fb47c72012903aef4b9)          |
+| #3            | [Gmail verification](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/c8b54fdac9085a3e3c819d69b21b18cff41d02bf)            |
+| #4            | [Rest API fixes](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/36252d413ec4d9e35fa65ac1a32fcdff8a691a72)            |
+| #5            | [Ajax comments](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/b7834064a29853569ad1a5e3053a469b1af18dcb)            |
 
 #### Five most participated files:
 
 | File number | File |
 | ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| #1          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/services/posts.service.ts)     |
+| #2          | [feed.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/feed/feed.component.ts)     |
+| #3          | [top.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/top/top.component.ts)     |
+| #4          | [post.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/components/post/post.component.ts)     |
+| #5          | [comment-form.comonent.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/comment/comment-form/comment-form.component.ts)     |
 
 ### Vicente
 
@@ -553,10 +554,10 @@ docker-compose -f docker-compose-build.yml up
 
 #### Five most participated files:
 
-| File number | File                                                                                                                                    |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| #1          | [nav.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/nav/nav.component.ts)      |
-| #2          | [icon.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/icon/icon.component.ts)   |
-| #3          | [post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/post/post.component.html) |
-| #4          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/models/Post.java)                |
-| #5          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/services/posts.service.ts)              |
+| File number | File |
+| ----------- | ---- |
+| #1          | [nav.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/nav/nav.component.ts)     |
+| #2          | [icon.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/icon/icon.component.ts)      |
+| #3          | [post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/post/post.component.html)     |
+| #4          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/models/Post.java)     |
+| #5          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/services/posts.service.ts)     |

@@ -1,8 +1,6 @@
 <div class="body">
-  <!-- TODO: hideContainer() -->
   <div class="searchWrapper bg-white" (mouseleave)="hideContainer()">
     <div class="d-flex w-100" role="search">
-      <!-- TODO: showContainer() -->
       <input class="searchBar form-control border-0 shadow-none w-100" #userPrefix id="searchBar"
         (change)="searcher(userPrefix.value)" type="search" placeholder="Search" aria-label="Search"
         (focus)="showContainer()" (mouseover)="showContainer()" data-search>
@@ -12,39 +10,29 @@
     </div>
     <div class="autoCompleteBox w-100 z-2">
       <div class="separator text-center">Users</div>
-      <!-- TODO: {{#searchSuggestedUsers}} -->
-      <!-- TODO: username -->
       <div *ngFor="let user of userResults">
-        <a class="card w-100 text-decoration-none" href="/user/{{user.username}}">
+        <a class="card w-100 text-decoration-none" [routerLink]="['/user/', user.username]">
           <div class="cardLink text-left d-flex justify-content-center ms-0 me-auto">
-            <!-- TODO: imagePath -->
             <img [src]="fetchImage(user.id)" alt="Profile picture" width="35" height="35"
               class="profileImg rounded-circle flex-shrink-0">
-            <!-- TODO: username -->
             <div class="usernameSug header m-auto">{{user?.username}}</div>
             <div class="body"></div>
           </div>
         </a>
       </div>
-      <!-- TODO: {{/searchSuggestedUsers}} -->
       <div class="separator text-center">Posts</div>
-      <!-- TODO: {{#searchSuggestedPosts}} -->
-      <!-- TODO: id -->
       <div *ngFor="let post of postResults">
-        <a class="card w-100 text-decoration-none" href="/top-list/{{post.id}}">
+        <a class="card w-100 text-decoration-none" [routerLink]="['/post/', post.id]">
           <div class="cardLink text-left d-flex flex-column justify-content-center ms-0 me-auto">
             <div class="d-flex flex-row">
-              <!-- TODO: author.imagePath -->
               <img [src]="fetchImage(post.authorId)" alt="profilePic" width="35" height="35"
                 class="profileImg rounded-circle flex-shrink-0">
-              <!-- TODO: author.username -->
               <div class="usernameSug header">{{post.authorName}}</div>
             </div>
             <div class="d-flex flex-row "> {{post.title}}</div>
           </div>
         </a>
       </div>
-      <!-- TODO: {{/searchSuggestedPosts}} -->
     </div>
   </div>
 </div>

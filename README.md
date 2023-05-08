@@ -534,21 +534,21 @@ To use the SPA version add /new to URL´s
 
 | Commit number | Description |
 | ------------- | ----------- |
-| #1            |             |
-| #2            |             |
-| #3            |             |
-| #4            |             |
-| #5            |             |
+| #1            | [Pie Chart admin-panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/365b74f66138518a130395359d1aa8756d552de9)            |
+| #2            |[Add and delete topic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/aded85d60d10c8d502af2424aba33e9f26f95c40)             |
+| #3            | [Users banning admin-panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3d42da9ecc654041aa46cf99aa4b68142c3d8e68)            |
+| #4            | [Improve of inputs usability admin-panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/385173381b2f211e5fd01dfe02c5e5f3db2fb86e)            |
+| #5            |  [Search Bar](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5922745ae1e6b25625049c5c578f7a9805092424)           |
 
 #### Five most participated files:
 
 | File number | File |
 | ----------- | ---- |
-| #1          |      |
-| #2          |      |
-| #3          |      |
-| #4          |      |
-| #5          |      |
+| #1          | [manage-topics.component.html] (https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-topics/manage-topics.component.html)   |
+| #2          | [search.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/search/search.component.ts)     |
+| #3          |  [search.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/shared/components/search/search.service.ts)    |
+| #4          |[manage-users.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-users/manage-users.component.ts)     |
+| #5          |  [manage-topics.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-topics/manage-topics.component.ts)    |
 
 ### Gledrian
 

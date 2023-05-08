@@ -544,7 +544,7 @@ To use the SPA version add /new to URL´s
 
 | File number | File |
 | ----------- | ---- |
-| #1          | [manage-topics.component.html] (https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-topics/manage-topics.component.html)   |
+| #1          | [manage-topics.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-topics/manage-topics.component.html)   |
 | #2          | [search.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/search/search.component.ts)     |
 | #3          |  [search.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/shared/components/search/search.service.ts)    |
 | #4          |[manage-users.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-users/manage-users.component.ts)     |

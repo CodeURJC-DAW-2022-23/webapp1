@@ -348,7 +348,7 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | File number | File                                                                                                                                                                         |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | #1          | [CommentRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/CommentRestController.java)        |
-| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/AList.postman_collection.json)                                       |
+| #2          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/AList.postman_collection.json)                                                    |
 | #3          | [PostService.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/services/PostService.java)                                    |
 | #4          | [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
 | #5          | [Comment.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/models/Comment.java)                                              |
@@ -374,7 +374,6 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | #1          | [PostRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/76f7d68f27594b5a5687996043f76738b3efd018/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)  |
 | #2          | [ UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/a811ea269945cdcda2bc0f752cc1449adc653214/back/src/main/java/net/daw/alist/controllers/rest/UserRestController.java) |
 | #3          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/297db0eee9a3e51a24af8e0ee18d9996123b4c01/AList.postman_collection.json)                                        |
-
 
 ### Alejandro
 
@@ -420,3 +419,160 @@ https://raw.githack.com/CodeURJC-DAW-2022-23/webapp1/main/back/api-docs/api-docs
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | #1          | [AList.postman_collection.json](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/AList.postman_collection.json)                                       |
 | #2          | [AjaxRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/feat/postman-JSON/back/src/main/java/net/daw/alist/controllers/rest/AjaxRestController.java) |
+
+## Phase 4
+## App Demo:
+https://youtu.be/vr3C2wiKIMQ
+
+## Class diagram
+![Untitled Diagram-Page-3 drawio](https://user-images.githubusercontent.com/102819481/236791586-8a51fed7-b1d0-4fff-803f-dfb03f7ad915.png)
+
+## Instructions for developer environment 
+
+In order to execute the SPA application in a dev environment you should follow the next steps:
+
+1. Install Docker Desktop.
+2. Create and account on Dockerhub.
+3. Open any shell of type "bash".
+4. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
+5. Use command "cd" until you get to the folder "Docker".
+7. Execute the command "docker-compose -f docker-compose-build.yml up" on the shell.
+8. Use command "cd" until you get to the /front/src/app directory.
+9. Run "npm install" followed by "ng serve" to download dependencies and run the app.
+10. The app is now running on "https://localhost:4200" for development.
+
+## Instructions to run the app
+
+In order to run the dockerized app follow the next steps:
+
+1. Make sure to have Docker and git installed.
+2. Open your terminal.
+3. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
+4. Execute the command cd ./webapp1/back/docker.
+5. Run "create_image.sh [DockerUsername]/[TagName]"
+
+To use the SPA version add /new to URL´s
+
+## SPA Classes and Templates Diagram
+
+## Group members participation
+
+### Frantzes
+
+#### Textual description:
+
+#### Five most important commits:
+
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            | [Top-list page](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/4b060fdf5fc0d37ad3350a125a946638097d3809)      |
+| #2            | [Home and following page](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a5f57b4fccc60e003de66fb47c72012903aef4b9)          |
+| #3            | [Gmail verification](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/c8b54fdac9085a3e3c819d69b21b18cff41d02bf)            |
+| #4            | [Rest API fixes](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/36252d413ec4d9e35fa65ac1a32fcdff8a691a72)            |
+| #5            | [Ajax comments](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/b7834064a29853569ad1a5e3053a469b1af18dcb)            |
+
+#### Five most participated files:
+
+| File number | File |
+| ----------- | ---- |
+| #1          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/services/posts.service.ts)     |
+| #2          | [feed.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/feed/feed.component.ts)     |
+| #3          | [top.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/top/top.component.ts)     |
+| #4          | [post.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/components/post/post.component.ts)     |
+| #5          | [comment-form.comonent.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/comment/comment-form/comment-form.component.ts)     |
+
+### Vicente
+
+#### Textual description:
+
+#### Five most important commits:
+
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            |   [Create post paga working](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/576610fbf4330085f6685a947c301e050a48286f)          |
+| #2            |   [Topic choosing](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0ef2a360c2e643b5b1b024bdbbc715e8ed841f6c)          |
+| #3            |   [Images](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/186a52abcfbf87ecbfbac4928b2f7e6feaebe5a2)          |
+| #4            |   [Create post logic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/31d7f6e5ac4cdcd9d31dbeba7c1f9bd9d0929350)          |
+| #5            |   [CreatePost API method](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/04db5389cefff5499c1c87d73ace8c975260bee2)          |
+
+#### Five most participated files:
+
+| File number | File |
+| ----------- | ---- |
+| #1          |   [create-post.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/create-post/create-post.component.ts)   |
+| #2          |   [create-post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/create-post/create-post.component.html)   |
+| #3          |   [create-post.component.css](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/pages/create-post/create-post.component.css)   |
+| #4          |   [post.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/post/services/post.service.ts)  |
+| #5          |   [PostRestController](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/back/src/main/java/net/daw/alist/controllers/rest/PostRestController.java)   |
+
+### Alejandro
+
+#### Textual description: Angular init, auth & profile related
+
+#### Five most important commits:
+
+| Commit number | Description                                                                                                                |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Generic feed component](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/94033c162d95dd325fb0f4c7b7a6e9dbac9fffbc)  |
+| #2            | [Logged user consistency](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7f872d6792386516f978a3de5c78de3cabafa86b) |
+| #3            | [Profile basis](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/58dd3b76fe091276e315cad5942b4eb65e9a798c)           |
+| #4            | [Register reactive form](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/82249e7b6607e5305b2c9a02ecdd1d15d583dde0)  |
+| #5            | [Angular init components](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/7fc861b36720474f867cf99a7f5c7be9ed238da4) |
+
+#### Five most participated files:
+
+| File number | File                                                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [auth.guard.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/auth/guards/auth.guard.ts)                         |
+| #2          | [auth.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/auth/services/auth.service.ts)                   |
+| #3          | [register.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/auth/pages/register/register.component.ts) |
+| #4          | [profile.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/profile/pages/profile/profile.component.ts) |
+| #5          | [follow.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/profile/pages/follow/follow.component.ts)    |
+
+### Alberto
+
+#### Textual description:
+
+#### Five most important commits:
+
+| Commit number | Description |
+| ------------- | ----------- |
+| #1            | [Pie Chart admin-panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/365b74f66138518a130395359d1aa8756d552de9)            |
+| #2            |[Add and delete topic](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/aded85d60d10c8d502af2424aba33e9f26f95c40)             |
+| #3            | [Users banning admin-panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3d42da9ecc654041aa46cf99aa4b68142c3d8e68)            |
+| #4            | [Improve of inputs usability admin-panel](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/385173381b2f211e5fd01dfe02c5e5f3db2fb86e)            |
+| #5            |  [Search Bar](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/5922745ae1e6b25625049c5c578f7a9805092424)           |
+
+#### Five most participated files:
+
+| File number | File |
+| ----------- | ---- |
+| #1          | [manage-topics.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-topics/manage-topics.component.html)   |
+| #2          | [search.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/search/search.component.ts)     |
+| #3          |  [search.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/shared/components/search/search.service.ts)    |
+| #4          |[manage-users.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-users/manage-users.component.ts)     |
+| #5          |  [manage-topics.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blame/main/front/src/app/admin/components/manage-topics/manage-topics.component.ts)    |
+
+### Gledrian
+
+#### Textual description: Image renders, backend models refactor, navbar icon glow
+
+#### Five most important commits:
+
+| Commit number | Description                                                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| #1            | [Render Image](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/3d148bc8d831442db8eb1c76e2bddc2ca1e8ace8)                             |
+| #2            | [Navbar icon glow based on route](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a257b12a5deb6f7f18b568eb5150bd1cc0f5a89b)          |
+| #3            | [App icon component](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/a502f1e320b4211781ecfdeb63543739c8027598)                       |
+| #4            | [User image render](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/0725bf455bde5c9ab8251ccf19129423d59365db)                        |
+| #5            | [Refactored classes for better efficiency](https://github.com/CodeURJC-DAW-2022-23/webapp1/commit/af11f10c2f54b055bd081a14a86eff4a7817ad0c) |
+
+#### Five most participated files:
+
+| File number | File |
+| ----------- | ---- |
+| #1          | [nav.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/nav/nav.component.ts)     |
+| #2          | [icon.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/icon/icon.component.ts)      |
+| #3          | [post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/post/post.component.html)     |
+| #4          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/models/Post.java)     |
+| #5          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/services/posts.service.ts)     |

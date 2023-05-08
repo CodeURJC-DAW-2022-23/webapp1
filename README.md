@@ -438,6 +438,18 @@ In order to execute the SPA application in a dev environment you should follow t
 9. Run "npm install" followed by "ng serve" to download dependencies and run the app.
 10. The app is now running on "https://localhost:4200" for development.
 
+## Instructions to run the app
+
+In order to run the dockerized app follow the next steps:
+
+1. Make sure to have Docker and git installed.
+2. Open your terminal.
+3. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
+4. Execute the command cd ./webapp1/back/docker.
+5. Run "create_image.sh [DockerUsername]/[TagName]"
+
+To use the SPA version add /new to URL´s
+
 ## SPA Classes and Templates Diagram
 
 ## Group members participation

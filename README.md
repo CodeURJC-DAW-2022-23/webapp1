@@ -427,12 +427,15 @@ In order to execute the SPA application you should follow the next steps:
 
 1. Install Docker Desktop.
 2. Create and account on Dockerhub.
-3. Open any shell of type "bash".
-4. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git".
-5. Use command "cd" until you get to the folder "Docker".
-6. Execute the command "./create_image.sh franchescourjc/webapp1".
-7. Execute the command "docker-compose up" on the shell.
-8. When the app is running, open any browser and search "https://localhost:8443/new/".
+3. Open any shell of type "bash". Execute the following commands:
+
+```bash
+git clone https://github.com/CodeURJC-DAW-2022-23/webapp1.git
+cd webapp1/back/docker
+docker-compose -f docker-compose-build.yml up
+```
+
+4. When the app is running, open any browser and search "https://localhost:8443/new/".
 
 ## SPA Classes and Templates Diagram
 
@@ -550,10 +553,10 @@ In order to execute the SPA application you should follow the next steps:
 
 #### Five most participated files:
 
-| File number | File |
-| ----------- | ---- |
-| #1          | [nav.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/nav/nav.component.ts)     |
-| #2          | [icon.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/icon/icon.component.ts)      |
-| #3          | [post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/post/post.component.html)     |
-| #4          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/models/Post.java)     |
-| #5          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/services/posts.service.ts)     |
+| File number | File                                                                                                                                    |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| #1          | [nav.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/nav/nav.component.ts)      |
+| #2          | [icon.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/shared/components/icon/icon.component.ts)   |
+| #3          | [post.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/components/post/post.component.html) |
+| #4          | [Post.java](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/back/src/main/java/net/daw/alist/models/Post.java)                |
+| #5          | [posts.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp1/blob/main/front/src/app/post/services/posts.service.ts)              |

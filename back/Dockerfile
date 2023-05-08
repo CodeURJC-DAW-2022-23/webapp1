@@ -1,3 +1,11 @@
+FROM node:16-alpine AS builder
+
+WORKDIR ../front
+RUN npm install
+RUN npm run build --base-href=/new/
+
+COPY --from=builder ../front/dist/alist /project/src/main/resources/static/new
+
 FROM maven:3-openjdk-17 as builder
 WORKDIR /alist
 COPY pom.xml /alist
